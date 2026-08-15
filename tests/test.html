@@ -82,6 +82,8 @@ try {
   const wrongBtn = qa('.choice').find(b => Number(b.dataset.i) !== bank2.answer);
   wrongBtn.click();
   t('wrong shows explanation', !!q('.explain.wrongbg'));
+  t('feedback links to a prefilled error report',
+    q('.explain a.report').href.includes('question-id=' + bank2.id));
   t('continue button appears', !!q('#next'));
   // Enter with focus on some other button must not be hijacked into Continue
   // (a synthetic keydown never triggers the native click, so if the shortcut

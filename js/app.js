@@ -443,7 +443,7 @@
     if (correct) session.correct++;
 
     const fb = $('#feedback');
-    const cite = `<span class="cite">Manual p. ${esc(q.page)}</span>`;
+    const cite = `<span class="cite">Manual p. ${esc(q.page)}</span> ${reportLink(q)}`;
     if (!correct) {
       if (scheduling) {
         Object.assign(c, FSRS.schedule(c, 1, Date.now(), schedOpts())); // Again
@@ -597,7 +597,7 @@
               <div class="q">${esc(q.question)}</div>
               <div class="you">Your answer: ${esc(q.choices[a.picked])}</div>
               <div class="ans">Correct: ${esc(q.choices[q.answer])}</div>
-              <div class="ex">${esc(q.explanation)} <span class="cite">Manual p. ${esc(q.page)}</span></div>
+              <div class="ex">${esc(q.explanation)} <span class="cite">Manual p. ${esc(q.page)}</span> ${reportLink(q)}</div>
             </div>`;
           }).join('')}</div>` : '<p>Perfect score.</p>'}
         <button class="primary" id="home">Home</button>
@@ -624,7 +624,7 @@
               const acc = c && (c.right + c.wrong) ? ` · ${c.right}/${c.right + c.wrong} right` : '';
               return `<details class="qrow"><summary>${esc(q.question)} <small>[${status}${acc}]</small></summary>
                 <div class="qdetail"><strong>${esc(q.choices[q.answer])}</strong><br>
-                ${esc(q.explanation)} <span class="cite">Manual p. ${esc(q.page)}</span></div>
+                ${esc(q.explanation)} <span class="cite">Manual p. ${esc(q.page)}</span> ${reportLink(q)}</div>
               </details>`;
             }).join('')}
           </details>`;
@@ -863,6 +863,12 @@
   // ---------- about ----------
   const REPO = 'https://github.com/ullbergm/nc-cdl-test-training';
   const MANUAL_URL = 'https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf';
+
+  // Question-correction issue with the id and cited page prefilled, so a
+  // reader who spots a bad question can report it from where they see it.
+  const reportLink = q => `<a class="report" target="_blank" rel="noopener"
+    href="${REPO}/issues/new?template=question-correction.yml&question-id=${
+      encodeURIComponent(q.id)}&manual-page=${encodeURIComponent(q.page)}">Report an error</a>`;
 
   // Escapes, then converts markdown [text](url) links to anchors.
   const mdLinks = s => esc(s).replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,

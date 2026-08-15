@@ -254,6 +254,8 @@ kbd.after { margin: 0 0 0 9px; }
 .explain.okbg { background: var(--ok-bg); border-color: color-mix(in srgb, var(--ok) 25%, transparent); }
 .explain.wrongbg { background: var(--bad-bg); border-color: color-mix(in srgb, var(--bad) 25%, transparent); }
 .cite { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+a.report { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+a.report:hover { color: var(--accent); }
 .grades { display: flex; gap: 8px; }
 .grades button small { display: block; color: inherit; opacity: 0.7; font-weight: 400; }
 
