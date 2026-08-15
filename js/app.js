@@ -217,6 +217,11 @@
 
   function render(name) {
     currentView = name;
+    // A correct answer awaiting its grade has already bumped the daily
+    // counters and the card's right count, but not its schedule. Leaving
+    // mid-grade would let a later save persist that half-applied answer, so
+    // roll it back: the question simply goes back to unanswered.
+    if (session && session.pendingGrade) rollbackAnswer();
     session = null;
     clearSession();
     setNav(name);
@@ -404,7 +409,9 @@
     };
   }
 
-  function undoAnswer() {
+  // Restore everything answer() mutated. Used by the Undo button and by
+  // render() when a view change abandons an answer that was never graded.
+  function rollbackAnswer() {
     const u = session.undo;
     if (!u) return;
     const s = Store.load();
@@ -413,7 +420,13 @@
     session.pos = u.pos; session.done = u.done; session.correct = u.correct;
     if (u.requeuedAt !== undefined) session.queue.splice(u.requeuedAt, 1);
     session.undo = null;
+    session.pendingGrade = false;
     Store.save();
+  }
+
+  function undoAnswer() {
+    if (!session || !session.undo) return;
+    rollbackAnswer();
     renderQuestion();
   }
 
@@ -472,9 +485,11 @@
           <button data-r="3" class="primary" title="Shortcut: 2 or Enter"><kbd>2</kbd>Good <small>${preview(3)}</small></button>
           <button data-r="4"><kbd>3</kbd>Easy <small>${preview(4)}</small></button>
         </div>${undoButton}`;
+      session.pendingGrade = true; // counters are bumped, schedule is not
       fb.querySelectorAll('.grades button').forEach(b =>
         b.addEventListener('click', () => {
           Object.assign(c, scheds[Number(b.dataset.r)]);
+          session.pendingGrade = false;
           Store.save();
           session.pos++;
           renderQuestion();

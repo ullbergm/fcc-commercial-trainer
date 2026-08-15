@@ -112,6 +112,16 @@ try {
   q('.grades button[data-r="3"]').click();
   t('undo gone after grading finalizes the answer', !q('#undo'));
 
+  // --- leaving mid-grade rolls the ungraded answer back ---
+  const qtext4 = q('.qtext').textContent;
+  const bank4 = QUESTION_BANK.find(x => x.question === qtext4);
+  const daily4 = JSON.stringify(Store.load().daily);
+  qa('.choice').find(b => Number(b.dataset.i) === bank4.answer).click();
+  nav('home'); // grades were showing; navigating away abandons the answer
+  const c4 = Store.load().cards[bank4.id];
+  t('leaving mid-grade rolls back the daily counters', JSON.stringify(Store.load().daily) === daily4);
+  t('leaving mid-grade leaves the card unseen', !c4 || !c4.lastReview);
+
   // state checks
   const st = Store.load();
   const c2 = st.cards[bank2.id];
