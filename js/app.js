@@ -132,8 +132,18 @@
   let session = null; // active study/miss/exam session
 
   function setNav(active) {
-    document.querySelectorAll('nav button').forEach(b =>
-      b.classList.toggle('active', b.dataset.view === active));
+    document.querySelectorAll('nav button').forEach(b => {
+      const on = b.dataset.view === active;
+      b.classList.toggle('active', on);
+      if (on) b.setAttribute('aria-current', 'page');
+      else b.removeAttribute('aria-current');
+    });
+  }
+
+  // Each view swap replaces #view's DOM, which drops keyboard and screen
+  // reader focus on the floor; put it on the given element instead.
+  function focusEl(el) {
+    if (el) el.focus();
   }
 
   const ROUTES = {
@@ -283,15 +293,18 @@
           ${badge}
           <span class="section">§${q.section} ${esc(q.sectionName)}</span>
         </div>
-        <div class="progress"><div style="width:${(session.pos / total) * 100}%"></div></div>
-        <h2 class="qtext">${esc(q.question)}</h2>
+        <div class="progress" role="progressbar" aria-label="Session progress"
+          aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${session.pos}">
+          <div style="width:${(session.pos / total) * 100}%"></div></div>
+        <h2 class="qtext" tabindex="-1">${esc(q.question)}</h2>
         <div class="choices">
           ${order.map(i => `<button class="choice" data-i="${i}">${esc(q.choices[i])}</button>`).join('')}
         </div>
-        <div id="feedback"></div>
+        <div id="feedback" aria-live="polite"></div>
       </div>`;
     view.querySelectorAll('.choice').forEach(btn =>
       btn.addEventListener('click', () => answer(q, Number(btn.dataset.i), btn)));
+    focusEl(view.querySelector('.qtext'));
   }
 
   function answer(q, picked, btn) {
@@ -328,6 +341,7 @@
       fb.innerHTML = `<div class="explain wrongbg"><strong>Incorrect.</strong> ${esc(q.explanation)} ${cite}</div>
         <button class="primary" id="next">Continue</button>`;
       $('#next').addEventListener('click', () => { session.pos++; renderQuestion(); });
+      focusEl($('#next'));
     } else if (scheduling) {
       const preview = r => {
         const sched = FSRS.schedule({ ...c }, r, Date.now(), schedOpts());
@@ -346,11 +360,13 @@
           session.pos++;
           renderQuestion();
         }));
+      focusEl(fb.querySelector('[data-r="3"]'));
       return; // save happens on grade click
     } else {
       fb.innerHTML = `<div class="explain okbg"><strong>Correct.</strong> ${esc(q.explanation)} ${cite}</div>
         <button class="primary" id="next">Continue</button>`;
       $('#next').addEventListener('click', () => { session.pos++; renderQuestion(); });
+      focusEl($('#next'));
     }
     Store.save();
   }
@@ -359,11 +375,12 @@
     const pct = session.done ? Math.round((session.correct / session.done) * 100) : 0;
     view.innerHTML = `
       <div class="done">
-        <h2>Session complete</h2>
+        <h2 tabindex="-1">Session complete</h2>
         <p>${session.correct} / ${session.done} correct (${pct}%)</p>
         <button class="primary" id="home">Home</button>
       </div>`;
     $('#home').addEventListener('click', () => go('home'));
+    focusEl(view.querySelector('h2'));
     session = null;
   }
 
@@ -410,8 +427,10 @@
       <div class="quiz">
         <div class="meta"><span>${session.pos + 1} / ${total}</span>
           <span class="section">${esc(session.exam.name)}</span></div>
-        <div class="progress"><div style="width:${(session.pos / total) * 100}%"></div></div>
-        <h2 class="qtext">${esc(q.question)}</h2>
+        <div class="progress" role="progressbar" aria-label="Exam progress"
+          aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${session.pos}">
+          <div style="width:${(session.pos / total) * 100}%"></div></div>
+        <h2 class="qtext" tabindex="-1">${esc(q.question)}</h2>
         <div class="choices">
           ${order.map(i => `<button class="choice" data-i="${i}">${esc(q.choices[i])}</button>`).join('')}
         </div>
@@ -422,6 +441,7 @@
         session.pos++;
         renderExamQuestion();
       }));
+    focusEl(view.querySelector('.qtext'));
   }
 
   function renderExamResult() {
@@ -444,7 +464,7 @@
 
     view.innerHTML = `
       <div class="examresult">
-        <h2 class="${passed ? 'pass' : 'fail'}">${passed ? 'PASS' : 'FAIL'} ${pct}%</h2>
+        <h2 class="${passed ? 'pass' : 'fail'}" tabindex="-1">${passed ? 'PASS' : 'FAIL'} ${pct}%</h2>
         <p>${correct} / ${session.answers.length} correct on ${esc(session.exam.name)} (80% needed)</p>
         ${wrong.length ? `<h3>Missed questions</h3>
           <div class="misslist">${wrong.map(a => {
@@ -459,6 +479,7 @@
         <button class="primary" id="home">Home</button>
       </div>`;
     $('#home').addEventListener('click', () => go('home'));
+    focusEl(view.querySelector('h2'));
     session = null;
   }
 
