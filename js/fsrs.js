@@ -25,6 +25,17 @@ const FSRS = (() => {
     return clamp(Math.round(ivl), 1, MAX_INTERVAL);
   }
 
+  /* Fuzz intervals of 3+ days by up to about 5% so cards learned together
+   * drift apart instead of staying due on the same day forever. Deterministic,
+   * seeded from the card's own state, so the interval previewed on the grade
+   * buttons matches what actually gets scheduled. */
+  function fuzzInterval(ivl, seed) {
+    if (ivl < 3) return ivl;
+    const r = ((Math.imul(seed, 2654435761) >>> 0) % 1000) / 999; // 0..1
+    const spread = Math.max(1, Math.round(ivl * 0.05));
+    return clamp(ivl + Math.round((r * 2 - 1) * spread), 2, MAX_INTERVAL);
+  }
+
   function initStability(rating) {
     return Math.max(W[rating - 1], S_MIN);
   }
@@ -99,7 +110,8 @@ const FSRS = (() => {
       due = now;
     } else {
       state = 'review';
-      intervalDays = nextIntervalDays(s, retention);
+      intervalDays = fuzzInterval(nextIntervalDays(s, retention),
+        reps * 31 + rating + Math.round(s * 10));
       due = now + intervalDays * DAY;
       // never schedule a review past the exam date
       if (opts.maxDueTs && opts.maxDueTs > now && due > opts.maxDueTs) {

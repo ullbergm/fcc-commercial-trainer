@@ -50,7 +50,9 @@ Each review updates difficulty and stability from your rating, then schedules th
 next review for the day retrievability is predicted to reach the target, shortly
 before you would likely forget. Intervals grow quickly for cards you keep getting
 right and reset for cards you miss. Repeat answers within the same day use a
-separate short-term memory formula.
+separate short-term memory formula. Intervals of three days or more get a small
+deterministic fuzz (up to about 5%) so cards learned together drift apart
+instead of always coming due on the same day.
 
 ## Studying for a date
 
