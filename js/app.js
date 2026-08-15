@@ -365,7 +365,7 @@
           <div style="width:${(session.pos / total) * 100}%"></div></div>
         <h2 class="qtext" tabindex="-1">${esc(q.question)}</h2>
         <div class="choices">
-          ${order.map(i => `<button class="choice" data-i="${i}">${esc(q.choices[i])}</button>`).join('')}
+          ${order.map((i, k) => `<button class="choice" data-i="${i}"><kbd>${k + 1}</kbd>${esc(q.choices[i])}</button>`).join('')}
         </div>
         <div id="feedback" aria-live="polite"></div>
       </div>`;
@@ -406,7 +406,7 @@
         session.queue.splice(at, 0, q.id);
       }
       fb.innerHTML = `<div class="explain wrongbg"><strong>Incorrect.</strong> ${esc(q.explanation)} ${cite}</div>
-        <button class="primary" id="next">Continue</button>`;
+        <button class="primary" id="next">Continue<kbd class="after">Enter</kbd></button>`;
       $('#next').addEventListener('click', () => { session.pos++; renderQuestion(); });
       focusEl($('#next'));
     } else if (scheduling) {
@@ -416,9 +416,9 @@
       };
       fb.innerHTML = `<div class="explain okbg"><strong>Correct.</strong> ${esc(q.explanation)} ${cite}</div>
         <div class="grades">
-          <button data-r="2">Hard <small>${preview(2)}</small></button>
-          <button data-r="3" class="primary">Good <small>${preview(3)}</small></button>
-          <button data-r="4">Easy <small>${preview(4)}</small></button>
+          <button data-r="2"><kbd>1</kbd>Hard <small>${preview(2)}</small></button>
+          <button data-r="3" class="primary" title="Shortcut: 2 or Enter"><kbd>2</kbd>Good <small>${preview(3)}</small></button>
+          <button data-r="4"><kbd>3</kbd>Easy <small>${preview(4)}</small></button>
         </div>`;
       fb.querySelectorAll('.grades button').forEach(b =>
         b.addEventListener('click', () => {
@@ -431,7 +431,7 @@
       return; // save happens on grade click
     } else {
       fb.innerHTML = `<div class="explain okbg"><strong>Correct.</strong> ${esc(q.explanation)} ${cite}</div>
-        <button class="primary" id="next">Continue</button>`;
+        <button class="primary" id="next">Continue<kbd class="after">Enter</kbd></button>`;
       $('#next').addEventListener('click', () => { session.pos++; renderQuestion(); });
       focusEl($('#next'));
     }
@@ -501,7 +501,7 @@
           <div style="width:${(session.pos / total) * 100}%"></div></div>
         <h2 class="qtext" tabindex="-1">${esc(q.question)}</h2>
         <div class="choices">
-          ${order.map(i => `<button class="choice" data-i="${i}">${esc(q.choices[i])}</button>`).join('')}
+          ${order.map((i, k) => `<button class="choice" data-i="${i}"><kbd>${k + 1}</kbd>${esc(q.choices[i])}</button>`).join('')}
         </div>
       </div>`;
     view.querySelectorAll('.choice').forEach(btn =>

@@ -79,7 +79,7 @@ button.primary {
   border: none;
 }
 button.danger { border-color: var(--bad); color: var(--bad); }
-.actions button, .grades button, .done button, .examresult button {
+.actions button, .grades button, .done button, .examresult button, #feedback > button {
   font: inherit;
   padding: 10px 18px;
   border-radius: 10px;
@@ -147,6 +147,33 @@ button.danger { border-color: var(--bad); color: var(--bad); }
 .choice.correct { border-color: var(--ok); background: var(--ok-bg); }
 .choice.wrong { border-color: var(--bad); background: var(--bad-bg); }
 .choice:disabled { cursor: default; }
+
+/* Keyboard shortcut hints. Hidden by default; shown only on devices with a
+   fine pointer, where a physical keyboard is a reasonable assumption. */
+kbd {
+  display: none;
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--bg);
+  color: var(--muted);
+  margin-right: 8px;
+  vertical-align: 1px;
+}
+kbd.after { margin: 0 0 0 8px; }
+.primary kbd {
+  background: transparent;
+  border-color: currentColor;
+  color: inherit;
+  opacity: 0.75;
+}
+@media (hover: hover) and (pointer: fine) {
+  kbd { display: inline-block; }
+}
 
 .explain { margin: 14px 0; padding: 12px 14px; border-radius: 10px; }
 .explain.okbg { background: var(--ok-bg); }
