@@ -13,20 +13,52 @@ const Store = (() => {
     exams: [],          // {date, type, total, correct, passed}
   });
 
+  const num = (v, d = 0) => (Number.isFinite(v) ? v : d);
+  const STATES = ['new', 'learning', 'relearning', 'review'];
+
+  // Anything read from outside the running app (a backup file, but also the
+  // localStorage value itself, which extensions or an unrelated writer at the
+  // same key could have mangled) must not smuggle NaN/undefined into card
+  // state where it would silently break scheduling. Coerce every field to a
+  // sane value; never throw.
+  function sanitize(parsed) {
+    const base = defaults();
+    if (!parsed || typeof parsed !== 'object') return base;
+    const cards = {};
+    if (parsed.cards && typeof parsed.cards === 'object') {
+      Object.entries(parsed.cards).forEach(([id, c]) => {
+        if (!c || typeof c !== 'object') return;
+        cards[id] = {
+          stability: num(c.stability), difficulty: num(c.difficulty),
+          due: num(c.due), lastReview: num(c.lastReview),
+          reps: num(c.reps), lapses: num(c.lapses),
+          state: STATES.includes(c.state) ? c.state : 'new',
+          wrong: num(c.wrong), right: num(c.right),
+          lastWrong: c.lastWrong === true,
+        };
+      });
+    }
+    const st = parsed.settings && typeof parsed.settings === 'object' ? parsed.settings : {};
+    return {
+      cards,
+      settings: {
+        newPerDay: Math.max(0, num(st.newPerDay, base.settings.newPerDay)),
+        sections: Array.isArray(st.sections) ? st.sections.filter(Number.isInteger) : [],
+        examDate: typeof st.examDate === 'string' ? st.examDate : '',
+      },
+      daily: parsed.daily && typeof parsed.daily === 'object' && !Array.isArray(parsed.daily)
+        ? parsed.daily : {},
+      exams: Array.isArray(parsed.exams) ? parsed.exams : [],
+    };
+  }
+
   let state = null;
 
   function load() {
     if (state) return state;
     try {
       const raw = localStorage.getItem(KEY);
-      const base = defaults();
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        state = Object.assign(base, parsed);
-        state.settings = Object.assign(defaults().settings, parsed.settings || {});
-      } else {
-        state = base;
-      }
+      state = raw ? sanitize(JSON.parse(raw)) : defaults();
     } catch {
       state = defaults();
     }
@@ -68,15 +100,12 @@ const Store = (() => {
   }
 
   // version stamps the backup format, so a future importer can tell old
-  // files apart and migrate them instead of guessing. importJSON copies
+  // files apart and migrate them instead of guessing. sanitize copies
   // fields explicitly, so the stamp never leaks into live state.
   function exportJSON() {
     return JSON.stringify({ version: 1, ...load() }, null, 2);
   }
 
-  // A backup is the user's only copy of their progress, so a truncated or
-  // hand-edited file must not smuggle NaN/undefined into card state where it
-  // would silently break scheduling. Coerce every field to a sane value.
   function importJSON(text) {
     const parsed = JSON.parse(text); // throws on bad input
     if (!parsed || typeof parsed !== 'object'
@@ -84,32 +113,7 @@ const Store = (() => {
         || typeof parsed.settings !== 'object' || !parsed.settings) {
       throw new Error('Not a valid backup file');
     }
-    const num = (v, d = 0) => (Number.isFinite(v) ? v : d);
-    const STATES = ['new', 'learning', 'relearning', 'review'];
-    const cards = {};
-    Object.entries(parsed.cards).forEach(([id, c]) => {
-      if (!c || typeof c !== 'object') return;
-      cards[id] = {
-        stability: num(c.stability), difficulty: num(c.difficulty),
-        due: num(c.due), lastReview: num(c.lastReview),
-        reps: num(c.reps), lapses: num(c.lapses),
-        state: STATES.includes(c.state) ? c.state : 'new',
-        wrong: num(c.wrong), right: num(c.right),
-        lastWrong: c.lastWrong === true,
-      };
-    });
-    const st = parsed.settings;
-    const base = defaults();
-    state = {
-      cards,
-      settings: {
-        newPerDay: Math.max(0, num(st.newPerDay, base.settings.newPerDay)),
-        sections: Array.isArray(st.sections) ? st.sections.filter(Number.isInteger) : [],
-        examDate: typeof st.examDate === 'string' ? st.examDate : '',
-      },
-      daily: parsed.daily && typeof parsed.daily === 'object' ? parsed.daily : {},
-      exams: Array.isArray(parsed.exams) ? parsed.exams : [],
-    };
+    state = sanitize(parsed);
     save();
   }
 
