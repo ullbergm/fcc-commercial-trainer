@@ -4,8 +4,8 @@
   "description": "Practice questions with spaced repetition for the North Carolina CDL knowledge tests.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#12161c",
-  "theme_color": "#1d63d8",
+  "background_color": "#131614",
+  "theme_color": "#10684a",
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
