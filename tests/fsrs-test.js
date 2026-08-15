@@ -69,6 +69,11 @@ const clamped = FSRS.schedule({ ...atDue }, 4, T0 + DAY, { maxDueTs: examDay });
 t('no review scheduled past the exam date', clamped.due <= examDay);
 t('clamped interval reported consistently', clamped.intervalDays >= 1
   && clamped.intervalDays <= 3);
+// A clamp onto exam day itself must not round up to "1d": the review is due
+// today and the grade-button preview shows it as "<1d".
+const sameDayClamp = FSRS.schedule({ ...atDue }, 4, examDay - DAY / 4, { maxDueTs: examDay });
+t('same-day exam clamp reports a sub-day interval',
+  sameDayClamp.due === examDay && sameDayClamp.intervalDays === 0);
 
 // ---- retrievability curve
 t('retrievability starts at 1', FSRS.retrievability(0, 10) === 1);

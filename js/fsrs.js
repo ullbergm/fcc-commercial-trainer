@@ -113,10 +113,11 @@ const FSRS = (() => {
       intervalDays = fuzzInterval(nextIntervalDays(s, retention),
         reps * 31 + rating + Math.round(s * 10));
       due = now + intervalDays * DAY;
-      // never schedule a review past the exam date
+      // never schedule a review past the exam date; a clamp onto exam day
+      // itself may report 0, which the UI shows as "<1d"
       if (opts.maxDueTs && opts.maxDueTs > now && due > opts.maxDueTs) {
         due = opts.maxDueTs;
-        intervalDays = Math.max(1, Math.round((due - now) / DAY));
+        intervalDays = Math.round((due - now) / DAY);
       }
     }
 
