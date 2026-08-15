@@ -182,7 +182,8 @@
           || !(s.pos < s.queue.length)) return false;
       if (s.mode === 'exam') {
         s.exam = EXAMS.find(e => e.key === s.examKey);
-        if (!s.exam) return false;
+        // a malformed answers list would only throw later, on the next answer
+        if (!s.exam || !Array.isArray(s.answers)) return false;
       }
       session = s;
       currentView = s.mode;
