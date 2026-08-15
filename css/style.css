@@ -199,12 +199,15 @@ th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
 .fnum { font-size: 0.85rem; }
 .flab { font-size: 0.75rem; color: var(--muted); }
 
-footer#version {
+body > footer {
   text-align: center;
   color: var(--muted);
   font-size: 0.75rem;
   padding: 8px 0 24px;
 }
+body > footer a { color: var(--muted); }
+body > footer a:hover { color: var(--accent); }
+#version:not(:empty)::after { content: " · "; }
 
 /* settings */
 .settings label { display: block; margin: 8px 0; }
