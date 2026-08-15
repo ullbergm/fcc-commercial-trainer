@@ -14,6 +14,10 @@ const CORE = [
   'manifest.webmanifest',
   'icons/icon-192.png',
   'icons/icon-512.png',
+  // Both are written into the deploy by the release workflow; without them
+  // the About changelog and the footer version are blank offline.
+  'CHANGELOG.md',
+  'version.txt',
 ];
 
 self.addEventListener('install', e => {
