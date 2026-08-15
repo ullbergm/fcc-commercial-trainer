@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate question bank
+        run: node tests/validate-bank.js
+
+      - name: Run browser test suite
+        run: |
+          google-chrome --headless=new --disable-gpu --no-sandbox \
+            --virtual-time-budget=8000 --dump-dom "file://$PWD/tests/test.html" \
+            2>/dev/null > dom.html
+          grep -o 'RESULTS::[^<]*' dom.html | head -1 | tr '|' '\n' | sed '/^$/d' > results.txt
+          cat results.txt
+          test -s results.txt
+          ! grep -qE 'FAIL|EXCEPTION' results.txt

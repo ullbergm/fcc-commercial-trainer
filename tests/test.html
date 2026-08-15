@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>NC CDL Trainer tests</title></head>
+<body>
+<nav>
+  <button data-view="home" class="active">Home</button>
+  <button data-view="study">Study</button>
+  <button data-view="misses">Misses</button>
+  <button data-view="exam">Exam</button>
+  <button data-view="browse">Browse</button>
+  <button data-view="stats">Stats</button>
+  <button data-view="settings">Settings</button>
+</nav>
+<main id="view"></main>
+<div id="testlog"></div>
+<script src="../data/questions.js"></script>
+<script src="../js/fsrs.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/app.js"></script>
+<script>
+// End-to-end tests driven through the real UI. Results land in #testlog as
+// "RESULTS::" + one PASS/FAIL entry per check, separated by "||" — the CI
+// workflow greps for FAIL/EXCEPTION after dumping the DOM headlessly.
+const log = [];
+const t = (name, cond) => log.push((cond ? 'PASS ' : 'FAIL ') + name);
+try {
+  localStorage.clear();
+  const nav = v => document.querySelector(`nav button[data-view="${v}"]`).click();
+  const q = s => document.querySelector(s);
+  const qa = s => [...document.querySelectorAll(s)];
+
+  // --- study session: answer correctly, grade Good ---
+  nav('study');
+  t('study renders question', !!q('.qtext'));
+  const qid1 = q('.qtext').textContent;
+  const correctBtn = qa('.choice').find(b => {
+    const bank = QUESTION_BANK.find(x => x.question === qid1);
+    return Number(b.dataset.i) === bank.answer;
+  });
+  correctBtn.click();
+  t('correct answer highlighted', correctBtn.classList.contains('correct'));
+  t('grade buttons appear', qa('.grades button').length === 3);
+  q('.grades button[data-r="3"]').click();
+  t('advances to next question', q('.qtext').textContent !== qid1);
+
+  // --- answer wrongly: requeue + explanation ---
+  const qtext2 = q('.qtext').textContent;
+  const bank2 = QUESTION_BANK.find(x => x.question === qtext2);
+  const wrongBtn = qa('.choice').find(b => Number(b.dataset.i) !== bank2.answer);
+  wrongBtn.click();
+  t('wrong shows explanation', !!q('.explain.wrongbg'));
+  t('continue button appears', !!q('#next'));
+  q('#next').click();
+  t('moves on after wrong', !!q('.qtext'));
+
+  // state checks
+  const st = Store.load();
+  const c2 = st.cards[bank2.id];
+  t('wrong card marked lastWrong', c2 && c2.lastWrong === true);
+  t('wrong card state learning/relearning', c2 && (c2.state === 'learning' || c2.state === 'relearning'));
+  const c1 = Object.values(st.cards).find(c => c.state === 'review');
+  t('graded card scheduled for future', c1 && c1.due > Date.now());
+
+  // --- misses drill available ---
+  nav('misses');
+  t('misses drill shows the missed question', !!q('.qtext'));
+
+  // --- exam flow ---
+  nav('exam');
+  t('exam setup lists exams', qa('.examopt').length >= 5);
+  qa('.examopt').find(b => !b.disabled).click();
+  t('exam question renders', !!q('.qtext'));
+  let guard = 200;
+  while (q('.choice') && guard--) q('.choice').click();
+  t('exam result renders', !!q('.examresult'));
+  t('exam recorded', Store.load().exams.length === 1);
+
+  // --- stats & browse & settings render ---
+  nav('stats');
+  t('stats renders table', !!q('.stats table'));
+  nav('browse');
+  t('browse renders sections', qa('.browse details').length >= 13);
+  nav('settings');
+  t('settings renders', !!q('#newperday'));
+
+  // --- test/endorsement picker: first-test scenario (GK + Air + Combination) ---
+  t('test picker renders 9 tests', qa('input[data-test]').length === 9);
+  const keep = new Set(['gk', 'air', 'comb']);
+  qa('input[data-test]').forEach(cb => {
+    if (cb.checked !== keep.has(cb.dataset.test)) {
+      cb.checked = keep.has(cb.dataset.test);
+      cb.dispatchEvent(new Event('change'));
+    }
+  });
+  const secs = Store.load().settings.sections;
+  t('picker maps to sections 1-3,5-6', JSON.stringify(secs) === JSON.stringify([1, 2, 3, 5, 6]));
+  nav('settings');
+  t('picker state survives re-render', qa('input[data-test]:checked').length === 3);
+  nav('study');
+  const sq = QUESTION_BANK.find(x => x.question === q('.qtext').textContent);
+  t('study draws from selected sections only', [1, 2, 3, 5, 6].includes(sq.section));
+  nav('exam');
+  t('exam list filtered to selected tests', qa('.examopt').length === 3);
+  t('hidden exams hint shows', /hidden/.test(q('.examsetup').textContent));
+  nav('settings');
+  qa('input[data-test]').forEach(cb => {
+    if (!cb.checked) { cb.checked = true; cb.dispatchEvent(new Event('change')); }
+  });
+  t('all checked stores empty (= everything)', Store.load().settings.sections.length === 0);
+
+  // --- exam date features ---
+  const d3 = new Date(Date.now() + 3 * 86400000);
+  const iso = `${d3.getFullYear()}-${String(d3.getMonth() + 1).padStart(2, '0')}-${String(d3.getDate()).padStart(2, '0')}`;
+  const ed = q('#examdate');
+  t('exam date input exists', !!ed);
+  ed.value = iso;
+  ed.dispatchEvent(new Event('change'));
+  t('exam date saved', Store.load().settings.examDate === iso);
+
+  nav('home');
+  t('exam banner shows', !!q('.exambanner'));
+  t('banner shows raised retention', /9[1-5]%/.test(q('.exambanner').textContent));
+  const finalBtn = q('button[data-view="final"]');
+  t('final review button appears', !!finalBtn);
+
+  finalBtn.click();
+  t('final review renders question', !!q('.qtext'));
+  const fq = QUESTION_BANK.find(x => x.question === q('.qtext').textContent);
+  qa('.choice').find(b => Number(b.dataset.i) === fq.answer).click();
+  t('final review grades appear', qa('.grades button').length === 3);
+  q('.grades button[data-r="4"]').click(); // Easy
+  const fc = Store.load().cards[fq.id];
+  const examEnd = new Date(d3.getFullYear(), d3.getMonth(), d3.getDate(), 23, 59, 59).getTime();
+  t('due never past exam date', fc.due <= examEnd);
+
+  // --- pace auto-boost with exam deadline ---
+  nav('home');
+  const newTile = Number(qa('.tile .big')[1].textContent);
+  t('pace boosted for exam deadline', newTile > Store.load().settings.newPerDay);
+  t('banner mentions boost', /boosted/.test(q('.exambanner').textContent));
+
+  nav('settings');
+  t('picker grouped into 3 headings', qa('.seclist h4').length === 3);
+  t('pace info mentions boost', /boost/i.test(q('#paceinfo').textContent));
+  q('#cleardate').click();
+  t('no-exam button clears date', Store.load().settings.examDate === '');
+  nav('home');
+  t('banner gone after clearing date', !q('.exambanner'));
+  t('pace back to steady after clearing', Number(qa('.tile .big')[1].textContent) <= Store.load().settings.newPerDay);
+
+  // --- export/import round trip ---
+  const dump = Store.exportJSON();
+  Store.importJSON(dump);
+  t('export/import round trip', Store.load().exams.length === 1);
+} catch (e) {
+  log.push('EXCEPTION ' + e.message + ' @ ' + (e.stack || '').split('\n')[1]);
+}
+document.getElementById('testlog').textContent = 'RESULTS::' + log.join('||');
+</script>
+</body>
+</html>
