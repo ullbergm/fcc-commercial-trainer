@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-/* Validates data/questions.js: schema, unique ids, answer bounds, page format. */
+/* Validates data/questions.js (schema, unique ids, answer bounds, page format)
+ * and checks that the test shell's nav matches index.html. */
 const fs = require('fs');
 const path = require('path');
 
@@ -24,9 +25,22 @@ for (const q of QUESTION_BANK) {
   if (Number.isInteger(q.answer) && q.answer >= 0 && q.answer <= 3) positions[q.answer]++;
 }
 
+// tests/test.html duplicates the app shell's nav markup; the e2e suite drives
+// the app through it, so fail loudly if the two ever drift apart.
+const navViews = file => {
+  const html = fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
+  const nav = (html.match(/<nav[\s\S]*?<\/nav>/) || [''])[0];
+  return [...nav.matchAll(/data-view="([^"]+)"/g)].map(m => m[1]).join(',');
+};
+const appNav = navViews('index.html');
+const testNav = navViews('tests/test.html');
+if (!appNav || appNav !== testNav) {
+  errors.push(`nav drift: index.html has [${appNav}] but tests/test.html has [${testNav}]`);
+}
+
 console.log(`${QUESTION_BANK.length} questions, answer positions ${positions.join('/')}`);
 if (errors.length) {
   errors.forEach(e => console.error('ERROR ' + e));
   process.exit(1);
 }
-console.log('question bank OK');
+console.log('question bank and test shell OK');
