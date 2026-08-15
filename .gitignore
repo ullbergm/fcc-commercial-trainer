@@ -4,3 +4,6 @@ commercial-driver-manual.pdf
 
 # dev tooling
 node_modules/
+
+# throwaway copy of index.html left behind if generate.sh is interrupted
+.screenshot-page.html

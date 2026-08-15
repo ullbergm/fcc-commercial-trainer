@@ -15,6 +15,7 @@ const CORE = [
   'index.html',
   'css/style.css',
   'js/fsrs.js',
+  'js/readiness.js',
   'js/storage.js',
   'js/app.js',
   'data/questions.js',

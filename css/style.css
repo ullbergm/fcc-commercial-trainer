@@ -397,6 +397,17 @@ td { font-variant-numeric: tabular-nums; }
 .fnum { font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .flab { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 
+/* exam readiness: projected score per test, with the 80% pass mark on the bar */
+.readiness { margin: 20px 0 4px; }
+.readiness h3 { margin-bottom: 10px; }
+.rrow { display: grid; grid-template-columns: minmax(80px, 34%) 1fr 3.4em; gap: 10px; align-items: center; margin: 7px 0; }
+.rname { font-size: 0.9rem; }
+.rbar { position: relative; height: 12px; background: var(--border); border-radius: 6px; overflow: hidden; }
+.rfill { height: 100%; background: linear-gradient(90deg, var(--accent-hi), var(--accent)); border-radius: 6px; }
+.rfill.low { background: var(--warn); }
+.rmark { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--text); opacity: 0.5; }
+.rpct { font-size: 0.9rem; font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+
 /* new-version toast */
 .toast {
   position: fixed;
