@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.5.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.4.0...v1.5.0) (2026-08-15)
+
+
+### Features
+
+* link every explanation to a prefilled error report ([501eca3](https://github.com/ullbergm/nc-cdl-test-training/commit/501eca3737c5e3561e6287c00c4fdb34edcefd06))
+* stamp a schema version into exported backups ([f7586b7](https://github.com/ullbergm/nc-cdl-test-training/commit/f7586b70e12838eedd6e9c721f02eb002c5e7589))
+
+
+### Bug Fixes
+
+* keep "all of the above" choices below the choices they refer to ([5774896](https://github.com/ullbergm/nc-cdl-test-training/commit/577489634af8d6a970014445e5a5a8c6ed2bc6f4))
+* let Enter activate the focused button instead of always continuing ([b867782](https://github.com/ullbergm/nc-cdl-test-training/commit/b867782626ca7e7c5f7fbe9c6c5c9e8a6bf926ba))
+* reject a restored exam session whose answers list is corrupt ([54071e2](https://github.com/ullbergm/nc-cdl-test-training/commit/54071e26cd8c6e0c106c180e9ffb1cc2aa511ade))
+* serve query-string URLs from the offline cache ([3730c01](https://github.com/ullbergm/nc-cdl-test-training/commit/3730c01a7b51ec7096051841c1a6ef66cd2dcb82))
+* step stats by calendar day so DST does not skip or repeat a day ([b548a37](https://github.com/ullbergm/nc-cdl-test-training/commit/b548a377051d840df5d0b2bd14126162d9968e69))
+* warn once when progress cannot be saved instead of failing silently ([007cf26](https://github.com/ullbergm/nc-cdl-test-training/commit/007cf26e78f8d3c7d550744eadfb60d3a6f8a55f))
+
 ## [1.4.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.3.0...v1.4.0) (2026-08-15)
 
 
