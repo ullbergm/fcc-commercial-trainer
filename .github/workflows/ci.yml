@@ -28,21 +28,8 @@ jobs:
           npm ci
           npm run lint
 
-      - name: Validate question bank
-        run: node tests/validate-bank.js
+      - name: Node test suite (question bank + FSRS)
+        run: npm test
 
-      - name: Run browser test suite
-        run: |
-          google-chrome --headless=new --disable-gpu --no-sandbox \
-            --virtual-time-budget=8000 --dump-dom "file://$PWD/tests/test.html" \
-            2>/dev/null > dom.html
-          grep -o 'RESULTS::[^<]*' dom.html | head -1 | tr '|' '\n' | sed '/^$/d' > results.txt
-          cat results.txt
-          {
-            echo '### Browser test results'
-            echo '```'
-            cat results.txt
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
-          test -s results.txt
-          ! grep -qE 'FAIL|EXCEPTION' results.txt
+      - name: Browser test suite
+        run: tests/run-browser.sh

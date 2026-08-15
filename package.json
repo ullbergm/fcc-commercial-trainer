@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint",
     "test": "node tests/validate-bank.js && node tests/fsrs-test.js",
+    "test:browser": "tests/run-browser.sh",
     "serve": "python3 -m http.server 8080"
   },
   "devDependencies": {

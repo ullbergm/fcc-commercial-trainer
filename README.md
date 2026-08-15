@@ -101,7 +101,9 @@ sw.js                    service worker (offline cache, only active on the hoste
 manifest.webmanifest     PWA manifest, lets the app be installed to a home screen
 icons/                   app icons (icon.svg is the source, PNGs rendered from it)
 tests/validate-bank.js   question bank schema checks (node)
+tests/fsrs-test.js       FSRS scheduler property tests (node)
 tests/test.html          end-to-end tests driven through the real UI
+tests/run-browser.sh     headless-Chrome runner for test.html (local + CI)
 ```
 
 On the hosted site the app is an installable PWA: a service worker caches
@@ -128,9 +130,8 @@ To run the checks locally:
 ```
 npm install          # one time, dev tooling only (the app itself has no dependencies)
 npm run lint
-node tests/validate-bank.js
-chromium --headless=new --disable-gpu --virtual-time-budget=8000 \
-  --dump-dom tests/test.html | grep -o 'RESULTS::[^<]*' | tr '|' '\n'
+npm test             # question bank validation + FSRS scheduler tests
+npm run test:browser # end-to-end suite in headless Chrome or Chromium
 ```
 
 Every line should say `PASS`. Opening `tests/test.html` in a normal browser also

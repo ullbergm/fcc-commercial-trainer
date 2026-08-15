@@ -39,18 +39,11 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Validate question bank
-        run: node tests/validate-bank.js
+      - name: Node test suite (question bank + FSRS)
+        run: npm test
 
-      - name: Run browser test suite
-        run: |
-          google-chrome --headless=new --disable-gpu --no-sandbox \
-            --virtual-time-budget=8000 --dump-dom "file://$PWD/tests/test.html" \
-            2>/dev/null > dom.html
-          grep -o 'RESULTS::[^<]*' dom.html | head -1 | tr '|' '\n' | sed '/^$/d' > results.txt
-          cat results.txt
-          test -s results.txt
-          ! grep -qE 'FAIL|EXCEPTION' results.txt
+      - name: Browser test suite
+        run: tests/run-browser.sh
 
       # Deploy a curated set of app files. Never ship the repo wholesale:
       # tests/test.html clears localStorage on load and would wipe the study
