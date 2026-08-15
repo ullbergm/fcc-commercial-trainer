@@ -91,9 +91,11 @@ Two workflows in `.github/workflows/`:
   generated changelog, and deploys to GitHub Pages. Ordinary pushes to `main` do not
   touch the live site. The deploy job re-runs the tests before publishing.
 
-To run the tests locally:
+To run the checks locally:
 
 ```
+npm install          # one time, dev tooling only (the app itself has no dependencies)
+npm run lint
 node tests/validate-bank.js
 chromium --headless=new --disable-gpu --virtual-time-budget=8000 \
   --dump-dom tests/test.html | grep -o 'RESULTS::[^<]*' | tr '|' '\n'

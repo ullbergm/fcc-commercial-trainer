@@ -1,0 +1,16 @@
+{
+  "name": "nc-cdl-test-training",
+  "private": true,
+  "description": "Practice questions with spaced repetition for the North Carolina CDL knowledge tests",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint",
+    "test": "node tests/validate-bank.js",
+    "serve": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9",
+    "eslint": "^9",
+    "globals": "^16"
+  }
+}
