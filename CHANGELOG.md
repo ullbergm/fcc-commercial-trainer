@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.6.0...v1.7.0) (2026-08-15)
+
+
+### Features
+
+* underline tabs and scroll fades in the top bar ([a8fd80c](https://github.com/ullbergm/nc-cdl-test-training/commit/a8fd80c02b5f3157551987548701467eac5da59a))
+
 ## [1.6.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.5.0...v1.6.0) (2026-08-15)
 
 
