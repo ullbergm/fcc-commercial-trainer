@@ -19,6 +19,21 @@ Only the latest release is supported. It is what runs at
 prompts open tabs to reload onto it after each deploy. There are no
 maintained older branches.
 
+## Verifying a release
+
+Each release carries `nc-cdl-trainer-VERSION.tar.gz`, a copy of exactly the
+files deployed to the live site, along with a Sigstore bundle
+(`.tar.gz.intoto.jsonl`) signed by the release workflow. To check that a
+download came from this repository's pipeline and not from somewhere else:
+
+```
+gh attestation verify nc-cdl-trainer-VERSION.tar.gz \
+  --repo ullbergm/nc-cdl-test-training
+```
+
+Add `--bundle nc-cdl-trainer-VERSION.tar.gz.intoto.jsonl` to verify offline
+against the downloaded bundle instead of GitHub's attestation store.
+
 ## Scope
 
 This is a static, dependency-free web app. There is no server, no account
