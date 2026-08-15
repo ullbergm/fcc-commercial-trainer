@@ -80,10 +80,11 @@ nav .brand {
   padding: 6px 8px 6px 2px;
   white-space: nowrap;
 }
-nav button {
+nav a {
   background: none;
   border: none;
   color: var(--nav-text);
+  text-decoration: none;
   font: inherit;
   font-weight: 600;
   padding: 6px 10px;
@@ -92,8 +93,8 @@ nav button {
   white-space: nowrap;
   opacity: 0.85;
 }
-nav button.active { background: #ffffff; color: var(--nav-bg); opacity: 1; }
-nav button:not(.active):hover { background: rgba(255, 255, 255, 0.14); opacity: 1; }
+nav a.active { background: #ffffff; color: var(--nav-bg); opacity: 1; }
+nav a:not(.active):hover { background: rgba(255, 255, 255, 0.14); opacity: 1; }
 
 h1 { margin: 8px 0 0; }
 h2 { margin: 12px 0 8px; font-weight: 800; letter-spacing: -0.01em; }

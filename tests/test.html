@@ -3,14 +3,14 @@
 <head><meta charset="UTF-8"><title>NC CDL Trainer tests</title></head>
 <body>
 <nav>
-  <button data-view="home" class="active">Home</button>
-  <button data-view="study">Study</button>
-  <button data-view="misses">Misses</button>
-  <button data-view="exam">Exam</button>
-  <button data-view="browse">Browse</button>
-  <button data-view="stats">Stats</button>
-  <button data-view="settings">Settings</button>
-  <button data-view="about">About</button>
+  <a href="#home" data-view="home" class="active">Home</a>
+  <a href="#study" data-view="study">Study</a>
+  <a href="#misses" data-view="misses">Misses</a>
+  <a href="#exam" data-view="exam">Exam</a>
+  <a href="#browse" data-view="browse">Browse</a>
+  <a href="#stats" data-view="stats">Stats</a>
+  <a href="#settings" data-view="settings">Settings</a>
+  <a href="#about" data-view="about">About</a>
 </nav>
 <main id="view"></main>
 <div id="testlog"></div>
@@ -39,7 +39,7 @@ sessionStorage.setItem('nc-cdl-trainer-session', JSON.stringify({
 const log = [];
 const t = (name, cond) => log.push((cond ? 'PASS ' : 'FAIL ') + name);
 try {
-  const nav = v => document.querySelector(`nav button[data-view="${v}"]`).click();
+  const nav = v => document.querySelector(`nav a[data-view="${v}"]`).click();
   const q = s => document.querySelector(s);
   const qa = s => [...document.querySelectorAll(s)];
 
@@ -50,7 +50,7 @@ try {
   t('all-of-the-above rendered as the last choice',
     /all of the above$/i.test(qa('.choice').pop().textContent));
   t('resume highlights the study nav entry',
-    q('nav button[data-view="study"]').classList.contains('active'));
+    q('nav a[data-view="study"]').classList.contains('active'));
   nav('home');
   t('navigating away abandons the session',
     sessionStorage.getItem('nc-cdl-trainer-session') === null);
@@ -85,12 +85,12 @@ try {
   t('feedback links to a prefilled error report',
     q('.explain a.report').href.includes('question-id=' + bank2.id));
   t('continue button appears', !!q('#next'));
-  // Enter with focus on some other button must not be hijacked into Continue
-  // (a synthetic keydown never triggers the native click, so if the shortcut
-  // handler wrongly fires, the feedback screen would advance).
-  document.querySelector('nav button[data-view="stats"]').focus();
+  // Enter with focus on a nav link must not be hijacked into Continue
+  // (a synthetic keydown never triggers the native activation, so if the
+  // shortcut handler wrongly fires, the feedback screen would advance).
+  document.querySelector('nav a[data-view="stats"]').focus();
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
-  t('Enter on a focused button is left to the browser', !!q('#next'));
+  t('Enter on a focused link is left to the browser', !!q('#next'));
   q('#next').click();
   t('moves on after wrong', !!q('.qtext'));
   t('progress bar does not move backward on requeue',

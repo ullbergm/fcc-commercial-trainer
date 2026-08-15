@@ -194,7 +194,7 @@
   }
 
   function setNav(active) {
-    document.querySelectorAll('nav button').forEach(b => {
+    document.querySelectorAll('nav a').forEach(b => {
       const on = b.dataset.view === active;
       b.classList.toggle('active', on);
       if (on) b.setAttribute('aria-current', 'page');
@@ -955,9 +955,9 @@
     if (e.altKey || e.ctrlKey || e.metaKey) return;
     const tag = document.activeElement && document.activeElement.tagName;
     if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
-    // Enter on a focused button presses that button (the browser handles
+    // Enter on a focused button or link activates it (the browser handles
     // it); intercepting would redirect it to Continue or Good instead.
-    if (e.key === 'Enter' && tag === 'BUTTON') return;
+    if (e.key === 'Enter' && (tag === 'BUTTON' || tag === 'A')) return;
     const next = $('#next');
     const grades = [...view.querySelectorAll('.grades button')];
     const choices = [...view.querySelectorAll('.choice:not(:disabled)')];
@@ -978,8 +978,11 @@
     }
   });
 
-  document.querySelectorAll('nav button').forEach(b =>
-    b.addEventListener('click', () => go(b.dataset.view)));
+  // Nav entries are real links (middle-click and open-in-new-tab work); the
+  // click handler only makes the render immediate instead of waiting for the
+  // async hashchange. The default action then sets the same hash, a no-op.
+  document.querySelectorAll('nav a').forEach(a =>
+    a.addEventListener('click', () => go(a.dataset.view)));
   const initial = location.hash.slice(1);
   if (!restoreSession()) render(ROUTES[initial] ? initial : 'home');
 
