@@ -634,7 +634,14 @@
   // ---------- stats ----------
   function renderStats() {
     const s = Store.load();
-    const now = Date.now();
+    // Calendar-day stepping via setDate, not now - i * DAY: DST days are 23
+    // or 25 hours long, and fixed 24h steps skip or repeat a day key there.
+    const dayAt = n => {
+      const d = new Date();
+      d.setHours(0, 0, 0, 0);
+      d.setDate(d.getDate() + n);
+      return d;
+    };
     let studied = 0, mature = 0, due = 0;
     QUESTION_BANK.forEach(q => {
       const c = s.cards[q.id];
@@ -648,7 +655,7 @@
     // streak: consecutive days with reviews, ending today or yesterday
     let streak = 0;
     for (let i = 0; ; i++) {
-      const k = Store.todayKey(now - i * DAY);
+      const k = Store.todayKey(dayAt(-i).getTime());
       const d = s.daily[k];
       if (d && d.reviews > 0) streak++;
       else if (i === 0) continue; // today can still be empty
@@ -658,13 +665,13 @@
     // 30-day review history from the daily counters
     const hist = [];
     for (let i = 29; i >= 0; i--) {
-      const d = s.daily[Store.todayKey(now - i * DAY)];
+      const d = s.daily[Store.todayKey(dayAt(-i).getTime())];
       hist.push({ daysAgo: i, n: (d && d.reviews) || 0 });
     }
     const hmax = Math.max(1, ...hist.map(h => h.n));
     const total30 = hist.reduce((a, h) => a + h.n, 0);
     const histBar = h => {
-      const when = new Date(now - h.daysAgo * DAY).toLocaleDateString();
+      const when = dayAt(-h.daysAgo).toLocaleDateString();
       return `<div class="hbar${h.n ? '' : ' zero'}"
         style="height:${Math.max(2, Math.round((h.n / hmax) * 60))}px"
         title="${when}: ${h.n} review${h.n === 1 ? '' : 's'}"></div>`;
@@ -673,8 +680,7 @@
     // 7-day due forecast
     const forecast = [];
     for (let i = 0; i < 7; i++) {
-      const dayStart = new Date(); dayStart.setHours(0, 0, 0, 0);
-      const lo = dayStart.getTime() + i * DAY, hi = lo + DAY;
+      const lo = dayAt(i).getTime(), hi = dayAt(i + 1).getTime();
       let n = 0;
       QUESTION_BANK.forEach(q => {
         const c = s.cards[q.id];
@@ -683,8 +689,8 @@
       forecast.push(n);
     }
     const fmax = Math.max(1, ...forecast);
-    const dayName = i => i === 0 ? 'today' : new Date(now + i * DAY)
-      .toLocaleDateString(undefined, { weekday: 'short' });
+    const dayName = i => i === 0 ? 'today'
+      : dayAt(i).toLocaleDateString(undefined, { weekday: 'short' });
 
     view.innerHTML = `
       <div class="stats">
