@@ -16,11 +16,10 @@ All progress is stored locally in the browser and never sent anywhere. Settings 
 export and import for backups or for moving between devices.
 
 <p align="center">
-  <img src="docs/screenshots/home.png" width="400" alt="Home screen with due review, new card, and miss counts, and an exam countdown banner">
-  <img src="docs/screenshots/study.png" width="400" alt="Study session showing a multiple-choice question with a progress bar styled as highway lane markings">
+  <img src="docs/screenshots/home.png" width="500" alt="Home screen with due review, new card, and miss counts, and an exam countdown banner">
 </p>
 <p align="center">
-  <img src="docs/screenshots/stats.png" width="420" alt="Stats page with mastery tiles, a 7-day due forecast, per-section accuracy, and exam history">
+  <a href="docs/screenshots/README.md">More screenshots</a>
 </p>
 
 ## Modes
