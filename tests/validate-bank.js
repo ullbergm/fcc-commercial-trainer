@@ -44,6 +44,18 @@ if (!appNav || appNav !== testNav) {
   errors.push(`nav drift: index.html has [${appNav}] but tests/test.html has [${testNav}]`);
 }
 
+// README states the bank size in prose; fail when it drifts from the bank.
+// Counts under 100 (per-exam question counts and the like) are ignored.
+const readme = fs.readFileSync(path.join(__dirname, '..', 'README.md'), 'utf8');
+const readmeCounts = [...readme.matchAll(/\b(\d+) (?:multiple-choice )?questions\b/g)]
+  .map(m => Number(m[1]))
+  .filter(n => n >= 100);
+if (!readmeCounts.length) {
+  errors.push('README no longer states the bank size (expected "N questions" somewhere)');
+}
+readmeCounts.filter(n => n !== QUESTION_BANK.length).forEach(n =>
+  errors.push(`README says ${n} questions but the bank has ${QUESTION_BANK.length}`));
+
 // Answer-length tell: if the correct choice is disproportionately often the
 // longest (or shortest) option, test-savvy users can score without knowing the
 // material. Chance for either is ~25%; warn well before it becomes a pattern.
