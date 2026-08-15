@@ -136,13 +136,31 @@
       b.classList.toggle('active', b.dataset.view === active));
   }
 
-  function go(name) {
+  const ROUTES = {
+    home: renderHome, study: startStudy, misses: startMisses, exam: renderExamSetup,
+    final: startFinal, browse: renderBrowse, stats: renderStats,
+    settings: renderSettings, about: renderAbout,
+  };
+  let currentView = null;
+
+  function render(name) {
+    currentView = name;
     session = null;
     setNav(name);
-    ({ home: renderHome, study: startStudy, misses: startMisses, exam: renderExamSetup,
-       final: startFinal, browse: renderBrowse, stats: renderStats,
-       settings: renderSettings, about: renderAbout }[name])();
+    ROUTES[name]();
   }
+
+  // Renders immediately (hashchange fires async) and records the view in the
+  // URL hash, so views are linkable and the back button moves between them.
+  function go(name) {
+    render(name);
+    if (location.hash !== '#' + name) location.hash = name;
+  }
+
+  window.addEventListener('hashchange', () => {
+    const name = location.hash.slice(1) || 'home';
+    if (name !== currentView) render(ROUTES[name] ? name : 'home');
+  });
 
   // ---------- home ----------
   function renderHome() {
@@ -735,7 +753,8 @@
   // ---------- boot ----------
   document.querySelectorAll('nav button').forEach(b =>
     b.addEventListener('click', () => go(b.dataset.view)));
-  go('home');
+  const initial = location.hash.slice(1);
+  render(ROUTES[initial] ? initial : 'home');
 
   // Installable, offline-capable PWA. Skipped on file:// and http:// (the
   // service worker API needs a secure context), where the app still works.
