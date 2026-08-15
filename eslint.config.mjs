@@ -39,7 +39,7 @@ export default [
     files: ['tests/**/*.js'],
     languageOptions: {
       sourceType: 'commonjs',
-      globals: { ...globals.node, QUESTION_BANK: 'readonly' },
+      globals: { ...globals.node, QUESTION_BANK: 'readonly', FSRS: 'readonly' },
     },
   },
 ];
