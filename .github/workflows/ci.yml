@@ -5,15 +5,28 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  schedule:
+    # Weekly canary run. Deploys only happen at releases, so this catches
+    # runner or Chrome drift before it can block a release.
+    - cron: '17 6 * * 1'
 
 permissions:
   contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Lint
+        run: |
+          npm ci
+          npm run lint
 
       - name: Validate question bank
         run: node tests/validate-bank.js
@@ -25,5 +38,11 @@ jobs:
             2>/dev/null > dom.html
           grep -o 'RESULTS::[^<]*' dom.html | head -1 | tr '|' '\n' | sed '/^$/d' > results.txt
           cat results.txt
+          {
+            echo '### Browser test results'
+            echo '```'
+            cat results.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
           test -s results.txt
           ! grep -qE 'FAIL|EXCEPTION' results.txt
