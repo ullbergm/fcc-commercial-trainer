@@ -415,10 +415,15 @@
       $('#next').addEventListener('click', () => { session.pos++; renderQuestion(); });
       focusEl($('#next'));
     } else if (scheduling) {
-      const preview = r => {
-        const sched = FSRS.schedule({ ...c }, r, Date.now(), schedOpts());
-        return sched.intervalDays >= 1 ? `${sched.intervalDays}d` : '<1d';
-      };
+      // Compute the three candidate schedules once so the interval shown on a
+      // grade button is exactly what clicking it applies. Re-running
+      // schedule() at click time could land a day off: Date.now() has moved,
+      // and the deterministic fuzz is seeded from the card state fed to it.
+      const now = Date.now();
+      const opts = schedOpts();
+      const scheds = {};
+      [2, 3, 4].forEach(r => { scheds[r] = FSRS.schedule({ ...c }, r, now, opts); });
+      const preview = r => scheds[r].intervalDays >= 1 ? `${scheds[r].intervalDays}d` : '<1d';
       fb.innerHTML = `<div class="explain okbg"><strong>Correct.</strong> ${esc(q.explanation)} ${cite}</div>
         <div class="grades">
           <button data-r="2"><kbd>1</kbd>Hard <small>${preview(2)}</small></button>
@@ -427,7 +432,7 @@
         </div>`;
       fb.querySelectorAll('.grades button').forEach(b =>
         b.addEventListener('click', () => {
-          Object.assign(c, FSRS.schedule(c, Number(b.dataset.r), Date.now(), schedOpts()));
+          Object.assign(c, scheds[Number(b.dataset.r)]);
           Store.save();
           session.pos++;
           renderQuestion();
