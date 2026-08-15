@@ -1,0 +1,131 @@
+# Contributing
+
+Thanks for taking the time. This is a small static web app, so getting set up
+takes about a minute and there is no build step to fight with.
+
+By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Ways to help
+
+- **Fix a question.** The bank was authored from the manual section by section,
+  and some of it is certainly wrong. If an answer or explanation does not match
+  the cited manual page, open a
+  [question correction](https://github.com/ullbergm/nc-cdl-test-training/issues/new?template=question-correction.yml)
+  or send the edit directly as a pull request.
+- **Report a bug.** Use the
+  [bug report template](https://github.com/ullbergm/nc-cdl-test-training/issues/new?template=bug-report.yml).
+  Browser and device help a lot, since most of the tricky bugs are touch or
+  layout related.
+- **Report a vulnerability.** Do not open a public issue. Follow
+  [SECURITY.md](SECURITY.md).
+- **Write code.** Bug fixes and small, self-contained features are welcome. For
+  anything large, open an issue first so we can agree on the shape before you
+  spend the time.
+
+## Getting set up
+
+```
+git clone https://github.com/ullbergm/nc-cdl-test-training.git
+cd nc-cdl-test-training
+npm install          # dev tooling only; the app itself has no dependencies
+npm run serve        # http://localhost:8080
+```
+
+Opening `index.html` directly works too, though the service worker and a few
+fetch paths only behave properly over http, so `npm run serve` is the safer
+default.
+
+## Before you open a pull request
+
+Run everything CI runs:
+
+```
+npm run lint
+npm test             # question bank validation + FSRS scheduler tests
+npm run test:browser # end-to-end suite in headless Chrome or Chromium
+```
+
+Every line should say `PASS`. You can also open `tests/test.html` in a browser
+and read the results at the bottom of the page, but that page clears
+localStorage for its origin, so do not use the browser profile where you keep
+real study progress.
+
+## House rules for code
+
+- No dependencies and no build step. The app ships the files in the repository
+  exactly as they are: browser JavaScript, plain CSS, plain HTML. If a change
+  would add a runtime dependency, open an issue first.
+- Follow the style already in the file you are editing. `npm run lint` catches
+  the rest.
+- Anything user-visible needs to work on a phone. Most people study on one.
+- Keep the DOM escaping helpers in place. Content goes through them for a
+  reason, and the Content Security Policy in `index.html` is the second layer,
+  not the first.
+- If you touch `sw.js`, `index.html`, or the release workflow, be aware the
+  validator cross-checks them: the precache list must exist in the repository
+  and be staged at deploy, and the nav in `tests/test.html` must match
+  `index.html`.
+
+## Editing the question bank
+
+`data/questions.js` is a plain JSON array behind a `const`. Each entry looks
+like this:
+
+```json
+{
+  "id": "s5-012",
+  "section": 5,
+  "sectionName": "Air Brakes",
+  "question": "...",
+  "choices": ["...", "...", "...", "..."],
+  "answer": 1,
+  "explanation": "...",
+  "page": "5-3"
+}
+```
+
+`npm test` enforces the rules: unique ids, unique question text, exactly four
+distinct choices, `answer` as a 0-based index into them, `section` between 1 and
+13, and `page` in the manual's `chapter-page` form. Every question must cite the
+manual page it came from, and the explanation should say what that page says
+rather than general trucking knowledge. If you add or remove questions, update
+the count in the README, which the validator also checks.
+
+Corrections should point at the cited page. If the page does not support the
+current answer, say so in the pull request and the fix is easy to confirm.
+
+## Commits and releases
+
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
+[release-please](https://github.com/googleapis/release-please) reads them to
+build the changelog and pick the next version, so the prefix decides what
+happens at release time:
+
+- `feat:` for a new capability, which bumps the minor version
+- `fix:` for a bug fix, which bumps the patch version
+- `chore:`, `docs:`, `test:`, `ci:`, and `refactor:` for everything else, which
+  do not trigger a release on their own
+
+Write the subject in the imperative and describe the effect, for example
+`fix: roll back an answer abandoned before grading`. Add `!` after the type for
+a breaking change.
+
+Pull requests are squash merged, so the pull request title is the commit message
+that lands. Keep unrelated changes in separate pull requests.
+
+Merging to `main` does not deploy. Releases happen when the release-please pull
+request is merged, which tags the version, publishes the release notes, and
+deploys to GitHub Pages after re-running the tests.
+
+## Documentation and copy
+
+Plain, direct prose. No emoji, no marketing voice, and no em dashes. Match the
+tone of the README.
+
+## A note on the manual
+
+The NC Commercial Driver Manual is copyright AAMVA and is not included in this
+repository. Download it from
+[NCDMV](https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf)
+if you are working on the question bank. Do not paste long verbatim passages
+into questions or explanations; write them in your own words and cite the page.
