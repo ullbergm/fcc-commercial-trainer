@@ -751,6 +751,28 @@
   }
 
   // ---------- boot ----------
+  // Keyboard shortcuts: 1-4 pick an answer, Enter continues after a wrong
+  // answer, and 1/2/3 (or Enter for Good) grade a correct one.
+  document.addEventListener('keydown', e => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    const tag = document.activeElement && document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+    const next = $('#next');
+    const grades = [...view.querySelectorAll('.grades button')];
+    const choices = [...view.querySelectorAll('.choice:not(:disabled)')];
+    if (next && e.key === 'Enter') {
+      e.preventDefault(); // keep the native Enter click from double-firing
+      next.click();
+    } else if (grades.length) {
+      const b = e.key === 'Enter' ? grades.find(g => g.dataset.r === '3')
+        : ['1', '2', '3'].includes(e.key) ? grades[Number(e.key) - 1] : null;
+      if (b) { e.preventDefault(); b.click(); }
+    } else if (choices.length && ['1', '2', '3', '4'].includes(e.key)) {
+      const b = choices[Number(e.key) - 1];
+      if (b) { e.preventDefault(); b.click(); }
+    }
+  });
+
   document.querySelectorAll('nav button').forEach(b =>
     b.addEventListener('click', () => go(b.dataset.view)));
   const initial = location.hash.slice(1);

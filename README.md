@@ -25,6 +25,9 @@ export and import for backups or for moving between devices.
 - **Stats**: mastery counts, day streak, 7-day due forecast, per-section accuracy,
   and exam history.
 
+On a keyboard, 1 through 4 pick an answer, Enter continues after a wrong answer,
+and 1/2/3 (or Enter for Good) grade a correct one.
+
 In Settings, under "Tests I'm studying for", check only the tests you are taking
 next, for example General Knowledge, Air Brakes, and Combination Vehicles for a
 first Class A attempt. Everything else stays out of the queue until you check it,
