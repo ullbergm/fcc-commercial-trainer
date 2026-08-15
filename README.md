@@ -5,6 +5,12 @@
 [![License: MIT](https://img.shields.io/github/license/ullbergm/nc-cdl-test-training)](LICENSE)
 [![Live site](https://img.shields.io/website?url=https%3A%2F%2Fnc-cdl.ullberg.io&label=nc-cdl.ullberg.io)](https://nc-cdl.ullberg.io)
 
+[![Questions](https://img.shields.io/badge/questions-422-blue)](data/questions.js)
+[![Dependencies](https://img.shields.io/badge/dependencies-none-blue)](package.json)
+[![PWA](https://img.shields.io/badge/PWA-offline%20ready-blue)](manifest.webmanifest)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-blue)](CONTRIBUTING.md)
+[![Conventional Commits](https://img.shields.io/badge/conventional%20commits-1.0.0-blue)](https://www.conventionalcommits.org/en/v1.0.0/)
+
 Practice questions with spaced repetition for the North Carolina commercial driver
 license knowledge tests. The bank has 422 multiple-choice questions covering all 13
 sections of the [NC Commercial Driver Manual](https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf),
