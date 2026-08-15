@@ -162,6 +162,24 @@ try {
   Store.importJSON(dump);
   t('export/import round trip', Store.load().exams.length === 1);
 
+  // --- corrupt import is sanitized, not applied verbatim ---
+  Store.importJSON(JSON.stringify({
+    cards: { 'x1': { stability: 'oops', due: null, state: 'bogus', lastWrong: 'yes' }, 'x2': 42 },
+    settings: { newPerDay: -3, sections: 'all', examDate: 7 },
+    daily: null, exams: { nope: true },
+  }));
+  const bad = Store.load();
+  t('corrupt card fields coerced to numbers', bad.cards.x1.stability === 0 && bad.cards.x1.due === 0);
+  t('corrupt card state falls back to new', bad.cards.x1.state === 'new' && bad.cards.x1.lastWrong === false);
+  t('non-object card entries dropped', !bad.cards.x2);
+  t('corrupt settings sanitized', bad.settings.newPerDay === 0
+    && Array.isArray(bad.settings.sections) && bad.settings.examDate === '');
+  t('corrupt daily/exams reset', Object.keys(bad.daily).length === 0 && bad.exams.length === 0);
+  let rejected = false;
+  try { Store.importJSON('{"nope":1}'); } catch { rejected = true; }
+  t('backup without cards/settings rejected', rejected);
+  Store.importJSON(dump); // restore real state for the remaining tests
+
   // --- about page ---
   nav('about');
   t('about renders', !!q('.about'));

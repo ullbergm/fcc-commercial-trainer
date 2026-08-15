@@ -62,10 +62,42 @@ const Store = (() => {
     return JSON.stringify(load(), null, 2);
   }
 
+  // A backup is the user's only copy of their progress, so a truncated or
+  // hand-edited file must not smuggle NaN/undefined into card state where it
+  // would silently break scheduling. Coerce every field to a sane value.
   function importJSON(text) {
     const parsed = JSON.parse(text); // throws on bad input
-    if (!parsed.cards || !parsed.settings) throw new Error('Not a valid backup file');
-    state = Object.assign(defaults(), parsed);
+    if (!parsed || typeof parsed !== 'object'
+        || typeof parsed.cards !== 'object' || !parsed.cards
+        || typeof parsed.settings !== 'object' || !parsed.settings) {
+      throw new Error('Not a valid backup file');
+    }
+    const num = (v, d = 0) => (Number.isFinite(v) ? v : d);
+    const STATES = ['new', 'learning', 'relearning', 'review'];
+    const cards = {};
+    Object.entries(parsed.cards).forEach(([id, c]) => {
+      if (!c || typeof c !== 'object') return;
+      cards[id] = {
+        stability: num(c.stability), difficulty: num(c.difficulty),
+        due: num(c.due), lastReview: num(c.lastReview),
+        reps: num(c.reps), lapses: num(c.lapses),
+        state: STATES.includes(c.state) ? c.state : 'new',
+        wrong: num(c.wrong), right: num(c.right),
+        lastWrong: c.lastWrong === true,
+      };
+    });
+    const st = parsed.settings;
+    const base = defaults();
+    state = {
+      cards,
+      settings: {
+        newPerDay: Math.max(0, num(st.newPerDay, base.settings.newPerDay)),
+        sections: Array.isArray(st.sections) ? st.sections.filter(Number.isInteger) : [],
+        examDate: typeof st.examDate === 'string' ? st.examDate : '',
+      },
+      daily: parsed.daily && typeof parsed.daily === 'object' ? parsed.daily : {},
+      exams: Array.isArray(parsed.exams) ? parsed.exams : [],
+    };
     save();
   }
 
