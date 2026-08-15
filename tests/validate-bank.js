@@ -44,6 +44,28 @@ if (!appNav || appNav !== testNav) {
   errors.push(`nav drift: index.html has [${appNav}] but tests/test.html has [${testNav}]`);
 }
 
+// sw.js precaches CORE with cache.addAll, which is all-or-nothing: one bad
+// path and the new worker never installs, silently killing offline support
+// and update toasts on the live site. Every entry must exist in the repo (or
+// be generated at deploy time) and be covered by the release staging step.
+const root = path.join(__dirname, '..');
+const sw = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
+const coreSrc = (sw.match(/const CORE = \[([\s\S]*?)\];/) || ['', ''])[1];
+const core = [...coreSrc.matchAll(/'([^']+)'/g)].map(m => m[1]);
+if (core.length < 5) errors.push('sw.js: could not parse the CORE precache list');
+const release = fs.readFileSync(path.join(root, '.github', 'workflows', 'release.yml'), 'utf8');
+const staged = ((release.match(/cp -r (.+) dist\//) || ['', ''])[1]).split(/\s+/);
+for (const entry of core) {
+  const p = entry === './' ? 'index.html' : entry;
+  const generatedAtDeploy = release.includes(`dist/${p}`);
+  if (!fs.existsSync(path.join(root, p)) && !generatedAtDeploy) {
+    errors.push(`sw.js CORE entry "${entry}" does not exist and is not generated at deploy`);
+  }
+  if (!staged.includes(p.split('/')[0]) && !generatedAtDeploy) {
+    errors.push(`sw.js CORE entry "${entry}" is not staged by release.yml`);
+  }
+}
+
 // README states the bank size in prose; fail when it drifts from the bank.
 // Counts under 100 (per-exam question counts and the like) are ignored.
 const readme = fs.readFileSync(path.join(__dirname, '..', 'README.md'), 'utf8');
