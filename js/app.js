@@ -100,14 +100,27 @@
   function newIds(limit) {
     if (limit <= 0) return [];
     const secs = new Set(enabledSections());
-    return QUESTION_BANK
+    const unseen = QUESTION_BANK
       .filter(q => secs.has(q.section))
       .filter(q => {
         const c = Store.load().cards[q.id];
         return !c || !c.lastReview;
-      })
-      .slice(0, limit)
-      .map(q => q.id);
+      });
+    // Round-robin across sections, so early sections are not drilled to
+    // exhaustion before later ones are ever seen.
+    const bySection = new Map();
+    unseen.forEach(q => {
+      if (!bySection.has(q.section)) bySection.set(q.section, []);
+      bySection.get(q.section).push(q.id);
+    });
+    const lists = [...bySection.values()];
+    const take = Math.min(limit, unseen.length);
+    const out = [];
+    for (let i = 0; out.length < take; i++) {
+      const list = lists[i % lists.length];
+      if (list.length) out.push(list.shift());
+    }
+    return out;
   }
 
   const unseenCount = () => newIds(Infinity).length;
@@ -220,11 +233,24 @@
       b.addEventListener('click', () => go(b.dataset.view)));
   }
 
+  // Spread new cards evenly through the review queue instead of appending
+  // them all at the end.
+  function interleave(reviews, fresh) {
+    if (!reviews.length || !fresh.length) return reviews.concat(fresh);
+    const queue = reviews.slice();
+    const total = reviews.length + fresh.length;
+    fresh.forEach((id, k) => {
+      const at = Math.min(queue.length, Math.round((k + 0.5) * total / fresh.length));
+      queue.splice(at, 0, id);
+    });
+    return queue;
+  }
+
   // ---------- study session (FSRS) ----------
   function startStudy() {
     const reviews = shuffle(dueReviewIds());
     const fresh = newIds(newRemainingToday());
-    const queue = reviews.concat(fresh);
+    const queue = interleave(reviews, fresh);
     if (!queue.length) {
       view.innerHTML = `<div class="done"><h2>All caught up</h2>
         <p>Nothing due right now. Come back tomorrow, or take a mock exam.</p>

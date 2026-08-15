@@ -13,7 +13,8 @@ export and import for backups or for moving between devices.
 ## Modes
 
 - **Study**: the spaced repetition queue. Due reviews plus a daily allotment of new
-  cards. Wrong answers come back a few cards later in the same session. Correct
+  cards, drawn round-robin across the selected sections and interleaved with the
+  reviews. Wrong answers come back a few cards later in the same session. Correct
   answers are rated Hard, Good, or Easy, which tells the scheduler how the recall felt.
 - **Misses**: re-drills every question whose last answer was wrong, without touching
   the review schedule. Answering one correctly removes it from the pool.
