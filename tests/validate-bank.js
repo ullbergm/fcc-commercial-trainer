@@ -44,7 +44,23 @@ if (!appNav || appNav !== testNav) {
   errors.push(`nav drift: index.html has [${appNav}] but tests/test.html has [${testNav}]`);
 }
 
+// Answer-length tell: if the correct choice is disproportionately often the
+// longest (or shortest) option, test-savvy users can score without knowing the
+// material. Chance for either is ~25%; warn well before it becomes a pattern.
+let longestCorrect = 0, shortestCorrect = 0;
+for (const q of QUESTION_BANK) {
+  if (!Array.isArray(q.choices) || q.choices.length !== 4) continue;
+  const lens = q.choices.map(c => String(c).length);
+  const others = lens.filter((_, i) => i !== q.answer);
+  if (lens[q.answer] > Math.max(...others)) longestCorrect++;
+  if (lens[q.answer] < Math.min(...others)) shortestCorrect++;
+}
+const pct = n => Math.round((n / QUESTION_BANK.length) * 100);
 console.log(`${QUESTION_BANK.length} questions, answer positions ${positions.join('/')}`);
+console.log(`answer-length: correct is uniquely longest in ${pct(longestCorrect)}%, uniquely shortest in ${pct(shortestCorrect)}% (chance ~25%)`);
+if (pct(longestCorrect) > 35) {
+  console.warn('WARN correct answers skew long; "pick the longest" beats chance. Rebalance before it grows.');
+}
 if (errors.length) {
   errors.forEach(e => console.error('ERROR ' + e));
   process.exit(1);

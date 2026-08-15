@@ -23,7 +23,7 @@ const QUESTION_BANK = [
   "question": "Which vehicle falls into Class B?",
   "choices": [
    "Any single vehicle with a GVWR of 26,001 or more pounds, or such a vehicle towing another vehicle not in excess of 10,000 pounds GVWR",
-   "Any combination of vehicles with a GCWR of 26,001 or more pounds towing a vehicle over 10,000 pounds GVWR",
+   "Any combination of vehicles with a GCWR of 26,001 or more pounds, provided the vehicle being towed has a GVWR of more than 10,000 pounds",
    "Any single vehicle with a GVWR of less than 26,001 pounds",
    "Any vehicle designed to carry 16 or more passengers regardless of weight"
   ],
@@ -37,10 +37,10 @@ const QUESTION_BANK = [
   "sectionName": "Introduction",
   "question": "A single vehicle with a GVWR of less than 26,001 pounds (Class C) requires a CDL only if it is:",
   "choices": [
-   "Towing any trailer of any size",
-   "Equipped with air brakes",
+   "Towing any trailer of any size, even when the combined weight of the truck and trailer stays well under the 26,001 pound commercial threshold",
+   "Equipped with air brakes or any other braking system that requires special training to operate",
    "Designed to carry 16 or more passengers (including the driver) or used to transport hazardous materials requiring placards",
-   "Used in interstate commerce"
+   "Used in interstate commerce, no matter what the vehicle weighs or carries"
   ],
   "answer": 2,
   "explanation": "Class C vehicles are in the CDL program only if they are designed to carry 16 or more passengers including the driver, or transport hazardous materials in quantities requiring placarding (or select agents/toxins in 42 CFR part 73).",
@@ -85,7 +85,7 @@ const QUESTION_BANK = [
    "The driver may pull double or triple trailers",
    "The driver is restricted to intrastate driving only",
    "The driver has passed the knowledge examinations for both tank vehicles and hazardous materials",
-   "The driver may operate a school bus and a passenger bus"
+   "The driver may operate both a school bus and any other passenger bus without further knowledge testing"
   ],
   "answer": 2,
   "explanation": "The X endorsement is for drivers of tank vehicles hauling hazardous materials or waste in amounts requiring placards; it shows the driver passed the special knowledge examinations for both tank vehicles and hazardous materials.",
@@ -143,7 +143,7 @@ const QUESTION_BANK = [
   "question": "The K restriction on a CDL means the driver:",
   "choices": [
    "May not carry passengers in a CMV bus",
-   "May not operate a CMV with a manual transmission",
+   "May not operate any CMV that is equipped with a manual transmission of any kind",
    "Is restricted from operating a CMV in interstate commerce (intrastate only)",
    "May only operate an empty tank vehicle"
   ],
@@ -202,7 +202,7 @@ const QUESTION_BANK = [
   "sectionName": "Introduction",
   "question": "Which of the following describes interstate commerce?",
   "choices": [
-   "Driving a CMV only within North Carolina with cargo that stays in the state",
+   "Driving a CMV only within North Carolina with cargo that was picked up in the state and will be delivered without ever leaving the state",
    "Driving a CMV between two places within a state, but the cargo is part of a trip that began or will end in another state or foreign country",
    "Driving any CMV that is registered under the IRP",
    "Driving a CMV more than 150 air-miles from your home terminal"
@@ -428,7 +428,7 @@ const QUESTION_BANK = [
   "question": "In North Carolina, an 18-year-old who obtains a CDL will be:",
   "choices": [
    "Restricted to driving inside North Carolina only and not eligible for the Hazardous Materials endorsement",
-   "Allowed to drive in any state but not allowed to carry passengers",
+   "Allowed to drive in any state, but never allowed to carry passengers for hire in a commercial vehicle of any size",
    "Eligible for all endorsements after six months of experience",
    "Restricted to Class C vehicles only"
   ],
@@ -487,10 +487,10 @@ const QUESTION_BANK = [
   "sectionName": "Driving Safely",
   "question": "Which type of tires are prohibited on the front wheels of a bus?",
   "choices": [
-   "Radial tires",
-   "Bias-ply tires",
+   "Radial tires of any load rating",
+   "Bias-ply tires with worn sidewalls",
    "Re-grooved, recapped, or retreaded tires",
-   "Tubeless tires"
+   "Tubeless tires mounted on spoke wheels"
   ],
   "answer": 2,
   "explanation": "The manual states that re-grooved, recapped, or retreaded tires on the front wheels of a bus are prohibited.",
@@ -577,7 +577,7 @@ const QUESTION_BANK = [
   "sectionName": "Driving Safely",
   "question": "How do you test hydraulic brakes for leaks?",
   "choices": [
-   "Hold the pedal down for one minute with the engine off",
+   "Hold the pedal down for one full minute with the engine off while watching the reservoir for any drop in fluid level",
    "Pump the brake pedal three times, then apply firm pressure for five seconds; the pedal should not move",
    "Drive at 5 mph and apply the brakes hard",
    "Pump the pedal once and check the fluid level"
@@ -610,7 +610,7 @@ const QUESTION_BANK = [
    "Set the parking brake, place the vehicle in a low gear, and gently pull forward against it to make sure it holds",
    "Drive at 5 mph and apply the parking brake firmly",
    "Release the parking brake on a hill and see if the vehicle rolls",
-   "Pump the parking brake control three times and hold for five seconds"
+   "Pump the parking brake control three times, then hold it for five seconds and watch the air gauge for a pressure drop"
   ],
   "answer": 0,
   "explanation": "With the parking brake set, place the vehicle into a low gear and gently pull forward against the parking brake to make sure it holds. If it doesn't hold, it is faulty and must be fixed.",
@@ -624,7 +624,7 @@ const QUESTION_BANK = [
   "choices": [
    "It requires less steering effort",
    "It keeps the vehicle closer to the curb",
-   "Traffic laws require driver-side backing",
+   "Traffic laws in most states require driver-side backing for large vehicles",
    "You can see better and watch the rear of your vehicle out the side window"
   ],
   "answer": 3,
@@ -670,7 +670,7 @@ const QUESTION_BANK = [
    "Force the gearshift into gear",
    "Brake to a complete stop and start over in first gear",
    "Return to neutral, release the clutch, increase engine speed to match road speed, and try again",
-   "Coast in neutral until the vehicle slows enough"
+   "Coast in neutral until the vehicle slows enough for the transmission to drop into the next lower gear"
   ],
   "answer": 2,
   "explanation": "If you remain too long in neutral and have difficulty putting the vehicle into the next gear, don't try to force it. Return to neutral, release the clutch, increase engine speed to match road speed, and try again.",
@@ -788,7 +788,7 @@ const QUESTION_BANK = [
   "question": "How should you warn drivers behind you when you see you will need to slow down?",
   "choices": [
    "Turn on your high beams",
-   "Sound your horn several times",
+   "Sound your horn several times so the drivers behind know they should back off",
    "Tap the brake pedal a few times lightly to flash the brake lights",
    "Wave your arm out the window"
   ],
@@ -850,7 +850,7 @@ const QUESTION_BANK = [
    "Reaction distance plus braking distance",
    "Perception distance plus braking distance",
    "Perception distance plus reaction distance plus braking distance",
-   "Braking distance plus following distance"
+   "Braking distance plus your following distance at your current speed"
   ],
   "answer": 2,
   "explanation": "The manual's formula is: Perception Distance + Reaction Distance + Braking Distance = Total Stopping Distance.",
@@ -910,7 +910,7 @@ const QUESTION_BANK = [
    "Empty trucks travel at higher speeds",
    "The brakes overheat faster when the truck is empty",
    "An empty vehicle has less traction, and the brakes, tires, and springs work best when the vehicle is fully loaded",
-   "Empty trucks have a higher center of gravity"
+   "Empty trucks have a higher center of gravity, so drivers must brake more gently to keep the trailer from tipping forward"
   ],
   "answer": 2,
   "explanation": "The brakes, tires, springs, and shock absorbers on heavy vehicles are designed to work best when the vehicle is fully loaded. Empty trucks require greater stopping distances because an empty vehicle has less traction.",
@@ -922,8 +922,8 @@ const QUESTION_BANK = [
   "sectionName": "Driving Safely",
   "question": "On a wet road, by how much should you reduce your speed?",
   "choices": [
-   "By about one-tenth",
-   "By about one-half",
+   "By about one-tenth (e.g., slow from 55 to about 50 mph)",
+   "By about one-half (e.g., slow from 55 to about 25 mph)",
    "To a crawl",
    "By about one-third (e.g., slow from 55 to about 35 mph)"
   ],
@@ -999,7 +999,7 @@ const QUESTION_BANK = [
   "choices": [
    "Turn wide as you complete the turn, keeping the rear of your vehicle close to the curb",
    "Turn wide to the left as you start the turn",
-   "Back up to give yourself room if oncoming vehicles approach",
+   "Back up to give yourself more room whenever oncoming vehicles approach the intersection",
    "Make the turn quickly to clear the intersection"
   ],
   "answer": 0,
@@ -1087,7 +1087,7 @@ const QUESTION_BANK = [
   "sectionName": "Driving Safely",
   "question": "How does the manual define road rage?",
   "choices": [
-   "Driving in a selfish, bold, or pushy manner",
+   "Driving in a selfish, bold, or pushy manner without regard for the rights or safety of the other road users around you",
    "Exceeding the speed limit in heavy traffic",
    "Honking repeatedly at slow-moving vehicles",
    "Operating a motor vehicle with the intent of doing harm to others or physically assaulting a driver or their vehicle"
@@ -1179,7 +1179,7 @@ const QUESTION_BANK = [
   "choices": [
    "Don't drive; pull off the road into a rest area or truck stop until visibility is better",
    "Use your high beams so you can see farther",
-   "Follow the taillights of the vehicle ahead closely",
+   "Follow the taillights of the vehicle ahead closely so you always know where the roadway is",
    "Speed up to get through the fog quickly"
   ],
   "answer": 0,
@@ -1269,7 +1269,7 @@ const QUESTION_BANK = [
   "choices": [
    "As soon as you shut off the engine",
    "Any time the coolant level is low",
-   "Whenever the temperature gauge reads in the normal range",
+   "Whenever the temperature gauge reads in the normal range and the engine has idled for at least a minute",
    "Not until the system has cooled; steam and boiling water can spray under pressure and cause severe burns"
   ],
   "answer": 3,
@@ -1327,7 +1327,7 @@ const QUESTION_BANK = [
   "sectionName": "Driving Safely",
   "question": "If your vehicle gets stuck on railroad tracks, what should you do first?",
   "choices": [
-   "Try to rock the vehicle free by shifting between gears",
+   "Try to rock the vehicle free by quickly shifting between forward and reverse gears while keeping the drive wheels from spinning on the rails",
    "Stay in the cab and call your dispatcher",
    "Raise the hood to signal for help",
    "Get out of the vehicle and away from the tracks, then check the signposts or signal housing for emergency notification information and call 911"
@@ -1390,7 +1390,7 @@ const QUESTION_BANK = [
    "They use a long bed of loose, soft material, sometimes in combination with an upgrade",
    "They use a series of speed bumps and barriers",
    "They use water-filled crash barrels",
-   "They use a net stretched across the roadway"
+   "They use a heavy net stretched across the roadway that slows the vehicle as it stretches"
   ],
   "answer": 0,
   "explanation": "Escape ramps use a long bed of loose, soft material to slow a runaway vehicle, sometimes in combination with an upgrade. They are made to stop vehicles safely without injuring drivers and passengers.",
@@ -1462,7 +1462,7 @@ const QUESTION_BANK = [
   "sectionName": "Driving Safely",
   "question": "When a tire fails, what should you do about braking?",
   "choices": [
-   "Brake hard immediately to stop as quickly as possible",
+   "Brake hard immediately to stop as quickly as possible before the failed tire can pull you off the road",
    "Use stab braking until you stop",
    "Stay off the brake until the vehicle has slowed down, then brake very gently, pull off the road, and stop",
    "Apply the parking brake right away"
@@ -1493,7 +1493,7 @@ const QUESTION_BANK = [
   "question": "How should you brake when driving a vehicle equipped with ABS?",
   "choices": [
    "Pump the brake pedal rapidly",
-   "Press harder than normal so the ABS engages sooner",
+   "Press the pedal harder than normal so the ABS engages sooner and shortens your overall stopping distance",
    "Brake as you always have, using only the braking force necessary to stop safely and stay in control",
    "Use only the parking brake for normal stops"
   ],
@@ -1507,7 +1507,7 @@ const QUESTION_BANK = [
   "sectionName": "Driving Safely",
   "question": "What is by far the most common type of skid?",
   "choices": [
-   "A front-wheel skid caused by worn steering tires",
+   "A front-wheel skid caused by worn steering tires or too much weight on the front axle",
    "One in which the rear wheels lose traction through excessive braking or acceleration",
    "A trailer skid caused by strong crosswinds",
    "A skid caused by under-inflated steering tires"
@@ -1568,7 +1568,7 @@ const QUESTION_BANK = [
   "question": "If you have an engine fire, what should you do?",
   "choices": [
    "Turn off the engine as soon as you can and don't open the hood if you can avoid it",
-   "Open the hood immediately to find the source of the fire",
+   "Open the hood immediately to find the source of the fire before it can spread further",
    "Keep the engine running so the fan can blow out the flames",
    "Drive to the nearest service station for help"
   ],
@@ -1582,7 +1582,7 @@ const QUESTION_BANK = [
   "sectionName": "Driving Safely",
   "question": "Why should you NOT use water on an electrical fire?",
   "choices": [
-   "Water evaporates too quickly to be effective",
+   "Water evaporates too quickly to cool the wiring, so the fire simply reignites as soon as the spray stops",
    "Water will freeze on the wiring",
    "Water is only effective on gasoline fires",
    "Water can cause shock; electrical fires require non-conducting agents like carbon dioxide or dry chemicals"
@@ -1615,7 +1615,7 @@ const QUESTION_BANK = [
    "The amount of alcohol you drink, how fast you drink, and your weight",
    "Only the type of alcoholic beverage consumed",
    "Your age, height, and eye color",
-   "The temperature of the drink and the time of day"
+   "The temperature of the drink, the time of day, and where it was consumed"
   ],
   "answer": 0,
   "explanation": "BAC is determined by the amount of alcohol you drink (more alcohol means higher BAC), how fast you drink (faster drinking means higher BAC), and your weight (a smaller person doesn't have to drink as much to reach the same BAC).",
@@ -1627,7 +1627,7 @@ const QUESTION_BANK = [
   "sectionName": "Driving Safely",
   "question": "When can you drive a vehicle that carries hazardous materials requiring placards?",
   "choices": [
-   "Whenever your employer gives written permission",
+   "Whenever your employer gives you written permission before the trip begins",
    "Only if your driver license has the hazardous materials endorsement",
    "Any time the trip is shorter than 100 miles",
    "Only during daylight hours"
@@ -1644,7 +1644,7 @@ const QUESTION_BANK = [
   "choices": [
    "Two placards, one on each side",
    "One placard on the rear only",
-   "Six placards, on all corners and the roof",
+   "Six placards: one on all four corners plus the roof and the undercarriage",
    "At least four identical placards, on the front, rear, and both sides"
   ],
   "answer": 3,
@@ -1702,7 +1702,7 @@ const QUESTION_BANK = [
   "sectionName": "Transporting Cargo Safely",
   "question": "Gross Combination Weight Rating (GCWR) can be determined by:",
   "choices": [
-   "The weight transmitted to the ground by one set of axles",
+   "The total weight transmitted to the ground by one axle or one set of axles under the loaded vehicle",
    "The rating stamped on the side of each tire",
    "The manufacturer's suspension system capacity rating",
    "The sum of the GVWRs or GVWs of the power unit and towed unit(s) that produces the highest value"
@@ -1780,7 +1780,7 @@ const QUESTION_BANK = [
    "More likely to tip over, especially in curves or when swerving",
    "Easier to steer on downgrades",
    "Less likely to have its load shift",
-   "Only a concern when the road is slippery"
+   "Only a concern when the road surface is slippery or badly rutted"
   ],
   "answer": 0,
   "explanation": "A high center of gravity means you are more likely to tip over, and it is most dangerous in curves or if you have to swerve to avoid a hazard.",
@@ -1855,7 +1855,7 @@ const QUESTION_BANK = [
    "To protect you from your cargo in case of a crash or emergency stop",
    "To improve the aerodynamics of the tractor",
    "To keep the cargo dry in bad weather",
-   "To mark the vehicle as an oversized load"
+   "To mark the vehicle as an oversized load when hauling extra-long freight"
   ],
   "answer": 0,
   "explanation": "Front-end header boards protect the driver from the cargo in case of a crash or emergency stop by blocking the forward movement of the cargo.",
@@ -1867,7 +1867,7 @@ const QUESTION_BANK = [
   "sectionName": "Transporting Cargo Safely",
   "question": "What are the two basic reasons for covering cargo?",
   "choices": [
-   "To hide the cargo from thieves and reduce wind drag",
+   "To hide the cargo from thieves and to cut down wind drag at highway speeds",
    "To meet insurance requirements and reduce noise",
    "To keep the cargo balanced and prevent overloading",
    "To protect people from spilled cargo and to protect the cargo from weather"
@@ -1957,7 +1957,7 @@ const QUESTION_BANK = [
   "sectionName": "Transporting Passengers Safely",
   "question": "You should sign the previous driver's inspection report only if:",
   "choices": [
-   "You performed the previous trip yourself",
+   "You personally performed the previous trip and wrote the inspection report yourself",
    "The bus is going out of service for repairs",
    "Your supervisor tells you to sign it",
    "Defects reported earlier have been certified as repaired or as not needing repair"
@@ -2019,7 +2019,7 @@ const QUESTION_BANK = [
   "choices": [
    "Must keep them locked shut at all times while driving",
    "May lock some in a partly open position for fresh air, but should not leave them open as a regular practice",
-   "Should leave them open whenever passengers are on board",
+   "Should leave them fully open whenever passengers are on board so fresh air keeps riders alert and comfortable",
    "May remove them if the bus has air conditioning"
   ],
   "answer": 1,
@@ -2079,7 +2079,7 @@ const QUESTION_BANK = [
   "choices": [
    "A rope that separates the driver from the passengers",
    "The line of passengers waiting to board at a stop",
-   "A painted line on the outside of the bus showing its length",
+   "A painted line on the outside of the bus showing its overall length to other drivers",
    "A two-inch line on the floor (or other means) showing riders where they cannot stand"
   ],
   "answer": 3,
@@ -2110,7 +2110,7 @@ const QUESTION_BANK = [
    "Immediately, wherever the bus can pull over",
    "At the nearest freeway exit ramp",
    "At the next scheduled stop or a well-lighted area where there are other people",
-   "You must never discharge a disruptive rider"
+   "You must never discharge a disruptive rider anywhere other than their ticketed stop"
   ],
   "answer": 2,
   "explanation": "Don't discharge disruptive riders where it would be unsafe for them; it may be safer at the next scheduled stop or a well-lighted area where there are other people.",
@@ -2185,7 +2185,7 @@ const QUESTION_BANK = [
    "It applies the brakes and holds the throttle in idle position when the rear door is open",
    "It locks all doors whenever the parking brake is set",
    "It replaces the parking brake when the bus is stopped",
-   "It prevents the rear door from opening while the engine is running"
+   "It prevents the rear door from being opened at any time while the engine is still running"
   ],
   "answer": 0,
   "explanation": "The interlock applies the brakes and holds the throttle in idle position when the rear door is open, and releases when the door closes. It must not be used in place of the parking brake.",
@@ -2227,7 +2227,7 @@ const QUESTION_BANK = [
   "sectionName": "Air Brakes",
   "question": "In an emergency stop, you can fully apply the brakes only if:",
   "choices": [
-   "You are driving a lightly loaded vehicle",
+   "You are driving a lightly loaded vehicle on dry pavement at speeds below 40 mph",
    "You always drive a straight truck or combination with working ABS on all axles",
    "Only the tractor has ABS",
    "Your speed is below 40 mph"
@@ -2243,7 +2243,7 @@ const QUESTION_BANK = [
   "question": "When should you NOT use the parking brakes?",
   "choices": [
    "When parked on a level surface",
-   "When leaving the vehicle unattended",
+   "When leaving the vehicle unattended for less than about fifteen minutes",
    "When parked overnight",
    "When the brakes are very hot, or very wet in freezing temperatures"
   ],
@@ -2275,7 +2275,7 @@ const QUESTION_BANK = [
    "To keep the safety valve from opening",
    "To reduce the air pressure to the cut-in level",
    "Water and compressor oil collect in the tank and the water can freeze and cause brake failure",
-   "To keep the governor from cutting out too soon"
+   "To keep the governor from cutting out too soon and overworking the air compressor on long grades"
   ],
   "answer": 2,
   "explanation": "Compressed air usually contains some water and compressor oil, which collect in the bottom of the air tank; the water can freeze in cold weather and cause brake failure.",
@@ -2304,7 +2304,7 @@ const QUESTION_BANK = [
   "choices": [
    "To lubricate the air compressor",
    "To reduce the risk of ice in air brake valves and other parts during cold weather",
-   "To remove water and oil from the air tanks automatically",
+   "To remove water and compressor oil from the air tanks automatically each day the vehicle runs",
    "To increase air pressure in cold weather"
   ],
   "answer": 1,
@@ -2334,7 +2334,7 @@ const QUESTION_BANK = [
   "choices": [
    "Release the brakes when the wheels lock up, and re-apply fully as soon as the wheels start rolling again",
    "Hold the brakes fully applied until the vehicle stops",
-   "Release the brakes every three seconds regardless of wheel lockup",
+   "Release the brakes every three seconds regardless of wheel lockup until the vehicle comes to a full stop",
    "Pump the brakes lightly and steer sharply around the obstacle"
   ],
   "answer": 0,
@@ -2410,7 +2410,7 @@ const QUESTION_BANK = [
    "The governor has cut out",
    "The brakes are fading; you should slow down and use a lower gear",
    "The compressor is pumping too much air",
-   "The spring brakes are coming on"
+   "The spring brakes are beginning to drag as the air pressure drops"
   ],
   "answer": 1,
   "explanation": "Increasing application pressure to hold the same speed means the brakes are fading, and you should slow down and use a lower gear.",
@@ -2438,7 +2438,7 @@ const QUESTION_BANK = [
   "question": "With the \"controlled braking\" emergency method, you should:",
   "choices": [
    "Apply the brakes as hard as you can without locking the wheels, keeping steering wheel movements very small",
-   "Apply the brakes all the way until the wheels lock, then release",
+   "Apply the brakes all the way until the wheels lock, then release the pedal and let the vehicle roll to a stop",
    "Pump the brakes rapidly while steering around the obstacle",
    "Apply the parking brake and the foot brake together"
   ],
@@ -2500,7 +2500,7 @@ const QUESTION_BANK = [
    "60 to 80 psi",
    "5 to 15 psi",
    "20 to 45 psi (typically 20 to 30 psi)",
-   "50 to 60 psi"
+   "50 to 60 psi, depending on the manufacturer"
   ],
   "answer": 2,
   "explanation": "Tractor and straight truck spring brakes come fully on when air pressure drops to a range of 20 to 45 psi (typically 20 to 30 psi). Don't wait for this - stop safely as soon as the low air warning comes on.",
@@ -2542,7 +2542,7 @@ const QUESTION_BANK = [
   "sectionName": "Air Brakes",
   "question": "What is a modulating control valve used for?",
   "choices": [
-   "To release the front brake limiting valve",
+   "To release the front brake limiting valve when driving on dry pavement at highway speeds",
    "To drain the air tanks automatically",
    "To control the governor cut-in pressure",
    "To apply the spring brakes gradually, so you can control them if the service brakes fail"
@@ -2559,7 +2559,7 @@ const QUESTION_BANK = [
   "choices": [
    "Release the spring brakes a few times so you can move the vehicle in an emergency",
    "Refill the primary air system while driving",
-   "Operate the trailer brakes if the service line fails",
+   "Operate the trailer service brakes if the main service line ever fails while driving",
    "Keep the low pressure warning from coming on"
   ],
   "answer": 0,
@@ -2602,7 +2602,7 @@ const QUESTION_BANK = [
   "sectionName": "Air Brakes",
   "question": "Which statement about ABS is true?",
   "choices": [
-   "ABS increases your normal braking capability",
+   "ABS increases your normal braking capability by adding extra clamping force whenever you brake hard",
    "ABS is an addition to your normal brakes and only activates when wheels are about to lock up",
    "ABS always shortens your stopping distance",
    "ABS replaces your normal service brakes"
@@ -2620,7 +2620,7 @@ const QUESTION_BANK = [
    "Two separate air brake systems that use a single set of brake controls",
    "One air system with two brake pedals",
    "A system with both hydraulic and air brakes",
-   "Two air compressors feeding a single air tank"
+   "Two air compressors feeding a single air tank through separate supply lines"
   ],
   "answer": 0,
   "explanation": "A dual air brake system has two separate air brake systems, each with its own air tanks, hoses, and lines, which use a single set of brake controls. One system typically operates the rear axle brakes and the other the front axle brakes.",
@@ -2752,7 +2752,7 @@ const QUESTION_BANK = [
   "sectionName": "Air Brakes",
   "question": "How do you test the parking brake during the final air brake check?",
   "choices": [
-   "Fan off the air pressure until the knob pops out",
+   "Fan off the air pressure until the parking brake knob pops out and the brakes apply on their own",
    "Apply the foot brake and hold it for one minute",
    "Put the parking brake on and gently pull against it in a low gear to see that it holds",
    "Drive at five mph and apply the parking brake firmly"
@@ -2768,7 +2768,7 @@ const QUESTION_BANK = [
   "question": "How do you test the service brakes during the final air brake check?",
   "choices": [
    "Pump the brake pedal rapidly with the engine off",
-   "Hold the brake pedal down while accelerating in low gear",
+   "Hold the brake pedal down firmly while accelerating in the lowest gear to confirm the brakes can hold back the engine",
    "Fan the brakes until the low pressure warning comes on",
    "Wait for normal air pressure, release the parking brake, move forward slowly (about 5 mph), and apply the brakes firmly"
   ],
@@ -2845,7 +2845,7 @@ const QUESTION_BANK = [
    "2 seconds for every 20 feet of vehicle length",
    "At least 1 second for each 10 feet of vehicle length, plus 1 more second if going over 40 mph",
    "At least 5 seconds at all speeds",
-   "1 second for each 20 feet of vehicle length, plus 2 seconds at night"
+   "1 second for each 20 feet of vehicle length, plus 2 extra seconds at night or in any bad weather"
   ],
   "answer": 1,
   "explanation": "The manual says to follow at least 1 second for each 10 feet of your vehicle length, plus another second if you are going over 40 mph.",
@@ -2950,7 +2950,7 @@ const QUESTION_BANK = [
    "It causes the tractor protection valve to open",
    "All the air might leak out, unlocking the brakes on trailers without spring brakes",
    "It wears out the service line couplers",
-   "It drains the tractor air tanks overnight"
+   "It slowly drains the tractor air tanks overnight and leaves you without brakes by morning"
   ],
   "answer": 1,
   "explanation": "The manual warns that all the air might leak out, unlocking the brakes in trailers that don't have spring brakes. Always use the parking brakes, and use wheel chocks if the trailer has no spring brakes.",
@@ -2980,7 +2980,7 @@ const QUESTION_BANK = [
    "To keep air in the tractor brake system should the trailer break away or develop a bad leak",
    "To apply the trailer service brakes more quickly",
    "To keep the fifth wheel jaws locked around the kingpin",
-   "To prevent water and dirt from entering the glad hands"
+   "To prevent water and dirt from entering the glad hands and service line when they are connected"
   ],
   "answer": 0,
   "explanation": "The tractor protection valve keeps air in the tractor or truck brake system should the trailer break away or develop a bad leak. It is controlled by the trailer air supply control valve in the cab.",
@@ -3023,7 +3023,7 @@ const QUESTION_BANK = [
   "question": "Which statement correctly describes the service air line?",
   "choices": [
    "It supplies air to the trailer air tanks",
-   "It applies the trailer emergency brakes when pressure is lost",
+   "It applies the trailer emergency brakes automatically when pressure is lost anywhere in the rig",
    "It is normally coded with the color red",
    "It carries air controlled by the foot brake or trailer hand valve and connects to relay valves"
   ],
@@ -3038,7 +3038,7 @@ const QUESTION_BANK = [
   "question": "What are the two purposes of the emergency air line (supply line)?",
   "choices": [
    "It supplies air to the trailer air tanks and controls the emergency brakes on combination vehicles",
-   "It signals the relay valves and applies the trailer service brakes",
+   "It signals the trailer relay valves to open and applies the trailer service brakes during normal stops",
    "It powers the landing gear and charges the tractor air tanks",
    "It operates the trailer hand valve and the foot brake"
   ],
@@ -3055,7 +3055,7 @@ const QUESTION_BANK = [
    "The trailer brakes release completely",
    "Air is rerouted through the service line",
    "The trailer emergency brakes come on and the tractor protection valve closes",
-   "The trailer air tanks automatically refill"
+   "The trailer air tanks automatically refill through the service line connection"
   ],
   "answer": 2,
   "explanation": "Loss of air pressure in the emergency line causes the trailer emergency brakes to come on, and it also causes the tractor protection valve to close (the air supply knob pops out).",
@@ -3082,7 +3082,7 @@ const QUESTION_BANK = [
   "sectionName": "Combination Vehicles",
   "question": "What is the correct way to connect glad hands?",
   "choices": [
-   "Snap them straight together and pull back to lock",
+   "Snap them straight together with the couplers aligned face to face, then pull back firmly on both air lines to make sure they have locked",
    "Screw them together clockwise until tight",
    "Connect them at a 45 degree angle and push down",
    "Clean the couplers and seals, press the two seals together with the couplers at a 90 degree angle, then turn to join and lock them"
@@ -3144,7 +3144,7 @@ const QUESTION_BANK = [
   "choices": [
    "Because the landing gear cannot hold the trailer's weight",
    "Because the service line stays pressurized while parked",
-   "Because chocks are required on all trailers by the fifth wheel manufacturer",
+   "Because the fifth wheel and trailer manufacturers require chocks on every parked trailer regardless of its brake equipment",
    "Because the emergency brakes hold only as long as there is air in the trailer air tank, and the air will eventually leak away"
   ],
   "answer": 3,
@@ -3202,7 +3202,7 @@ const QUESTION_BANK = [
   "sectionName": "Combination Vehicles",
   "question": "Before backing under, the trailer should be at what height relative to the tractor?",
   "choices": [
-   "High enough that the tractor slides under without touching it",
+   "High enough that the tractor slides completely under it without touching the trailer nose",
    "Exactly level with the top of the tractor frame",
    "As low as the landing gear will allow",
    "Low enough that it is raised slightly by the tractor when the tractor is backed under it"
@@ -3233,7 +3233,7 @@ const QUESTION_BANK = [
   "question": "After backing under the trailer, how do you check that the connection is secure?",
   "choices": [
    "Back up hard against the kingpin and listen for a click",
-   "Rock the trailer side to side with the landing gear down",
+   "Rock the trailer from side to side with the landing gear still down and watch whether the kingpin shifts inside the locking jaws",
    "Raise the landing gear slightly off the ground and pull the tractor gently forward while the trailer brakes are still locked",
    "Drive forward at normal speed and watch the mirrors"
   ],
@@ -3295,7 +3295,7 @@ const QUESTION_BANK = [
    "To keep the air lines from stretching too far",
    "So the trailer brakes stay charged with air",
    "To prevent the trailer from falling to the ground if the landing gear collapses or sinks",
-   "So the kingpin stays warm for the next coupling"
+   "So the kingpin stays aligned with the locking jaws and ready for the next coupling attempt"
   ],
   "answer": 2,
   "explanation": "Stopping with the tractor frame under the trailer prevents the trailer from falling to the ground if the landing gear should collapse or sink. Only after inspecting the trailer supports do you pull the tractor fully clear.",
@@ -3310,7 +3310,7 @@ const QUESTION_BANK = [
    "Watch the dashboard air gauge while idling for five minutes",
    "Push in the trailer air supply knob, go to the rear of the rig, open the emergency line shut-off valve at the rear of the last trailer, and listen for air escaping",
    "Apply the foot brake and count the seconds until the trailer brakes release",
-   "Disconnect the service line glad hand and check for pressure at the tractor"
+   "Disconnect the service line glad hand at each trailer in turn and check for steady pressure at the tractor gauge while a helper holds the brake pedal down"
   ],
   "answer": 1,
   "explanation": "After air pressure reaches normal, push in the red trailer air supply knob and use the trailer handbrake to charge the service line, then open the emergency line shut-off valve at the rear of the last trailer. Hearing air escape shows the entire system is charged; you must have air all the way to the back for all the brakes to work.",
@@ -3368,7 +3368,7 @@ const QUESTION_BANK = [
   "question": "What is a converter gear (converter dolly)?",
   "choices": [
    "A gearbox that lets a tractor pull heavier loads",
-   "A sliding device that adjusts the tractor's fifth wheel position",
+   "A sliding device that adjusts the tractor's fifth wheel position forward and back so axle weight can be shifted between the steer and drive axles",
    "A hydraulic lift used to raise trailer landing gear",
    "A coupling device of one or two axles and a fifth wheel used to couple a semitrailer to the rear of a tractor-trailer combination"
   ],
@@ -3400,7 +3400,7 @@ const QUESTION_BANK = [
    "Drive the tractor close, connect the emergency line, charge the trailer air tank, and disconnect the emergency line",
    "Connect the service line and press the brake pedal several times",
    "Open the trailer air tank petcock and let the air drain out",
-   "Back the dolly under the trailer and pull against the kingpin"
+   "Back the converter dolly under the trailer and pull firmly against the kingpin so the locking jaws hold the trailer still"
   ],
   "answer": 0,
   "explanation": "Connecting the emergency line, charging the trailer air tank, and then disconnecting the emergency line will set the trailer emergency brakes if the slack adjusters are correctly adjusted. Chock the wheels if you have any doubt about the brakes.",
@@ -3415,7 +3415,7 @@ const QUESTION_BANK = [
    "The rear trailer's brakes will automatically release",
    "The kingpin locking jaws could be damaged",
    "The dolly tow bar may fly up, possibly causing injury and making it very difficult to re-couple",
-   "Air pressure will drain from the entire brake system"
+   "Air pressure will immediately drain from the entire brake system, setting every brake on the rig"
   ],
   "answer": 2,
   "explanation": "If the pintle hook is unlocked with the dolly still under the rear trailer, the dolly tow bar may fly up, possibly causing injury, and making it very difficult to re-couple.",
@@ -3460,7 +3460,7 @@ const QUESTION_BANK = [
    "You hear air escaping when you open the emergency line shut-off valve at the rear of the last trailer",
    "The air pressure gauge in the cab reads zero",
    "The trailer air supply knob pops out",
-   "The service brakes apply automatically at all wheels"
+   "The service brakes apply automatically at every wheel position as soon as the last glad hand is connected"
   ],
   "answer": 0,
   "explanation": "After charging the system, you go to the rear of the rig and open the emergency line shut-off valve at the rear of the last trailer. Hearing air escaping shows the entire system is charged.",
@@ -3488,7 +3488,7 @@ const QUESTION_BANK = [
   "question": "When making a visual check of the coupling between the dolly and the rear trailer, what should you look for?",
   "choices": [
    "A small gap between the upper and lower fifth wheel",
-   "The locking jaws closed on the head of the kingpin",
+   "The locking jaws fully closed on the head of the kingpin rather than closed around its shank",
    "The landing gear fully lowered to the ground",
    "No space between the upper and lower fifth wheel, and locking jaws closed on the kingpin"
   ],
@@ -3520,7 +3520,7 @@ const QUESTION_BANK = [
    "The trailers block your mirrors more than other vehicles",
    "You have greater length and more dead axles to pull, so there is more chance for skids and loss of traction",
    "Antilock brakes do not work in bad weather",
-   "The converter dolly brakes lock automatically on slippery roads"
+   "The converter dolly brakes lock automatically on slippery roads, dragging the rear trailer until traction returns"
   ],
   "answer": 1,
   "explanation": "With doubles and triples you have greater length and more dead axles to pull with your drive axles than other drivers, so there is more chance for skids and loss of traction in adverse conditions.",
@@ -3548,7 +3548,7 @@ const QUESTION_BANK = [
   "question": "How do you test the trailer emergency brakes?",
   "choices": [
    "Apply the foot brake hard while driving at low speed",
-   "Open the emergency line shut-off at the rear of the last trailer while parked",
+   "Open the emergency line shut-off valve at the rear of the last trailer while parked, and watch whether the air pressure gauge in the cab falls as the system bleeds down",
    "Pump the brake pedal with the engine off until the low air warning comes on",
    "Charge the trailer air brake system, check that the trailer rolls freely, then pull out the trailer air supply control and pull gently on the trailer with the tractor"
   ],
@@ -3595,7 +3595,7 @@ const QUESTION_BANK = [
    "Uncouple the first trailer from the tractor before touching the dollies",
    "Unhitch both dollies at the same time, then pull the tractor clear",
    "Uncouple the third trailer by pulling the dolly out and unhitching it, then uncouple the rest as you would a double-bottom rig",
-   "Lower all landing gear, then pull the entire rig apart in one move"
+   "Lower all landing gear on both trailers and the dolly, then pull the entire rig apart in one careful straight-line move"
   ],
   "answer": 2,
   "explanation": "The manual says to uncouple the third trailer by pulling the dolly out, then unhitching the dolly using the method for uncoupling doubles, and then uncouple the remainder of the rig as you would any double-bottom rig.",
@@ -3654,7 +3654,7 @@ const QUESTION_BANK = [
   "choices": [
    "You will only receive a written warning",
    "It is a crime; you will be cited, prevented from driving further, and may be liable for the clean-up of any spill",
-   "You may continue driving to the nearest repair facility",
+   "You may continue driving to the nearest repair facility as long as you slow down and keep off limited access highways",
    "Nothing, as long as the leak is small"
   ],
   "answer": 1,
@@ -3714,7 +3714,7 @@ const QUESTION_BANK = [
   "choices": [
    "The color coding of each compartment",
    "Weight distribution, so there is not too much weight on the front or rear of the vehicle",
-   "Keeping every compartment completely full",
+   "Keeping every compartment completely full so the liquid has no room to surge while in motion",
    "Loading the rear compartments first"
   ],
   "answer": 1,
@@ -3728,7 +3728,7 @@ const QUESTION_BANK = [
   "question": "How are baffles different from bulkheads?",
   "choices": [
    "Baffles are solid dividers, while bulkheads have holes in them",
-   "Baffles divide the tank into completely separate compartments",
+   "Baffles divide the tank into completely separate compartments that can each be loaded with a different liquid product",
    "Baffles are only found in food-grade tankers",
    "Baffles are bulkheads with holes that let the liquid flow through, helping control forward and backward surge"
   ],
@@ -3760,7 +3760,7 @@ const QUESTION_BANK = [
    "Food liquids do not surge like other liquids",
    "Smooth bore tanks are lighter than baffled tanks",
    "Sanitation regulations forbid the use of baffles because of the difficulty in cleaning the inside of the tank",
-   "Baffles would contaminate the food with metal shavings"
+   "Baffles would contaminate the food with metal shavings and are too costly to install in food-grade tanks"
   ],
   "answer": 2,
   "explanation": "Un-baffled tanks are usually those that transport food products such as milk because sanitation regulations forbid the use of baffles due to the difficulty in cleaning the inside of the tank. Forward-and-back surge is very strong in these tanks.",
@@ -3862,7 +3862,7 @@ const QUESTION_BANK = [
   "sectionName": "Hazardous Materials",
   "question": "Which of the following is a responsibility of the shipper of hazardous materials?",
   "choices": [
-   "Placarding the vehicle when loading",
+   "Placarding the vehicle at loading time and sealing the cargo doors after",
    "Packaging, marking, and labeling the materials and supplying placards",
    "Taking the shipment to its destination",
    "Refusing leaking packages at the dock"
@@ -3907,7 +3907,7 @@ const QUESTION_BANK = [
   "sectionName": "Hazardous Materials",
   "question": "Who certifies on the shipping paper that the shipment has been prepared according to the rules?",
   "choices": [
-   "The driver",
+   "The driver, because the driver is the last person to handle the load before it travels",
    "The shipper (unless you are pulling cargo tanks supplied by you or your employer)",
    "The carrier's dispatcher",
    "The consignee"
@@ -4015,7 +4015,7 @@ const QUESTION_BANK = [
    "In the glove compartment",
    "In clear view within immediate reach while the seat belt is fastened, or in a pouch on the driver's door",
    "In the sleeper berth",
-   "Anywhere in the cab as long as they are in the vehicle"
+   "Anywhere in the cab, as long as they stay inside the vehicle and can be produced at an inspection when asked"
   ],
   "answer": 1,
   "explanation": "The rules require drivers to keep hazardous materials shipping papers in clear view within immediate reach while the seat belt is fastened, or in a pouch on the driver's door.",
@@ -4045,7 +4045,7 @@ const QUESTION_BANK = [
    "Two-digit codes assigned by the carrier",
    "Six-digit codes found only on placards",
    "Four-digit codes preceded by the letters \"UN\" or \"NA\" that first responders use to identify the material",
-   "Codes that identify only one chemical each"
+   "Codes that identify only one chemical each, assigned so that no two hazardous materials ever share a number"
   ],
   "answer": 2,
   "explanation": "Identification numbers are four-digit codes preceded by \"UN\" or \"NA\" that first responders use to identify hazardous materials. One identification number may identify more than one chemical, and the ERG lists the chemicals and their numbers.",
@@ -4072,7 +4072,7 @@ const QUESTION_BANK = [
   "sectionName": "Hazardous Materials",
   "question": "Placards must be what size and shape?",
   "choices": [
-   "At least 8 inches square, rectangular",
+   "At least 8 inches along each side, in an upright rectangular shape",
    "At least 12 inches, circular",
    "At least 10 3/4 inches square, square-on-point (diamond shaped)",
    "At least 6 inches square, triangular"
@@ -4105,7 +4105,7 @@ const QUESTION_BANK = [
    "The material requires refrigeration",
    "The material is in a reportable quantity, and any spill of that amount must be reported",
    "The material is restricted to a designated route",
-   "The package has passed a required quality check"
+   "The package has passed a required quality check and is certified for transport by any carrier"
   ],
   "answer": 1,
   "explanation": "When a hazardous substance is transported in a reportable quantity or greater in one package, the shipper displays the letters RQ, and you or your employer must report any spill of these materials that occurs in a reportable quantity.",
@@ -4120,7 +4120,7 @@ const QUESTION_BANK = [
    "Display POISON INHALATION HAZARD or POISON GAS placards in addition to other required placards, even for small amounts",
    "Display those placards only if carrying 1,001 pounds or more",
    "Display only the material's hazard class placard",
-   "Display a DANGEROUS placard instead of the hazard class placard"
+   "Display a DANGEROUS placard instead of the material's hazard class placard whenever inhalation hazards are aboard"
   ],
   "answer": 0,
   "explanation": "The rules require the POISON INHALATION HAZARD or POISON GAS placard in addition to any other placards required by the product's hazard class, even for small amounts; the 1,000-pound exception does not apply.",
@@ -4132,7 +4132,7 @@ const QUESTION_BANK = [
   "sectionName": "Hazardous Materials",
   "question": "When a shipping paper describes both hazardous and non-hazardous products, the hazardous materials must be:",
   "choices": [
-   "Listed on a separate page kept in the trailer",
+   "Listed on a separate page that is kept clipped to the bill of lading in a pouch inside the trailer",
    "Written only in capital letters",
    "Entered first, highlighted in a contrasting color, or identified by an \"X\" in a column captioned \"HM\"",
    "Listed last so they are easy to find"
@@ -4178,7 +4178,7 @@ const QUESTION_BANK = [
   "question": "The Emergency Response Guidebook (ERG) is indexed by:",
   "choices": [
    "Proper shipping name and hazardous materials identification number",
-   "Carrier name and trailer number",
+   "Carrier name and trailer number as they appear on the shipping paper",
    "Packing group and reportable quantity",
    "Shipper's certification number"
   ],
@@ -4284,7 +4284,7 @@ const QUESTION_BANK = [
   "choices": [
    "The total load is under 5,000 pounds",
    "You have not loaded 2,205 pounds or more of any Table 2 hazard class material at any one place",
-   "All the materials came from the same shipper",
+   "All the materials came from the same shipper and are being delivered to a single destination point",
    "The trip is entirely within one state"
   ],
   "answer": 1,
@@ -4298,7 +4298,7 @@ const QUESTION_BANK = [
   "question": "A bulk package, and a vehicle transporting a bulk package, must be placarded:",
   "choices": [
    "Only when completely full",
-   "Only when carrying 1,001 pounds or more",
+   "Only when carrying 1,001 pounds or more of the hazardous material",
    "Only when crossing state lines",
    "Even if it only contains the residue of a hazardous material"
   ],
@@ -4312,10 +4312,10 @@ const QUESTION_BANK = [
   "sectionName": "Hazardous Materials",
   "question": "When loading or unloading, you must never smoke around which hazard classes?",
   "choices": [
-   "Classes 6, 7, and 9 only",
-   "Class 8 (Corrosives) only",
+   "Class 6 (Poisons), Class 7 (Radioactive), and Class 9 (Miscellaneous) only, since the other classes give off no ignitable vapors",
+   "Class 8 (Corrosives) only, because corrosive vapors are the only ones a cigarette can ignite",
    "Class 1 (Explosives), Class 2.1 (Flammable Gas), Class 3 (Flammable Liquids), Class 4 (Flammable Solids), and Class 5 (Oxidizers)",
-   "Class 7 (Radioactive) only"
+   "Class 7 (Radioactive) only, since radiation is the hazard most sensitive to heat sources"
   ],
   "answer": 2,
   "explanation": "The manual says to keep fire away and never smoke around Class 1 (Explosives), Class 2.1 (Flammable Gas), Class 3 (Flammable Liquids), Class 4 (Flammable Solids), and Class 5 (Oxidizers).",
@@ -4359,7 +4359,7 @@ const QUESTION_BANK = [
   "choices": [
    "In a closed cargo space",
    "In the driver's cab or sleeper, or with food material for human or animal consumption",
-   "On the same vehicle as Class 9 materials",
+   "On the same vehicle as any Class 9 miscellaneous materials, no matter how they are packaged",
    "In a trailer with more than two axles"
   ],
   "answer": 1,
@@ -4508,7 +4508,7 @@ const QUESTION_BANK = [
   "question": "You or your employer must phone the National Response Center after a hazardous materials incident when:",
   "choices": [
    "A person is killed, an injured person requires hospitalization, or estimated property damage exceeds $50,000",
-   "Any placarded vehicle is stopped for inspection",
+   "Any placarded vehicle is stopped for a roadside inspection, whether or not any material was actually released",
    "The trip is delayed more than two hours",
    "Property damage of any amount over $500 occurs"
   ],
@@ -4642,7 +4642,7 @@ const QUESTION_BANK = [
   "sectionName": "School Buses",
   "question": "What is the main purpose of the outside left and right side crossover mirrors?",
   "choices": [
-   "To monitor passenger activity inside the bus",
+   "To monitor passenger activity inside the bus without turning your head away from the road ahead",
    "To see 200 feet behind the bus",
    "To see the danger zone area directly in front of the bus that is not visible by direct vision",
    "To check traffic in the opposing lane only"
@@ -4657,7 +4657,7 @@ const QUESTION_BANK = [
   "sectionName": "School Buses",
   "question": "Properly adjusted crossover mirrors should allow you to see which of the following?",
   "choices": [
-   "The rear bumper and rear tires",
+   "The rear bumper and rear tires on both sides of the bus",
    "The area from the front of the bus to the service door",
    "Four bus lengths behind the bus",
    "The top of the rear window"
@@ -4825,7 +4825,7 @@ const QUESTION_BANK = [
    "To check for hiding or sleeping students and items left by students",
    "To adjust the interior mirrors",
    "To close the emergency exits",
-   "To sweep the aisle before the next trip"
+   "To sweep the aisle and clean the seats before the next scheduled trip"
   ],
   "answer": 0,
   "explanation": "When unloading at school you should walk through the bus and check for hiding or sleeping students and items left by students.",
@@ -4840,7 +4840,7 @@ const QUESTION_BANK = [
    "Quickly pick it up before the bus moves",
    "Ask another student to pick it up",
    "Leave the object, move to a point of safety out of the danger zones, and get the driver's attention",
-   "Wait next to the bus until the driver opens the door"
+   "Wait next to the bus, directly beside the object, until the driver opens the door and signals to them"
   ],
   "answer": 2,
   "explanation": "Stopping or returning to pick up a dropped object may cause the student to disappear from the driver's sight at a very dangerous moment. Students should leave the object, move to a point of safety out of the danger zones, and attempt to get the driver's attention to retrieve the object.",
@@ -4852,7 +4852,7 @@ const QUESTION_BANK = [
   "sectionName": "School Buses",
   "question": "As a general rule during an emergency or impending crisis, student safety and control is best maintained by:",
   "choices": [
-   "Evacuating the bus immediately in every situation",
+   "Evacuating the bus immediately in every situation, no matter what the hazard outside the bus may be",
    "Keeping students on the bus, if doing so does not expose them to unnecessary risk or injury",
    "Sending students home on foot",
    "Moving all students to the rear of the bus"
@@ -4958,7 +4958,7 @@ const QUESTION_BANK = [
   "question": "While stopped at a railroad-highway crossing, what should you do to look and listen for an approaching train?",
   "choices": [
    "Turn up the radio so you can hear warning bells",
-   "Keep the door and windows closed to reduce distractions",
+   "Keep the service door and all windows closed so outside noise does not distract you from watching the signals",
    "Ask the students to watch for the train",
    "Turn off all radios and noisy equipment, silence the passengers, and open the service door and driver's window"
   ],
@@ -5018,7 +5018,7 @@ const QUESTION_BANK = [
   "question": "If your bus stalls or is trapped on railroad tracks, you should get everyone out and move them:",
   "choices": [
    "Directly behind the bus",
-   "Along the tracks away from the train",
+   "Along the tracks away from the train so they can watch it pass at a safe distance",
    "Straight ahead of the bus",
    "Far from the bus at an angle, away from the tracks and toward the train"
   ],
@@ -5123,7 +5123,7 @@ const QUESTION_BANK = [
   "question": "When checking coolant level with the engine not hot, you should:",
   "choices": [
    "Kick the radiator to listen for fluid movement",
-   "Loosen the lower radiator hose to see coolant flow",
+   "Loosen the lower radiator hose slightly and watch for steady coolant flow to confirm the system is full",
    "Inspect the reservoir sight glass, or remove the radiator cap and check for visible coolant level",
    "Measure the coolant temperature with a gauge"
   ],
@@ -5198,7 +5198,7 @@ const QUESTION_BANK = [
   "question": "When fanning off air pressure during the air brake check, the low air warning devices (buzzer, light, flag) should activate:",
   "choices": [
    "Only after air pressure reaches zero",
-   "Before air pressure drops below 20 psi",
+   "Before air pressure drops below 20 psi, just before the spring brakes come fully on",
    "Before air pressure drops below 60 psi or the level specified by the manufacturer",
    "At exactly 100 psi"
   ],
@@ -5212,7 +5212,7 @@ const QUESTION_BANK = [
   "sectionName": "Vehicle Inspection Test",
   "question": "On a tractor-trailer combination, as you continue to fan off air pressure, the tractor protection valve and parking brake valve should close (pop out) at approximately:",
   "choices": [
-   "100 psi",
+   "100 psi, just before the low air warning devices activate",
    "80 psi",
    "10 psi",
    "40 psi (or level specified by the manufacturer)"
@@ -5242,7 +5242,7 @@ const QUESTION_BANK = [
   "sectionName": "Vehicle Inspection Test",
   "question": "How is the service brake check performed?",
   "choices": [
-   "Pull forward at 15 mph and brake hard to test stopping distance",
+   "Pull forward at about 15 mph and brake hard, measuring the distance it takes the vehicle to reach a complete stop",
    "Pull forward at 5 mph, apply the service brake and stop, checking that the vehicle does not pull to either side",
    "Apply the service brake while parked and listen for air leaks",
    "Back up at 5 mph and apply the brake"
@@ -5289,7 +5289,7 @@ const QUESTION_BANK = [
   "choices": [
    "Cracked or broken spring hangers, missing or damaged bushings, and broken, loose, or missing bolts or u-bolts",
    "Only rust on the leaf springs",
-   "Proper grease color on the fittings",
+   "Proper grease color on every fitting and evidence that each one has been lubricated on the maintenance schedule",
    "Tire wear patterns near the axle"
   ],
   "answer": 0,
@@ -5410,7 +5410,7 @@ const QUESTION_BANK = [
    "Lowered slightly to balance the trailer",
    "Fully raised, with no missing parts, the crank handle secure, and the support frame not damaged",
    "Removed and stored in the tongue storage area",
-   "Halfway raised with the crank handle removed"
+   "Halfway raised, with the crank handle removed and stored so it cannot swing loose while the rig is moving"
   ],
   "answer": 1,
   "explanation": "The landing gear must be fully raised, have no missing parts, the crank handle must be secure, and the support frame must not be damaged; if power operated, check for air or hydraulic leaks.",
@@ -5423,7 +5423,7 @@ const QUESTION_BANK = [
   "question": "During the basic control skills test, what does the examiner score as an \"encroachment\"?",
   "choices": [
    "Stopping the vehicle without changing direction",
-   "Taking more than two minutes to complete an exercise",
+   "Taking more than two minutes to complete an exercise after the examiner signals you to begin",
    "Touching or crossing over an exercise boundary line or cone with any portion of your vehicle",
    "Exiting the vehicle to check its position"
   ],
@@ -5440,7 +5440,7 @@ const QUESTION_BANK = [
    "Stopping and pulling forward to clear an encroachment or to get a better position",
    "Stopping the vehicle without changing direction",
    "Backing up more than one vehicle length",
-   "Opening the door to check the position of the vehicle"
+   "Opening the door or leaving the cab to check the position of the vehicle in the exercise"
   ],
   "answer": 0,
   "explanation": "When a driver stops and pulls forward to clear an encroachment or to get a better position, it is scored as a pull-up. Stopping without changing direction does not count as a pull-up.",
@@ -5453,7 +5453,7 @@ const QUESTION_BANK = [
   "question": "How are pull-ups penalized on the basic control skills test?",
   "choices": [
    "Every pull-up counts as an error",
-   "Any pull-up results in automatic failure",
+   "Any pull-up at any point during an exercise results in an automatic failure of the entire test",
    "Pull-ups are never penalized",
    "Initial pull-ups are not penalized, but an excessive number of pull-ups will count as errors"
   ],
@@ -5529,7 +5529,7 @@ const QUESTION_BANK = [
   "choices": [
    "Back into an alley and stop within three feet of the rear",
    "Back your vehicle in a straight line between two rows of cones without touching or crossing over the exercise boundaries",
-   "Back into a parking space on your left without crossing the boundaries",
+   "Back into a parking space on your left without crossing the boundaries, using no more than a single pull-up to correct",
    "Drive forward between two rows of cones and stop at the end"
   ],
   "answer": 1,
@@ -5603,7 +5603,7 @@ const QUESTION_BANK = [
   "question": "Which of the following must you do at all times during the on-road driving test?",
   "choices": [
    "Wear your safety belt, obey all traffic signs, signals, and laws, and complete the test without an accident or moving violation",
-   "Keep the windows down and drive below the speed limit at all times",
+   "Keep the windows down and drive at least five miles per hour below the posted speed limit for the entire length of the test",
    "Follow the examiner's directions even if they seem unsafe",
    "Stay in the left-most lane whenever possible"
   ],
@@ -5620,7 +5620,7 @@ const QUESTION_BANK = [
    "Skip that portion of the test entirely",
    "Drive to a different route that has them",
    "Simulate the traffic situation by telling the examiner what you are or would be doing in that situation",
-   "Take a written quiz about that situation instead"
+   "Take a short written quiz about that traffic situation instead, before the road test can be completed"
   ],
   "answer": 2,
   "explanation": "If the route does not have certain traffic situations, you may be asked to simulate one by telling the examiner what you are or would be doing if you were in that traffic situation.",
@@ -5634,7 +5634,7 @@ const QUESTION_BANK = [
   "choices": [
    "Any time the clutch is depressed while moving",
    "When your vehicle is out of gear (clutch depressed or gearshift in neutral) for more than the length of your vehicle",
-   "When you decelerate without applying the brakes",
+   "When you decelerate without applying either the brakes or the engine brake for any distance longer than a few vehicle lengths",
    "When you shift gears while going downhill"
   ],
   "answer": 1,
@@ -5664,7 +5664,7 @@ const QUESTION_BANK = [
   "choices": [
    "To make sure the vehicle does not hit anything on the inside of the turn",
    "To watch for the examiner's hand signals",
-   "To verify your turn signal is still flashing",
+   "To verify your turn signal is still flashing until the turn is fully complete",
    "To read the speed limit signs behind you"
   ],
   "answer": 0,
@@ -5680,7 +5680,7 @@ const QUESTION_BANK = [
    "Stop briefly to check your mirrors before proceeding",
    "Stay in whatever lane you finished the turn in for at least a mile",
    "Make sure your turn signal is off, get up to the speed of traffic, and move into the right-most lane when safe to do so",
-   "Accelerate quickly to clear the intersection before checking traffic"
+   "Accelerate quickly to clear the intersection, then check your mirrors and signals once you are back up to traffic speed"
   ],
   "answer": 2,
   "explanation": "After a turn, make sure the turn signal is off, get up to the speed of traffic, use your turn signal and move into the right-most lane when safe to do so (if not already there), and check mirrors and traffic.",
@@ -5692,7 +5692,7 @@ const QUESTION_BANK = [
   "sectionName": "On-Road Driving Test",
   "question": "When you must stop at an intersection during the road test, your vehicle must:",
   "choices": [
-   "Stop with the front bumper over the stop line so you can see cross traffic",
+   "Stop with the front bumper over the stop line so you can see cross traffic clearly in both directions before proceeding",
    "Come to a complete stop behind the stop line, crosswalk, or stop sign without rolling forward or backward",
    "Slow to a crawl but keep moving if no traffic is present",
    "Stop only if the examiner tells you to"
@@ -5709,7 +5709,7 @@ const QUESTION_BANK = [
   "choices": [
    "In the left lane, slightly below the flow of traffic",
    "In any lane, as long as you stay under the speed limit",
-   "In the center lane, matching the fastest vehicles on the road",
+   "In the center lane, matching the speed of the fastest vehicles around you so you never obstruct the flow of traffic",
    "Centered in the right-most lane, keeping up with the flow of traffic but not exceeding the posted speed limit"
   ],
   "answer": 3,
@@ -5725,7 +5725,7 @@ const QUESTION_BANK = [
    "Make the necessary traffic checks first, then use proper signals, and smoothly change lanes when it is safe to do so",
    "Signal first, then check traffic while moving into the new lane",
    "Change lanes quickly, then signal to confirm the move",
-   "Slow down significantly, signal, and change lanes regardless of traffic"
+   "Slow down significantly below the speed of traffic, signal, and then change lanes regardless of the vehicles around you"
   ],
   "answer": 0,
   "explanation": "For lane changes, you should make the necessary traffic checks first, then use proper signals and smoothly change lanes when it is safe to do so.",
@@ -5737,7 +5737,7 @@ const QUESTION_BANK = [
   "sectionName": "On-Road Driving Test",
   "question": "Once you are on the exit ramp when leaving the expressway, you must:",
   "choices": [
-   "Come to a complete stop before merging onto the new road",
+   "Come to a complete stop before merging onto the new road, even when the ramp has an acceleration lane for joining traffic",
    "Accelerate to clear the ramp quickly",
    "Continue to decelerate within the lane markings and maintain adequate spacing between your vehicle and other vehicles",
    "Shift into neutral and coast down the ramp"
@@ -5752,7 +5752,7 @@ const QUESTION_BANK = [
   "sectionName": "On-Road Driving Test",
   "question": "During the stop/start maneuver, which of the following is required once you are stopped?",
   "choices": [
-   "Keep the transmission in gear with your foot on the clutch",
+   "Keep the transmission in gear with your foot resting on the clutch so you are ready to move off without delay",
    "Activate your four-way emergency flashers, apply the parking brake, and move the gear shift to neutral or park",
    "Leave the right turn signal on for the entire stop",
    "Keep your feet on the brake and clutch pedals"
@@ -5768,7 +5768,7 @@ const QUESTION_BANK = [
   "question": "While any part of your vehicle is in a railroad crossing, you must not:",
   "choices": [
    "Keep both hands on the steering wheel",
-   "Continue moving at a steady speed",
+   "Continue moving across at a steady speed without shifting gears",
    "Check your mirrors",
    "Stop, change gears, pass another vehicle, or change lanes"
   ],
@@ -5797,7 +5797,7 @@ const QUESTION_BANK = [
   "sectionName": "On-Road Driving Test",
   "question": "Which of the following describes proper clutch usage in a manual transmission vehicle during the road test?",
   "choices": [
-   "Ride the clutch to control your speed on downgrades",
+   "Ride the clutch to control your speed on downgrades so you never have to touch the service brakes at all",
    "Coast with the clutch depressed to save fuel",
    "Always use the clutch to shift and double-clutch when shifting, without revving or lugging the engine",
    "Pop the clutch to accelerate quickly from a stop"
@@ -5814,7 +5814,7 @@ const QUESTION_BANK = [
   "choices": [
    "Any available lane",
    "The lane directly to the right of the center line",
-   "The right-most (curb) lane",
+   "The right-most (curb) lane, once it is clear of traffic",
    "The center lane"
   ],
   "answer": 1,
