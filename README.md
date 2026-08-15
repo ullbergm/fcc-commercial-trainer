@@ -16,7 +16,7 @@ All progress is stored locally in the browser and never sent anywhere. Settings 
 export and import for backups or for moving between devices.
 
 <p align="center">
-  <img src="docs/screenshots/home.png" width="500" alt="Home screen with due review, new card, and miss counts, and an exam countdown banner">
+  <img src="docs/screenshots/home.png" width="500" alt="Home screen with due review, new card, and miss counts, an exam countdown banner, and a projected score for each test">
 </p>
 <p align="center">
   <a href="docs/screenshots/README.md">More screenshots</a>
@@ -38,8 +38,8 @@ export and import for backups or for moving between devices.
   Brakes, Combination Vehicles, and the endorsement tests) and shows only the tests
   selected in Settings. Missed exam questions feed the Misses pool.
 - **Browse**: the whole bank by manual section, with each card's schedule and accuracy.
-- **Stats**: mastery counts, day streak, 7-day due forecast, per-section accuracy,
-  and exam history.
+- **Stats**: exam readiness, mastery counts, day streak, 7-day due forecast,
+  per-section accuracy, and exam history.
 
 On a keyboard, 1 through 4 pick an answer, Enter continues after a wrong answer,
 and 1/2/3 (or Enter for Good) grade a correct one. A stray tap is not final: an
@@ -97,12 +97,36 @@ indefinite retention:
 Without an exam date the app runs at your own pace with the normal 90% target. The
 same applies automatically once the date passes.
 
+## Am I ready
+
+The home screen projects a score for each test you are studying for, and Stats
+breaks the same projection down with the odds and what is dragging it. Both come
+from the memory model the scheduler already maintains, so the number moves with
+your actual reviews rather than with a running average of past answers.
+
+Each question is one trial: either the answer is recalled, at the retrievability
+FSRS predicts for the moment of the test, or it is not and the guess still lands
+one time in four. A question you have never seen is a straight guess. The real
+test draws its questions from a much larger pool, so the projected score is the
+pool average, and the spread around it accounts for both the draw and the recall
+itself. The chance of passing is the probability that the draw clears 80%.
+
+Two counts explain a low projection. Unseen questions are the ones the queue has
+not reached yet. Rusty ones have been studied but are predicted to fall below the
+90% recall the scheduler targets by test day, which is what the review queue is
+there to fix. Without an exam date the projection is for taking the test today.
+
+The projection assumes the bank is representative of the real test, which is a
+study aid's assumption, not a promise. Treat it as a direction, not a score
+report.
+
 ## Layout
 
 ```
 index.html               app shell
 css/style.css            styling (light/dark follows the device; Settings can force either)
 js/fsrs.js               FSRS-6 scheduler
+js/readiness.js          projected score and pass odds per test
 js/storage.js            localStorage persistence, export/import
 js/app.js                UI and session logic
 data/questions.js        question bank (422 questions, tagged by section and manual page)
@@ -111,8 +135,10 @@ manifest.webmanifest     PWA manifest, lets the app be installed to a home scree
 icons/                   app icons (icon.svg is the source, PNGs rendered from it)
 tests/validate-bank.js   question bank schema checks (node)
 tests/fsrs-test.js       FSRS scheduler property tests (node)
+tests/readiness-test.js  readiness projection tests, incl. a Monte Carlo check (node)
 tests/test.html          end-to-end tests driven through the real UI
 tests/run-browser.sh     headless-Chrome runner for test.html (local + CI)
+docs/screenshots/        README images and the script that regenerates them
 ```
 
 On the hosted site the app is an installable PWA: a service worker caches
@@ -139,7 +165,7 @@ To run the checks locally:
 ```
 npm install          # one time, dev tooling only (the app itself has no dependencies)
 npm run lint
-npm test             # question bank validation + FSRS scheduler tests
+npm test             # question bank validation, FSRS scheduler, readiness projection
 npm run test:browser # end-to-end suite in headless Chrome or Chromium
 ```
 

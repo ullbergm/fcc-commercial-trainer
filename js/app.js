@@ -93,6 +93,109 @@
     return { retention: targetRetention(), maxDueTs: exam ? exam.end : null };
   }
 
+  // ---------- exam readiness ----------
+  // "Am I ready" answered with a number: each selected test projected forward
+  // to exam day (or to right now, with no date set) from the memory model the
+  // scheduler already maintains. Weakest test first, which is the order worth
+  // acting on.
+  function readinessRows() {
+    const exam = examInfo();
+    const ts = exam ? exam.end : Date.now();
+    const secs = new Set(enabledSections());
+    const cards = Store.load().cards;
+    return TESTS
+      .filter(tst => tst.sections.every(sec => secs.has(sec)))
+      .map(tst => {
+        const meta = EXAMS.find(e => e.key === tst.key);
+        const pool = QUESTION_BANK.filter(q => tst.sections.includes(q.section));
+        // Per-section projections score the whole section, so they compare
+        // like for like regardless of how many questions the test draws.
+        const sections = tst.sections
+          .map(sec => ({
+            sec,
+            proj: Readiness.project(pool.filter(q => q.section === sec), cards, ts, Infinity),
+          }))
+          .sort((a, b) => a.proj.expected - b.proj.expected);
+        return {
+          test: tst,
+          proj: Readiness.project(pool, cards, ts, meta ? meta.count : pool.length),
+          weakest: sections[0],
+        };
+      })
+      .sort((a, b) => a.proj.expected - b.proj.expected);
+  }
+
+  const pct = x => Math.round(x * 100);
+
+  // Pass chance is a model output, not a measurement; hard 0% and 100% would
+  // read as promises, so the ends are shown as bounds.
+  const chanceText = p => p < 0.005 ? '<1%' : p > 0.995 ? '>99%' : pct(p) + '%';
+
+  function readinessBar(proj) {
+    return `<div class="rbar" role="img"
+      aria-label="projected ${pct(proj.expected)} percent, 80 percent to pass">
+      <div class="rfill${proj.expected >= Readiness.PASS_MARK ? '' : ' low'}"
+           style="width:${pct(proj.expected)}%"></div>
+      <div class="rmark" style="left:${pct(Readiness.PASS_MARK)}%"></div>
+    </div>`;
+  }
+
+  // Home: one compact line per test. Hidden until something has been studied,
+  // since an untouched bank projects a flat 25% guess rate for every test.
+  function readinessBlock() {
+    const rows = readinessRows();
+    if (!rows.length || rows.every(r => r.proj.unseen === r.proj.pool)) return '';
+    return `<div class="readiness">
+      <h3>Projected score ${examInfo() ? 'on exam day' : 'if you tested today'}</h3>
+      ${rows.map(r => `<div class="rrow">
+        <span class="rname">${esc(r.test.name)}</span>
+        ${readinessBar(r.proj)}
+        <span class="rpct ${r.proj.expected >= Readiness.PASS_MARK ? 'pass' : 'fail'}"
+          >${pct(r.proj.expected)}%</span>
+      </div>`).join('')}
+      <p class="hint">80% passes. See <a href="#stats">Stats</a> for the odds and the weak spots.</p>
+    </div>`;
+  }
+
+  // Stats: the same projection with the odds and what is dragging it down.
+  function readinessTable() {
+    const rows = readinessRows();
+    if (!rows.length || rows.every(r => r.proj.unseen === r.proj.pool)) return '';
+    const exam = examInfo();
+    const when = exam
+      ? `for exam day (${new Date(exam.end).toLocaleDateString()})`
+      : 'as of right now';
+    return `<div class="readiness">
+      <h3>Exam readiness</h3>
+      <p class="hint">Projected ${when} from how well each answer is predicted to
+        hold, plus a one-in-four guess on the rest. A question you have never
+        seen counts as a guess, and a rusty one is predicted to have slipped
+        below the ${pct(Readiness.RUSTY)}% recall the scheduler aims for. 80% passes.</p>
+      <table>
+        <tr><th>Test</th><th>Projected</th><th>Chance to pass</th><th>Weak spots</th></tr>
+        ${rows.map(r => {
+          // Non-breaking spaces: the column is narrow enough that a count
+          // would otherwise wrap away from the word it belongs to.
+          const weak = [
+            r.proj.unseen ? `${r.proj.unseen}&nbsp;unseen` : '',
+            r.proj.rusty ? `${r.proj.rusty}&nbsp;rusty` : '',
+          ].filter(Boolean).join(' · ') || 'none';
+          const drag = r.test.sections.length > 1
+            ? `<br><small>weakest: §${r.weakest.sec} ${esc(SECTION_NAMES[r.weakest.sec])}
+               at ${pct(r.weakest.proj.expected)}%</small>`
+            : '';
+          return `<tr>
+            <td>${esc(r.test.name)}${drag}</td>
+            <td class="${r.proj.expected >= Readiness.PASS_MARK ? 'pass' : 'fail'}"
+              >${pct(r.proj.expected)}% <small>±${pct(r.proj.sd)}</small></td>
+            <td>${chanceText(r.proj.passChance)}</td>
+            <td>${weak}</td>
+          </tr>`;
+        }).join('')}
+      </table>
+    </div>`;
+  }
+
   // ---------- queue building ----------
   function dueReviewIds() {
     const secs = new Set(enabledSections());
@@ -305,6 +408,7 @@
             ? '<button data-view="final" class="primary">Final review sweep</button>' : ''}
         </div>
         ${due + fresh === 0 ? extraControls() : ''}
+        ${readinessBlock()}
         <p class="disclaimer">Questions were extracted from the
           <a href="https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf"
              target="_blank" rel="noopener">NC Commercial Driver Manual</a>;
@@ -755,6 +859,7 @@
           <div class="tile"><div class="big">${due}</div><div>due today</div></div>
           <div class="tile"><div class="big">${streak}</div><div>day streak</div></div>
         </div>
+        ${readinessTable()}
         <h3>Reviews, last 30 days <small>${total30} total</small></h3>
         <div class="history" role="img"
           aria-label="${total30} reviews over the last 30 days, day by day">
