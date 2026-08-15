@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.2.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.1.0...v1.2.0) (2026-08-15)
+
+
+### Features
+
+* draw new cards round-robin across sections and interleave with reviews ([c743299](https://github.com/ullbergm/nc-cdl-test-training/commit/c743299611c3e9acbe9316445a45613d769147e6))
+* fuzz review intervals to spread out due dates ([dd7f8b4](https://github.com/ullbergm/nc-cdl-test-training/commit/dd7f8b432d4b3c475a1aefeec3dfe03829e2f71c))
+* hash-based routing for views ([4f7d997](https://github.com/ullbergm/nc-cdl-test-training/commit/4f7d9976c827917687288b8c3df1b343110ce256))
+* installable PWA with offline support ([bbe7ee8](https://github.com/ullbergm/nc-cdl-test-training/commit/bbe7ee80e560bfcd85603b4cba8e99c67509c2ee))
+* keyboard and screen reader accessibility ([70d02e1](https://github.com/ullbergm/nc-cdl-test-training/commit/70d02e1d1fca268c20abd3b1bcef122e9c69803c))
+* keyboard shortcuts for answering and grading ([edc8c57](https://github.com/ullbergm/nc-cdl-test-training/commit/edc8c57e8f90a8576b3560ab3c7b11a875226149))
+* resume the active session after a page reload ([d856606](https://github.com/ullbergm/nc-cdl-test-training/commit/d8566063395eb31ecc574fa6e04cd38c66eccd32))
+* show keyboard shortcut badges on buttons ([f6756a6](https://github.com/ullbergm/nc-cdl-test-training/commit/f6756a6dd0c20414d50486805b098c1961a82385))
+
+
+### Bug Fixes
+
+* **ci:** deploy only the app files, not the whole repository ([e4d82e3](https://github.com/ullbergm/nc-cdl-test-training/commit/e4d82e3523634db525226e59780dc4fc926ecc5d))
+* **ci:** write version.txt from the release tag at deploy time ([41ed92c](https://github.com/ullbergm/nc-cdl-test-training/commit/41ed92c7bba1ef9ec9da0f832116054463965eba))
+
 ## [1.1.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.0.0...v1.1.0) (2026-08-15)
 
 
