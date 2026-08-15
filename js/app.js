@@ -1,4 +1,4 @@
-/* NC CDL Trainer — UI and session logic. */
+/* NC CDL Trainer: UI and session logic. */
 (() => {
   const DAY = 24 * 60 * 60 * 1000;
   const $ = sel => document.querySelector(sel);
@@ -183,10 +183,10 @@
         <p class="disclaimer">Questions were extracted from the
           <a href="https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf"
              target="_blank" rel="noopener">NC Commercial Driver Manual</a>;
-          accuracy is not guaranteed. Each question cites its manual page — verify anything
+          accuracy is not guaranteed. Each question cites its manual page, so verify anything
           important against the source. The actual DMV test questions are not public, and no
           claim is made that these match or resemble them. All progress is stored locally in
-          your browser — nothing is ever sent to a server.</p>
+          your browser and never sent to a server.</p>
       </div>`;
     view.querySelectorAll('button[data-view]').forEach(b =>
       b.addEventListener('click', () => go(b.dataset.view)));
@@ -368,7 +368,7 @@
               <strong>${esc(e.name)}</strong><span>${n} questions</span></button>`;
           }).join('')}
         </div>
-        ${hidden ? `<p class="hint">${hidden} more hidden — enable their tests in Settings.</p>` : ''}
+        ${hidden ? `<p class="hint">${hidden} more hidden. Enable their tests in Settings.</p>` : ''}
       </div>`;
     view.querySelectorAll('.examopt').forEach(b =>
       b.addEventListener('click', () => startExam(b.dataset.key)));
@@ -426,7 +426,7 @@
 
     view.innerHTML = `
       <div class="examresult">
-        <h2 class="${passed ? 'pass' : 'fail'}">${passed ? 'PASS' : 'FAIL'} — ${pct}%</h2>
+        <h2 class="${passed ? 'pass' : 'fail'}">${passed ? 'PASS' : 'FAIL'} ${pct}%</h2>
         <p>${correct} / ${session.answers.length} correct on ${esc(session.exam.name)} (80% needed)</p>
         ${wrong.length ? `<h3>Missed questions</h3>
           <div class="misslist">${wrong.map(a => {
@@ -536,7 +536,7 @@
               if (c && c.lastReview) st++;
               if (c) { r += c.right; w += c.wrong; }
             });
-            const acc = r + w ? Math.round((r / (r + w)) * 100) + '%' : '—';
+            const acc = r + w ? Math.round((r / (r + w)) * 100) + '%' : '-';
             return `<tr><td>§${sec} ${esc(SECTION_NAMES[sec])}</td>
               <td>${st}/${qs.length}</td><td>${acc}</td></tr>`;
           }).join('')}
@@ -558,7 +558,7 @@
     const base = Store.load().settings.newPerDay;
     const unseen = unseenCount();
     if (!exam) {
-      return `No exam date — steady pace of ${base} new cards/day at a 90% retention target. ` +
+      return `No exam date: steady pace of ${base} new cards/day at a 90% retention target. ` +
         `Setting a date tightens the schedule toward test day and raises the pace if needed.`;
     }
     const eff = effectiveNewPerDay();
@@ -566,7 +566,7 @@
       ? `Pace boosted from ${base} to ${eff} new cards/day to cover all ${unseen} remaining ` +
         `questions before the exam.`
       : `Your ${base}/day pace covers the ${unseen} remaining questions in time.`;
-    return `Exam in ${exam.daysLeft} day${exam.daysLeft === 1 ? '' : 's'} — retention target ` +
+    return `Exam in ${exam.daysLeft} day${exam.daysLeft === 1 ? '' : 's'}, retention target ` +
       `${Math.round(targetRetention() * 100)}%. ${boost}`;
   }
 
@@ -581,7 +581,7 @@
         </label>
         <label>Exam date
           <input type="date" id="examdate" value="${esc(s.settings.examDate || '')}">
-          <button id="cleardate" ${s.settings.examDate ? '' : 'disabled'}>No exam — just studying</button>
+          <button id="cleardate" ${s.settings.examDate ? '' : 'disabled'}>No exam, just studying</button>
         </label>
         <p class="hint" id="paceinfo">${paceInfo()}</p>
         <h3>Tests I'm studying for</h3>
