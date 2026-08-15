@@ -349,6 +349,11 @@
     const q = BY_ID[session.queue[session.pos]];
     const order = shuffle([0, 1, 2, 3]);
     const total = session.queue.length;
+    // Fraction of answers given over answers the session will take. Requeuing
+    // a missed card grows both sides by one, so the bar never moves backward
+    // (pos / queue.length would drop every time a wrong answer is requeued).
+    const answered = session.done;
+    const expected = session.done + (session.queue.length - session.pos);
     const card = Store.load().cards[q.id];
     const badge = !card || !card.lastReview ? '<span class="badge new">new</span>'
       : card.state === 'relearning' || card.state === 'learning' ? '<span class="badge relearn">again</span>'
@@ -361,8 +366,8 @@
           <span class="section">§${q.section} ${esc(q.sectionName)}</span>
         </div>
         <div class="progress" role="progressbar" aria-label="Session progress"
-          aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${session.pos}">
-          <div style="width:${(session.pos / total) * 100}%"></div></div>
+          aria-valuemin="0" aria-valuemax="${expected}" aria-valuenow="${answered}">
+          <div style="width:${(answered / expected) * 100}%"></div></div>
         <h2 class="qtext" tabindex="-1">${esc(q.question)}</h2>
         <div class="choices">
           ${order.map((i, k) => `<button class="choice" data-i="${i}"><kbd>${k + 1}</kbd>${esc(q.choices[i])}</button>`).join('')}

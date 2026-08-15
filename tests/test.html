@@ -48,12 +48,15 @@ try {
   // --- answer wrongly: requeue + explanation ---
   const qtext2 = q('.qtext').textContent;
   const bank2 = QUESTION_BANK.find(x => x.question === qtext2);
+  const progressBefore = parseFloat(q('.progress div').style.width);
   const wrongBtn = qa('.choice').find(b => Number(b.dataset.i) !== bank2.answer);
   wrongBtn.click();
   t('wrong shows explanation', !!q('.explain.wrongbg'));
   t('continue button appears', !!q('#next'));
   q('#next').click();
   t('moves on after wrong', !!q('.qtext'));
+  t('progress bar does not move backward on requeue',
+    parseFloat(q('.progress div').style.width) > progressBefore);
 
   // state checks
   const st = Store.load();
