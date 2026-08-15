@@ -67,8 +67,11 @@ const Store = (() => {
     s.daily[k][field] += by;
   }
 
+  // version stamps the backup format, so a future importer can tell old
+  // files apart and migrate them instead of guessing. importJSON copies
+  // fields explicitly, so the stamp never leaks into live state.
   function exportJSON() {
-    return JSON.stringify(load(), null, 2);
+    return JSON.stringify({ version: 1, ...load() }, null, 2);
   }
 
   // A backup is the user's only copy of their progress, so a truncated or

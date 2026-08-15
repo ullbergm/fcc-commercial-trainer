@@ -228,8 +228,10 @@ try {
 
   // --- export/import round trip ---
   const dump = Store.exportJSON();
+  t('export stamps a schema version', JSON.parse(dump).version === 1);
   Store.importJSON(dump);
   t('export/import round trip', Store.load().exams.length === 1);
+  t('version stamp does not leak into live state', Store.load().version === undefined);
 
   // --- corrupt import is sanitized, not applied verbatim ---
   Store.importJSON(JSON.stringify({
