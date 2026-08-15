@@ -60,7 +60,7 @@ jobs:
           TAG: ${{ needs.release-please.outputs.tag_name }}
         run: |
           mkdir dist
-          cp -r index.html css js data CHANGELOG.md CNAME dist/
+          cp -r index.html css js data icons manifest.webmanifest sw.js CHANGELOG.md CNAME dist/
           # version.txt feeds the footer version in the app
           echo "${TAG#v}" > dist/version.txt
 

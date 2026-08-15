@@ -29,6 +29,13 @@ export default [
     },
   },
   {
+    files: ['sw.js'],
+    languageOptions: {
+      sourceType: 'script',
+      globals: { ...globals.serviceworker },
+    },
+  },
+  {
     files: ['tests/**/*.js'],
     languageOptions: {
       sourceType: 'commonjs',

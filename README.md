@@ -75,9 +75,17 @@ js/fsrs.js               FSRS-6 scheduler
 js/storage.js            localStorage persistence, export/import
 js/app.js                UI and session logic
 data/questions.js        question bank (388 questions, tagged by section and manual page)
+sw.js                    service worker (offline cache, only active on the hosted site)
+manifest.webmanifest     PWA manifest, lets the app be installed to a home screen
+icons/                   app icons (icon.svg is the source, PNGs rendered from it)
 tests/validate-bank.js   question bank schema checks (node)
 tests/test.html          end-to-end tests driven through the real UI
 ```
+
+On the hosted site the app is an installable PWA: a service worker caches
+everything on first load, so it keeps working offline, and "Add to home screen"
+installs it like an app. New releases are picked up on the next load after the
+deploy.
 
 ## Releases and deployment
 

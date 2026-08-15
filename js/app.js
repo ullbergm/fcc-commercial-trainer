@@ -737,8 +737,14 @@
     b.addEventListener('click', () => go(b.dataset.view)));
   go('home');
 
-  // version.txt is maintained by release-please; absent until the first release
-  // and when running from the filesystem, in which case the footer stays empty.
+  // Installable, offline-capable PWA. Skipped on file:// and http:// (the
+  // service worker API needs a secure context), where the app still works.
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+
+  // version.txt is written by the deploy workflow from the release tag; absent
+  // when running from the filesystem, in which case the footer stays empty.
   let appVersion = '';
   fetch('version.txt')
     .then(r => (r.ok ? r.text() : null))
