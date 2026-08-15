@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.2.0...v1.3.0) (2026-08-15)
+
+
+### Features
+
+* highway signage visual theme ([66117c2](https://github.com/ullbergm/nc-cdl-test-training/commit/66117c21bd582323dc7dee36c40f5b304c2c3370))
+
 ## [1.2.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.1.0...v1.2.0) (2026-08-15)
 
 
