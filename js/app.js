@@ -141,7 +141,7 @@
     setNav(name);
     ({ home: renderHome, study: startStudy, misses: startMisses, exam: renderExamSetup,
        final: startFinal, browse: renderBrowse, stats: renderStats,
-       settings: renderSettings }[name])();
+       settings: renderSettings, about: renderAbout }[name])();
   }
 
   // ---------- home ----------
@@ -666,6 +666,72 @@
     });
   }
 
+  // ---------- about ----------
+  const REPO = 'https://github.com/ullbergm/nc-cdl-test-training';
+  const MANUAL_URL = 'https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf';
+
+  // Escapes, then converts markdown [text](url) links to anchors.
+  const mdLinks = s => esc(s).replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+  // Minimal renderer for the release-please CHANGELOG.md: headings, bullets, links.
+  function changelogHTML(md) {
+    const out = [];
+    let inList = false;
+    md.split('\n').forEach(line => {
+      const item = line.match(/^[*-] (.*)/);
+      if (!item && inList) { out.push('</ul>'); inList = false; }
+      if (/^# /.test(line)) return; // top-level "Changelog" title, the page has its own
+      if (/^## /.test(line)) out.push(`<h4>${mdLinks(line.replace(/^## /, ''))}</h4>`);
+      else if (/^#+ /.test(line)) out.push(`<h5>${mdLinks(line.replace(/^#+ /, ''))}</h5>`);
+      else if (item) {
+        if (!inList) { out.push('<ul>'); inList = true; }
+        out.push(`<li>${mdLinks(item[1])}</li>`);
+      } else if (line.trim()) out.push(`<p>${mdLinks(line)}</p>`);
+    });
+    if (inList) out.push('</ul>');
+    return out.join('');
+  }
+
+  function renderAbout() {
+    view.innerHTML = `
+      <div class="about">
+        <h2>About</h2>
+        <p>NC CDL Trainer is a free, open-source study tool for the North Carolina CDL
+          knowledge tests. Its ${QUESTION_BANK.length} questions were written from the
+          <a href="${MANUAL_URL}" target="_blank" rel="noopener">NC Commercial Driver
+          Manual</a>, and every question cites the manual page it came from so you can
+          verify anything important against the source.</p>
+        <p>Study sessions are scheduled with FSRS, a spaced-repetition algorithm that
+          predicts when you are about to forget a card and shows it to you just before
+          that. Set your exam date in Settings and the scheduler works backward from it,
+          raising the retention target and the daily pace as the test gets close.</p>
+        <p>All progress is stored locally in your browser and never sent to a server.
+          Use Export in Settings to move it to another device.</p>
+        <p>Questions were extracted from the manual by a language model and reviewed for
+          accuracy, but mistakes are possible and accuracy is not guaranteed. The actual
+          DMV test questions are not public, and no claim is made that these match or
+          resemble them.</p>
+        <h3>Links</h3>
+        <ul>
+          <li><a href="${REPO}" target="_blank" rel="noopener">Source code on GitHub</a> (MIT license)</li>
+          <li><a href="${REPO}/issues/new?template=question-correction.yml" target="_blank" rel="noopener">Report a question error</a></li>
+          <li><a href="${REPO}/issues/new?template=bug-report.yml" target="_blank" rel="noopener">Report a bug</a></li>
+          <li><a href="${MANUAL_URL}" target="_blank" rel="noopener">NC Commercial Driver Manual (PDF)</a></li>
+        </ul>
+        <h3>Changelog${appVersion ? ` <small>current: v${appVersion}</small>` : ''}</h3>
+        <div id="changelog" class="changelog"><p class="hint">Loading changelog...</p></div>
+      </div>`;
+    fetch('CHANGELOG.md')
+      .then(r => (r.ok ? r.text() : Promise.reject(new Error(r.status))))
+      .then(md => { $('#changelog').innerHTML = changelogHTML(md); })
+      .catch(() => {
+        $('#changelog').innerHTML = `<p class="hint">The changelog could not be loaded.
+          See the <a href="${REPO}/releases" target="_blank" rel="noopener">releases
+          page on GitHub</a>.</p>`;
+      });
+  }
+
   // ---------- boot ----------
   document.querySelectorAll('nav button').forEach(b =>
     b.addEventListener('click', () => go(b.dataset.view)));
@@ -673,8 +739,13 @@
 
   // version.txt is maintained by release-please; absent until the first release
   // and when running from the filesystem, in which case the footer stays empty.
+  let appVersion = '';
   fetch('version.txt')
     .then(r => (r.ok ? r.text() : null))
-    .then(v => { if (v && /^\d/.test(v.trim())) $('#version').textContent = 'v' + v.trim(); })
+    .then(v => {
+      if (!v || !/^\d/.test(v.trim())) return;
+      appVersion = v.trim();
+      $('#version').textContent = 'v' + appVersion;
+    })
     .catch(() => {});
 })();

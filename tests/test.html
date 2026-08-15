@@ -10,6 +10,7 @@
   <button data-view="browse">Browse</button>
   <button data-view="stats">Stats</button>
   <button data-view="settings">Settings</button>
+  <button data-view="about">About</button>
 </nav>
 <main id="view"></main>
 <div id="testlog"></div>
@@ -159,6 +160,12 @@ try {
   const dump = Store.exportJSON();
   Store.importJSON(dump);
   t('export/import round trip', Store.load().exams.length === 1);
+
+  // --- about page ---
+  nav('about');
+  t('about renders', !!q('.about'));
+  t('about links to repo', qa('.about a').some(a => /github\.com/.test(a.href)));
+  t('about has changelog container', !!q('#changelog'));
 } catch (e) {
   log.push('EXCEPTION ' + e.message + ' @ ' + (e.stack || '').split('\n')[1]);
 }
