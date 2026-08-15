@@ -87,38 +87,51 @@ nav {
   display: flex;
   gap: 2px;
   align-items: center;
-  padding: 10px 14px;
-  background: var(--nav-bg);
+  padding: 10px 14px 5px;
   border-bottom: 3px solid var(--yellow);
   overflow-x: auto;
   scrollbar-width: none;
   position: sticky;
   top: 0;
   z-index: 5;
+  /* The first two layers scroll with the content and park over the fades at
+     each end, so a fade only shows on a side there is more nav to scroll to. */
+  background-color: var(--nav-bg);
+  background-image:
+    linear-gradient(to right, var(--nav-bg), var(--nav-bg)),
+    linear-gradient(to left, var(--nav-bg), var(--nav-bg)),
+    linear-gradient(to right, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0)),
+    linear-gradient(to left, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+  background-position: left center, right center, left center, right center;
+  background-size: 20px 100%, 20px 100%, 20px 100%, 20px 100%;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
 }
 nav::-webkit-scrollbar { display: none; }
 nav .brand {
   font-weight: 800;
   letter-spacing: 0.01em;
   color: #ffffff;
-  padding: 6px 8px 6px 2px;
+  padding: 6px 8px 11px 2px;
   white-space: nowrap;
 }
 nav a {
-  background: none;
-  border: none;
   color: var(--nav-text);
   text-decoration: none;
   font: inherit;
   font-weight: 600;
-  padding: 6px 10px;
-  border-radius: 999px;
+  padding: 6px 10px 8px;
+  border-bottom: 3px solid transparent;
   cursor: pointer;
   white-space: nowrap;
   opacity: 0.85;
 }
-nav a.active { background: #ffffff; color: var(--nav-bg); opacity: 1; }
-nav a:not(.active):hover { background: rgba(255, 255, 255, 0.14); opacity: 1; }
+nav a.active { color: #ffffff; border-bottom-color: var(--yellow); opacity: 1; }
+nav a:not(.active):hover {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.35);
+  opacity: 1;
+}
 
 h1 { margin: 8px 0 0; }
 h2 { margin: 12px 0 8px; font-weight: 800; letter-spacing: -0.01em; }
