@@ -1,0 +1,30 @@
+name: Question correction
+description: Report a practice question with a wrong or misleading answer
+labels: [question-bank]
+body:
+  - type: input
+    id: question-id
+    attributes:
+      label: Question ID
+      description: The id in data/questions.js, like s5-012. If you don't know it, paste the question text instead.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: What the app says, and why you believe it is incorrect.
+    validations:
+      required: true
+  - type: input
+    id: manual-page
+    attributes:
+      label: Manual page
+      description: The page in the NC Commercial Driver Manual that supports the correction, like 5-3.
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested fix
+      description: Corrected answer, choices, or explanation, if you have one.
