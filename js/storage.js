@@ -33,8 +33,17 @@ const Store = (() => {
     return state;
   }
 
+  // localStorage.setItem can throw (quota, restricted browsing modes). The
+  // in-memory session must keep working, so swallow the failure and tell the
+  // user once through the onSaveError hook instead of dying mid-answer.
+  let saveWarned = false;
   function save() {
-    localStorage.setItem(KEY, JSON.stringify(state));
+    try {
+      localStorage.setItem(KEY, JSON.stringify(state));
+    } catch (err) {
+      if (!saveWarned && typeof api.onSaveError === 'function') api.onSaveError(err);
+      saveWarned = true;
+    }
   }
 
   function card(id) {
@@ -106,5 +115,7 @@ const Store = (() => {
     save();
   }
 
-  return { load, save, card, todayKey, bumpDaily, exportJSON, importJSON, reset };
+  const api = { load, save, card, todayKey, bumpDaily, exportJSON, importJSON, reset,
+                onSaveError: null };
+  return api;
 })();

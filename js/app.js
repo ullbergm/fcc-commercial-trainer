@@ -957,19 +957,31 @@
   // new worker finishes installing behind a page that already has one, offer
   // the reload instead of waiting to be noticed. The active session survives
   // the reload via sessionStorage.
-  function showUpdateToast() {
-    if ($('#updatetoast')) return;
+  function showToast(id, message, label, onClick) {
+    if ($('#' + id)) return;
     const div = document.createElement('div');
-    div.id = 'updatetoast';
+    div.id = id;
     div.className = 'toast';
     div.setAttribute('role', 'status');
-    div.innerHTML = '<span>A new version is ready.</span>';
+    const span = document.createElement('span');
+    span.textContent = message;
+    div.appendChild(span);
     const btn = document.createElement('button');
-    btn.textContent = 'Reload';
-    btn.addEventListener('click', () => location.reload());
+    btn.textContent = label;
+    btn.addEventListener('click', () => onClick(div));
     div.appendChild(btn);
     document.body.appendChild(div);
   }
+
+  function showUpdateToast() {
+    showToast('updatetoast', 'A new version is ready.', 'Reload', () => location.reload());
+  }
+
+  // Storage failures (full or blocked localStorage) surface once as a toast;
+  // the session keeps running on the in-memory state.
+  Store.onSaveError = () => showToast('savetoast',
+    'Progress could not be saved. Browser storage is full or blocked.',
+    'Dismiss', div => div.remove());
 
   // Installable, offline-capable PWA. Skipped on file:// and http:// (the
   // service worker API needs a secure context), where the app still works.

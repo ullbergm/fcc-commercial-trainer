@@ -208,6 +208,18 @@ try {
   t('banner gone after clearing date', !q('.exambanner'));
   t('pace back to steady after clearing', Number(qa('.tile .big')[1].textContent) <= Store.load().settings.newPerDay);
 
+  // --- a failing save warns instead of throwing ---
+  const origSetItem = Storage.prototype.setItem;
+  Storage.prototype.setItem = () => { throw new Error('quota'); };
+  let saveThrew = false;
+  try { Store.save(); } catch { saveThrew = true; }
+  Storage.prototype.setItem = origSetItem;
+  t('failing save does not throw', !saveThrew);
+  t('failing save shows a warning toast', !!q('#savetoast'));
+  q('#savetoast button').click();
+  t('save warning is dismissible', !q('#savetoast'));
+  Store.save(); // real save so later state assertions see current data
+
   // --- export/import round trip ---
   const dump = Store.exportJSON();
   Store.importJSON(dump);
