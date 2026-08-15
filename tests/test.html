@@ -15,6 +15,17 @@
 <main id="view"></main>
 <div id="testlog"></div>
 <script src="../data/questions.js"></script>
+<script>
+// Runs before app.js boots: plant a mid-study session so the resume path
+// (restoreSession) is exercised by the real boot sequence. The main test
+// script below asserts on the result, then navigates away and starts clean.
+localStorage.clear();
+sessionStorage.setItem('nc-cdl-trainer-session', JSON.stringify({
+  mode: 'study',
+  queue: QUESTION_BANK.slice(0, 3).map(x => x.id),
+  pos: 1, done: 1, correct: 1,
+}));
+</script>
 <script src="../js/fsrs.js"></script>
 <script src="../js/storage.js"></script>
 <script src="../js/app.js"></script>
@@ -25,11 +36,22 @@
 const log = [];
 const t = (name, cond) => log.push((cond ? 'PASS ' : 'FAIL ') + name);
 try {
-  localStorage.clear();
-  sessionStorage.clear(); // drop any mid-session resume state from a prior run
   const nav = v => document.querySelector(`nav button[data-view="${v}"]`).click();
   const q = s => document.querySelector(s);
   const qa = s => [...document.querySelectorAll(s)];
+
+  // --- boot resumed the session planted before app.js loaded ---
+  t('reload resumes mid-study session', !!q('.qtext'));
+  t('resume is at the saved position', q('.quiz .meta span').textContent === '2 / 3');
+  t('resume shows the saved queue question', q('.qtext').textContent === QUESTION_BANK[1].question);
+  t('resume highlights the study nav entry',
+    q('nav button[data-view="study"]').classList.contains('active'));
+  nav('home');
+  t('navigating away abandons the session',
+    sessionStorage.getItem('nc-cdl-trainer-session') === null);
+
+  localStorage.clear();
+  sessionStorage.clear(); // start the rest of the suite from a clean slate
 
   // --- study session: answer correctly, grade Good ---
   nav('study');
@@ -44,6 +66,9 @@ try {
   t('grade buttons appear', qa('.grades button').length === 3);
   q('.grades button[data-r="3"]').click();
   t('advances to next question', q('.qtext').textContent !== qid1);
+  const mirrored = JSON.parse(sessionStorage.getItem('nc-cdl-trainer-session'));
+  t('active session mirrored to sessionStorage',
+    mirrored && mirrored.mode === 'study' && mirrored.pos === 1 && Array.isArray(mirrored.queue));
 
   // --- answer wrongly: requeue + explanation ---
   const qtext2 = q('.qtext').textContent;
