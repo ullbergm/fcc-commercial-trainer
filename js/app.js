@@ -803,6 +803,10 @@
     $('#importfile').addEventListener('change', async e => {
       const f = e.target.files[0];
       if (!f) return;
+      if (!confirm('Importing replaces ALL progress on this device with the backup. Continue?')) {
+        e.target.value = ''; // allow re-picking the same file later
+        return;
+      }
       try {
         Store.importJSON(await f.text());
         alert('Progress imported.');
