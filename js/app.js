@@ -933,6 +933,9 @@
     if (e.altKey || e.ctrlKey || e.metaKey) return;
     const tag = document.activeElement && document.activeElement.tagName;
     if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+    // Enter on a focused button presses that button (the browser handles
+    // it); intercepting would redirect it to Continue or Good instead.
+    if (e.key === 'Enter' && tag === 'BUTTON') return;
     const next = $('#next');
     const grades = [...view.querySelectorAll('.grades button')];
     const choices = [...view.querySelectorAll('.choice:not(:disabled)')];
@@ -941,7 +944,7 @@
       e.preventDefault();
       undoBtn.click();
     } else if (next && e.key === 'Enter') {
-      e.preventDefault(); // keep the native Enter click from double-firing
+      e.preventDefault();
       next.click();
     } else if (grades.length) {
       const b = e.key === 'Enter' ? grades.find(g => g.dataset.r === '3')

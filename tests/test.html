@@ -83,6 +83,12 @@ try {
   wrongBtn.click();
   t('wrong shows explanation', !!q('.explain.wrongbg'));
   t('continue button appears', !!q('#next'));
+  // Enter with focus on some other button must not be hijacked into Continue
+  // (a synthetic keydown never triggers the native click, so if the shortcut
+  // handler wrongly fires, the feedback screen would advance).
+  document.querySelector('nav button[data-view="stats"]').focus();
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+  t('Enter on a focused button is left to the browser', !!q('#next'));
   q('#next').click();
   t('moves on after wrong', !!q('.qtext'));
   t('progress bar does not move backward on requeue',
