@@ -762,6 +762,14 @@
   }
 
   // ---------- settings ----------
+  // The stylesheet keys its dark palette off prefers-color-scheme unless
+  // data-theme forces a side; 'system' removes the attribute.
+  function applyTheme() {
+    const theme = Store.load().settings.theme;
+    if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+    else delete document.documentElement.dataset.theme;
+  }
+
   function paceInfo() {
     const exam = examInfo();
     const base = Store.load().settings.newPerDay;
@@ -793,6 +801,12 @@
           <button id="cleardate" ${s.settings.examDate ? '' : 'disabled'}>No exam, just studying</button>
         </label>
         <p class="hint" id="paceinfo">${paceInfo()}</p>
+        <label>Theme
+          <select id="theme">
+            ${[['system', 'Match device'], ['light', 'Light'], ['dark', 'Dark']].map(([v, l]) =>
+              `<option value="${v}" ${s.settings.theme === v ? 'selected' : ''}>${l}</option>`).join('')}
+          </select>
+        </label>
         <h3>Tests I'm studying for</h3>
         <p class="hint">Only checked tests feed the study queue and the mock exam list.
           Progress on unchecked sections is kept, so add endorsements whenever you're ready.</p>
@@ -829,6 +843,11 @@
       Store.save();
       $('#cleardate').disabled = !s.settings.examDate;
       $('#paceinfo').textContent = paceInfo();
+    });
+    $('#theme').addEventListener('change', e => {
+      s.settings.theme = e.target.value;
+      Store.save();
+      applyTheme();
     });
     $('#cleardate').addEventListener('click', () => {
       s.settings.examDate = '';
@@ -982,6 +1001,7 @@
     }
   });
 
+  applyTheme();
   // Nav entries are real links (middle-click and open-in-new-tab work); the
   // click handler only makes the render immediate instead of waiting for the
   // async hashchange. The default action then sets the same hash, a no-op.

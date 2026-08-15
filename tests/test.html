@@ -160,6 +160,16 @@ try {
   nav('settings');
   t('settings renders', !!q('#newperday'));
 
+  // --- theme override ---
+  t('theme select renders', !!q('#theme'));
+  q('#theme').value = 'dark';
+  q('#theme').dispatchEvent(new Event('change'));
+  t('dark override applied', document.documentElement.dataset.theme === 'dark');
+  t('dark override saved', Store.load().settings.theme === 'dark');
+  q('#theme').value = 'system';
+  q('#theme').dispatchEvent(new Event('change'));
+  t('system theme clears the override', !('theme' in document.documentElement.dataset));
+
   // --- test/endorsement picker: first-test scenario (GK + Air + Combination) ---
   t('test picker renders 9 tests', qa('input[data-test]').length === 9);
   const keep = new Set(['gk', 'air', 'comb']);
@@ -254,7 +264,7 @@ try {
   // --- corrupt import is sanitized, not applied verbatim ---
   Store.importJSON(JSON.stringify({
     cards: { 'x1': { stability: 'oops', due: null, state: 'bogus', lastWrong: 'yes' }, 'x2': 42 },
-    settings: { newPerDay: -3, sections: 'all', examDate: 7 },
+    settings: { newPerDay: -3, sections: 'all', examDate: 7, theme: 'purple' },
     daily: null, exams: { nope: true },
     log: [{ id: 5 }, 'x', { id: 's1-001', rating: 3, ts: 1 }],
   }));
@@ -263,7 +273,8 @@ try {
   t('corrupt card state falls back to new', bad.cards.x1.state === 'new' && bad.cards.x1.lastWrong === false);
   t('non-object card entries dropped', !bad.cards.x2);
   t('corrupt settings sanitized', bad.settings.newPerDay === 0
-    && Array.isArray(bad.settings.sections) && bad.settings.examDate === '');
+    && Array.isArray(bad.settings.sections) && bad.settings.examDate === ''
+    && bad.settings.theme === 'system');
   t('corrupt daily/exams reset', Object.keys(bad.daily).length === 0 && bad.exams.length === 0);
   t('corrupt log filtered to valid entries', bad.log.length === 1 && bad.log[0].id === 's1-001');
   let rejected = false;

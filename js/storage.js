@@ -9,6 +9,7 @@ const Store = (() => {
       newPerDay: 10,   // relaxed steady pace; auto-boosted when an exam date demands it
       sections: [],     // empty = all sections enabled
       examDate: '',     // 'YYYY-MM-DD'; drives retention ramp + final review
+      theme: 'system',  // 'system' | 'light' | 'dark'
     },
     daily: {},          // 'YYYY-MM-DD' -> {new: n, reviews: n, correct: n}
     exams: [],          // {date, type, total, correct, passed}
@@ -17,6 +18,7 @@ const Store = (() => {
 
   const num = (v, d = 0) => (Number.isFinite(v) ? v : d);
   const STATES = ['new', 'learning', 'relearning', 'review'];
+  const THEMES = ['system', 'light', 'dark'];
 
   // Anything read from outside the running app (a backup file, but also the
   // localStorage value itself, which extensions or an unrelated writer at the
@@ -47,6 +49,7 @@ const Store = (() => {
         newPerDay: Math.max(0, num(st.newPerDay, base.settings.newPerDay)),
         sections: Array.isArray(st.sections) ? st.sections.filter(Number.isInteger) : [],
         examDate: typeof st.examDate === 'string' ? st.examDate : '',
+        theme: THEMES.includes(st.theme) ? st.theme : 'system',
       },
       daily: parsed.daily && typeof parsed.daily === 'object' && !Array.isArray(parsed.daily)
         ? parsed.daily : {},

@@ -98,7 +98,7 @@ same applies automatically once the date passes.
 
 ```
 index.html               app shell
-css/style.css            styling (light/dark via prefers-color-scheme)
+css/style.css            styling (light/dark follows the device; Settings can force either)
 js/fsrs.js               FSRS-6 scheduler
 js/storage.js            localStorage persistence, export/import
 js/app.js                UI and session logic

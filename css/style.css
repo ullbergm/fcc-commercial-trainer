@@ -1,6 +1,9 @@
 /* NC CDL Trainer: "Highway" theme.
-   Interstate guide-sign green, signage yellow, asphalt neutrals. Selector-
-   compatible replacement for css/style.css. Light/dark via prefers-color-scheme. */
+   Interstate guide-sign green, signage yellow, asphalt neutrals.
+   Light/dark follows prefers-color-scheme unless the Settings theme override
+   sets data-theme="light"/"dark" on <html>. The dark token block therefore
+   appears twice: once for system-dark (unless overridden to light), once for
+   the explicit dark override. Keep the two copies identical. */
 :root {
   --bg: #f2f1ea;
   --card: #ffffff;
@@ -23,7 +26,7 @@
   --shadow: 0 1px 2px rgba(20, 30, 24, 0.07), 0 4px 16px rgba(20, 30, 24, 0.05);
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #131614;
     --card: #1c211d;
     --text: #e8ece7;
@@ -44,6 +47,27 @@
     --asphalt: #0e100e;
     --shadow: none;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #131614;
+  --card: #1c211d;
+  --text: #e8ece7;
+  --muted: #98a89b;
+  --accent: #37b184;
+  --accent-hi: #47c795;
+  --accent-text: #07130c;
+  --nav-bg: #0d3d2b;
+  --nav-text: #dcefe3;
+  --yellow: #eec93f;
+  --yellow-text: #201a05;
+  --border: #2c332c;
+  --ok: #4ecb87;
+  --ok-bg: #16301f;
+  --bad: #f0836c;
+  --bad-bg: #38211b;
+  --warn: #e5a44e;
+  --asphalt: #0e100e;
+  --shadow: none;
 }
 
 * { box-sizing: border-box; }
@@ -397,7 +421,7 @@ body > footer a:hover { color: var(--accent); }
 
 /* settings */
 .settings label { display: block; margin: 8px 0; }
-.settings input[type="number"], .settings input[type="date"] {
+.settings input[type="number"], .settings input[type="date"], .settings select {
   font: inherit; margin-left: 8px;
   background: var(--card); color: var(--text);
   border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px;
