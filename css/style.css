@@ -309,6 +309,24 @@ th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--bor
 tr:last-child td { border-bottom: none; }
 th { color: var(--muted); font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
 td { font-variant-numeric: tabular-nums; }
+.stats h3 small { color: var(--muted); font-weight: 400; font-size: 0.8rem; }
+.history { display: flex; gap: 2px; align-items: flex-end; height: 64px; margin: 8px 0 2px; }
+.history .hbar {
+  flex: 1;
+  background: linear-gradient(180deg, var(--accent-hi), var(--accent));
+  border-radius: 3px 3px 0 0;
+  min-height: 2px;
+}
+.history .hbar.zero { background: var(--border); }
+.histlabels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
 .forecast { display: flex; gap: 8px; align-items: flex-end; margin: 8px 0 16px; }
 .fcol { text-align: center; flex: 1; }
 .fbar { background: linear-gradient(180deg, var(--accent-hi), var(--accent)); border-radius: 4px 4px 0 0; min-height: 2px; }

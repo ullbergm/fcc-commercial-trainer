@@ -99,6 +99,8 @@ try {
   // --- stats & browse & settings render ---
   nav('stats');
   t('stats renders table', !!q('.stats table'));
+  t('stats renders 30-day history', qa('.history .hbar').length === 30);
+  t('history shows today as active', !qa('.history .hbar')[29].classList.contains('zero'));
   nav('browse');
   t('browse renders sections', qa('.browse details').length >= 13);
   nav('settings');

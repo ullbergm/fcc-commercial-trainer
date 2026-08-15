@@ -646,6 +646,21 @@
       else break;
     }
 
+    // 30-day review history from the daily counters
+    const hist = [];
+    for (let i = 29; i >= 0; i--) {
+      const d = s.daily[Store.todayKey(now - i * DAY)];
+      hist.push({ daysAgo: i, n: (d && d.reviews) || 0 });
+    }
+    const hmax = Math.max(1, ...hist.map(h => h.n));
+    const total30 = hist.reduce((a, h) => a + h.n, 0);
+    const histBar = h => {
+      const when = new Date(now - h.daysAgo * DAY).toLocaleDateString();
+      return `<div class="hbar${h.n ? '' : ' zero'}"
+        style="height:${Math.max(2, Math.round((h.n / hmax) * 60))}px"
+        title="${when}: ${h.n} review${h.n === 1 ? '' : 's'}"></div>`;
+    };
+
     // 7-day due forecast
     const forecast = [];
     for (let i = 0; i < 7; i++) {
@@ -671,6 +686,12 @@
           <div class="tile"><div class="big">${due}</div><div>due today</div></div>
           <div class="tile"><div class="big">${streak}</div><div>day streak</div></div>
         </div>
+        <h3>Reviews, last 30 days <small>${total30} total</small></h3>
+        <div class="history" role="img"
+          aria-label="${total30} reviews over the last 30 days, day by day">
+          ${hist.map(histBar).join('')}
+        </div>
+        <div class="histlabels" aria-hidden="true"><span>30 days ago</span><span>today</span></div>
         <h3>Due next 7 days</h3>
         <div class="forecast">
           ${forecast.map((n, i) => `<div class="fcol">
