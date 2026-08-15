@@ -142,6 +142,13 @@ try {
   nav('settings');
   t('picker grouped into 3 headings', qa('.seclist h4').length === 3);
   t('pace info mentions boost', /boost/i.test(q('#paceinfo').textContent));
+  const paceBefore = q('#paceinfo').textContent;
+  const hz = qa('input[data-test]').find(cb => cb.dataset.test === 'hazmat');
+  hz.checked = false;
+  hz.dispatchEvent(new Event('change'));
+  t('pace info updates on section toggle', q('#paceinfo').textContent !== paceBefore);
+  hz.checked = true;
+  hz.dispatchEvent(new Event('change'));
   q('#cleardate').click();
   t('no-exam button clears date', Store.load().settings.examDate === '');
   nav('home');

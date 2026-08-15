@@ -635,7 +635,8 @@
         s.settings.sections =
           chosen.length === 0 || chosen.length === SECTION_IDS.length ? [] : chosen;
         Store.save();
-        if (chosen.length === 0) renderSettings(); // re-render so boxes show reality
+        if (chosen.length === 0) { renderSettings(); return; } // re-render so boxes show reality
+        $('#paceinfo').textContent = paceInfo(); // pace depends on the selected sections
       }));
     $('#export').addEventListener('click', () => {
       const blob = new Blob([Store.exportJSON()], { type: 'application/json' });
