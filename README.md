@@ -71,6 +71,12 @@ separate short-term memory formula. Intervals of three days or more get a small
 deterministic fuzz (up to about 5%) so cards learned together drift apart
 instead of always coming due on the same day.
 
+Every scheduled review is also appended to a compact log (question, rating,
+timestamp) that is kept with your progress and included in backups. Nothing
+reads it yet; it exists so a future version can fit the FSRS parameters to
+your actual review history instead of the published defaults, which the
+aggregate card state alone could never support.
+
 ## Studying for a date
 
 Set your test date in Settings and the scheduler optimizes for that day instead of

@@ -71,6 +71,8 @@ try {
   t('grade buttons appear', qa('.grades button').length === 3);
   q('.grades button[data-r="3"]').click();
   t('advances to next question', q('.qtext').textContent !== qid1);
+  t('graded review appended to the log', Store.load().log.length === 1
+    && Store.load().log[0].rating === 3 && typeof Store.load().log[0].ts === 'number');
   const mirrored = JSON.parse(sessionStorage.getItem('nc-cdl-trainer-session'));
   t('active session mirrored to sessionStorage',
     mirrored && mirrored.mode === 'study' && mirrored.pos === 1 && Array.isArray(mirrored.queue));
@@ -82,6 +84,8 @@ try {
   const wrongBtn = qa('.choice').find(b => Number(b.dataset.i) !== bank2.answer);
   wrongBtn.click();
   t('wrong shows explanation', !!q('.explain.wrongbg'));
+  t('wrong answer logged as Again', Store.load().log.at(-1).rating === 1
+    && Store.load().log.at(-1).id === bank2.id);
   t('feedback links to a prefilled error report',
     q('.explain a.report').href.includes('question-id=' + bank2.id));
   t('continue button appears', !!q('#next'));
@@ -101,12 +105,14 @@ try {
   const bank3 = QUESTION_BANK.find(x => x.question === qtext3);
   const cardBefore = JSON.stringify(Store.load().cards[bank3.id] || null);
   const dailyBefore = JSON.stringify(Store.load().daily);
+  const logBefore = Store.load().log.length;
   qa('.choice').find(b => Number(b.dataset.i) !== bank3.answer).click();
   t('undo button appears after answering', !!q('#undo'));
   q('#undo').click();
   t('undo re-asks the same question', q('.qtext').textContent === qtext3);
   t('undo restores card state', JSON.stringify(Store.load().cards[bank3.id] || null) === cardBefore);
   t('undo restores daily counters', JSON.stringify(Store.load().daily) === dailyBefore);
+  t('undo removes the log entry', Store.load().log.length === logBefore);
   qa('.choice').find(b => Number(b.dataset.i) === bank3.answer).click();
   t('undo also offered after a correct answer', !!q('#undo'));
   q('.grades button[data-r="3"]').click();
@@ -250,6 +256,7 @@ try {
     cards: { 'x1': { stability: 'oops', due: null, state: 'bogus', lastWrong: 'yes' }, 'x2': 42 },
     settings: { newPerDay: -3, sections: 'all', examDate: 7 },
     daily: null, exams: { nope: true },
+    log: [{ id: 5 }, 'x', { id: 's1-001', rating: 3, ts: 1 }],
   }));
   const bad = Store.load();
   t('corrupt card fields coerced to numbers', bad.cards.x1.stability === 0 && bad.cards.x1.due === 0);
@@ -258,6 +265,7 @@ try {
   t('corrupt settings sanitized', bad.settings.newPerDay === 0
     && Array.isArray(bad.settings.sections) && bad.settings.examDate === '');
   t('corrupt daily/exams reset', Object.keys(bad.daily).length === 0 && bad.exams.length === 0);
+  t('corrupt log filtered to valid entries', bad.log.length === 1 && bad.log[0].id === 's1-001');
   let rejected = false;
   try { Store.importJSON('{"nope":1}'); } catch { rejected = true; }
   t('backup without cards/settings rejected', rejected);

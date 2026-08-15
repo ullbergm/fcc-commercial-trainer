@@ -1,6 +1,7 @@
 /* Persistence: card scheduling state + answer stats in localStorage. */
 const Store = (() => {
   const KEY = 'nc-cdl-trainer-v1';
+  const LOG_MAX = 10000; // ~20k reviews would outlast any exam prep; cap the log well before quota
 
   const defaults = () => ({
     cards: {},          // id -> {stability, difficulty, due, lastReview, reps, lapses, state, wrong, right, lastWrong}
@@ -11,6 +12,7 @@ const Store = (() => {
     },
     daily: {},          // 'YYYY-MM-DD' -> {new: n, reviews: n, correct: n}
     exams: [],          // {date, type, total, correct, passed}
+    log: [],            // {id, rating, ts} per scheduled review; raw history for future FSRS parameter optimization
   });
 
   const num = (v, d = 0) => (Number.isFinite(v) ? v : d);
@@ -49,6 +51,12 @@ const Store = (() => {
       daily: parsed.daily && typeof parsed.daily === 'object' && !Array.isArray(parsed.daily)
         ? parsed.daily : {},
       exams: Array.isArray(parsed.exams) ? parsed.exams : [],
+      log: Array.isArray(parsed.log)
+        ? parsed.log
+            .filter(e => e && typeof e === 'object' && typeof e.id === 'string'
+              && Number.isFinite(e.ts) && [1, 2, 3, 4].includes(e.rating))
+            .slice(-LOG_MAX)
+        : [],
     };
   }
 
@@ -99,6 +107,16 @@ const Store = (() => {
     s.daily[k][field] += by;
   }
 
+  // One entry per scheduled review (study/final modes; misses and exams do
+  // not touch the schedule). The aggregate card state cannot be turned back
+  // into a history, so this is what makes per-user FSRS parameter
+  // optimization possible later. Callers save(); this only appends.
+  function logReview(id, rating, ts = Date.now()) {
+    const s = load();
+    s.log.push({ id, rating, ts });
+    if (s.log.length > LOG_MAX) s.log.splice(0, s.log.length - LOG_MAX);
+  }
+
   // version stamps the backup format, so a future importer can tell old
   // files apart and migrate them instead of guessing. sanitize copies
   // fields explicitly, so the stamp never leaks into live state.
@@ -122,7 +140,7 @@ const Store = (() => {
     save();
   }
 
-  const api = { load, save, card, todayKey, bumpDaily, exportJSON, importJSON, reset,
+  const api = { load, save, card, todayKey, bumpDaily, logReview, exportJSON, importJSON, reset,
                 onSaveError: null };
   return api;
 })();

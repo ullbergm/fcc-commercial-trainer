@@ -405,6 +405,7 @@
       id: q.id,
       card: s.cards[q.id] ? { ...s.cards[q.id] } : null,
       daily: s.daily[today] ? { ...s.daily[today] } : null,
+      logLen: s.log.length,
       pos: session.pos, done: session.done, correct: session.correct,
     };
   }
@@ -417,6 +418,7 @@
     const s = Store.load();
     if (u.card) s.cards[u.id] = u.card; else delete s.cards[u.id];
     if (u.daily) s.daily[Store.todayKey()] = u.daily; else delete s.daily[Store.todayKey()];
+    s.log.length = Math.min(s.log.length, u.logLen);
     session.pos = u.pos; session.done = u.done; session.correct = u.correct;
     if (u.requeuedAt !== undefined) session.queue.splice(u.requeuedAt, 1);
     session.undo = null;
@@ -460,6 +462,7 @@
     if (!correct) {
       if (scheduling) {
         Object.assign(c, FSRS.schedule(c, 1, Date.now(), schedOpts())); // Again
+        Store.logReview(q.id, 1);
         // requeue a few cards later so it comes back this session
         const at = Math.min(session.pos + 4, session.queue.length);
         session.queue.splice(at, 0, q.id);
@@ -489,6 +492,7 @@
       fb.querySelectorAll('.grades button').forEach(b =>
         b.addEventListener('click', () => {
           Object.assign(c, scheds[Number(b.dataset.r)]);
+          Store.logReview(q.id, Number(b.dataset.r));
           session.pendingGrade = false;
           Store.save();
           session.pos++;
