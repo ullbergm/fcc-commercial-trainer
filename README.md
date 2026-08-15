@@ -6,7 +6,7 @@
 [![Live site](https://img.shields.io/website?url=https%3A%2F%2Fnc-cdl.ullberg.io&label=nc-cdl.ullberg.io)](https://nc-cdl.ullberg.io)
 
 Practice questions with spaced repetition for the North Carolina commercial driver
-license knowledge tests. The bank has 388 multiple-choice questions covering all 13
+license knowledge tests. The bank has 422 multiple-choice questions covering all 13
 sections of the [NC Commercial Driver Manual](https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf),
 and every question cites the manual page it was drawn from.
 
@@ -96,7 +96,7 @@ css/style.css            styling (light/dark via prefers-color-scheme)
 js/fsrs.js               FSRS-6 scheduler
 js/storage.js            localStorage persistence, export/import
 js/app.js                UI and session logic
-data/questions.js        question bank (388 questions, tagged by section and manual page)
+data/questions.js        question bank (422 questions, tagged by section and manual page)
 sw.js                    service worker (offline cache, only active on the hosted site)
 manifest.webmanifest     PWA manifest, lets the app be installed to a home screen
 icons/                   app icons (icon.svg is the source, PNGs rendered from it)

@@ -1922,6 +1922,111 @@ const QUESTION_BANK = [
   "page": "3-3"
  },
  {
+  "id": "s3-019",
+  "section": 3,
+  "sectionName": "Transporting Cargo Safely",
+  "question": "Whether or not you load and secure the cargo yourself, which of the following are you responsible for as the driver?",
+  "choices": [
+   "Only the items that you personally loaded and secured yourself before beginning the trip",
+   "Nothing until you leave the shipper's property with the load",
+   "Only the total weight of the load, which the shipper must certify",
+   "Inspecting the cargo and knowing it is properly secured and does not obscure your view"
+  ],
+  "answer": 3,
+  "explanation": "Drivers are responsible for inspecting the cargo, recognizing overloads and poorly balanced weight, and knowing the cargo is properly secured, does not obscure the view, and does not restrict access to emergency equipment.",
+  "page": "3-1"
+ },
+ {
+  "id": "s3-020",
+  "section": 3,
+  "sectionName": "Transporting Cargo Safely",
+  "question": "What is the difference between blocking and bracing?",
+  "choices": [
+   "Blocking keeps cargo cool, while bracing keeps it dry in bad weather",
+   "Blocking is used only on open flatbed trailers, while bracing is used only inside closed vans and refrigerated trailers",
+   "Blocking fits snugly against cargo on the deck, while bracing runs from the upper part of the cargo to the floor or walls",
+   "Blocking secures the trailer to the tractor, while bracing secures the trailer to its landing gear"
+  ],
+  "answer": 2,
+  "explanation": "Blocking is shaped to fit snugly against cargo and secured to the cargo deck to prevent sliding; bracing goes from the upper part of the cargo to the floor and/or walls of the cargo compartment.",
+  "page": "3-2"
+ },
+ {
+  "id": "s3-021",
+  "section": 3,
+  "sectionName": "Transporting Cargo Safely",
+  "question": "Too much weight on the steering axle can cause:",
+  "choices": [
+   "Better traction on the drive wheels in bad weather",
+   "Hard steering and damage to the steering axle and tires",
+   "A lower center of gravity and safer overall handling",
+   "The trailer brakes to apply before the tractor brakes"
+  ],
+  "answer": 1,
+  "explanation": "Too much weight on the steering axle can cause hard steering and can damage the steering axle and tires.",
+  "page": "3-2"
+ },
+ {
+  "id": "s3-022",
+  "section": 3,
+  "sectionName": "Transporting Cargo Safely",
+  "question": "Why should you check your cargo covers in the mirrors from time to time while driving?",
+  "choices": [
+   "A flapping cover can tear loose, uncovering the cargo and possibly blocking your view or someone else's",
+   "To confirm that the cargo has not shifted more than a few inches under the cover since your last stop",
+   "Because uncovered cargo always requires a police escort to continue the trip",
+   "Because covers must stay wet in order to grip the load properly in strong wind"
+  ],
+  "answer": 0,
+  "explanation": "The manual says to look at cargo covers in the mirrors from time to time while driving; a flapping cover can tear loose, uncovering the cargo, and possibly block your view or someone else's.",
+  "page": "3-3"
+ },
+ {
+  "id": "s3-023",
+  "section": 3,
+  "sectionName": "Transporting Cargo Safely",
+  "question": "Why does hanging meat in a refrigerated truck require particular caution?",
+  "choices": [
+   "The refrigeration unit adds so much weight that it always overloads the steering axle of the tractor",
+   "Frozen loads shift the braking balance toward the trailer wheels on long mountain downgrades",
+   "The meat must be delivered within four hours, encouraging drivers to hurry on the highway",
+   "It is an unstable load with a high center of gravity, especially on sharp curves like on ramps and off ramps"
+  ],
+  "answer": 3,
+  "explanation": "Hanging meat (suspended beef, pork, lamb) can be a very unstable load with a high center of gravity; particular caution is needed on sharp curves such as off ramps and on ramps, and you should go slowly.",
+  "page": "3-3"
+ },
+ {
+  "id": "s3-024",
+  "section": 3,
+  "sectionName": "Transporting Cargo Safely",
+  "question": "Which of the following is true about oversized loads?",
+  "choices": [
+   "They may be driven at any hour of the day as long as the truck stays in the right-most lane of the highway",
+   "They only need flags and warning signs when driven at night or in bad weather",
+   "They require special transit permits, may be limited to certain times, and may need escort or pilot vehicles",
+   "They are exempt from axle weight limits if the trailer has extra axles installed"
+  ],
+  "answer": 2,
+  "explanation": "Over-length, over-width, and overweight loads require special transit permits, driving is usually limited to certain times, and such loads may require special equipment, a police escort, or pilot vehicles.",
+  "page": "3-3"
+ },
+ {
+  "id": "s3-025",
+  "section": 3,
+  "sectionName": "Transporting Cargo Safely",
+  "question": "How must containerized loads be secured when carried on a flatbed trailer?",
+  "choices": [
+   "They do not need securing because their weight holds them in place on the trailer deck",
+   "Properly secured just like any other cargo, even if the container has its own tie-down devices or locks",
+   "Only with the container's own built-in locks, since adding tie-downs could damage the container frame",
+   "With a single chain at the front, since containers cannot slide sideways on a flatbed"
+  ],
+  "answer": 1,
+  "explanation": "Some containers have their own tie-down devices or locks that attach to a special frame, but containers loaded onto flatbed trailers must be properly secured just like any other cargo.",
+  "page": "3-3"
+ },
+ {
   "id": "s4-001",
   "section": 4,
   "sectionName": "Transporting Passengers Safely",
@@ -2190,6 +2295,96 @@ const QUESTION_BANK = [
   "answer": 0,
   "explanation": "The interlock applies the brakes and holds the throttle in idle position when the rear door is open, and releases when the door closes. It must not be used in place of the parking brake.",
   "page": "4-4"
+ },
+ {
+  "id": "s4-019",
+  "section": 4,
+  "sectionName": "Transporting Passengers Safely",
+  "question": "When arriving at the destination or an intermediate stop, what should you announce to riders?",
+  "choices": [
+   "The location, reason for stopping, next departure time, and bus number",
+   "Only the current local time and the expected weather conditions at the stop",
+   "The names of the riders who must get off at this particular stop",
+   "Nothing; announcements are only made at the final destination"
+  ],
+  "answer": 0,
+  "explanation": "When arriving at the destination or intermediate stops, announce the location, reason for stopping, next departure time, and bus number, and remind riders to take carry-ons with them.",
+  "page": "4-2"
+ },
+ {
+  "id": "s4-020",
+  "section": 4,
+  "sectionName": "Transporting Passengers Safely",
+  "question": "Why should charter bus drivers not allow riders on the bus until departure time?",
+  "choices": [
+   "So the air conditioning does not run too long",
+   "Because insurance does not start until departure",
+   "Because early boarding violates federal rules",
+   "To help prevent theft or vandalism of the bus"
+  ],
+  "answer": 3,
+  "explanation": "Charter bus drivers should not allow riders on the bus until departure time; this helps prevent theft or vandalism of the bus.",
+  "page": "4-2"
+ },
+ {
+  "id": "s4-021",
+  "section": 4,
+  "sectionName": "Transporting Passengers Safely",
+  "question": "At which of the following places must you slow down and check carefully, but not necessarily stop, with a bus?",
+  "choices": [
+   "Every railroad crossing, whether or not it is marked exempt",
+   "A drawbridge that does not have a signal light or a traffic control attendant on duty at the bridge",
+   "A crossing marked as exempt or abandoned, or one where a policeman or flagman directs traffic",
+   "Any crossing where you cannot see at least 500 feet down the tracks"
+  ],
+  "answer": 2,
+  "explanation": "You do not have to stop, but must slow down and carefully check for other vehicles at streetcar crossings, where a policeman or flagman directs traffic, when the signal is green, and at crossings marked exempt or abandoned.",
+  "page": "4-3"
+ },
+ {
+  "id": "s4-022",
+  "section": 4,
+  "sectionName": "Transporting Passengers Safely",
+  "question": "If your bus has a manual transmission, what must you never do at a railroad crossing?",
+  "choices": [
+   "Use your four-way flashers while you are stopped at the crossing",
+   "Change gears while any part of the bus is crossing the tracks",
+   "Open the forward door to improve your ability to see or hear a train",
+   "Turn off the radio and other noisy equipment before you cross"
+  ],
+  "answer": 1,
+  "explanation": "If your bus has a manual transmission, never change gears while crossing the tracks.",
+  "page": "4-3"
+ },
+ {
+  "id": "s4-023",
+  "section": 4,
+  "sectionName": "Transporting Passengers Safely",
+  "question": "What does the manual say about fueling your bus?",
+  "choices": [
+   "Avoid fueling with riders on board unless absolutely necessary, and never refuel in a closed building with riders aboard",
+   "Refuel only at company terminals, where all riders are required to step off the bus and wait inside the station building",
+   "Always keep the engine running during fueling so the air brakes stay fully charged",
+   "Fueling is allowed anywhere as long as all of the bus windows are kept fully open"
+  ],
+  "answer": 0,
+  "explanation": "Avoid fueling your bus with riders on board unless absolutely necessary, and never refuel in a closed building with riders on board.",
+  "page": "4-3"
+ },
+ {
+  "id": "s4-024",
+  "section": 4,
+  "sectionName": "Transporting Passengers Safely",
+  "question": "If you work for an interstate carrier, what must your after-trip inspection report include?",
+  "choices": [
+   "Only the total mileage that was driven during the shift and the amount of fuel that was purchased at each stop along the route",
+   "The names of all riders carried and the stops where they boarded the bus",
+   "A list of every traffic signal and railroad crossing on the route driven",
+   "Each bus driven, any defect affecting safety or that could cause a breakdown, or a statement that there were no defects"
+  ],
+  "answer": 3,
+  "explanation": "Interstate carrier drivers must complete a written inspection report for each bus driven, specifying each bus and listing any defect that would affect safety or result in a breakdown; if there are no defects, the report should say so.",
+  "page": "4-3"
  },
  {
   "id": "s5-001",
@@ -3617,6 +3812,81 @@ const QUESTION_BANK = [
   "page": "7-2"
  },
  {
+  "id": "s7-021",
+  "section": 7,
+  "sectionName": "Doubles and Triples",
+  "question": "Why do doubles and triples need extra space on the road?",
+  "choices": [
+   "Their trailers are wider than a standard single trailer, so they take up parts of two lanes at highway speed",
+   "Their dollies swing outside the traffic lane whenever the rig moves faster than about 30 miles per hour",
+   "They are longer and cannot be turned or stopped suddenly, so they need larger gaps and more following distance",
+   "The law requires other vehicles to stay at least 500 feet away from them at all times on the highway"
+  ],
+  "answer": 2,
+  "explanation": "Doubles and triples take up more space: they are longer and cannot be turned or stopped suddenly, so you must allow more following distance and make sure you have large enough gaps before entering or crossing traffic.",
+  "page": "7-1"
+ },
+ {
+  "id": "s7-022",
+  "section": 7,
+  "sectionName": "Doubles and Triples",
+  "question": "When parking a doubles or triples rig, what should you look for?",
+  "choices": [
+   "A spot on soft ground so the trailer wheels cannot roll while you are away from the rig",
+   "A spot you can pull straight through, so you do not get stuck needing a long and difficult escape",
+   "A spot where the rig must be backed in, because backing out later is easier with two trailers",
+   "The closest space to the building entrance, whatever amount of backing it takes to get into the space"
+  ],
+  "answer": 1,
+  "explanation": "Make sure you do not get into a spot you cannot pull straight through; be aware of how parking lots are arranged to avoid a long and difficult escape.",
+  "page": "7-1"
+ },
+ {
+  "id": "s7-023",
+  "section": 7,
+  "sectionName": "Doubles and Triples",
+  "question": "Converter dollies built on or after March 1, 1998 are required to have:",
+  "choices": [
+   "Antilock brakes (shown by a yellow lamp on the left side)",
+   "Spring brakes on both dolly axles (shown by a red decal on the tongue)",
+   "A sliding fifth wheel with locking pins",
+   "Hydraulic surge brakes on the tow bar"
+  ],
+  "answer": 0,
+  "explanation": "Converter dollies built on or after March 1, 1998 are required to have antilock brakes; these dollies have a yellow lamp on the left side.",
+  "page": "7-1"
+ },
+ {
+  "id": "s7-024",
+  "section": 7,
+  "sectionName": "Doubles and Triples",
+  "question": "Before uncoupling the rear trailer of a set of doubles, how should you park the rig?",
+  "choices": [
+   "With the rear trailer angled slightly left",
+   "On a slight downgrade with wheels turned",
+   "With the dolly already clear of the trailer",
+   "In a straight line on firm, level ground"
+  ],
+  "answer": 3,
+  "explanation": "To uncouple the rear trailer, park the rig in a straight line on firm level ground, then apply the parking brakes so the rig will not move.",
+  "page": "7-2"
+ },
+ {
+  "id": "s7-025",
+  "section": 7,
+  "sectionName": "Doubles and Triples",
+  "question": "What can happen if the tractor protection valve does not work properly?",
+  "choices": [
+   "The trailer service brakes will drag and overheat on every long downhill grade, even when the brake pedal has been fully released by the driver",
+   "The service brakes will apply only on the tractor's steering axle",
+   "An air hose or trailer brake leak could drain all the air from the tractor, bringing the emergency brakes on with possible loss of control",
+   "The dolly's air tank will overfill and lift the safety valve"
+  ],
+  "answer": 2,
+  "explanation": "If the tractor protection valve does not work properly, an air hose or trailer brake leak could drain all the air from the tractor, causing the emergency brakes to come on with possible loss of control.",
+  "page": "7-4"
+ },
+ {
   "id": "s8-001",
   "section": 8,
   "sectionName": "Tank Vehicles",
@@ -3839,6 +4109,156 @@ const QUESTION_BANK = [
   ],
   "answer": 2,
   "explanation": "The manual states you must never drive a tank vehicle with open valves or manhole covers. The other choices are all correct safe-driving practices for tank vehicles.",
+  "page": "8-8"
+ },
+ {
+  "id": "s8-016",
+  "section": 8,
+  "sectionName": "Tank Vehicles",
+  "question": "When inspecting a tank vehicle's manhole covers and vents, you should make sure:",
+  "choices": [
+   "The covers are left slightly open so pressure cannot build up inside the tank while driving",
+   "The covers have gaskets and close correctly, and the vents are clear so they work correctly",
+   "The vents are sealed shut with tape so no vapor can escape while the tank is fully loaded",
+   "The covers have been removed and stored in the cab so inspectors can see inside the tank"
+  ],
+  "answer": 1,
+  "explanation": "Check manhole covers and vents: make sure the covers have gaskets and close correctly, and keep the vents clear so they work correctly. Never drive a tank vehicle with open manhole covers.",
+  "page": "8-8"
+ },
+ {
+  "id": "s8-017",
+  "section": 8,
+  "sectionName": "Tank Vehicles",
+  "question": "Which special purpose equipment must you make sure works, if your tank vehicle has it?",
+  "choices": [
+   "Vapor recovery kits, grounding and bonding cables, emergency shut-off systems, and built-in fire extinguisher",
+   "Cargo heaters, liftgates, automatic tarping systems, and a full backup camera system covering the rear of the tank",
+   "Refrigeration units, tire chains, and an on-board scale for weighing the cargo",
+   "A portable generator, spare hoses of every diameter, and a hand spotlight"
+  ],
+  "answer": 0,
+  "explanation": "If your vehicle has special purpose equipment such as vapor recovery kits, grounding and bonding cables, emergency shut-off systems, or a built-in fire extinguisher, make sure it works.",
+  "page": "8-8"
+ },
+ {
+  "id": "s8-018",
+  "section": 8,
+  "sectionName": "Tank Vehicles",
+  "question": "Before loading, unloading, or moving a tank vehicle, what must you check about the intake, discharge, and cut-off valves?",
+  "choices": [
+   "That they are all removed for cleaning",
+   "That they are all fully open at all times",
+   "That they are painted the correct color",
+   "That they are in the correct position"
+  ],
+  "answer": 3,
+  "explanation": "Check the intake, discharge, and cut-off valves, and make sure the valves are in the correct position before loading, unloading, or moving the vehicle.",
+  "page": "8-8"
+ },
+ {
+  "id": "s8-019",
+  "section": 8,
+  "sectionName": "Tank Vehicles",
+  "question": "If you must make a quick stop in a tank vehicle to avoid a crash, you should:",
+  "choices": [
+   "Apply the parking brake first to anchor the trailer, then steer around the hazard",
+   "Swerve around the hazard first and brake only once the vehicle is again traveling in a completely straight line",
+   "Use controlled or stab braking, remembering that steering quickly while braking may roll the vehicle over",
+   "Downshift two gears and let engine braking bring the vehicle to a complete stop"
+  ],
+  "answer": 2,
+  "explanation": "If you must make a quick stop to avoid a crash, use controlled or stab braking, and remember that if you steer quickly while braking, your vehicle may roll over.",
+  "page": "8-8"
+ },
+ {
+  "id": "s8-020",
+  "section": 8,
+  "sectionName": "Tank Vehicles",
+  "question": "How do wet roads affect the stopping distance of a tank vehicle?",
+  "choices": [
+   "They add about ten percent to the distance",
+   "They double the normal stopping distance",
+   "They have no effect if the tank is baffled",
+   "They halve the distance because tires cool"
+  ],
+  "answer": 1,
+  "explanation": "Keep in mind how much space you need to stop your vehicle; wet roads double the normal stopping distance.",
+  "page": "8-8"
+ },
+ {
+  "id": "s8-021",
+  "section": 8,
+  "sectionName": "Tank Vehicles",
+  "question": "What can happen if you over steer, over accelerate, or over brake a tank trailer?",
+  "choices": [
+   "The vehicle may skid, and a drive or trailer wheel skid can cause a jackknife",
+   "The baffles inside the tank will collapse and block the discharge valves",
+   "The outage space will disappear and the liquid will expand out of the vents",
+   "The tank vents will freeze closed and pressure will build inside the tank"
+  ],
+  "answer": 0,
+  "explanation": "Don't over steer, over accelerate, or over brake, or your vehicle may skid; on tank trailers, if your drive wheels or trailer wheels begin to skid, your vehicle may jackknife.",
+  "page": "8-8"
+ },
+ {
+  "id": "s8-022",
+  "section": 8,
+  "sectionName": "Tank Vehicles",
+  "question": "Why may you often only partially fill a tank with heavy liquids such as some acids?",
+  "choices": [
+   "Heavy liquids corrode the tank shell if loaded too full",
+   "Partial loads make forward and backward surge weaker",
+   "Dense liquids cannot be pumped out of a full tank",
+   "A full tank of dense liquid may exceed legal weight limits"
+  ],
+  "answer": 3,
+  "explanation": "A full tank of dense liquid, such as some acids, may exceed legal weight limits, so you may often only partially fill tanks with heavy liquids.",
+  "page": "8-8"
+ },
+ {
+  "id": "s8-023",
+  "section": 8,
+  "sectionName": "Tank Vehicles",
+  "question": "How should you take a curve in a tank vehicle?",
+  "choices": [
+   "Accelerate before the curve and coast through it in neutral",
+   "Brake hard through the entire curve to keep the liquid still",
+   "Slow down before the curve, then accelerate slightly through it",
+   "Hold exactly the posted speed, which is rated for all vehicles"
+  ],
+  "answer": 2,
+  "explanation": "Slow down before curves, then accelerate slightly through the curve; the posted speed for a curve may be too fast for a tank vehicle.",
+  "page": "8-8"
+ },
+ {
+  "id": "s8-024",
+  "section": 8,
+  "sectionName": "Tank Vehicles",
+  "question": "Does the liquid or gas in your tank have to be a hazardous material for the tank endorsement to be required?",
+  "choices": [
+   "Yes; only hazardous materials in bulk require the endorsement",
+   "No; the endorsement is based on the tank capacities, not on what the tank carries",
+   "Yes, unless the tank is permanently attached to the chassis",
+   "No, but the endorsement for non-hazardous loads is only required on interstate trips"
+  ],
+  "answer": 1,
+  "explanation": "The liquid or gas does not have to be a hazardous material; the endorsement depends on hauling liquid or liquid gas in tanks of more than 119 gallons individual and 1,000 gallons or more aggregate rated capacity.",
+  "page": "8-8"
+ },
+ {
+  "id": "s8-025",
+  "section": 8,
+  "sectionName": "Tank Vehicles",
+  "question": "A Class C vehicle requires a tank endorsement when it:",
+  "choices": [
+   "Transports hazardous materials in liquid or gas form in tanks over 119 gallons individual and 1,000 gallons aggregate rated capacity",
+   "Carries any liquid at all in a portable container larger than a standard 55 gallon drum that has been strapped and secured to the truck bed",
+   "Tows a trailer with a small fuel tank for refueling farm equipment on private property",
+   "Hauls drinking water to job sites in a plastic tank strapped inside the cargo area of the truck"
+  ],
+  "answer": 0,
+  "explanation": "A tank endorsement is also required for Class C vehicles used to transport hazardous materials in liquid or gas form in tanks with an individual rated capacity of more than 119 gallons and an aggregate rated capacity of 1,000 gallons or more.",
   "page": "8-8"
  },
  {
@@ -5595,6 +6015,96 @@ const QUESTION_BANK = [
   "answer": 1,
   "explanation": "It is important to finish each exercise exactly as the examiner has instructed. If you do not maneuver the vehicle into its final position as described, you will be penalized and could fail the basic skills test.",
   "page": "12-1"
+ },
+ {
+  "id": "s12-013",
+  "section": 12,
+  "sectionName": "Basic Control Skills Test",
+  "question": "Which exercises may be used to test your basic vehicle control skills?",
+  "choices": [
+   "Emergency braking, high-speed lane changes, and a controlled skid recovery demonstration on a wet practice course",
+   "Parallel park, three-point turns, hill starts, and driving through a serpentine cone course",
+   "Alley dock, highway merging, roundabout navigation, and backing onto a loading ramp",
+   "Straight line backing, offset back right or left, parallel park (driver side or conventional), and alley dock"
+  ],
+  "answer": 3,
+  "explanation": "The basic control skills exercises are straight line backing, offset back/right, offset back/left, parallel park (driver side), parallel park (conventional), and alley dock.",
+  "page": "12-1"
+ },
+ {
+  "id": "s12-014",
+  "section": 12,
+  "sectionName": "Basic Control Skills Test",
+  "question": "Where may your basic control skills be tested?",
+  "choices": [
+   "Only on a closed practice course at the DMV headquarters building",
+   "Only in the parking lot where the test begins",
+   "Off-road, or somewhere on the street during the road test",
+   "On a simulator before the driving portion starts"
+  ],
+  "answer": 2,
+  "explanation": "Your basic control skills could be tested using one or more of the exercises off-road or somewhere on the street during the road test.",
+  "page": "12-1"
+ },
+ {
+  "id": "s12-015",
+  "section": 12,
+  "sectionName": "Basic Control Skills Test",
+  "question": "When exiting the vehicle during a look, how must you exit?",
+  "choices": [
+   "Quickly, leaving the door open so you can climb back in without losing any time",
+   "Safely, facing the vehicle and maintaining three points of contact with it at all times",
+   "Facing away from the vehicle so you can see the boundary cones while stepping down",
+   "Any way you like, as long as the engine has been switched off before you step out of the cab"
+  ],
+  "answer": 1,
+  "explanation": "When exiting the vehicle for a look, you must do so safely by facing the vehicle and maintaining three points of contact with it at all times; when exiting a bus, keep a firm grasp on the handrail.",
+  "page": "12-1"
+ },
+ {
+  "id": "s12-016",
+  "section": 12,
+  "sectionName": "Basic Control Skills Test",
+  "question": "What happens if you do not safely secure the vehicle or safely exit it during a look?",
+  "choices": [
+   "It may result in an automatic failure of the basic control skills test",
+   "You are charged one extra encroachment for the current exercise",
+   "The look simply counts as two of your allowed looks for the exercise",
+   "The examiner asks you to restart the whole exercise from the beginning"
+  ],
+  "answer": 0,
+  "explanation": "If you do not safely secure the vehicle or safely exit the vehicle during a look, it may result in an automatic failure of the basic control skills test.",
+  "page": "12-1"
+ },
+ {
+  "id": "s12-017",
+  "section": 12,
+  "sectionName": "Basic Control Skills Test",
+  "question": "At the end of the Alley Dock exercise, your vehicle must be:",
+  "choices": [
+   "Angled slightly so the examiner can read the license plate from the office",
+   "Touching the rear boundary cone to prove the full depth of the alley was used",
+   "Left in reverse gear with the trailer doors open for the loading dock crew",
+   "Straight within the alley or lane when you have completed the maneuver"
+  ],
+  "answer": 3,
+  "explanation": "In the Alley Dock exercise you back into the alley, bringing the rear of your vehicle within three feet of the rear of the alley, and your vehicle must be straight within the alley/lane when you have completed the maneuver.",
+  "page": "12-2"
+ },
+ {
+  "id": "s12-018",
+  "section": 12,
+  "sectionName": "Basic Control Skills Test",
+  "question": "In the parallel park exercises, how should you approach the space?",
+  "choices": [
+   "Pull nose-first into the space, then straighten the vehicle with repeated pull-ups",
+   "Stop even with the entrance and turn sharply into the space while moving forward",
+   "Drive past the entrance with your vehicle parallel to the parking area, then back into the space",
+   "Back slowly along the outer boundary from fifty feet away, entering the parking space at a right angle"
+  ],
+  "answer": 2,
+  "explanation": "You drive past the entrance to the parallel parking space with your vehicle parallel to the parking area, and back into the space without crossing the front, side, or rear boundaries marked by cones.",
+  "page": "12-2"
  },
  {
   "id": "s13-001",
