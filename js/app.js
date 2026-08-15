@@ -670,4 +670,11 @@
   document.querySelectorAll('nav button').forEach(b =>
     b.addEventListener('click', () => go(b.dataset.view)));
   go('home');
+
+  // version.txt is maintained by release-please; absent until the first release
+  // and when running from the filesystem, in which case the footer stays empty.
+  fetch('version.txt')
+    .then(r => (r.ok ? r.text() : null))
+    .then(v => { if (v && /^\d/.test(v.trim())) $('#version').textContent = 'v' + v.trim(); })
+    .catch(() => {});
 })();
