@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.6.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.5.0...v1.6.0) (2026-08-15)
+
+
+### Features
+
+* add extra new cards on demand ([07f311a](https://github.com/ullbergm/nc-cdl-test-training/commit/07f311a0b5464d62b6ba70116cffdf17ef683d71))
+* keep a per-review log for future FSRS parameter optimization ([7ffbc97](https://github.com/ullbergm/nc-cdl-test-training/commit/7ffbc972d53564d1e19e020de9caafcf02dfb258))
+* light/dark theme override in Settings ([4cab303](https://github.com/ullbergm/nc-cdl-test-training/commit/4cab303adc821afc7904e2169a19216c2df1cca7))
+* make the nav entries real links ([b018802](https://github.com/ullbergm/nc-cdl-test-training/commit/b018802c440889797095c5f9bee3c26b2883d53a))
+
+
+### Bug Fixes
+
+* report a sub-day interval when the exam clamp lands on today ([c694a6b](https://github.com/ullbergm/nc-cdl-test-training/commit/c694a6b662a7b32a3d2fc2fd6bdcdd778602428c))
+* roll back an answer abandoned before grading ([1fc3ca4](https://github.com/ullbergm/nc-cdl-test-training/commit/1fc3ca43798ca8aff5644779feb6264458afb88e))
+* sanitize state loaded from localStorage, not just imported backups ([608c3ae](https://github.com/ullbergm/nc-cdl-test-training/commit/608c3ae8d26cda38455160cab78bce1ab59988c6))
+* stop refreshing precached files so two releases never mix in one cache ([8fc9b1a](https://github.com/ullbergm/nc-cdl-test-training/commit/8fc9b1afb15a99328a57373b198cbe6477e227ed))
+
 ## [1.5.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.4.0...v1.5.0) (2026-08-15)
 
 
