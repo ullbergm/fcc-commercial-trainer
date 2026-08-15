@@ -52,9 +52,17 @@ jobs:
           test -s results.txt
           ! grep -qE 'FAIL|EXCEPTION' results.txt
 
+      # Deploy a curated set of app files. Never ship the repo wholesale:
+      # tests/test.html clears localStorage on load and would wipe the study
+      # progress of anyone who opened it on the live origin.
+      - name: Stage site files
+        run: |
+          mkdir dist
+          cp -r index.html css js data CHANGELOG.md CNAME dist/
+
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          path: .
+          path: dist
       - id: deployment
         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
