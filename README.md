@@ -1,5 +1,10 @@
 # NC CDL Trainer
 
+[![CI](https://github.com/ullbergm/nc-cdl-test-training/actions/workflows/ci.yml/badge.svg)](https://github.com/ullbergm/nc-cdl-test-training/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/ullbergm/nc-cdl-test-training)](https://github.com/ullbergm/nc-cdl-test-training/releases)
+[![License: MIT](https://img.shields.io/github/license/ullbergm/nc-cdl-test-training)](LICENSE)
+[![Live site](https://img.shields.io/website?url=https%3A%2F%2Fnc-cdl.ullberg.io&label=nc-cdl.ullberg.io)](https://nc-cdl.ullberg.io)
+
 Practice questions with spaced repetition for the North Carolina commercial driver
 license knowledge tests. The bank has 388 multiple-choice questions covering all 13
 sections of the [NC Commercial Driver Manual](https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf),
@@ -9,6 +14,14 @@ Live at [nc-cdl.ullberg.io](https://nc-cdl.ullberg.io), or run it yourself. Ther
 no build step, no dependencies, and no server. Just open `index.html` in a browser.
 All progress is stored locally in the browser and never sent anywhere. Settings has
 export and import for backups or for moving between devices.
+
+<p align="center">
+  <img src="docs/screenshots/home.png" width="400" alt="Home screen with due review, new card, and miss counts, and an exam countdown banner">
+  <img src="docs/screenshots/study.png" width="400" alt="Study session showing a multiple-choice question with a progress bar styled as highway lane markings">
+</p>
+<p align="center">
+  <img src="docs/screenshots/stats.png" width="420" alt="Stats page with mastery tiles, a 7-day due forecast, per-section accuracy, and exam history">
+</p>
 
 ## Modes
 
