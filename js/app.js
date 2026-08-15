@@ -144,6 +144,45 @@
   const view = $('#view');
   let session = null; // active study/miss/exam session
 
+  // ---------- session persistence ----------
+  // The active session is mirrored to sessionStorage so a reload mid-session
+  // (or mid-exam) resumes where it left off. Navigating away still abandons
+  // the session, and closing the tab drops it with the tab.
+  const SESSION_KEY = 'nc-cdl-trainer-session';
+
+  function saveSession() {
+    try {
+      const { mode, queue, pos, done, correct, answers } = session;
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({
+        mode, queue, pos, done, correct, answers,
+        examKey: session.exam && session.exam.key,
+      }));
+    } catch { /* storage unavailable: a reload just loses the session */ }
+  }
+
+  function clearSession() {
+    try { sessionStorage.removeItem(SESSION_KEY); } catch { /* ignore */ }
+  }
+
+  function restoreSession() {
+    try {
+      const raw = sessionStorage.getItem(SESSION_KEY);
+      if (!raw) return false;
+      const s = JSON.parse(raw);
+      if (!Array.isArray(s.queue) || !s.queue.every(id => BY_ID[id])
+          || !(s.pos < s.queue.length)) return false;
+      if (s.mode === 'exam') {
+        s.exam = EXAMS.find(e => e.key === s.examKey);
+        if (!s.exam) return false;
+      }
+      session = s;
+      currentView = s.mode;
+      setNav(s.mode);
+      (s.mode === 'exam' ? renderExamQuestion : renderQuestion)();
+      return true;
+    } catch { return false; }
+  }
+
   function setNav(active) {
     document.querySelectorAll('nav button').forEach(b => {
       const on = b.dataset.view === active;
@@ -169,6 +208,7 @@
   function render(name) {
     currentView = name;
     session = null;
+    clearSession();
     setNav(name);
     ROUTES[name]();
   }
@@ -305,6 +345,7 @@
   // ---------- shared question renderer (study + misses + final) ----------
   function renderQuestion() {
     if (session.pos >= session.queue.length) return renderSessionDone();
+    saveSession();
     const q = BY_ID[session.queue[session.pos]];
     const order = shuffle([0, 1, 2, 3]);
     const total = session.queue.length;
@@ -398,6 +439,7 @@
   }
 
   function renderSessionDone() {
+    clearSession();
     const pct = session.done ? Math.round((session.correct / session.done) * 100) : 0;
     view.innerHTML = `
       <div class="done">
@@ -446,6 +488,7 @@
 
   function renderExamQuestion() {
     if (session.pos >= session.queue.length) return renderExamResult();
+    saveSession();
     const q = BY_ID[session.queue[session.pos]];
     const order = shuffle([0, 1, 2, 3]);
     const total = session.queue.length;
@@ -471,6 +514,7 @@
   }
 
   function renderExamResult() {
+    clearSession();
     const wrong = session.answers.filter(a => BY_ID[a.id].answer !== a.picked);
     const correct = session.answers.length - wrong.length;
     const pct = Math.round((correct / session.answers.length) * 100);
@@ -823,7 +867,7 @@
   document.querySelectorAll('nav button').forEach(b =>
     b.addEventListener('click', () => go(b.dataset.view)));
   const initial = location.hash.slice(1);
-  render(ROUTES[initial] ? initial : 'home');
+  if (!restoreSession()) render(ROUTES[initial] ? initial : 'home');
 
   // Installable, offline-capable PWA. Skipped on file:// and http:// (the
   // service worker API needs a secure context), where the app still works.

@@ -26,6 +26,7 @@ const log = [];
 const t = (name, cond) => log.push((cond ? 'PASS ' : 'FAIL ') + name);
 try {
   localStorage.clear();
+  sessionStorage.clear(); // drop any mid-session resume state from a prior run
   const nav = v => document.querySelector(`nav button[data-view="${v}"]`).click();
   const q = s => document.querySelector(s);
   const qa = s => [...document.querySelectorAll(s)];
