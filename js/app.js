@@ -50,6 +50,15 @@
     return a;
   };
 
+  // Choices like "All of the above" refer to the other choices by position,
+  // so they must stay below them no matter how the rest are shuffled.
+  const POSITIONAL = /^(all|none|any|both) of (the above|these)/i;
+  const choiceOrder = q => {
+    const order = shuffle([0, 1, 2, 3]);
+    return order.filter(i => !POSITIONAL.test(q.choices[i]))
+      .concat(order.filter(i => POSITIONAL.test(q.choices[i])));
+  };
+
   const enabledSections = () => {
     const sel = Store.load().settings.sections;
     return sel && sel.length ? sel : SECTION_IDS;
@@ -347,7 +356,7 @@
     if (session.pos >= session.queue.length) return renderSessionDone();
     saveSession();
     const q = BY_ID[session.queue[session.pos]];
-    const order = shuffle([0, 1, 2, 3]);
+    const order = choiceOrder(q);
     const total = session.queue.length;
     // Fraction of answers given over answers the session will take. Requeuing
     // a missed card grows both sides by one, so the bar never moves backward
@@ -534,7 +543,7 @@
     if (session.pos >= session.queue.length) return renderExamResult();
     saveSession();
     const q = BY_ID[session.queue[session.pos]];
-    const order = shuffle([0, 1, 2, 3]);
+    const order = choiceOrder(q);
     const total = session.queue.length;
     view.innerHTML = `
       <div class="quiz">

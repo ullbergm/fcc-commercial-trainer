@@ -20,9 +20,12 @@
 // (restoreSession) is exercised by the real boot sequence. The main test
 // script below asserts on the result, then navigates away and starts clean.
 localStorage.clear();
+// The resumed question is one with an "All of the above" choice, so the
+// resume assertions double as a check that positional choices render last.
+const AOTA = QUESTION_BANK.find(x => x.choices.some(c => /^all of the above$/i.test(c)));
 sessionStorage.setItem('nc-cdl-trainer-session', JSON.stringify({
   mode: 'study',
-  queue: QUESTION_BANK.slice(0, 3).map(x => x.id),
+  queue: [QUESTION_BANK[0].id, AOTA.id, QUESTION_BANK[2].id],
   pos: 1, done: 1, correct: 1,
 }));
 </script>
@@ -43,7 +46,9 @@ try {
   // --- boot resumed the session planted before app.js loaded ---
   t('reload resumes mid-study session', !!q('.qtext'));
   t('resume is at the saved position', q('.quiz .meta span').textContent === '2 / 3');
-  t('resume shows the saved queue question', q('.qtext').textContent === QUESTION_BANK[1].question);
+  t('resume shows the saved queue question', q('.qtext').textContent === AOTA.question);
+  t('all-of-the-above rendered as the last choice',
+    /all of the above$/i.test(qa('.choice').pop().textContent));
   t('resume highlights the study nav entry',
     q('nav button[data-view="study"]').classList.contains('active'));
   nav('home');
