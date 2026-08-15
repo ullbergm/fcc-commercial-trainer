@@ -379,8 +379,39 @@
     focusEl(view.querySelector('.qtext'));
   }
 
+  // Snapshot everything answer() is about to mutate, so a stray tap can be
+  // taken back from the feedback screen. Lives only on the in-memory session
+  // (saveSession does not persist it): once the user continues, grades, or
+  // reloads, the answer is final.
+  function snapshotForUndo(q) {
+    const s = Store.load();
+    const today = Store.todayKey();
+    session.undo = {
+      id: q.id,
+      card: s.cards[q.id] ? { ...s.cards[q.id] } : null,
+      daily: s.daily[today] ? { ...s.daily[today] } : null,
+      pos: session.pos, done: session.done, correct: session.correct,
+    };
+  }
+
+  function undoAnswer() {
+    const u = session.undo;
+    if (!u) return;
+    const s = Store.load();
+    if (u.card) s.cards[u.id] = u.card; else delete s.cards[u.id];
+    if (u.daily) s.daily[Store.todayKey()] = u.daily; else delete s.daily[Store.todayKey()];
+    session.pos = u.pos; session.done = u.done; session.correct = u.correct;
+    if (u.requeuedAt !== undefined) session.queue.splice(u.requeuedAt, 1);
+    session.undo = null;
+    Store.save();
+    renderQuestion();
+  }
+
+  const undoButton = '<button id="undo">Undo<kbd class="after">U</kbd></button>';
+
   function answer(q, picked, btn) {
     const correct = picked === q.answer;
+    snapshotForUndo(q);
     view.querySelectorAll('.choice').forEach(b => {
       b.disabled = true;
       const i = Number(b.dataset.i);
@@ -409,9 +440,10 @@
         // requeue a few cards later so it comes back this session
         const at = Math.min(session.pos + 4, session.queue.length);
         session.queue.splice(at, 0, q.id);
+        session.undo.requeuedAt = at;
       }
       fb.innerHTML = `<div class="explain wrongbg"><strong>Incorrect.</strong> ${esc(q.explanation)} ${cite}</div>
-        <button class="primary" id="next">Continue<kbd class="after">Enter</kbd></button>`;
+        <button class="primary" id="next">Continue<kbd class="after">Enter</kbd></button>${undoButton}`;
       $('#next').addEventListener('click', () => { session.pos++; renderQuestion(); });
       focusEl($('#next'));
     } else if (scheduling) {
@@ -429,7 +461,7 @@
           <button data-r="2"><kbd>1</kbd>Hard <small>${preview(2)}</small></button>
           <button data-r="3" class="primary" title="Shortcut: 2 or Enter"><kbd>2</kbd>Good <small>${preview(3)}</small></button>
           <button data-r="4"><kbd>3</kbd>Easy <small>${preview(4)}</small></button>
-        </div>`;
+        </div>${undoButton}`;
       fb.querySelectorAll('.grades button').forEach(b =>
         b.addEventListener('click', () => {
           Object.assign(c, scheds[Number(b.dataset.r)]);
@@ -437,14 +469,16 @@
           session.pos++;
           renderQuestion();
         }));
+      $('#undo').addEventListener('click', undoAnswer);
       focusEl(fb.querySelector('[data-r="3"]'));
       return; // save happens on grade click
     } else {
       fb.innerHTML = `<div class="explain okbg"><strong>Correct.</strong> ${esc(q.explanation)} ${cite}</div>
-        <button class="primary" id="next">Continue<kbd class="after">Enter</kbd></button>`;
+        <button class="primary" id="next">Continue<kbd class="after">Enter</kbd></button>${undoButton}`;
       $('#next').addEventListener('click', () => { session.pos++; renderQuestion(); });
       focusEl($('#next'));
     }
+    $('#undo').addEventListener('click', undoAnswer);
     Store.save();
   }
 
@@ -853,7 +887,8 @@
 
   // ---------- boot ----------
   // Keyboard shortcuts: 1-4 pick an answer, Enter continues after a wrong
-  // answer, and 1/2/3 (or Enter for Good) grade a correct one.
+  // answer, 1/2/3 (or Enter for Good) grade a correct one, and U takes back
+  // the answer just given.
   document.addEventListener('keydown', e => {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
     const tag = document.activeElement && document.activeElement.tagName;
@@ -861,7 +896,11 @@
     const next = $('#next');
     const grades = [...view.querySelectorAll('.grades button')];
     const choices = [...view.querySelectorAll('.choice:not(:disabled)')];
-    if (next && e.key === 'Enter') {
+    const undoBtn = $('#undo');
+    if (undoBtn && (e.key === 'u' || e.key === 'U')) {
+      e.preventDefault();
+      undoBtn.click();
+    } else if (next && e.key === 'Enter') {
       e.preventDefault(); // keep the native Enter click from double-firing
       next.click();
     } else if (grades.length) {

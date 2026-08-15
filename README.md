@@ -39,9 +39,11 @@ export and import for backups or for moving between devices.
   and exam history.
 
 On a keyboard, 1 through 4 pick an answer, Enter continues after a wrong answer,
-and 1/2/3 (or Enter for Good) grade a correct one. The buttons show badges for
-their shortcut keys on devices with a mouse and keyboard; on touch screens the
-badges stay hidden.
+and 1/2/3 (or Enter for Good) grade a correct one. A stray tap is not final: an
+Undo button (or the U key) on the feedback screen takes back the answer and asks
+the question again, as long as you have not yet continued or graded. The buttons
+show badges for their shortcut keys on devices with a mouse and keyboard; on
+touch screens the badges stay hidden.
 
 In Settings, under "Tests I'm studying for", check only the tests you are taking
 next, for example General Knowledge, Air Brakes, and Combination Vehicles for a

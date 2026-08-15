@@ -58,6 +58,22 @@ try {
   t('progress bar does not move backward on requeue',
     parseFloat(q('.progress div').style.width) > progressBefore);
 
+  // --- undo takes back an answer from the feedback screen ---
+  const qtext3 = q('.qtext').textContent;
+  const bank3 = QUESTION_BANK.find(x => x.question === qtext3);
+  const cardBefore = JSON.stringify(Store.load().cards[bank3.id] || null);
+  const dailyBefore = JSON.stringify(Store.load().daily);
+  qa('.choice').find(b => Number(b.dataset.i) !== bank3.answer).click();
+  t('undo button appears after answering', !!q('#undo'));
+  q('#undo').click();
+  t('undo re-asks the same question', q('.qtext').textContent === qtext3);
+  t('undo restores card state', JSON.stringify(Store.load().cards[bank3.id] || null) === cardBefore);
+  t('undo restores daily counters', JSON.stringify(Store.load().daily) === dailyBefore);
+  qa('.choice').find(b => Number(b.dataset.i) === bank3.answer).click();
+  t('undo also offered after a correct answer', !!q('#undo'));
+  q('.grades button[data-r="3"]').click();
+  t('undo gone after grading finalizes the answer', !q('#undo'));
+
   // state checks
   const st = Store.load();
   const c2 = st.cards[bank2.id];
