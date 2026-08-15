@@ -1970,12 +1970,12 @@ const QUESTION_BANK = [
   "id": "s4-004",
   "section": 4,
   "sectionName": "Transporting Passengers Safely",
-  "question": "Which type of tires are prohibited on the front wheels of a bus?",
+  "question": "During the vehicle inspection of a bus, what must you confirm about the front wheels?",
   "choices": [
-   "Radial tires",
-   "Recapped or regrooved tires",
-   "Tube-type tires",
-   "Snow tires"
+   "They have radial tires",
+   "They do not have recapped or regrooved tires",
+   "They use tube-type tires",
+   "They are fitted with snow tires"
   ],
   "answer": 1,
   "explanation": "During the vehicle inspection you must check that the front wheels do not have recapped or regrooved tires.",

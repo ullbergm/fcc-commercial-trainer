@@ -9,7 +9,9 @@ eval(src.replace('const QUESTION_BANK', 'globalThis.QUESTION_BANK'));
 
 const errors = [];
 const ids = new Set();
+const questionTexts = new Map();
 const positions = [0, 0, 0, 0];
+const norm = s => String(s).toLowerCase().replace(/\s+/g, ' ').trim();
 
 for (const q of QUESTION_BANK) {
   const label = q.id || '(missing id)';
@@ -18,7 +20,11 @@ for (const q of QUESTION_BANK) {
   }
   if (ids.has(q.id)) errors.push(`${label}: duplicate id`);
   ids.add(q.id);
+  const qn = norm(q.question);
+  if (questionTexts.has(qn)) errors.push(`${label}: duplicate question text (also ${questionTexts.get(qn)})`);
+  questionTexts.set(qn, q.id);
   if (!Array.isArray(q.choices) || q.choices.length !== 4) errors.push(`${label}: needs exactly 4 choices`);
+  else if (new Set(q.choices.map(norm)).size !== 4) errors.push(`${label}: duplicate choices`);
   if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) errors.push(`${label}: answer out of range`);
   if (!Number.isInteger(q.section) || q.section < 1 || q.section > 13) errors.push(`${label}: bad section`);
   if (typeof q.page !== 'string' || !/^\d+-\d+$/.test(q.page)) errors.push(`${label}: bad page "${q.page}"`);
