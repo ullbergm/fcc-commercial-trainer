@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.7.0...v1.8.0) (2026-08-15)
+
+
+### Features
+
+* project an exam readiness score for each test ([d8b789a](https://github.com/ullbergm/nc-cdl-test-training/commit/d8b789a00b75850e6a3e423d7937fe540ce45c64))
+
 ## [1.7.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.6.0...v1.7.0) (2026-08-15)
 
 
