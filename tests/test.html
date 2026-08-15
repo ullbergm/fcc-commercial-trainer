@@ -242,6 +242,21 @@ try {
   t('banner gone after clearing date', !q('.exambanner'));
   t('pace back to steady after clearing', Number(qa('.tile .big')[1].textContent) <= Store.load().settings.newPerDay);
 
+  // --- extra new cards on demand ---
+  nav('settings');
+  const npd = q('#newperday');
+  npd.value = 0;
+  npd.dispatchEvent(new Event('change'));
+  nav('home');
+  t('idle home offers extra new cards', !!q('.home .extra button'));
+  nav('study');
+  t('caught-up screen offers extra new cards', !!q('.done .extra button'));
+  q('.done .extra button[data-extra="5"]').click();
+  t('extra cards start a study session', !!q('.qtext'));
+  t('extra allowance recorded with today\'s counters',
+    (Store.load().daily[Store.todayKey()].extra || 0) >= 5);
+  t('exactly the requested extra cards queued', q('.quiz .meta span').textContent === '1 / 5');
+
   // --- a failing save warns instead of throwing ---
   const origSetItem = Storage.prototype.setItem;
   Storage.prototype.setItem = () => { throw new Error('quota'); };

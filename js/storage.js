@@ -11,7 +11,7 @@ const Store = (() => {
       examDate: '',     // 'YYYY-MM-DD'; drives retention ramp + final review
       theme: 'system',  // 'system' | 'light' | 'dark'
     },
-    daily: {},          // 'YYYY-MM-DD' -> {new: n, reviews: n, correct: n}
+    daily: {},          // 'YYYY-MM-DD' -> {new: n, reviews: n, correct: n, extra?: n}
     exams: [],          // {date, type, total, correct, passed}
     log: [],            // {id, rating, ts} per scheduled review; raw history for future FSRS parameter optimization
   });
@@ -107,7 +107,8 @@ const Store = (() => {
     const s = load();
     const k = todayKey();
     if (!s.daily[k]) s.daily[k] = { new: 0, reviews: 0, correct: 0 };
-    s.daily[k][field] += by;
+    // guard: optional fields (like 'extra') are absent on older records
+    s.daily[k][field] = (s.daily[k][field] || 0) + by;
   }
 
   // One entry per scheduled review (study/final modes; misses and exams do

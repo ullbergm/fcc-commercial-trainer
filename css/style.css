@@ -286,6 +286,30 @@ a.report:hover { color: var(--accent); }
 
 .done { text-align: center; padding: 48px 0; }
 
+/* "extra new cards today" row on home / caught-up / session-complete */
+.extra {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.done .extra { justify-content: center; }
+.extra button {
+  font: inherit;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.extra button:hover { border-color: var(--accent); }
+
 /* exam */
 .examlist { display: grid; gap: 8px; }
 .examopt {

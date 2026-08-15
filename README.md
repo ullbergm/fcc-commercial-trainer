@@ -28,6 +28,9 @@ export and import for backups or for moving between devices.
   cards, drawn round-robin across the selected sections and interleaved with the
   reviews. Wrong answers come back a few cards later in the same session. Correct
   answers are rated Hard, Good, or Easy, which tells the scheduler how the recall felt.
+  Feel like doing more once the queue is empty? The home and session-complete screens
+  offer 5, 10, or 25 extra new cards; the extra applies to today only and your
+  configured pace is untouched.
 - **Misses**: re-drills every question whose last answer was wrong, without touching
   the review schedule. Answering one correctly removes it from the pool.
 - **Exam**: mock knowledge tests in the real format. No feedback until the end, and

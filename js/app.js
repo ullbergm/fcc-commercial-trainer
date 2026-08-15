@@ -145,8 +145,36 @@
   }
 
   function newRemainingToday() {
-    const used = (Store.load().daily[Store.todayKey()] || {}).new || 0;
-    return Math.max(0, effectiveNewPerDay() - used);
+    const t = Store.load().daily[Store.todayKey()] || {};
+    return Math.max(0, effectiveNewPerDay() + (t.extra || 0) - (t.new || 0));
+  }
+
+  // "I want to do more today": raise today's new-card allowance by n on top
+  // of whatever is currently on offer. Stored with the daily counters, so the
+  // configured pace is untouched and tomorrow is a normal day.
+  function addExtraToday(n) {
+    const t = Store.load().daily[Store.todayKey()] || {};
+    const shortfall = Math.max(0,
+      (t.new || 0) - (effectiveNewPerDay() + (t.extra || 0)));
+    Store.bumpDaily('extra', n + shortfall);
+    Store.save();
+  }
+
+  function extraControls() {
+    const unseen = unseenCount();
+    if (!unseen) return '';
+    const amounts = [...new Set([5, 10, 25].map(n => Math.min(n, unseen)))];
+    return `<div class="extra"><span>Extra new cards today:</span>
+      ${amounts.map(n => `<button data-extra="${n}">+${n}</button>`).join('')}</div>`;
+  }
+
+  function wireExtra() {
+    view.querySelectorAll('button[data-extra]').forEach(b =>
+      b.addEventListener('click', () => {
+        addExtraToday(Number(b.dataset.extra));
+        if (currentView === 'study') startStudy();
+        else go('study');
+      }));
   }
 
   // ---------- views ----------
@@ -276,6 +304,7 @@
           ${exam && exam.daysLeft <= 5 && studiedCount
             ? '<button data-view="final" class="primary">Final review sweep</button>' : ''}
         </div>
+        ${due + fresh === 0 ? extraControls() : ''}
         <p class="disclaimer">Questions were extracted from the
           <a href="https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf"
              target="_blank" rel="noopener">NC Commercial Driver Manual</a>;
@@ -286,6 +315,7 @@
       </div>`;
     view.querySelectorAll('button[data-view]').forEach(b =>
       b.addEventListener('click', () => go(b.dataset.view)));
+    wireExtra();
   }
 
   // Spread new cards evenly through the review queue instead of appending
@@ -309,8 +339,10 @@
     if (!queue.length) {
       view.innerHTML = `<div class="done"><h2>All caught up</h2>
         <p>Nothing due right now. Come back tomorrow, or take a mock exam.</p>
-        <button class="primary" id="back">Home</button></div>`;
+        <button class="primary" id="back">Home</button>
+        ${extraControls()}</div>`;
       $('#back').addEventListener('click', () => go('home'));
+      wireExtra();
       return;
     }
     session = { mode: 'study', queue, pos: 0, done: 0, correct: 0 };
@@ -519,10 +551,12 @@
         <h2 tabindex="-1">Session complete</h2>
         <p>${session.correct} / ${session.done} correct (${pct}%)</p>
         <button class="primary" id="home">Home</button>
+        ${extraControls()}
       </div>`;
     $('#home').addEventListener('click', () => go('home'));
-    focusEl(view.querySelector('h2'));
     session = null;
+    wireExtra();
+    focusEl(view.querySelector('h2'));
   }
 
   // ---------- mock exam ----------
