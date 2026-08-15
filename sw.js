@@ -1,8 +1,15 @@
 /* Service worker: stale-while-revalidate for everything same-origin.
  * Loads are served from cache immediately (works offline), then the cache is
- * refreshed from the network in the background, so a new deploy is picked up
- * on the next load after it. */
-const CACHE = 'nc-cdl-trainer';
+ * refreshed from the network in the background.
+ *
+ * The cache name carries the release version (stamped in by the deploy
+ * workflow), so every release ships a byte-different sw.js: the browser
+ * installs it as a new worker, which precaches everything fresh and drops the
+ * old cache on activate. That gives each release a clean, consistent set of
+ * assets (no mixed old/new files) and lets the page detect the update and
+ * offer a reload. */
+const VERSION = '__VERSION__'; // replaced with the release tag at deploy
+const CACHE = 'nc-cdl-trainer-' + VERSION;
 const CORE = [
   './',
   'index.html',

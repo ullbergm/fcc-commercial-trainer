@@ -106,8 +106,10 @@ tests/test.html          end-to-end tests driven through the real UI
 
 On the hosted site the app is an installable PWA: a service worker caches
 everything on first load, so it keeps working offline, and "Add to home screen"
-installs it like an app. New releases are picked up on the next load after the
-deploy.
+installs it like an app. Each release stamps its version into the service
+worker, so open tabs notice the new deploy, show a "new version is ready"
+toast, and switch over cleanly on reload; otherwise the release is picked up
+on the next load.
 
 ## Releases and deployment
 

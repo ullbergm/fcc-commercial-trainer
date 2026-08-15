@@ -63,6 +63,11 @@ jobs:
           cp -r index.html css js data icons manifest.webmanifest sw.js CHANGELOG.md CNAME dist/
           # version.txt feeds the footer version in the app
           echo "${TAG#v}" > dist/version.txt
+          # stamp the release into the service worker cache name, so each
+          # release installs as a new worker and the app can offer a reload
+          sed -i "s/__VERSION__/${TAG#v}/" dist/sw.js
+          grep -q "nc-cdl-trainer-' + VERSION" dist/sw.js
+          ! grep -q "__VERSION__" dist/sw.js
 
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0

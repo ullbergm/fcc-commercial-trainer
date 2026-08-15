@@ -918,10 +918,38 @@
   const initial = location.hash.slice(1);
   if (!restoreSession()) render(ROUTES[initial] ? initial : 'home');
 
+  // The service worker serves everything cache-first, so after a deploy the
+  // user keeps studying on the old version until the next full load. When a
+  // new worker finishes installing behind a page that already has one, offer
+  // the reload instead of waiting to be noticed. The active session survives
+  // the reload via sessionStorage.
+  function showUpdateToast() {
+    if ($('#updatetoast')) return;
+    const div = document.createElement('div');
+    div.id = 'updatetoast';
+    div.className = 'toast';
+    div.setAttribute('role', 'status');
+    div.innerHTML = '<span>A new version is ready.</span>';
+    const btn = document.createElement('button');
+    btn.textContent = 'Reload';
+    btn.addEventListener('click', () => location.reload());
+    div.appendChild(btn);
+    document.body.appendChild(div);
+  }
+
   // Installable, offline-capable PWA. Skipped on file:// and http:// (the
   // service worker API needs a secure context), where the app still works.
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
+    navigator.serviceWorker.register('sw.js').then(reg => {
+      reg.addEventListener('updatefound', () => {
+        const w = reg.installing;
+        if (!w) return;
+        w.addEventListener('statechange', () => {
+          // "installed" with a controller present = an update, not first install
+          if (w.state === 'installed' && navigator.serviceWorker.controller) showUpdateToast();
+        });
+      });
+    }).catch(() => {});
   }
 
   // version.txt is written by the deploy workflow from the release tag; absent

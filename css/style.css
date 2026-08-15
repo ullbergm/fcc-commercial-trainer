@@ -315,6 +315,33 @@ td { font-variant-numeric: tabular-nums; }
 .fnum { font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .flab { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 
+/* new-version toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 18px;
+  z-index: 10;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--asphalt);
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+.toast button {
+  font: inherit;
+  font-weight: 600;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--yellow);
+  color: var(--yellow-text);
+  cursor: pointer;
+}
+
 body > footer {
   text-align: center;
   color: var(--muted);
