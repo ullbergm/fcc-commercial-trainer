@@ -56,9 +56,13 @@ jobs:
       # tests/test.html clears localStorage on load and would wipe the study
       # progress of anyone who opened it on the live origin.
       - name: Stage site files
+        env:
+          TAG: ${{ needs.release-please.outputs.tag_name }}
         run: |
           mkdir dist
           cp -r index.html css js data CHANGELOG.md CNAME dist/
+          # version.txt feeds the footer version in the app
+          echo "${TAG#v}" > dist/version.txt
 
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
