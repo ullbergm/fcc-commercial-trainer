@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.4.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.3.0...v1.4.0) (2026-08-15)
+
+
+### Features
+
+* 30-day review history chart on the stats page ([58defbf](https://github.com/ullbergm/nc-cdl-test-training/commit/58defbffd1c34921188bd6900362f3dfb0709d97))
+* add a content security policy ([18d2574](https://github.com/ullbergm/nc-cdl-test-training/commit/18d257406b7ee647dd19e3babb3521f6eab7f30c))
+* confirm before an import replaces existing progress ([2bfe460](https://github.com/ullbergm/nc-cdl-test-training/commit/2bfe460da19a6debc1758913e559d008eb8af8b9))
+* expand the thin manual sections with 34 new questions ([c7e5b7e](https://github.com/ullbergm/nc-cdl-test-training/commit/c7e5b7ed4e95d2345030b81f6e7988ddf29e37d1))
+* offer a reload when a new release is deployed ([8845254](https://github.com/ullbergm/nc-cdl-test-training/commit/88452542d7a6944fb283bc323db2e04b47ebbc4e))
+* undo the answer just given ([6f68076](https://github.com/ullbergm/nc-cdl-test-training/commit/6f68076675304c3cdc6c2f8e3ba228c2b70180b9))
+
+
+### Bug Fixes
+
+* apply the exact schedule previewed on the grade buttons ([a7df9d3](https://github.com/ullbergm/nc-cdl-test-training/commit/a7df9d32e81b2634d9bacec609d17bcb83f69fbf))
+* deduplicate the bus front-tire question across sections ([4efb1a5](https://github.com/ullbergm/nc-cdl-test-training/commit/4efb1a5c3fca46374c319e684ca0692a0398ade1))
+* give the maskable icon a full-bleed background ([d08103a](https://github.com/ullbergm/nc-cdl-test-training/commit/d08103ad4f0a4b430f82a731968f5b6250ad5792))
+* keep the session progress bar from moving backward ([bb01e95](https://github.com/ullbergm/nc-cdl-test-training/commit/bb01e95d80fe0f04ac076626632e2067eac8983f))
+* precache the changelog and version file for offline use ([11da9bf](https://github.com/ullbergm/nc-cdl-test-training/commit/11da9bf7ffc79094f3cdeefa8e674c41d4de2ba9))
+* rebalance answer lengths so the correct choice is not the longest ([cfce30b](https://github.com/ullbergm/nc-cdl-test-training/commit/cfce30b101c590c1de43ef72c4331542e9efc3fd))
+* sanitize imported backups instead of trusting them verbatim ([75d58bf](https://github.com/ullbergm/nc-cdl-test-training/commit/75d58bfd48fb56e13636434c725bdb1602c09334))
+
 ## [1.3.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.2.0...v1.3.0) (2026-08-15)
 
 
