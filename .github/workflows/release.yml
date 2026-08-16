@@ -62,7 +62,9 @@ jobs:
           TAG: ${{ needs.release-please.outputs.tag_name }}
         run: |
           mkdir dist
-          cp -r index.html css js data icons manifest.webmanifest sw.js CHANGELOG.md CNAME dist/
+          cp -r index.html css js data icons manifest.webmanifest sw.js CHANGELOG.md dist/
+          # A fork without a custom domain has no CNAME; stage it only when present.
+          if [ -f CNAME ]; then cp CNAME dist/; fi
           # version.txt feeds the footer version in the app
           echo "${TAG#v}" > dist/version.txt
           # stamp the release into the service worker cache name, so each
