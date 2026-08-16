@@ -1131,6 +1131,10 @@
   });
 
   applyTheme();
+  // The footer repo link lives in the config with the rest of the exam's
+  // identity; absent from the test page, which has no footer.
+  const repoLink = $('#repolink');
+  if (repoLink) repoLink.href = CFG.repo;
   // Nav entries are real links (middle-click and open-in-new-tab work); the
   // click handler only makes the render immediate instead of waiting for the
   // async hashchange. The default action then sets the same hash, a no-op.

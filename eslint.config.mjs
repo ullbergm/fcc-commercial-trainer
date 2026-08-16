@@ -60,7 +60,7 @@ export default [
     files: ['docs/screenshots/seed.js'],
     languageOptions: {
       sourceType: 'script',
-      globals: { ...globals.browser, QUESTION_BANK: 'readonly' },
+      globals: { ...globals.browser, QUESTION_BANK: 'readonly', EXAM_CONFIG: 'readonly' },
     },
   },
   {

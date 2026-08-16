@@ -176,11 +176,16 @@ new repository from this one and touch:
 - `index.html`: title, meta description, canonical URL, brand text, favicon,
   theme color
 - `manifest.webmanifest`, `icons/`, `CNAME`: PWA identity and hosting
-- `sw.js`: the cache-name prefix
+- `package.json`: name and description
 - `.github/ISSUE_TEMPLATE/question-correction.yml`: names the manual in its
   field description
 - `docs/screenshots/seed.js`: the demo scenario behind the README screenshots
-- `README.md` itself
+- `README.md`, `CONTRIBUTING.md`, `SECURITY.md`: name the repository, the live
+  site, and the release artifact
+
+The GitHub workflows and the service worker derive their names from the
+repository and need no edits. The release tarball is named after the repo, so
+`SECURITY.md`'s verification example follows it.
 
 Two engine assumptions to keep in mind: every question offers exactly four
 choices, and questions cite one page of one manual (multiple manuals are
