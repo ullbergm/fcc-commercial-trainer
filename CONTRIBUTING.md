@@ -85,11 +85,12 @@ like this:
 ```
 
 `npm test` enforces the rules: unique ids, unique question text, exactly four
-distinct choices, `answer` as a 0-based index into them, `section` between 1 and
-13, and `page` in the manual's `chapter-page` form. Every question must cite the
-manual page it came from, and the explanation should say what that page says
-rather than general trucking knowledge. If you add or remove questions, update
-the count in the README, which the validator also checks.
+distinct choices, `answer` as a 0-based index into them, and, because this
+exam's config sets `requireCitations`, a `page` on every question that resolves
+through `data/manual-pages.js` (or an explicit `pdfPage`). The explanation
+should say what the cited page says rather than general trucking knowledge. If
+you add or remove questions, update the count in the README, which the
+validator also checks.
 
 Corrections should point at the cited page. If the page does not support the
 current answer, say so in the pull request and the fix is easy to confirm.

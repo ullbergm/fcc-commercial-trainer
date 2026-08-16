@@ -97,11 +97,12 @@ for (const entry of core) {
 }
 
 // README states the bank size in prose; fail when it drifts from the bank.
-// Counts under 100 (per-exam question counts and the like) are ignored.
+// Counts well under the bank size (per-exam question counts and the like)
+// are ignored; the cap keeps that working for a fork with a small bank.
 const readme = fs.readFileSync(path.join(__dirname, '..', 'README.md'), 'utf8');
 const readmeCounts = [...readme.matchAll(/\b(\d+) (?:multiple-choice )?questions\b/g)]
   .map(m => Number(m[1]))
-  .filter(n => n >= 100);
+  .filter(n => n >= Math.min(100, QUESTION_BANK.length));
 if (!readmeCounts.length) {
   errors.push('README no longer states the bank size (expected "N questions" somewhere)');
 }
