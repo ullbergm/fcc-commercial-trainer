@@ -351,7 +351,7 @@
 
   function render(name) {
     const view = ROUTES.get(name);
-    if (!view) return render('home');
+    if (typeof view !== 'function') return render('home');
     currentView = name;
     // A correct answer awaiting its grade has already bumped the daily
     // counters and the card's right count, but not its schedule. Leaving
