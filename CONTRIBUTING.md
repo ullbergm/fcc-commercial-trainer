@@ -68,6 +68,10 @@ real study progress.
 
 ## Editing the question bank
 
+[docs/question-authoring.md](docs/question-authoring.md) is the full recipe
+the bank was written with, including the rules for choices, explanations and
+citations. The short version:
+
 `data/questions.js` is a plain JSON array behind a `const`. Each entry looks
 like this:
 

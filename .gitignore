@@ -1,5 +1,4 @@
-# The NC CDL manual is © AAMVA (reproduction licensed to state DMVs only).
-# Download it from NCDMV — see the link in README.md.
+# Do not include downloaded PDFs in the repository
 *.pdf
 
 # dev tooling

@@ -139,7 +139,7 @@ js/app.js                UI and session logic
 data/questions.js        question bank (422 questions, tagged by section and manual page)
 data/manual-pages.js     manual page labels to PDF page numbers, for the citation links
 data/exam-config.js      what exam this is: tests, pass mark, manual links, exam-specific prose
-tools/                   regenerates that map from a local copy of the manual PDF
+tools/                   regenerates that map from a local copy of the manual PDF, and the icons
 sw.js                    service worker (offline cache, only active on the hosted site)
 manifest.webmanifest     PWA manifest, lets the app be installed to a home screen
 icons/                   app icons (icon.svg is the source, PNGs rendered from it)
@@ -148,6 +148,7 @@ tests/fsrs-test.js       FSRS scheduler property tests (node)
 tests/readiness-test.js  readiness projection tests, incl. a Monte Carlo check (node)
 tests/test.html          end-to-end tests driven through the real UI
 tests/run-browser.sh     headless-Chrome runner for test.html (local + CI)
+docs/question-authoring.md  the recipe the question bank was written with
 docs/screenshots/        README images and the script that regenerates them
 ```
 
@@ -165,7 +166,9 @@ their assertions from the config and the bank, so a trainer for a different
 manual-based exam is a matter of replacing data and identity files. Create a
 new repository from this one and touch:
 
-- `data/questions.js`: the new question bank, tagged by section and manual page
+- `data/questions.js`: the new question bank, tagged by section and manual page;
+  [docs/question-authoring.md](docs/question-authoring.md) is the recipe, written
+  to be followed by a person or handed to a language model per section
 - `data/exam-config.js`: the tests and exams, pass mark, manual links, storage
   keys, and every piece of prose that names the exam
 - `data/manual-pages.js`: regenerate with `node tools/gen-manual-pages.js`; the
@@ -175,7 +178,8 @@ new repository from this one and touch:
   progress-bar texture; the rules below them are exam-neutral
 - `index.html`: title, meta description, canonical URL, brand text, favicon,
   theme color
-- `manifest.webmanifest`, `icons/`, `CNAME`: PWA identity and hosting
+- `manifest.webmanifest`, `icons/`, `CNAME`: PWA identity and hosting; redraw
+  `icons/icon.svg` and rerun `tools/gen-icons.sh` for the PNGs
 - `package.json`: name and description
 - `.github/ISSUE_TEMPLATE/question-correction.yml`: names the manual in its
   field description
