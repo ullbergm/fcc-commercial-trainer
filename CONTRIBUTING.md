@@ -96,10 +96,15 @@ current answer, say so in the pull request and the fix is easy to confirm.
 
 ## Commits and releases
 
-Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
-[release-please](https://github.com/googleapis/release-please) reads them to
-build the changelog and pick the next version, so the prefix decides what
-happens at release time:
+Pull requests are merged with a merge commit, and your commits land on `main`
+underneath it exactly as you wrote them. The commit messages are the
+deliverable, not the pull request title, because
+[release-please](https://github.com/googleapis/release-please) reads them
+directly to build the changelog and pick the next version.
+
+Write every commit message as a
+[Conventional Commit](https://www.conventionalcommits.org/). The prefix decides
+what happens at release time:
 
 - `feat:` for a new capability, which bumps the minor version
 - `fix:` for a bug fix, which bumps the patch version
@@ -108,10 +113,28 @@ happens at release time:
 
 Write the subject in the imperative and describe the effect, for example
 `fix: roll back an answer abandoned before grading`. Add `!` after the type for
-a breaking change.
+a breaking change. The body is where the reasoning goes: what the change does
+and why, in prose. Do not start a body line with `feat:`, `fix:`, or another
+type prefix. release-please reads bodies as well as subjects, so a stray prefix
+down there becomes a second changelog entry for the same change.
 
-Pull requests are squash merged, so the pull request title is the commit message
-that lands. Keep unrelated changes in separate pull requests.
+Every `feat:` or `fix:` commit on your branch becomes its own changelog line, so
+clean the branch up before asking for a merge. Squash the false starts and the
+review fixups into the commit they belong to with `git rebase -i`, and keep one
+commit per idea. Two unrelated changes can share a pull request as two commits,
+but they should not share one commit.
+
+Give the pull request itself a plain prose title, with no `feat:` or `fix:`
+prefix. GitHub copies that title into the merge commit, and release-please reads
+the whole message of every commit, body as well as subject, so a conventional
+prefix down there turns into a changelog entry of its own. A conventionally
+titled pull request therefore lists its one change twice. The description is
+only ever read during review.
+
+Squash and rebase merges are both turned off. Squash would flatten a branch into
+a single changelog line and replace these commit bodies with the pull request
+template, and GitHub cannot sign the commits a rebase merge creates, which the
+branch protection on `main` requires.
 
 Merging to `main` does not deploy. Releases happen when the release-please pull
 request is merged, which tags the version, publishes the release notes, and
