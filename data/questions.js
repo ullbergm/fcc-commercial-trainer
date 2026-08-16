@@ -1,5 +1,8 @@
 /* Question bank generated from the NC Commercial Driver Manual (2005 CDL Testing System, July 2014 rev).
-   Each question cites the manual page it was drawn from. */
+   Each question cites the manual page it was drawn from. That printed label is
+   turned into a PDF deep link through data/manual-pages.js; the few questions
+   whose label is printed on more than one PDF page carry a pdfPage of their
+   own to point at the right one. */
 const QUESTION_BANK = [
  {
   "id": "s1-001",
@@ -434,7 +437,8 @@ const QUESTION_BANK = [
   ],
   "answer": 0,
   "explanation": "A driver must be 21, but at age 18 a client may obtain a CDL; they are not eligible for the Hazardous Materials endorsement and are restricted to driving inside North Carolina only (Restriction K, Intrastate Only).",
-  "page": "1-9"
+  "page": "1-9",
+  "pdfPage": 20
  },
  {
   "id": "s1-030",
@@ -449,7 +453,8 @@ const QUESTION_BANK = [
   ],
   "answer": 2,
   "explanation": "A driver must have distant visual acuity of at least 20/40 (Snellen) in each eye with or without corrective lenses, a field of vision of at least 70 degrees in the horizontal meridian in each eye, and the ability to recognize standard red, green, and amber traffic signal colors.",
-  "page": "1-9"
+  "page": "1-9",
+  "pdfPage": 20
  },
  {
   "id": "s2-001",

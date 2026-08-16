@@ -14,7 +14,8 @@
 Practice questions with spaced repetition for the North Carolina commercial driver
 license knowledge tests. The bank has 422 multiple-choice questions covering all 13
 sections of the [NC Commercial Driver Manual](https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf),
-and every question cites the manual page it was drawn from.
+and every question cites the manual page it was drawn from, as a link that opens the
+PDF at that page.
 
 Live at [nc-cdl.ullberg.io](https://nc-cdl.ullberg.io), or run it yourself. There is
 no build step, no dependencies, and no server. Just open `index.html` in a browser.
@@ -136,6 +137,8 @@ js/readiness.js          projected score and pass odds per test
 js/storage.js            localStorage persistence, export/import
 js/app.js                UI and session logic
 data/questions.js        question bank (422 questions, tagged by section and manual page)
+data/manual-pages.js     manual page labels to PDF page numbers, for the citation links
+tools/                   regenerates that map from a local copy of the manual PDF
 sw.js                    service worker (offline cache, only active on the hosted site)
 manifest.webmanifest     PWA manifest, lets the app be installed to a home screen
 icons/                   app icons (icon.svg is the source, PNGs rendered from it)
@@ -183,8 +186,8 @@ keep real study progress.
 ## Accuracy
 
 The questions were authored from the manual's text, section by section. Accuracy is
-not guaranteed. Each question carries the manual page it came from (like `5-3`), so
-verify anything important against the source. The actual DMV exam questions are not
+not guaranteed. Each question carries the manual page it came from (like `5-3`) and
+links to that page in the PDF, so verify anything important against the source. The actual DMV exam questions are not
 publicly available, and no claim is made that these questions match or resemble
 them. This is a study aid for the manual's content, not a copy of the test. If a
 question reads wrong, check the cited page and edit `data/questions.js`, which is a
@@ -192,6 +195,13 @@ plain JSON array.
 
 The manual PDF is copyright AAMVA and is not included in this repository. Download
 it from NCDMV at the link above.
+
+The citation links point into that hosted PDF with a `#page=` fragment, which counts
+physical pages rather than the section-relative labels printed in the footers, so
+`data/manual-pages.js` maps between the two. The map is built from the July 2014
+revision; if NCDMV publishes a new one, download it and re-run
+`node tools/gen-manual-pages.js` (needs `pdftotext`) so the links keep landing on the
+right pages.
 
 ## License
 

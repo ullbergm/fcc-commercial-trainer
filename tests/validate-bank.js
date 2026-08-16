@@ -6,6 +6,12 @@ const path = require('path');
 
 const src = fs.readFileSync(path.join(__dirname, '..', 'data', 'questions.js'), 'utf8');
 eval(src.replace('const QUESTION_BANK', 'globalThis.QUESTION_BANK'));
+const pagesSrc = fs.readFileSync(path.join(__dirname, '..', 'data', 'manual-pages.js'), 'utf8');
+eval(pagesSrc.replace('const MANUAL_PAGES', 'globalThis.MANUAL_PAGES'));
+
+// The PDF ends a few pages past the last labelled one (back matter), so allow
+// a little slack above the highest mapped page.
+const MANUAL_LAST_PAGE = Math.max(...Object.values(MANUAL_PAGES)) + 5;
 
 const errors = [];
 const ids = new Set();
@@ -28,6 +34,12 @@ for (const q of QUESTION_BANK) {
   if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) errors.push(`${label}: answer out of range`);
   if (!Number.isInteger(q.section) || q.section < 1 || q.section > 13) errors.push(`${label}: bad section`);
   if (typeof q.page !== 'string' || !/^\d+-\d+$/.test(q.page)) errors.push(`${label}: bad page "${q.page}"`);
+  // Without a mapping the citation cannot deep link into the PDF, so it would
+  // silently fall back to plain text.
+  else if (!MANUAL_PAGES[q.page]) errors.push(`${label}: page "${q.page}" is not in data/manual-pages.js`);
+  if (q.pdfPage !== undefined && (!Number.isInteger(q.pdfPage) || q.pdfPage < 1 || q.pdfPage > MANUAL_LAST_PAGE)) {
+    errors.push(`${label}: bad pdfPage "${q.pdfPage}"`);
+  }
   if (Number.isInteger(q.answer) && q.answer >= 0 && q.answer <= 3) positions[q.answer]++;
 }
 

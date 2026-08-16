@@ -94,6 +94,13 @@ the count in the README, which the validator also checks.
 Corrections should point at the cited page. If the page does not support the
 current answer, say so in the pull request and the fix is easy to confirm.
 
+The citation in the app links into the manual PDF, which numbers its pages
+straight through while the manual prints section-relative labels in its footers.
+`data/manual-pages.js` maps between the two, and the validator fails on a `page`
+that is missing from it. A handful of labels are printed on more than one page,
+so a question drawn from the second one needs an explicit `"pdfPage": 20` next to
+its `"page"` to point the link at the right place.
+
 ## Commits and releases
 
 Pull requests are merged with a merge commit, and your commits land on `main`
