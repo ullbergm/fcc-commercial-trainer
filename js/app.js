@@ -1025,10 +1025,12 @@
   // what the #page= fragment takes, so the manual's pages map translates; a
   // question may carry its own pdfPage where one label is printed on several
   // pages. Falls back to plain text if the page is not in the map or the
-  // manual has no public URL, since a wrong #page= is worse than none.
+  // manual has no public URL, since a wrong #page= is worse than none. The
+  // whole citation is optional: a question without a page, or an exam whose
+  // config lists no manuals, simply renders none.
   const manualCite = q => {
     const m = CFG.manuals[q.manual || 'default'];
-    if (!m) return '';
+    if (!m || !q.page) return '';
     const label = `${esc(m.cite || 'Manual')} p. ${esc(q.page)}`;
     const pdfPage = q.pdfPage || (m.pages && m.pages[q.page]);
     return m.url && pdfPage
@@ -1041,7 +1043,7 @@
   // reader who spots a bad question can report it from where they see it.
   const reportLink = q => `<a class="report" target="_blank" rel="noopener"
     href="${CFG.repo}/issues/new?template=question-correction.yml&question-id=${
-      encodeURIComponent(q.id)}&manual-page=${encodeURIComponent(q.page)}">Report an error</a>`;
+      encodeURIComponent(q.id)}&manual-page=${encodeURIComponent(q.page || '')}">Report an error</a>`;
 
   // Escapes, then converts markdown [text](url) links to anchors.
   const mdLinks = s => esc(s).replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,

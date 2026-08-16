@@ -16,7 +16,10 @@ const EXAM_CONFIG = {
   // and uses `default` when it has none. `pages` maps the manual's printed
   // page labels to physical PDF pages for #page= deep links. Leave `url` out
   // for a manual that is sold rather than published and its citations render
-  // as plain text instead of links.
+  // as plain text instead of links. Citations are optional altogether: for an
+  // exam with nothing citable, leave this map empty, the `page` field off the
+  // questions, and requireCitations false, and no citation is rendered.
+  requireCitations: true, // the bank validator rejects a question without a page
   manuals: {
     default: {
       title: 'NC Commercial Driver Manual',

@@ -100,11 +100,12 @@ try {
     && Store.load().log.at(-1).id === bank2.id);
   t('feedback links to a prefilled error report',
     q('.explain a.report').href.includes('question-id=' + bank2.id));
-  // Only a manual with a public URL renders its citation as a deep link;
-  // one without renders plain text, and the link assertion is skipped.
+  // Only a cited question with a publicly linkable manual renders a deep
+  // link; anything else renders plain text or nothing, and the assertion is
+  // skipped.
   const manual2 = EXAM_CONFIG.manuals[bank2.manual || 'default'];
   t('feedback deep links into the manual PDF',
-    !manual2.url
+    !manual2 || !manual2.url || !bank2.page
     || q('.explain a.cite').href.endsWith('#page=' + (bank2.pdfPage || manual2.pages[bank2.page])));
   t('continue button appears', !!q('#next'));
   // Enter with focus on a nav link must not be hijacked into Continue

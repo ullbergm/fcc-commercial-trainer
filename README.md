@@ -187,10 +187,11 @@ The GitHub workflows and the service worker derive their names from the
 repository and need no edits. The release tarball is named after the repo, so
 `SECURITY.md`'s verification example follows it.
 
-Two engine assumptions to keep in mind: every question offers exactly four
-choices, and questions cite one page of one manual (multiple manuals are
-supported through the `manuals` map in the config; a manual without a public
-URL renders its citations as plain text instead of PDF links).
+One engine assumption to keep in mind: every question offers exactly four
+choices. Manual citations are optional at every level: a question may cite a
+page of any manual in the config's `manuals` map, a manual without a public
+URL renders its citations as plain text instead of PDF links, and an exam
+with nothing citable leaves the map empty and the `page` fields off.
 
 ## Releases and deployment
 

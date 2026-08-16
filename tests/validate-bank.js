@@ -8,10 +8,15 @@ const src = fs.readFileSync(path.join(__dirname, '..', 'data', 'questions.js'), 
 eval(src.replace('const QUESTION_BANK', 'globalThis.QUESTION_BANK'));
 const pagesSrc = fs.readFileSync(path.join(__dirname, '..', 'data', 'manual-pages.js'), 'utf8');
 eval(pagesSrc.replace('const MANUAL_PAGES', 'globalThis.MANUAL_PAGES'));
+const cfgSrc = fs.readFileSync(path.join(__dirname, '..', 'data', 'exam-config.js'), 'utf8');
+eval(cfgSrc.replace('const EXAM_CONFIG', 'globalThis.EXAM_CONFIG'));
 
-// The PDF ends a few pages past the last labelled one (back matter), so allow
-// a little slack above the highest mapped page.
-const MANUAL_LAST_PAGE = Math.max(...Object.values(MANUAL_PAGES)) + 5;
+// A PDF ends a few pages past the last labelled one (back matter), so allow
+// a little slack above the highest mapped page when bounding pdfPage.
+const lastPage = {};
+for (const [key, m] of Object.entries(EXAM_CONFIG.manuals)) {
+  if (m.pages) lastPage[key] = Math.max(...Object.values(m.pages)) + 5;
+}
 
 const errors = [];
 const ids = new Set();
@@ -21,7 +26,7 @@ const norm = s => String(s).toLowerCase().replace(/\s+/g, ' ').trim();
 
 for (const q of QUESTION_BANK) {
   const label = q.id || '(missing id)';
-  for (const field of ['id', 'section', 'sectionName', 'question', 'choices', 'answer', 'explanation', 'page']) {
+  for (const field of ['id', 'section', 'sectionName', 'question', 'choices', 'answer', 'explanation']) {
     if (q[field] === undefined || q[field] === '') errors.push(`${label}: missing ${field}`);
   }
   if (ids.has(q.id)) errors.push(`${label}: duplicate id`);
@@ -32,12 +37,25 @@ for (const q of QUESTION_BANK) {
   if (!Array.isArray(q.choices) || q.choices.length !== 4) errors.push(`${label}: needs exactly 4 choices`);
   else if (new Set(q.choices.map(norm)).size !== 4) errors.push(`${label}: duplicate choices`);
   if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) errors.push(`${label}: answer out of range`);
-  if (!Number.isInteger(q.section) || q.section < 1 || q.section > 13) errors.push(`${label}: bad section`);
-  if (typeof q.page !== 'string' || !/^\d+-\d+$/.test(q.page)) errors.push(`${label}: bad page "${q.page}"`);
-  // Without a mapping the citation cannot deep link into the PDF, so it would
-  // silently fall back to plain text.
-  else if (!MANUAL_PAGES[q.page]) errors.push(`${label}: page "${q.page}" is not in data/manual-pages.js`);
-  if (q.pdfPage !== undefined && (!Number.isInteger(q.pdfPage) || q.pdfPage < 1 || q.pdfPage > MANUAL_LAST_PAGE)) {
+  if (!Number.isInteger(q.section) || q.section < 1) errors.push(`${label}: bad section`);
+  // Citations are optional (an exam may have nothing citable) unless the
+  // config demands them, but a question that carries one must resolve
+  // cleanly through the config either way.
+  const mkey = q.manual || 'default';
+  const manual = EXAM_CONFIG.manuals[mkey];
+  if (q.manual !== undefined && !manual) errors.push(`${label}: unknown manual "${q.manual}"`);
+  if (EXAM_CONFIG.requireCitations && q.page === undefined) errors.push(`${label}: missing page`);
+  if (q.page !== undefined) {
+    if (typeof q.page !== 'string' || !q.page.trim()) errors.push(`${label}: bad page "${q.page}"`);
+    else if (q.page && !manual) errors.push(`${label}: cites a page but the config lists no "${mkey}" manual`);
+    // Without a mapping the citation cannot deep link into the PDF, so it
+    // would silently fall back to plain text.
+    else if (manual.url && manual.pages && !manual.pages[q.page] && q.pdfPage === undefined) {
+      errors.push(`${label}: page "${q.page}" is not in the "${mkey}" manual's pages map`);
+    }
+  }
+  if (q.pdfPage !== undefined && (!Number.isInteger(q.pdfPage) || q.pdfPage < 1
+      || (lastPage[mkey] && q.pdfPage > lastPage[mkey]))) {
     errors.push(`${label}: bad pdfPage "${q.pdfPage}"`);
   }
   if (Number.isInteger(q.answer) && q.answer >= 0 && q.answer <= 3) positions[q.answer]++;

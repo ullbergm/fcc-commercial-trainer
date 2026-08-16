@@ -82,7 +82,7 @@ export default [
       globals: {
         ...globals.node,
         QUESTION_BANK: 'readonly', MANUAL_PAGES: 'readonly',
-        FSRS: 'readonly', Readiness: 'readonly',
+        EXAM_CONFIG: 'readonly', FSRS: 'readonly', Readiness: 'readonly',
       },
     },
   },
