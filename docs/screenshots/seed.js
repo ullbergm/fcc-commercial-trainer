@@ -58,7 +58,7 @@
       state: 'review',
       wrong,
       right: int(1, 5),
-      lastWrong: wrong > 0 && rand() < 0.35,
+      streak: wrong > 0 && rand() < 0.35 ? 0 : int(1, 3),
     };
   });
 
