@@ -158,6 +158,35 @@ worker, so open tabs notice the new deploy, show a "new version is ready"
 toast, and switch over cleanly on reload; otherwise the release is picked up
 on the next load.
 
+## Building a trainer for another exam
+
+The engine under `js/` knows nothing about the CDL, and the test suites derive
+their assertions from the config and the bank, so a trainer for a different
+manual-based exam is a matter of replacing data and identity files. Create a
+new repository from this one and touch:
+
+- `data/questions.js`: the new question bank, tagged by section and manual page
+- `data/exam-config.js`: the tests and exams, pass mark, manual links, storage
+  keys, and every piece of prose that names the exam
+- `data/manual-pages.js`: regenerate with `node tools/gen-manual-pages.js`; the
+  footer-label parsing in that script is written for the CDL manual, so adjust
+  it to the new manual's page numbering
+- `css/style.css`: the token blocks at the top set all colors and the
+  progress-bar texture; the rules below them are exam-neutral
+- `index.html`: title, meta description, canonical URL, brand text, favicon,
+  theme color
+- `manifest.webmanifest`, `icons/`, `CNAME`: PWA identity and hosting
+- `sw.js`: the cache-name prefix
+- `.github/ISSUE_TEMPLATE/question-correction.yml`: names the manual in its
+  field description
+- `docs/screenshots/seed.js`: the demo scenario behind the README screenshots
+- `README.md` itself
+
+Two engine assumptions to keep in mind: every question offers exactly four
+choices, and questions cite one page of one manual (multiple manuals are
+supported through the `manuals` map in the config; a manual without a public
+URL renders its citations as plain text instead of PDF links).
+
 ## Releases and deployment
 
 Two workflows in `.github/workflows/`:
