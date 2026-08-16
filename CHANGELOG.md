@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.1](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.8.0...v1.8.1) (2026-08-16)
+
+
+### Bug Fixes
+
+* check the resolved route is callable ([72a98c4](https://github.com/ullbergm/nc-cdl-test-training/commit/72a98c4b4ac62ffd2718b5f6b18d62d762324da7))
+* resolve hash routes through a Map ([4b8f685](https://github.com/ullbergm/nc-cdl-test-training/commit/4b8f6853f5d6b35ec457e06854d6e6275ef6c358))
+
 ## [1.8.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.7.0...v1.8.0) (2026-08-15)
 
 
