@@ -22,7 +22,11 @@ trap 'rm -rf "$out"' EXIT
 "$chrome" --headless=new --disable-gpu --no-sandbox \
   --virtual-time-budget=8000 --dump-dom "file://$PWD/tests/test.html" \
   2>/dev/null > "$out/dom.html"
-grep -o 'RESULTS::[^<]*' "$out/dom.html" | head -1 | tr '|' '\n' | sed '/^$/d' > "$out/results.txt"
+# The marker also occurs in a comment inside the page source, so keep only the
+# first hit (the testlog div, which the DOM dump prints first). head must not
+# close the pipe on grep: under pipefail the SIGPIPE would fail the run.
+grep -o 'RESULTS::[^<]*' "$out/dom.html" > "$out/hits.txt"
+head -1 "$out/hits.txt" | tr '|' '\n' | sed '/^$/d' > "$out/results.txt"
 cat "$out/results.txt"
 
 if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then

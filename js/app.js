@@ -459,13 +459,18 @@
   }
 
   // ---------- misses drill (no scheduling changes) ----------
+  // A card is in the pool once it has been answered wrong and leaves it after
+  // Store.MISS_CLEARED correct answers in a row, in any mode. Deliberately not
+  // a lifetime wrong-vs-right tally: a card missed early enough would sit in
+  // the pool for as many drills as it had misses, and one more slip pushed the
+  // exit two drills further away, so the last few misses looked stuck.
   function missIds() {
     const secs = new Set(enabledSections());
     return QUESTION_BANK
       .filter(q => secs.has(q.section))
       .filter(q => {
         const c = Store.load().cards[q.id];
-        return c && (c.lastWrong || (c.lapses > 0 && c.wrong > c.right));
+        return c && c.wrong > 0 && c.streak < Store.MISS_CLEARED;
       })
       .map(q => q.id);
   }
@@ -587,7 +592,7 @@
 
     const c = Store.card(q.id);
     const wasNew = !c.lastReview;
-    if (correct) { c.right++; c.lastWrong = false; } else { c.wrong++; c.lastWrong = true; }
+    if (correct) { c.right++; c.streak++; } else { c.wrong++; c.streak = 0; }
 
     const scheduling = session.mode === 'study' || session.mode === 'final';
     if (scheduling) {
@@ -740,8 +745,7 @@
     session.answers.forEach(a => {
       const c = Store.card(a.id);
       const ok = BY_ID[a.id].answer === a.picked;
-      if (ok) { c.right++; if (!c.lastWrong) return; c.lastWrong = false; }
-      else { c.wrong++; c.lastWrong = true; }
+      if (ok) { c.right++; c.streak++; } else { c.wrong++; c.streak = 0; }
     });
     const s = Store.load();
     s.exams.push({ date: Date.now(), type: session.exam.name,

@@ -2,9 +2,13 @@
 const Store = (() => {
   const KEY = 'nc-cdl-trainer-v1';
   const LOG_MAX = 10000; // ~20k reviews would outlast any exam prep; cap the log well before quota
+  // Correct answers in a row that retire a card from the practice pool. Two,
+  // so one lucky guess does not clear it, and the pool always empties: every
+  // drill moves a card toward the exit instead of chasing a lifetime tally.
+  const MISS_CLEARED = 2;
 
   const defaults = () => ({
-    cards: {},          // id -> {stability, difficulty, due, lastReview, reps, lapses, state, wrong, right, lastWrong}
+    cards: {},          // id -> {stability, difficulty, due, lastReview, reps, lapses, state, wrong, right, streak}
     settings: {
       newPerDay: 10,   // relaxed steady pace; auto-boosted when an exam date demands it
       sections: [],     // empty = all sections enabled
@@ -38,7 +42,11 @@ const Store = (() => {
           reps: num(c.reps), lapses: num(c.lapses),
           state: STATES.includes(c.state) ? c.state : 'new',
           wrong: num(c.wrong), right: num(c.right),
-          lastWrong: c.lastWrong === true,
+          // streak = correct answers in a row since the last miss. Backups
+          // written before it existed carry lastWrong instead: a card that was
+          // last answered right counts as cleared, so an old file does not
+          // refill the practice pool on import.
+          streak: num(c.streak, c.lastWrong === true ? 0 : MISS_CLEARED),
         };
       });
     }
@@ -93,7 +101,7 @@ const Store = (() => {
     const s = load();
     if (!s.cards[id]) {
       s.cards[id] = { stability: 0, difficulty: 0, due: 0, lastReview: 0,
-                      reps: 0, lapses: 0, state: 'new', wrong: 0, right: 0, lastWrong: false };
+                      reps: 0, lapses: 0, state: 'new', wrong: 0, right: 0, streak: 0 };
     }
     return s.cards[id];
   }
@@ -145,6 +153,6 @@ const Store = (() => {
   }
 
   const api = { load, save, card, todayKey, bumpDaily, logReview, exportJSON, importJSON, reset,
-                onSaveError: null };
+                MISS_CLEARED, onSaveError: null };
   return api;
 })();

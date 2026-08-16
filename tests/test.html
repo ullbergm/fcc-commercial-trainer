@@ -135,7 +135,7 @@ try {
   // state checks
   const st = Store.load();
   const c2 = st.cards[bank2.id];
-  t('wrong card marked lastWrong', c2 && c2.lastWrong === true);
+  t('wrong card streak reset', c2 && c2.streak === 0 && c2.wrong > 0);
   t('wrong card state learning/relearning', c2 && (c2.state === 'learning' || c2.state === 'relearning'));
   const c1 = Object.values(st.cards).find(c => c.state === 'review');
   t('graded card scheduled for future', c1 && c1.due > Date.now());
@@ -312,7 +312,7 @@ try {
   }));
   const bad = Store.load();
   t('corrupt card fields coerced to numbers', bad.cards.x1.stability === 0 && bad.cards.x1.due === 0);
-  t('corrupt card state falls back to new', bad.cards.x1.state === 'new' && bad.cards.x1.lastWrong === false);
+  t('corrupt card state falls back to new', bad.cards.x1.state === 'new');
   t('non-object card entries dropped', !bad.cards.x2);
   t('corrupt settings sanitized', bad.settings.newPerDay === 0
     && Array.isArray(bad.settings.sections) && bad.settings.examDate === ''
@@ -323,6 +323,42 @@ try {
   try { Store.importJSON('{"nope":1}'); } catch { rejected = true; }
   t('backup without cards/settings rejected', rejected);
   Store.importJSON(dump); // restore real state for the remaining tests
+
+  // --- the practice pool always empties ---
+  // Card A is a fresh miss; card B is the shape that used to get stuck: more
+  // lifetime wrongs than rights, but answered right last.
+  const missA = QUESTION_BANK[0], missB = QUESTION_BANK[1];
+  const legacyCard = extra => ({ stability: 1, difficulty: 5, lastReview: 1, due: 1,
+                                 reps: 4, lapses: 2, state: 'review', ...extra });
+  Store.importJSON(JSON.stringify({
+    cards: {
+      [missA.id]: legacyCard({ wrong: 3, right: 1, lastWrong: true }),
+      [missB.id]: legacyCard({ wrong: 5, right: 4, lastWrong: false }),
+    },
+    settings: { sections: [] },
+  }));
+  const toFix = () => {
+    nav('home');
+    return Number(qa('.home .tile').find(el => /to fix/.test(el.textContent))
+      .querySelector('.big').textContent);
+  };
+  t('pre-streak backup keeps a last-wrong card in the pool',
+    Store.load().cards[missA.id].streak === 0);
+  t('pre-streak backup clears a card answered right last',
+    Store.load().cards[missB.id].streak >= Store.MISS_CLEARED);
+  t('home counts only the outstanding miss', toFix() === 1);
+  const drill = () => {
+    nav('misses');
+    const bank = QUESTION_BANK.find(x => x.question === q('.qtext').textContent);
+    qa('.choice').find(b => Number(b.dataset.i) === bank.answer).click();
+    q('#next').click();
+  };
+  drill();
+  t('one correct answer is not enough to retire a miss', toFix() === 1);
+  drill();
+  t('two correct answers in a row empty the pool', toFix() === 0);
+  t('practice button disabled with an empty pool',
+    q('.home button[data-view="misses"]').disabled);
 
   // --- about page ---
   nav('about');
