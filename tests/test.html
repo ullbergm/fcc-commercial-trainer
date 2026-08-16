@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>NC CDL Trainer tests</title></head>
+<head><meta charset="UTF-8"><title>Trainer tests</title></head>
 <body>
 <nav>
   <a href="#home" data-view="home" class="active">Home</a>
@@ -16,6 +16,7 @@
 <div id="testlog"></div>
 <script src="../data/questions.js"></script>
 <script src="../data/manual-pages.js"></script>
+<script src="../data/exam-config.js"></script>
 <script>
 // Runs before app.js boots: plant a mid-study session so the resume path
 // (restoreSession) is exercised by the real boot sequence. The main test
@@ -23,8 +24,11 @@
 localStorage.clear();
 // The resumed question is one with an "All of the above" choice, so the
 // resume assertions double as a check that positional choices render last.
-const AOTA = QUESTION_BANK.find(x => x.choices.some(c => /^all of the above$/i.test(c)));
-sessionStorage.setItem('nc-cdl-trainer-session', JSON.stringify({
+// A bank without one falls back to an ordinary question and that check is
+// skipped below.
+const AOTA = QUESTION_BANK.find(x => x.choices.some(c => /^all of the above$/i.test(c)))
+  || QUESTION_BANK[1];
+sessionStorage.setItem(EXAM_CONFIG.sessionKey, JSON.stringify({
   mode: 'study',
   queue: [QUESTION_BANK[0].id, AOTA.id, QUESTION_BANK[2].id],
   pos: 1, done: 1, correct: 1,
@@ -45,17 +49,25 @@ try {
   const q = s => document.querySelector(s);
   const qa = s => [...document.querySelectorAll(s)];
 
+  // Everything the suite expects is derived from the exam config and the
+  // bank, so swapping data/ for another exam does not break the assertions.
+  const TESTS = EXAM_CONFIG.tests;
+  const PASS_PCT = Math.round(Readiness.PASS_MARK * 100);
+  const GUESS_PCT = Math.round(Readiness.GUESS * 100);
+  const SECTION_COUNT = new Set(QUESTION_BANK.map(x => x.section)).size;
+
   // --- boot resumed the session planted before app.js loaded ---
   t('reload resumes mid-study session', !!q('.qtext'));
   t('resume is at the saved position', q('.quiz .meta span').textContent === '2 / 3');
   t('resume shows the saved queue question', q('.qtext').textContent === AOTA.question);
   t('all-of-the-above rendered as the last choice',
-    /all of the above$/i.test(qa('.choice').pop().textContent));
+    !AOTA.choices.some(c => /^all of the above$/i.test(c))
+    || /all of the above$/i.test(qa('.choice').pop().textContent));
   t('resume highlights the study nav entry',
     q('nav a[data-view="study"]').classList.contains('active'));
   nav('home');
   t('navigating away abandons the session',
-    sessionStorage.getItem('nc-cdl-trainer-session') === null);
+    sessionStorage.getItem(EXAM_CONFIG.sessionKey) === null);
 
   localStorage.clear();
   sessionStorage.clear(); // start the rest of the suite from a clean slate
@@ -64,10 +76,8 @@ try {
   nav('study');
   t('study renders question', !!q('.qtext'));
   const qid1 = q('.qtext').textContent;
-  const correctBtn = qa('.choice').find(b => {
-    const bank = QUESTION_BANK.find(x => x.question === qid1);
-    return Number(b.dataset.i) === bank.answer;
-  });
+  const bank1 = QUESTION_BANK.find(x => x.question === qid1);
+  const correctBtn = qa('.choice').find(b => Number(b.dataset.i) === bank1.answer);
   correctBtn.click();
   t('correct answer highlighted', correctBtn.classList.contains('correct'));
   t('grade buttons appear', qa('.grades button').length === 3);
@@ -75,7 +85,7 @@ try {
   t('advances to next question', q('.qtext').textContent !== qid1);
   t('graded review appended to the log', Store.load().log.length === 1
     && Store.load().log[0].rating === 3 && typeof Store.load().log[0].ts === 'number');
-  const mirrored = JSON.parse(sessionStorage.getItem('nc-cdl-trainer-session'));
+  const mirrored = JSON.parse(sessionStorage.getItem(EXAM_CONFIG.sessionKey));
   t('active session mirrored to sessionStorage',
     mirrored && mirrored.mode === 'study' && mirrored.pos === 1 && Array.isArray(mirrored.queue));
 
@@ -90,8 +100,13 @@ try {
     && Store.load().log.at(-1).id === bank2.id);
   t('feedback links to a prefilled error report',
     q('.explain a.report').href.includes('question-id=' + bank2.id));
+  // Only a cited question with a publicly linkable manual renders a deep
+  // link; anything else renders plain text or nothing, and the assertion is
+  // skipped.
+  const manual2 = EXAM_CONFIG.manuals[bank2.manual || 'default'];
   t('feedback deep links into the manual PDF',
-    q('.explain a.cite').href.endsWith('#page=' + (bank2.pdfPage || MANUAL_PAGES[bank2.page])));
+    !manual2 || !manual2.url || !bank2.page
+    || q('.explain a.cite').href.endsWith('#page=' + (bank2.pdfPage || manual2.pages[bank2.page])));
   t('continue button appears', !!q('#next'));
   // Enter with focus on a nav link must not be hijacked into Continue
   // (a synthetic keydown never triggers the native activation, so if the
@@ -146,7 +161,7 @@ try {
 
   // --- exam flow ---
   nav('exam');
-  t('exam setup lists exams', qa('.examopt').length >= 5);
+  t('exam setup lists every configured exam', qa('.examopt').length === EXAM_CONFIG.exams.length);
   qa('.examopt').find(b => !b.disabled).click();
   t('exam question renders', !!q('.qtext'));
   let guard = 200;
@@ -156,34 +171,37 @@ try {
 
   // --- exam readiness projection ---
   nav('home');
-  t('home projects a score per test', qa('.home .readiness .rrow').length === 9);
+  t('home projects a score per test', qa('.home .readiness .rrow').length === TESTS.length);
   t('projection reads as a percentage', /^\d{1,3}%$/.test(q('.home .rpct').textContent.trim()));
-  // Sections 1-3 (General Knowledge) got the first new cards of the run, so
-  // its projection must have moved off the 25% floor an untouched test sits at.
-  const gkRow = qa('.home .rrow')
-    .find(r => r.querySelector('.rname').textContent === 'General Knowledge');
+  // The first studied question of the run belongs to some test; that test's
+  // projection must have moved off the guess-rate floor an untouched one sits at.
+  const liftedTest = TESTS.find(tst => tst.sections.includes(bank1.section));
+  const liftedRow = qa('.home .rrow')
+    .find(r => r.querySelector('.rname').textContent === liftedTest.name);
   t('studied cards lift the projection off the guess rate',
-    parseInt(gkRow.querySelector('.rpct').textContent, 10) > 25);
+    parseInt(liftedRow.querySelector('.rpct').textContent, 10) > GUESS_PCT);
   t('home sorts the weakest test first', (() => {
     const p = qa('.home .rpct').map(e => parseInt(e.textContent, 10));
     return p.every((v, i) => i === 0 || p[i - 1] <= v);
   })());
-  t('pass mark is drawn on the bar', q('.home .rmark').style.left === '80%');
+  t('pass mark is drawn on the bar', q('.home .rmark').style.left === PASS_PCT + '%');
 
   // --- stats & browse & settings render ---
   nav('stats');
   t('stats renders table', !!q('.stats table'));
   t('stats details the readiness projection', !!q('.stats .readiness table'));
   t('readiness table has a row per test',
-    qa('.stats .readiness tr').length === 10); // header + 9 tests
+    qa('.stats .readiness tr').length === TESTS.length + 1); // + the header row
   t('readiness reports odds of passing',
     /(<1%|>99%|\d{1,3}%)/.test(qa('.stats .readiness td')[2].textContent));
   t('multi-section tests name their weakest section',
-    /weakest: §\d/.test(q('.stats .readiness').textContent));
+    !TESTS.some(tst => tst.sections.length > 1)
+    || /weakest: §\d/.test(q('.stats .readiness').textContent));
   t('stats renders 30-day history', qa('.history .hbar').length === 30);
   t('history shows today as active', !qa('.history .hbar')[29].classList.contains('zero'));
   nav('browse');
-  t('browse renders sections', qa('.browse details').length >= 13);
+  t('browse renders a group per section',
+    qa('.browse details:not(.qrow)').length === SECTION_COUNT);
   nav('settings');
   t('settings renders', !!q('#newperday'));
 
@@ -197,9 +215,12 @@ try {
   q('#theme').dispatchEvent(new Event('change'));
   t('system theme clears the override', !('theme' in document.documentElement.dataset));
 
-  // --- test/endorsement picker: first-test scenario (GK + Air + Combination) ---
-  t('test picker renders 9 tests', qa('input[data-test]').length === 9);
-  const keep = new Set(['gk', 'air', 'comb']);
+  // --- test/endorsement picker: keep only the tests in the first group ---
+  // (for the CDL config that is the first-attempt scenario: GK + Air + Combination)
+  t('test picker renders every configured test', qa('input[data-test]').length === TESTS.length);
+  const keepTests = TESTS.filter(tst => tst.group === EXAM_CONFIG.testGroups[0][0]);
+  const keep = new Set(keepTests.map(tst => tst.key));
+  const keepSecs = [...new Set(keepTests.flatMap(tst => tst.sections))].sort((a, b) => a - b);
   qa('input[data-test]').forEach(cb => {
     if (cb.checked !== keep.has(cb.dataset.test)) {
       cb.checked = keep.has(cb.dataset.test);
@@ -207,15 +228,19 @@ try {
     }
   });
   const secs = Store.load().settings.sections;
-  t('picker maps to sections 1-3,5-6', JSON.stringify(secs) === JSON.stringify([1, 2, 3, 5, 6]));
+  t('picker maps to the kept tests\' sections', JSON.stringify(secs)
+    === JSON.stringify(keepSecs.length === SECTION_COUNT ? [] : keepSecs));
   nav('settings');
-  t('picker state survives re-render', qa('input[data-test]:checked').length === 3);
+  t('picker state survives re-render', qa('input[data-test]:checked').length === keepTests.length);
   nav('study');
   const sq = QUESTION_BANK.find(x => x.question === q('.qtext').textContent);
-  t('study draws from selected sections only', [1, 2, 3, 5, 6].includes(sq.section));
+  t('study draws from selected sections only', keepSecs.includes(sq.section));
   nav('exam');
-  t('exam list filtered to selected tests', qa('.examopt').length === 3);
-  t('hidden exams hint shows', /hidden/.test(q('.examsetup').textContent));
+  const availExams = EXAM_CONFIG.exams
+    .filter(e => e.sections.every(sec => keepSecs.includes(sec))).length;
+  t('exam list filtered to selected tests', qa('.examopt').length === availExams);
+  t('hidden exams hint shows', availExams === EXAM_CONFIG.exams.length
+    || /hidden/.test(q('.examsetup').textContent));
   nav('settings');
   qa('input[data-test]').forEach(cb => {
     if (!cb.checked) { cb.checked = true; cb.dispatchEvent(new Event('change')); }
@@ -254,15 +279,16 @@ try {
   t('banner mentions boost', /boosted/.test(q('.exambanner').textContent));
 
   nav('settings');
-  t('picker grouped into 3 headings', qa('.seclist h4').length === 3);
+  t('picker grouped into a heading per group',
+    qa('.seclist h4').length === EXAM_CONFIG.testGroups.length);
   t('pace info mentions boost', /boost/i.test(q('#paceinfo').textContent));
   const paceBefore = q('#paceinfo').textContent;
-  const hz = qa('input[data-test]').find(cb => cb.dataset.test === 'hazmat');
-  hz.checked = false;
-  hz.dispatchEvent(new Event('change'));
+  const tog = qa('input[data-test]').find(cb => cb.dataset.test === TESTS.at(-1).key);
+  tog.checked = false;
+  tog.dispatchEvent(new Event('change'));
   t('pace info updates on section toggle', q('#paceinfo').textContent !== paceBefore);
-  hz.checked = true;
-  hz.dispatchEvent(new Event('change'));
+  tog.checked = true;
+  tog.dispatchEvent(new Event('change'));
   q('#cleardate').click();
   t('no-exam button clears date', Store.load().settings.examDate === '');
   nav('home');

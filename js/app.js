@@ -1,5 +1,8 @@
-/* NC CDL Trainer: UI and session logic. */
+/* Trainer engine: UI and session logic. Everything that names the exam being
+   studied (tests, pass mark, manual links, prose) comes from
+   data/exam-config.js; nothing below knows which exam it is. */
 (() => {
+  const CFG = EXAM_CONFIG;
   const DAY = 24 * 60 * 60 * 1000;
   const $ = sel => document.querySelector(sel);
   const esc = s => String(s).replace(/[&<>"']/g, c =>
@@ -11,35 +14,9 @@
   const BY_ID = {};
   QUESTION_BANK.forEach(q => { BY_ID[q.id] = q; });
 
-  const EXAMS = [
-    { key: 'gk', name: 'General Knowledge', sections: [1, 2, 3], count: 50 },
-    { key: 'pass', name: 'Passenger Vehicles', sections: [4], count: 20 },
-    { key: 'air', name: 'Air Brakes', sections: [5], count: 25 },
-    { key: 'comb', name: 'Combination Vehicles', sections: [6], count: 20 },
-    { key: 'dbl', name: 'Doubles & Triples', sections: [7], count: 20 },
-    { key: 'tank', name: 'Tank Vehicles', sections: [8], count: 20 },
-    { key: 'hazmat', name: 'Hazardous Materials', sections: [9], count: 30 },
-    { key: 'bus', name: 'School Bus', sections: [10], count: 20 },
-    { key: 'skills', name: 'Skills Test Review', sections: [11, 12, 13], count: 25 },
-  ];
-
-  // Knowledge tests / endorsements -> the manual sections that cover them
-  const TESTS = [
-    { key: 'gk', group: 'core', name: 'General Knowledge', note: 'required for every CDL', sections: [1, 2, 3] },
-    { key: 'air', group: 'core', name: 'Air Brakes', note: 'skip it and your license gets an air-brake restriction', sections: [5] },
-    { key: 'comb', group: 'core', name: 'Combination Vehicles', note: 'required for Class A', sections: [6] },
-    { key: 'pass', group: 'endorse', name: 'Passenger (P)', note: '', sections: [4] },
-    { key: 'dbl', group: 'endorse', name: 'Doubles/Triples (T)', note: '', sections: [7] },
-    { key: 'tank', group: 'endorse', name: 'Tank Vehicles (N)', note: '', sections: [8] },
-    { key: 'hazmat', group: 'endorse', name: 'Hazardous Materials (H)', note: '', sections: [9] },
-    { key: 'bus', group: 'endorse', name: 'School Bus (S)', note: '', sections: [10] },
-    { key: 'skills', group: 'skills', name: 'Skills / road test prep', note: 'pre-trip inspection, control skills, road test', sections: [11, 12, 13] },
-  ];
-  const TEST_GROUPS = [
-    ['core', 'Knowledge tests'],
-    ['endorse', 'Endorsements'],
-    ['skills', 'Skills / road test'],
-  ];
+  const EXAMS = CFG.exams;
+  const TESTS = CFG.tests;
+  const TEST_GROUPS = CFG.testGroups;
 
   const shuffle = arr => {
     const a = arr.slice();
@@ -126,6 +103,7 @@
   }
 
   const pct = x => Math.round(x * 100);
+  const PASS_PCT = pct(Readiness.PASS_MARK);
 
   // Pass chance is a model output, not a measurement; hard 0% and 100% would
   // read as promises, so the ends are shown as bounds.
@@ -133,7 +111,7 @@
 
   function readinessBar(proj) {
     return `<div class="rbar" role="img"
-      aria-label="projected ${pct(proj.expected)} percent, 80 percent to pass">
+      aria-label="projected ${pct(proj.expected)} percent, ${PASS_PCT} percent to pass">
       <div class="rfill${proj.expected >= Readiness.PASS_MARK ? '' : ' low'}"
            style="width:${pct(proj.expected)}%"></div>
       <div class="rmark" style="left:${pct(Readiness.PASS_MARK)}%"></div>
@@ -153,7 +131,7 @@
         <span class="rpct ${r.proj.expected >= Readiness.PASS_MARK ? 'pass' : 'fail'}"
           >${pct(r.proj.expected)}%</span>
       </div>`).join('')}
-      <p class="hint">80% passes. See <a href="#stats">Stats</a> for the odds and the weak spots.</p>
+      <p class="hint">${PASS_PCT}% passes. See <a href="#stats">Stats</a> for the odds and the weak spots.</p>
     </div>`;
   }
 
@@ -170,7 +148,7 @@
       <p class="hint">Projected ${when} from how well each answer is predicted to
         hold, plus a one-in-four guess on the rest. A question you have never
         seen counts as a guess, and a rusty one is predicted to have slipped
-        below the ${pct(Readiness.RUSTY)}% recall the scheduler aims for. 80% passes.</p>
+        below the ${pct(Readiness.RUSTY)}% recall the scheduler aims for. ${PASS_PCT}% passes.</p>
       <table>
         <tr><th>Test</th><th>Projected</th><th>Chance to pass</th><th>Weak spots</th></tr>
         ${rows.map(r => {
@@ -288,7 +266,7 @@
   // The active session is mirrored to sessionStorage so a reload mid-session
   // (or mid-exam) resumes where it left off. Navigating away still abandons
   // the session, and closing the tab drops it with the tab.
-  const SESSION_KEY = 'nc-cdl-trainer-session';
+  const SESSION_KEY = CFG.sessionKey;
 
   function saveSession() {
     try {
@@ -397,7 +375,7 @@
       : '';
     view.innerHTML = `
       <div class="home">
-        <p class="sub">${QUESTION_BANK.length} questions from the NC Commercial Driver Manual</p>
+        <p class="sub">${CFG.homeSubtitle}</p>
         ${banner}
         <div class="tiles">
           <div class="tile"><div class="big">${due}</div><div>reviews due</div></div>
@@ -414,13 +392,7 @@
         </div>
         ${due + fresh === 0 ? extraControls() : ''}
         ${readinessBlock()}
-        <p class="disclaimer">Questions were extracted from the
-          <a href="https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf"
-             target="_blank" rel="noopener">NC Commercial Driver Manual</a>;
-          accuracy is not guaranteed. Each question links to its manual page, so verify
-          anything important against the source. The actual DMV test questions are not public, and no
-          claim is made that these match or resemble them. All progress is stored locally in
-          your browser and never sent to a server.</p>
+        <p class="disclaimer">${CFG.disclaimerHTML}</p>
       </div>`;
     view.querySelectorAll('button[data-view]').forEach(b =>
       b.addEventListener('click', () => go(b.dataset.view)));
@@ -683,7 +655,7 @@
     view.innerHTML = `
       <div class="examsetup">
         <h2>Mock exam</h2>
-        <p class="sub">Real-test format: no feedback until the end, 80% to pass.</p>
+        <p class="sub">Real-test format: no feedback until the end, ${PASS_PCT}% to pass.</p>
         <div class="examlist">
           ${available.map(e => {
             const avail = e.sections.reduce((n, s) => n + (counts[s] || 0), 0);
@@ -739,7 +711,7 @@
     const wrong = session.answers.filter(a => BY_ID[a.id].answer !== a.picked);
     const correct = session.answers.length - wrong.length;
     const pct = Math.round((correct / session.answers.length) * 100);
-    const passed = pct >= 80;
+    const passed = pct >= PASS_PCT;
 
     // feed exam misses into the practice pool (stats only, no rescheduling)
     session.answers.forEach(a => {
@@ -755,7 +727,7 @@
     view.innerHTML = `
       <div class="examresult">
         <h2 class="${passed ? 'pass' : 'fail'}" tabindex="-1">${passed ? 'PASS' : 'FAIL'} ${pct}%</h2>
-        <p>${correct} / ${session.answers.length} correct on ${esc(session.exam.name)} (80% needed)</p>
+        <p>${correct} / ${session.answers.length} correct on ${esc(session.exam.name)} (${PASS_PCT}% needed)</p>
         ${wrong.length ? `<h3>Missed questions</h3>
           <div class="misslist">${wrong.map(a => {
             const q = BY_ID[a.id];
@@ -1018,7 +990,7 @@
       const blob = new Blob([Store.exportJSON()], { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = `cdl-progress-${Store.todayKey()}.json`;
+      a.download = `${CFG.exportPrefix}-${Store.todayKey()}.json`;
       a.click();
       URL.revokeObjectURL(a.href);
     });
@@ -1047,20 +1019,22 @@
   }
 
   // ---------- about ----------
-  const REPO = 'https://github.com/ullbergm/nc-cdl-test-training';
-  const MANUAL_URL = 'https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf';
-
-  // Citation that opens the manual at the page the question came from. The
-  // printed label ("2-15") is not the PDF's physical page number, which is what
-  // the #page= fragment takes, so MANUAL_PAGES maps between them; a question
-  // may carry its own pdfPage where one label is printed on several pages.
-  // Falls back to plain text if the page is not in the map, since a wrong
-  // #page= is worse than none.
+  // Citation that opens the manual at the page the question came from. A
+  // question picks its manual by its `manual` field, or `default` without one.
+  // The printed label ("2-15") is not the PDF's physical page number, which is
+  // what the #page= fragment takes, so the manual's pages map translates; a
+  // question may carry its own pdfPage where one label is printed on several
+  // pages. Falls back to plain text if the page is not in the map or the
+  // manual has no public URL, since a wrong #page= is worse than none. The
+  // whole citation is optional: a question without a page, or an exam whose
+  // config lists no manuals, simply renders none.
   const manualCite = q => {
-    const label = `Manual p. ${esc(q.page)}`;
-    const pdfPage = q.pdfPage || MANUAL_PAGES[q.page];
-    return pdfPage
-      ? `<a class="cite" href="${MANUAL_URL}#page=${pdfPage}" target="_blank" rel="noopener"
+    const m = CFG.manuals[q.manual || 'default'];
+    if (!m || !q.page) return '';
+    const label = `${esc(m.cite || 'Manual')} p. ${esc(q.page)}`;
+    const pdfPage = q.pdfPage || (m.pages && m.pages[q.page]);
+    return m.url && pdfPage
+      ? `<a class="cite" href="${m.url}#page=${pdfPage}" target="_blank" rel="noopener"
            title="Open the manual at page ${esc(q.page)}">${label}</a>`
       : `<span class="cite">${label}</span>`;
   };
@@ -1068,8 +1042,8 @@
   // Question-correction issue with the id and cited page prefilled, so a
   // reader who spots a bad question can report it from where they see it.
   const reportLink = q => `<a class="report" target="_blank" rel="noopener"
-    href="${REPO}/issues/new?template=question-correction.yml&question-id=${
-      encodeURIComponent(q.id)}&manual-page=${encodeURIComponent(q.page)}">Report an error</a>`;
+    href="${CFG.repo}/issues/new?template=question-correction.yml&question-id=${
+      encodeURIComponent(q.id)}&manual-page=${encodeURIComponent(q.page || '')}">Report an error</a>`;
 
   // Escapes, then converts markdown [text](url) links to anchors.
   const mdLinks = s => esc(s).replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,
@@ -1098,28 +1072,21 @@
     view.innerHTML = `
       <div class="about">
         <h2>About</h2>
-        <p>NC CDL Trainer is a free, open-source study tool for the North Carolina CDL
-          knowledge tests. Its ${QUESTION_BANK.length} questions were written from the
-          <a href="${MANUAL_URL}" target="_blank" rel="noopener">NC Commercial Driver
-          Manual</a>, and every question cites the manual page it came from. The
-          citation is a link, so it opens the PDF at that page and you can check
-          anything important against the source.</p>
+        ${CFG.aboutIntroHTML}
         <p>Study sessions are scheduled with FSRS, a spaced-repetition algorithm that
           predicts when you are about to forget a card and shows it to you just before
           that. Set your exam date in Settings and the scheduler works backward from it,
           raising the retention target and the daily pace as the test gets close.</p>
         <p>All progress is stored locally in your browser and never sent to a server.
           Use Export in Settings to move it to another device.</p>
-        <p>Questions were extracted from the manual by a language model and reviewed for
-          accuracy, but mistakes are possible and accuracy is not guaranteed. The actual
-          DMV test questions are not public, and no claim is made that these match or
-          resemble them.</p>
+        ${CFG.aboutCaveatHTML}
         <h3>Links</h3>
         <ul>
-          <li><a href="${REPO}" target="_blank" rel="noopener">Source code on GitHub</a> (MIT license)</li>
-          <li><a href="${REPO}/issues/new?template=question-correction.yml" target="_blank" rel="noopener">Report a question error</a></li>
-          <li><a href="${REPO}/issues/new?template=bug-report.yml" target="_blank" rel="noopener">Report a bug</a></li>
-          <li><a href="${MANUAL_URL}" target="_blank" rel="noopener">NC Commercial Driver Manual (PDF)</a></li>
+          <li><a href="${CFG.repo}" target="_blank" rel="noopener">Source code on GitHub</a> (MIT license)</li>
+          <li><a href="${CFG.repo}/issues/new?template=question-correction.yml" target="_blank" rel="noopener">Report a question error</a></li>
+          <li><a href="${CFG.repo}/issues/new?template=bug-report.yml" target="_blank" rel="noopener">Report a bug</a></li>
+          ${Object.values(CFG.manuals).filter(m => m.url).map(m =>
+            `<li><a href="${m.url}" target="_blank" rel="noopener">${esc(m.title)} (PDF)</a></li>`).join('')}
         </ul>
         <h3>Changelog${appVersion ? ` <small>current: v${appVersion}</small>` : ''}</h3>
         <div id="changelog" class="changelog"><p class="hint">Loading changelog...</p></div>
@@ -1129,7 +1096,7 @@
       .then(md => { $('#changelog').innerHTML = changelogHTML(md); })
       .catch(() => {
         $('#changelog').innerHTML = `<p class="hint">The changelog could not be loaded.
-          See the <a href="${REPO}/releases" target="_blank" rel="noopener">releases
+          See the <a href="${CFG.repo}/releases" target="_blank" rel="noopener">releases
           page on GitHub</a>.</p>`;
       });
   }
@@ -1166,6 +1133,10 @@
   });
 
   applyTheme();
+  // The footer repo link lives in the config with the rest of the exam's
+  // identity; absent from the test page, which has no footer.
+  const repoLink = $('#repolink');
+  if (repoLink) repoLink.href = CFG.repo;
   // Nav entries are real links (middle-click and open-in-new-tab work); the
   // click handler only makes the render immediate instead of waiting for the
   // async hashchange. The default action then sets the same hash, a no-op.

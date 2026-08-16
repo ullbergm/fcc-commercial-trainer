@@ -10,7 +10,8 @@
  * same images.
  */
 (() => {
-  const KEY = 'nc-cdl-trainer-v1'; // must match js/storage.js
+  // generate.sh injects this after the data scripts, so the config is loaded.
+  const KEY = EXAM_CONFIG.storageKey;
   const DAY = 24 * 60 * 60 * 1000;
   const now = Date.now();
 

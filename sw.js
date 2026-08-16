@@ -9,7 +9,8 @@
  * assets (no mixed old/new files) and lets the page detect the update and
  * offer a reload. */
 const VERSION = '__VERSION__'; // replaced with the release tag at deploy
-const CACHE = 'nc-cdl-trainer-' + VERSION;
+// Cache storage is scoped to the origin, so the name needs no site prefix.
+const CACHE = 'trainer-' + VERSION;
 const CORE = [
   './',
   'index.html',
@@ -20,6 +21,7 @@ const CORE = [
   'js/app.js',
   'data/questions.js',
   'data/manual-pages.js',
+  'data/exam-config.js',
   'manifest.webmanifest',
   'icons/icon-192.png',
   'icons/icon-512.png',

@@ -138,7 +138,8 @@ js/storage.js            localStorage persistence, export/import
 js/app.js                UI and session logic
 data/questions.js        question bank (422 questions, tagged by section and manual page)
 data/manual-pages.js     manual page labels to PDF page numbers, for the citation links
-tools/                   regenerates that map from a local copy of the manual PDF
+data/exam-config.js      what exam this is: tests, pass mark, manual links, exam-specific prose
+tools/                   regenerates that map from a local copy of the manual PDF, and the icons
 sw.js                    service worker (offline cache, only active on the hosted site)
 manifest.webmanifest     PWA manifest, lets the app be installed to a home screen
 icons/                   app icons (icon.svg is the source, PNGs rendered from it)
@@ -147,6 +148,7 @@ tests/fsrs-test.js       FSRS scheduler property tests (node)
 tests/readiness-test.js  readiness projection tests, incl. a Monte Carlo check (node)
 tests/test.html          end-to-end tests driven through the real UI
 tests/run-browser.sh     headless-Chrome runner for test.html (local + CI)
+docs/question-authoring.md  the recipe the question bank was written with
 docs/screenshots/        README images and the script that regenerates them
 ```
 
@@ -156,6 +158,44 @@ installs it like an app. Each release stamps its version into the service
 worker, so open tabs notice the new deploy, show a "new version is ready"
 toast, and switch over cleanly on reload; otherwise the release is picked up
 on the next load.
+
+## Building a trainer for another exam
+
+The engine under `js/` knows nothing about the CDL, and the test suites derive
+their assertions from the config and the bank, so a trainer for a different
+manual-based exam is a matter of replacing data and identity files. Create a
+new repository from this one and touch:
+
+- `data/questions.js`: the new question bank, tagged by section and manual page;
+  [docs/question-authoring.md](docs/question-authoring.md) is the recipe, written
+  to be followed by a person or handed to a language model per section
+- `data/exam-config.js`: the tests and exams, pass mark, manual links, storage
+  keys, and every piece of prose that names the exam
+- `data/manual-pages.js`: regenerate with `node tools/gen-manual-pages.js`; the
+  footer-label parsing in that script is written for the CDL manual, so adjust
+  it to the new manual's page numbering
+- `css/style.css`: the token blocks at the top set all colors and the
+  progress-bar texture; the rules below them are exam-neutral
+- `index.html`: title, meta description, canonical URL, brand text, favicon,
+  theme color
+- `manifest.webmanifest`, `icons/`, `CNAME`: PWA identity and hosting; redraw
+  `icons/icon.svg` and rerun `tools/gen-icons.sh` for the PNGs
+- `package.json`: name and description
+- `.github/ISSUE_TEMPLATE/question-correction.yml`: names the manual in its
+  field description
+- `docs/screenshots/seed.js`: the demo scenario behind the README screenshots
+- `README.md`, `CONTRIBUTING.md`, `SECURITY.md`: name the repository, the live
+  site, and the release artifact
+
+The GitHub workflows and the service worker derive their names from the
+repository and need no edits. The release tarball is named after the repo, so
+`SECURITY.md`'s verification example follows it.
+
+One engine assumption to keep in mind: every question offers exactly four
+choices. Manual citations are optional at every level: a question may cite a
+page of any manual in the config's `manuals` map, a manual without a public
+URL renders its citations as plain text instead of PDF links, and an exam
+with nothing citable leaves the map empty and the `page` fields off.
 
 ## Releases and deployment
 

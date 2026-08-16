@@ -62,13 +62,15 @@ jobs:
           TAG: ${{ needs.release-please.outputs.tag_name }}
         run: |
           mkdir dist
-          cp -r index.html css js data icons manifest.webmanifest sw.js CHANGELOG.md CNAME dist/
+          cp -r index.html css js data icons manifest.webmanifest sw.js CHANGELOG.md dist/
+          # A fork without a custom domain has no CNAME; stage it only when present.
+          if [ -f CNAME ]; then cp CNAME dist/; fi
           # version.txt feeds the footer version in the app
           echo "${TAG#v}" > dist/version.txt
           # stamp the release into the service worker cache name, so each
           # release installs as a new worker and the app can offer a reload
           sed -i "s/__VERSION__/${TAG#v}/" dist/sw.js
-          grep -q "nc-cdl-trainer-' + VERSION" dist/sw.js
+          grep -q "trainer-' + VERSION" dist/sw.js
           ! grep -q "__VERSION__" dist/sw.js
 
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
@@ -85,7 +87,7 @@ jobs:
           TAG: ${{ needs.release-please.outputs.tag_name }}
         run: |
           mkdir release-assets
-          tar -czf "release-assets/nc-cdl-trainer-${TAG#v}.tar.gz" -C dist .
+          tar -czf "release-assets/${GITHUB_REPOSITORY#*/}-${TAG#v}.tar.gz" -C dist .
 
       - name: Attest build provenance
         id: attest
@@ -99,7 +101,7 @@ jobs:
         env:
           TAG: ${{ needs.release-please.outputs.tag_name }}
           BUNDLE: ${{ steps.attest.outputs.bundle-path }}
-        run: cp "$BUNDLE" "release-assets/nc-cdl-trainer-${TAG#v}.tar.gz.intoto.jsonl"
+        run: cp "$BUNDLE" "release-assets/${GITHUB_REPOSITORY#*/}-${TAG#v}.tar.gz.intoto.jsonl"
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
