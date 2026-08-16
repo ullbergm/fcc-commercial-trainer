@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.1](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.9.0...v1.9.1) (2026-08-16)
+
+
+### Bug Fixes
+
+* retire a practice miss after two correct answers ([9543e20](https://github.com/ullbergm/nc-cdl-test-training/commit/9543e20bb0a21492c196c07574ae73c8bc615aa3))
+
 ## [1.9.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.8.1...v1.9.0) (2026-08-16)
 
 
