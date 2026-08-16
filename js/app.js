@@ -417,8 +417,8 @@
         <p class="disclaimer">Questions were extracted from the
           <a href="https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf"
              target="_blank" rel="noopener">NC Commercial Driver Manual</a>;
-          accuracy is not guaranteed. Each question cites its manual page, so verify anything
-          important against the source. The actual DMV test questions are not public, and no
+          accuracy is not guaranteed. Each question links to its manual page, so verify
+          anything important against the source. The actual DMV test questions are not public, and no
           claim is made that these match or resemble them. All progress is stored locally in
           your browser and never sent to a server.</p>
       </div>`;
@@ -599,7 +599,7 @@
     if (correct) session.correct++;
 
     const fb = $('#feedback');
-    const cite = `<span class="cite">Manual p. ${esc(q.page)}</span> ${reportLink(q)}`;
+    const cite = `${manualCite(q)} ${reportLink(q)}`;
     if (!correct) {
       if (scheduling) {
         Object.assign(c, FSRS.schedule(c, 1, Date.now(), schedOpts())); // Again
@@ -759,7 +759,7 @@
               <div class="q">${esc(q.question)}</div>
               <div class="you">Your answer: ${esc(q.choices[a.picked])}</div>
               <div class="ans">Correct: ${esc(q.choices[q.answer])}</div>
-              <div class="ex">${esc(q.explanation)} <span class="cite">Manual p. ${esc(q.page)}</span> ${reportLink(q)}</div>
+              <div class="ex">${esc(q.explanation)} ${manualCite(q)} ${reportLink(q)}</div>
             </div>`;
           }).join('')}</div>` : '<p>Perfect score.</p>'}
         <button class="primary" id="home">Home</button>
@@ -786,7 +786,7 @@
               const acc = c && (c.right + c.wrong) ? ` · ${c.right}/${c.right + c.wrong} right` : '';
               return `<details class="qrow"><summary>${esc(q.question)} <small>[${status}${acc}]</small></summary>
                 <div class="qdetail"><strong>${esc(q.choices[q.answer])}</strong><br>
-                ${esc(q.explanation)} <span class="cite">Manual p. ${esc(q.page)}</span> ${reportLink(q)}</div>
+                ${esc(q.explanation)} ${manualCite(q)} ${reportLink(q)}</div>
               </details>`;
             }).join('')}
           </details>`;
@@ -1046,6 +1046,21 @@
   const REPO = 'https://github.com/ullbergm/nc-cdl-test-training';
   const MANUAL_URL = 'https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf';
 
+  // Citation that opens the manual at the page the question came from. The
+  // printed label ("2-15") is not the PDF's physical page number, which is what
+  // the #page= fragment takes, so MANUAL_PAGES maps between them; a question
+  // may carry its own pdfPage where one label is printed on several pages.
+  // Falls back to plain text if the page is not in the map, since a wrong
+  // #page= is worse than none.
+  const manualCite = q => {
+    const label = `Manual p. ${esc(q.page)}`;
+    const pdfPage = q.pdfPage || MANUAL_PAGES[q.page];
+    return pdfPage
+      ? `<a class="cite" href="${MANUAL_URL}#page=${pdfPage}" target="_blank" rel="noopener"
+           title="Open the manual at page ${esc(q.page)}">${label}</a>`
+      : `<span class="cite">${label}</span>`;
+  };
+
   // Question-correction issue with the id and cited page prefilled, so a
   // reader who spots a bad question can report it from where they see it.
   const reportLink = q => `<a class="report" target="_blank" rel="noopener"
@@ -1082,8 +1097,9 @@
         <p>NC CDL Trainer is a free, open-source study tool for the North Carolina CDL
           knowledge tests. Its ${QUESTION_BANK.length} questions were written from the
           <a href="${MANUAL_URL}" target="_blank" rel="noopener">NC Commercial Driver
-          Manual</a>, and every question cites the manual page it came from so you can
-          verify anything important against the source.</p>
+          Manual</a>, and every question cites the manual page it came from. The
+          citation is a link, so it opens the PDF at that page and you can check
+          anything important against the source.</p>
         <p>Study sessions are scheduled with FSRS, a spaced-repetition algorithm that
           predicts when you are about to forget a card and shows it to you just before
           that. Set your exam date in Settings and the scheduler works backward from it,

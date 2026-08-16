@@ -19,6 +19,7 @@ const CORE = [
   'js/storage.js',
   'js/app.js',
   'data/questions.js',
+  'data/manual-pages.js',
   'manifest.webmanifest',
   'icons/icon-192.png',
   'icons/icon-512.png',

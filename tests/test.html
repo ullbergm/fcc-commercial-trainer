@@ -15,6 +15,7 @@
 <main id="view"></main>
 <div id="testlog"></div>
 <script src="../data/questions.js"></script>
+<script src="../data/manual-pages.js"></script>
 <script>
 // Runs before app.js boots: plant a mid-study session so the resume path
 // (restoreSession) is exercised by the real boot sequence. The main test
@@ -89,6 +90,8 @@ try {
     && Store.load().log.at(-1).id === bank2.id);
   t('feedback links to a prefilled error report',
     q('.explain a.report').href.includes('question-id=' + bank2.id));
+  t('feedback deep links into the manual PDF',
+    q('.explain a.cite').href.endsWith('#page=' + (bank2.pdfPage || MANUAL_PAGES[bank2.page])));
   t('continue button appears', !!q('#next'));
   // Enter with focus on a nav link must not be hijacked into Continue
   // (a synthetic keydown never triggers the native activation, so if the
