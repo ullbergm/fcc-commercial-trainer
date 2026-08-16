@@ -21,14 +21,16 @@ jobs:
   pr-title:
     name: Title is plain prose
     runs-on: ubuntu-latest
-    # Both bots title their pull requests conventionally on purpose, and neither
-    # can duplicate a changelog entry: release-please does not fold its own pull
-    # request into the next release, and dependabot only ever writes `chore`.
-    if: >-
-      github.event.pull_request.head.ref != 'release-please--branches--main' &&
-      !startsWith(github.event.pull_request.head.ref, 'dependabot/')
     steps:
+      # Both bots title their pull requests conventionally on purpose, and
+      # neither can duplicate a changelog entry: release-please does not fold
+      # its own pull request into the next release, and dependabot only ever
+      # writes `chore`. The exemption sits on the step rather than the job so
+      # that the job still reports a result, which a required check needs.
       - name: Reject a conventional commit prefix
+        if: >-
+          github.event.pull_request.head.ref != 'release-please--branches--main' &&
+          !startsWith(github.event.pull_request.head.ref, 'dependabot/')
         env:
           # Read through the environment, never interpolated into the script
           # below: the title is attacker controlled on a fork pull request.
@@ -57,12 +59,9 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-    # Dependabot writes a valid subject but pastes release notes into the body,
-    # which trips the line length rule. Its commits are generated, so there is
-    # nothing for a human to fix and nothing to gain from checking them.
-    if: ${{ !startsWith(github.event.pull_request.head.ref, 'dependabot/') }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: ${{ !startsWith(github.event.pull_request.head.ref, 'dependabot/') }}
         with:
           # commitlint walks the range between the base and the head, so the
           # default shallow clone is not enough.
@@ -70,6 +69,12 @@ jobs:
 
       # No config file in the repository, so this falls back to
       # config-conventional, which is the spec CONTRIBUTING.md points at.
+      #
+      # Dependabot writes a valid subject but pastes release notes into the
+      # body, which trips the line length rule. Its commits are generated, so
+      # there is nothing for a human to fix. As above, the exemption sits on the
+      # steps so the job still reports a result for a required check.
       - uses: wagoid/commitlint-github-action@b948419dd99f3fd78a6548d48f94e3df7f6bf3ed # v6.2.1
+        if: ${{ !startsWith(github.event.pull_request.head.ref, 'dependabot/') }}
         with:
           helpURL: https://github.com/ullbergm/nc-cdl-test-training/blob/main/CONTRIBUTING.md#commits-and-releases
