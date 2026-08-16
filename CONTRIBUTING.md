@@ -131,6 +131,11 @@ prefix down there turns into a changelog entry of its own. A conventionally
 titled pull request therefore lists its one change twice. The description is
 only ever read during review.
 
+Both halves of that are checked. The `Commit conventions` workflow runs
+[commitlint](https://commitlint.js.org/) over every commit on the branch and
+rejects a pull request title that starts with a type prefix, so a slip fails the
+pull request instead of quietly landing in the changelog.
+
 Squash and rebase merges are both turned off. Squash would flatten a branch into
 a single changelog line and replace these commit bodies with the pull request
 template, and GitHub cannot sign the commits a rebase merge creates, which the
