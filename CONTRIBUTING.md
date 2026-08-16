@@ -128,8 +128,9 @@ Give the pull request itself a plain prose title, with no `feat:` or `fix:`
 prefix. GitHub copies that title into the merge commit, and release-please reads
 the whole message of every commit, body as well as subject, so a conventional
 prefix down there turns into a changelog entry of its own. A conventionally
-titled pull request therefore lists its one change twice. The description is
-only ever read during review.
+titled pull request therefore lists its one change twice. The `PR title` check
+enforces this, so a slip fails the pull request rather than the changelog. The
+description is only ever read during review.
 
 Squash and rebase merges are both turned off. Squash would flatten a branch into
 a single changelog line and replace these commit bodies with the pull request
