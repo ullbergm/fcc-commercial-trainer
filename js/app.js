@@ -339,14 +339,19 @@
     if (el) el.focus();
   }
 
-  const ROUTES = {
-    home: renderHome, study: startStudy, misses: startMisses, exam: renderExamSetup,
-    final: startFinal, browse: renderBrowse, stats: renderStats,
-    settings: renderSettings, about: renderAbout,
-  };
+  // A Map rather than an object literal: view names come from the URL hash, and
+  // a plain object would resolve names like "toString" off Object.prototype and
+  // then call something that is not a view.
+  const ROUTES = new Map([
+    ['home', renderHome], ['study', startStudy], ['misses', startMisses],
+    ['exam', renderExamSetup], ['final', startFinal], ['browse', renderBrowse],
+    ['stats', renderStats], ['settings', renderSettings], ['about', renderAbout],
+  ]);
   let currentView = null;
 
   function render(name) {
+    const view = ROUTES.get(name);
+    if (!view) return render('home');
     currentView = name;
     // A correct answer awaiting its grade has already bumped the daily
     // counters and the card's right count, but not its schedule. Leaving
@@ -356,7 +361,7 @@
     session = null;
     clearSession();
     setNav(name);
-    ROUTES[name]();
+    view();
   }
 
   // Renders immediately (hashchange fires async) and records the view in the
@@ -368,7 +373,7 @@
 
   window.addEventListener('hashchange', () => {
     const name = location.hash.slice(1) || 'home';
-    if (name !== currentView) render(ROUTES[name] ? name : 'home');
+    if (name !== currentView) render(name);
   });
 
   // ---------- home ----------
@@ -1146,8 +1151,7 @@
   // async hashchange. The default action then sets the same hash, a no-op.
   document.querySelectorAll('nav a').forEach(a =>
     a.addEventListener('click', () => go(a.dataset.view)));
-  const initial = location.hash.slice(1);
-  if (!restoreSession()) render(ROUTES[initial] ? initial : 'home');
+  if (!restoreSession()) render(location.hash.slice(1) || 'home');
 
   // The service worker serves everything cache-first, so after a deploy the
   // user keeps studying on the old version until the next full load. When a
