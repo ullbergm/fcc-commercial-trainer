@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.8.1...v1.9.0) (2026-08-16)
+
+
+### Features
+
+* open the manual at the cited page from every question ([59f542e](https://github.com/ullbergm/nc-cdl-test-training/commit/59f542ee72f57ae76f8d7345c627d84da40adc06))
+
 ## [1.8.1](https://github.com/ullbergm/nc-cdl-test-training/compare/v1.8.0...v1.8.1) (2026-08-16)
 
 
