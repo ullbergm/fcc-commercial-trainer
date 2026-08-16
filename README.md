@@ -138,6 +138,7 @@ js/storage.js            localStorage persistence, export/import
 js/app.js                UI and session logic
 data/questions.js        question bank (422 questions, tagged by section and manual page)
 data/manual-pages.js     manual page labels to PDF page numbers, for the citation links
+data/exam-config.js      what exam this is: tests, pass mark, manual links, exam-specific prose
 tools/                   regenerates that map from a local copy of the manual PDF
 sw.js                    service worker (offline cache, only active on the hosted site)
 manifest.webmanifest     PWA manifest, lets the app be installed to a home screen

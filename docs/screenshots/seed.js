@@ -10,7 +10,7 @@
  * same images.
  */
 (() => {
-  const KEY = 'nc-cdl-trainer-v1'; // must match js/storage.js
+  const KEY = 'nc-cdl-trainer-v1'; // must match storageKey in data/exam-config.js
   const DAY = 24 * 60 * 60 * 1000;
   const now = Date.now();
 

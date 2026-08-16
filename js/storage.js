@@ -1,6 +1,6 @@
 /* Persistence: card scheduling state + answer stats in localStorage. */
 const Store = (() => {
-  const KEY = 'nc-cdl-trainer-v1';
+  const KEY = EXAM_CONFIG.storageKey;
   const LOG_MAX = 10000; // ~20k reviews would outlast any exam prep; cap the log well before quota
   // Correct answers in a row that retire a card from the practice pool. Two,
   // so one lucky guess does not clear it, and the pool always empties: every

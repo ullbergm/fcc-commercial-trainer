@@ -13,7 +13,9 @@
 const Readiness = (() => {
   const DAY = 24 * 60 * 60 * 1000;
   const GUESS = 0.25;    // four choices, no partial credit
-  const PASS_MARK = 0.8; // NC requires 80% on every knowledge test
+  // Pass mark comes from the exam config; the fallback keeps this module
+  // usable on its own (the node tests eval it without the config loaded).
+  const PASS_MARK = (typeof EXAM_CONFIG === 'object' && EXAM_CONFIG.passMark) || 0.8;
   // A studied card counts as rusty once its predicted recall has slipped below
   // the retention the scheduler aims for. Anything lower would barely ever
   // trip: the FSRS-6 forgetting curve is a shallow power law, and the guess

@@ -20,6 +20,7 @@ const CORE = [
   'js/app.js',
   'data/questions.js',
   'data/manual-pages.js',
+  'data/exam-config.js',
   'manifest.webmanifest',
   'icons/icon-192.png',
   'icons/icon-512.png',
