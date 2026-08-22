@@ -4,7 +4,7 @@ Each image is split diagonally to show the light and dark themes, which follow t
 browser's color scheme preference.
 
 They are generated, not captured by hand. `generate.sh` feeds the app a seeded demo
-profile (`seed.js`: a first Class A attempt twelve days out, with air brakes lagging
+profile (`seed.js`: a GROL attempt twelve days out, with the Element 3 pool lagging
 behind), shoots each view once per theme in headless Chrome, and composites the two
 across the diagonal. It needs Chrome or Chromium and ImageMagick:
 
@@ -21,10 +21,10 @@ test date is set, and the projected score for each test being studied for.
 
 ## Study
 
-A spaced repetition session. The progress bar is styled as highway lane markings,
-and the header shows the manual section the question came from.
+A spaced repetition session. The progress bar carries a morse-code texture, and
+the header shows the element the question came from.
 
-<img src="study.png" width="700" alt="Study session showing a multiple-choice question with a progress bar styled as highway lane markings">
+<img src="study.png" width="700" alt="Study session showing a multiple-choice question with a progress bar carrying a morse-code texture">
 
 ## Stats
 

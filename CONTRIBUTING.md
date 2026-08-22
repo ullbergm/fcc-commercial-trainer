@@ -7,13 +7,13 @@ By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Ways to help
 
-- **Fix a question.** The bank was authored from the manual section by section,
-  and some of it is certainly wrong. If an answer or explanation does not match
-  the cited manual page, open a
-  [question correction](https://github.com/ullbergm/nc-cdl-test-training/issues/new?template=question-correction.yml)
+- **Fix a question.** The bank is converted from the FCC's published question
+  pools, so most errors would be conversion errors. If a question does not
+  match the cited pool page, open a
+  [question correction](https://github.com/ullbergm/fcc-commercial-test-training/issues/new?template=question-correction.yml)
   or send the edit directly as a pull request.
 - **Report a bug.** Use the
-  [bug report template](https://github.com/ullbergm/nc-cdl-test-training/issues/new?template=bug-report.yml).
+  [bug report template](https://github.com/ullbergm/fcc-commercial-test-training/issues/new?template=bug-report.yml).
   Browser and device help a lot, since most of the tricky bugs are touch or
   layout related.
 - **Report a vulnerability.** Do not open a public issue. Follow
@@ -25,10 +25,10 @@ By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
 ## Getting set up
 
 ```
-git clone https://github.com/ullbergm/nc-cdl-test-training.git
-cd nc-cdl-test-training
+git clone https://github.com/ullbergm/fcc-commercial-test-training.git
+cd fcc-commercial-test-training
 npm install          # dev tooling only; the app itself has no dependencies
-npm run serve        # http://localhost:8080
+npm run serve        # http://localhost:8081
 ```
 
 Opening `index.html` directly works too, though the service worker and a few
@@ -68,43 +68,28 @@ real study progress.
 
 ## Editing the question bank
 
-[docs/question-authoring.md](docs/question-authoring.md) is the full recipe
-the bank was written with, including the rules for choices, explanations and
-citations. The short version:
+`data/questions.js` is generated, not hand-written: the FCC publishes the
+examination question pools with answer keys, and `tools/convert-fcc-pools.js`
+converts them verbatim from the PDFs committed under `pools/`. Do not edit
+`data/questions.js` directly; change the converter (or its typo and fixup
+tables) and regenerate, as described in
+[docs/question-authoring.md](docs/question-authoring.md):
 
-`data/questions.js` is a plain JSON array behind a `const`. Each entry looks
-like this:
-
-```json
-{
-  "id": "s5-012",
-  "section": 5,
-  "sectionName": "Air Brakes",
-  "question": "...",
-  "choices": ["...", "...", "...", "..."],
-  "answer": 1,
-  "explanation": "...",
-  "page": "5-3"
-}
+```
+node tools/convert-fcc-pools.js
+npm test
 ```
 
-`npm test` enforces the rules: unique ids, unique question text, exactly four
-distinct choices, `answer` as a 0-based index into them, and, because this
-exam's config sets `requireCitations`, a `page` on every question that resolves
-through `data/manual-pages.js` (or an explicit `pdfPage`). The explanation
-should say what the cited page says rather than general trucking knowledge. If
-you add or remove questions, update the count in the README, which the
-validator also checks.
+Each entry keeps its official pool number as its id (like `3-21C4`), the
+element as its `section`, and the physical page of the pool PDF it appears on
+as its `page`, which the app turns into a deep link. `npm test` enforces the
+schema: unique ids, exactly four choices, `answer` as a 0-based index, and a
+`page` on every question that resolves through `data/manual-pages.js`.
 
-Corrections should point at the cited page. If the page does not support the
-current answer, say so in the pull request and the fix is easy to confirm.
-
-The citation in the app links into the manual PDF, which numbers its pages
-straight through while the manual prints section-relative labels in its footers.
-`data/manual-pages.js` maps between the two, and the validator fails on a `page`
-that is missing from it. A handful of labels are printed on more than one page,
-so a question drawn from the second one needs an explicit `"pdfPage": 20` next to
-its `"page"` to point the link at the right place.
+Corrections should point at the cited pool page. If the pool PDF does not
+match what the app shows, say so in the pull request and the fix is easy to
+confirm; if the app matches the pool, the question is correct by definition,
+FCC typos included.
 
 ## Commits and releases
 
@@ -163,10 +148,9 @@ deploys to GitHub Pages after re-running the tests.
 Plain, direct prose. No emoji, no marketing voice, and no em dashes. Match the
 tone of the README.
 
-## A note on the manual
+## A note on the pools
 
-The NC Commercial Driver Manual is copyright AAMVA and is not included in this
-repository. Download it from
-[NCDMV](https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf)
-if you are working on the question bank. Do not paste long verbatim passages
-into questions or explanations; write them in your own words and cite the page.
+The FCC question pool PDFs are United States government works, which is why
+they can live in this repository under `pools/` and why the questions can be
+reproduced verbatim. If the FCC publishes a revised pool, follow the update
+steps in [docs/question-authoring.md](docs/question-authoring.md).

@@ -1,23 +1,27 @@
-# NC CDL Trainer
+# FCC Commercial Radio Trainer
 
-[![CI](https://github.com/ullbergm/nc-cdl-test-training/actions/workflows/ci.yml/badge.svg)](https://github.com/ullbergm/nc-cdl-test-training/actions/workflows/ci.yml)
-[![Latest release](https://img.shields.io/github/v/release/ullbergm/nc-cdl-test-training)](https://github.com/ullbergm/nc-cdl-test-training/releases)
-[![License: MIT](https://img.shields.io/github/license/ullbergm/nc-cdl-test-training)](LICENSE)
-[![Live site](https://img.shields.io/website?url=https%3A%2F%2Fnc-cdl.ullberg.io&label=nc-cdl.ullberg.io)](https://nc-cdl.ullberg.io)
+[![CI](https://github.com/ullbergm/fcc-commercial-test-training/actions/workflows/ci.yml/badge.svg)](https://github.com/ullbergm/fcc-commercial-test-training/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/ullbergm/fcc-commercial-test-training)](https://github.com/ullbergm/fcc-commercial-test-training/releases)
+[![License: MIT](https://img.shields.io/github/license/ullbergm/fcc-commercial-test-training)](LICENSE)
+[![Live site](https://img.shields.io/website?url=https%3A%2F%2Ffcc-commercial.ullberg.io&label=fcc-commercial.ullberg.io)](https://fcc-commercial.ullberg.io)
 
-[![Questions](https://img.shields.io/badge/questions-422-blue)](data/questions.js)
+[![Questions](https://img.shields.io/badge/questions-2817-blue)](data/questions.js)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-blue)](package.json)
 [![PWA](https://img.shields.io/badge/PWA-offline%20ready-blue)](manifest.webmanifest)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-blue)](CONTRIBUTING.md)
 [![Conventional Commits](https://img.shields.io/badge/conventional%20commits-1.0.0-blue)](https://www.conventionalcommits.org/en/v1.0.0/)
 
-Practice questions with spaced repetition for the North Carolina commercial driver
-license knowledge tests. The bank has 422 multiple-choice questions covering all 13
-sections of the [NC Commercial Driver Manual](https://www.ncdot.gov/dmv/license-id/driver-licenses/new-drivers/Documents/commercial-driver-manual.pdf),
-and every question cites the manual page it was drawn from, as a link that opens the
-PDF at that page.
+Practice questions with spaced repetition for the FCC commercial radio operator
+written exams: the Marine Radio Operator Permit (Element 1), the General
+Radiotelephone Operator License (Elements 1 and 3), the GMDSS operator and
+maintainer licenses (Elements 7, 7R, and 9), the Radiotelegraph Operator License
+(Element 6), and the Ship Radar Endorsement (Element 8). The bank has 2817
+multiple-choice questions taken verbatim, official answer keys included, from the
+[FCC's published examination question pools](https://www.fcc.gov/wireless/bureau-divisions/mobility-division/commercial-radio-operator-license-program/examinations),
+and every question cites the pool page it appears on, as a link that opens the
+pool PDF at that page.
 
-Live at [nc-cdl.ullberg.io](https://nc-cdl.ullberg.io), or run it yourself. There is
+Live at [fcc-commercial.ullberg.io](https://fcc-commercial.ullberg.io), or run it yourself. There is
 no build step, no dependencies, and no server. Just open `index.html` in a browser.
 All progress is stored locally in the browser and never sent anywhere. Settings has
 export and import for backups or for moving between devices.
@@ -40,11 +44,12 @@ export and import for backups or for moving between devices.
   configured pace is untouched.
 - **Misses**: re-drills every question whose last answer was wrong, without touching
   the review schedule. Answering one correctly removes it from the pool.
-- **Exam**: mock knowledge tests in the real format. No feedback until the end, and
-  80% to pass. The list mirrors the actual NC test structure (General Knowledge, Air
-  Brakes, Combination Vehicles, and the endorsement tests) and shows only the tests
-  selected in Settings. Missed exam questions feed the Misses pool.
-- **Browse**: the whole bank by manual section, with each card's schedule and accuracy.
+- **Exam**: mock written elements in the real format. No feedback until the end, and
+  the real 75% pass mark. The list mirrors the actual FCC element structure (24
+  questions for Element 1, 100 for Element 3, and so on) and shows only the elements
+  behind the licenses selected in Settings. Missed exam questions feed the Misses
+  pool.
+- **Browse**: the whole bank by element, with each card's schedule and accuracy.
 - **Stats**: exam readiness, mastery counts, day streak, 7-day due forecast,
   per-section accuracy, and exam history.
 
@@ -55,10 +60,10 @@ the question again, as long as you have not yet continued or graded. The buttons
 show badges for their shortcut keys on devices with a mouse and keyboard; on
 touch screens the badges stay hidden.
 
-In Settings, under "Tests I'm studying for", check only the tests you are taking
-next, for example General Knowledge, Air Brakes, and Combination Vehicles for a
-first Class A attempt. Everything else stays out of the queue until you check it,
-and progress on unchecked sections is kept.
+In Settings, under "Tests I'm studying for", check only the licenses you are
+after, for example the General Radiotelephone Operator License to study Elements
+1 and 3. Everything else stays out of the queue until you check it, and progress
+on unchecked elements is kept.
 
 ## Scheduling
 
@@ -114,9 +119,10 @@ your actual reviews rather than with a running average of past answers.
 Each question is one trial: either the answer is recalled, at the retrievability
 FSRS predicts for the moment of the test, or it is not and the guess still lands
 one time in four. A question you have never seen is a straight guess. The real
-test draws its questions from a much larger pool, so the projected score is the
-pool average, and the spread around it accounts for both the draw and the recall
-itself. The chance of passing is the probability that the draw clears 80%.
+exam draws its questions from the same published pool this bank was built from,
+so the projected score is the pool average, and the spread around it accounts
+for both the draw and the recall itself. The chance of passing is the
+probability that the draw clears 75%.
 
 Two counts explain a low projection. Unseen questions are the ones the queue has
 not reached yet. Rusty ones have been studied but are predicted to fall below the
@@ -136,10 +142,11 @@ js/fsrs.js               FSRS-6 scheduler
 js/readiness.js          projected score and pass odds per test
 js/storage.js            localStorage persistence, export/import
 js/app.js                UI and session logic
-data/questions.js        question bank (422 questions, tagged by section and manual page)
-data/manual-pages.js     manual page labels to PDF page numbers, for the citation links
-data/exam-config.js      what exam this is: tests, pass mark, manual links, exam-specific prose
-tools/                   regenerates that map from a local copy of the manual PDF, and the icons
+data/questions.js        question bank (2817 questions, converted from the FCC pools)
+data/manual-pages.js     page maps for the citation links (identity maps, generated)
+data/exam-config.js      what exam this is: licenses, pass mark, pool links, exam-specific prose
+pools/                   the FCC question pool PDFs and their extracted text
+tools/                   regenerates the bank from pools/ (convert-fcc-pools.js), and the icons
 sw.js                    service worker (offline cache, only active on the hosted site)
 manifest.webmanifest     PWA manifest, lets the app be installed to a home screen
 icons/                   app icons (icon.svg is the source, PNGs rendered from it)
@@ -148,7 +155,7 @@ tests/fsrs-test.js       FSRS scheduler property tests (node)
 tests/readiness-test.js  readiness projection tests, incl. a Monte Carlo check (node)
 tests/test.html          end-to-end tests driven through the real UI
 tests/run-browser.sh     headless-Chrome runner for test.html (local + CI)
-docs/question-authoring.md  the recipe the question bank was written with
+docs/question-authoring.md  how the bank is generated and how to update it
 docs/screenshots/        README images and the script that regenerates them
 ```
 
@@ -161,19 +168,21 @@ on the next load.
 
 ## Building a trainer for another exam
 
-The engine under `js/` knows nothing about the CDL, and the test suites derive
+The engine under `js/` knows nothing about the FCC, and the test suites derive
 their assertions from the config and the bank, so a trainer for a different
 manual-based exam is a matter of replacing data and identity files. Create a
 new repository from this one and touch:
 
-- `data/questions.js`: the new question bank, tagged by section and manual page;
-  [docs/question-authoring.md](docs/question-authoring.md) is the recipe, written
-  to be followed by a person or handed to a language model per section
+- `data/questions.js`: the new question bank, tagged by section and cited page;
+  this repository generates it from published question pools with
+  `tools/convert-fcc-pools.js`, while [the upstream CDL trainer](https://github.com/ullbergm/nc-cdl-test-training)
+  authored its bank from a manual with the recipe in
+  [docs/question-authoring.md](docs/question-authoring.md)
 - `data/exam-config.js`: the tests and exams, pass mark, manual links, storage
   keys, and every piece of prose that names the exam
-- `data/manual-pages.js`: regenerate with `node tools/gen-manual-pages.js`; the
-  footer-label parsing in that script is written for the CDL manual, so adjust
-  it to the new manual's page numbering
+- `data/manual-pages.js`: maps cited page labels to physical PDF pages; here it
+  is generated by the pool converter, and an exam studied from a manual with its
+  own page numbering needs a map built for that manual
 - `css/style.css`: the token blocks at the top set all colors and the
   progress-bar texture; the rules below them are exam-neutral
 - `index.html`: title, meta description, canonical URL, brand text, favicon,
@@ -225,23 +234,36 @@ keep real study progress.
 
 ## Accuracy
 
-The questions were authored from the manual's text, section by section. Accuracy is
-not guaranteed. Each question carries the manual page it came from (like `5-3`) and
-links to that page in the PDF, so verify anything important against the source. The actual DMV exam questions are not
-publicly available, and no claim is made that these questions match or resemble
-them. This is a study aid for the manual's content, not a copy of the test. If a
-question reads wrong, check the cited page and edit `data/questions.js`, which is a
-plain JSON array.
+Unlike most exams, the FCC publishes the actual question pools with answer keys,
+and the real exams are drawn from them. The bank here is those pools converted
+verbatim by `tools/convert-fcc-pools.js`: 2817 of the 2860 published questions.
+The 43 that are left out either refer to a drawing in the pool PDF (this trainer
+renders text only) or, in two Element 6 cases, have answer text the FCC left
+blank. Review the drawing questions from the pool PDFs before exam day; the
+converter prints their numbers when it runs.
 
-The manual PDF is copyright AAMVA and is not included in this repository. Download
-it from NCDMV at the link above.
+Each question keeps its official pool number as its id (like `3-21C4`) and
+cites the physical page of the pool PDF it appears on, as a `#page=` deep link,
+so anything that reads wrong can be checked against the source in one click.
+The pools carry a handful of the FCC's own typos and even two questions with a
+repeated choice; those are reproduced as published rather than silently edited.
+The few source misprints that would have broken conversion (a transposed
+question number, a missing space) are corrected in the converter's typo table,
+in the open. One Element 3 formula question lost its pi glyphs to a font
+problem in the PDF itself and is restored in `tools/pool-fixups.json`.
 
-The citation links point into that hosted PDF with a `#page=` fragment, which counts
-physical pages rather than the section-relative labels printed in the footers, so
-`data/manual-pages.js` maps between the two. The map is built from the July 2014
-revision; if NCDMV publishes a new one, download it and re-run
-`node tools/gen-manual-pages.js` (needs `pdftotext`) so the links keep landing on the
-right pages.
+The pool PDFs are United States government works, so they are committed to this
+repository under `pools/` alongside the text extracted from them, and the
+conversion is reproducible: `node tools/convert-fcc-pools.js` rewrites
+`data/questions.js` and `data/manual-pages.js` from them. If the FCC publishes
+a revised pool, replace the PDF, re-extract the text with
+`pdftotext -layout`, and re-run the converter.
+
+The exams themselves are administered by Commercial Operator License
+Examination Managers (COLEMs), which charge a fee and may present the pool
+questions with choices in a different order. The real exam draws one question
+per key topic of the pool; the mock exams here draw randomly from the whole
+pool at the real question counts and pass marks.
 
 ## License
 

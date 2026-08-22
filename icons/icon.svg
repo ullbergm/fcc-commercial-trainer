@@ -2,14 +2,17 @@
   <!-- Keep the artwork inside the center 80% so the maskable variant crops safely.
        icon-maskable-512.png is this file rendered with rx="0": the mask shape comes
        from the launcher, so the background must bleed to the edges. -->
-  <rect width="512" height="512" rx="96" fill="#10684a"/>
-  <rect x="88" y="178" width="238" height="132" rx="14" fill="#ffffff"/>
-  <path d="M340 218h56a14 14 0 0 1 11 6l32 44a14 14 0 0 1 3 8v20a14 14 0 0 1-14 14h-88z" fill="#ffffff"/>
-  <rect x="352" y="232" width="40" height="30" rx="6" fill="#10684a"/>
-  <circle cx="150" cy="330" r="30" fill="#ffffff"/>
-  <circle cx="150" cy="330" r="13" fill="#10684a"/>
-  <circle cx="230" cy="330" r="30" fill="#ffffff"/>
-  <circle cx="230" cy="330" r="13" fill="#10684a"/>
-  <circle cx="380" cy="330" r="30" fill="#ffffff"/>
-  <circle cx="380" cy="330" r="13" fill="#10684a"/>
+  <rect width="512" height="512" rx="96" fill="#0f5e8c"/>
+  <!-- lattice mast: a tall triangle sliced into sections by background bars -->
+  <path d="M256 152 L206 412 h100 Z" fill="#ffffff"/>
+  <rect x="180" y="228" width="152" height="10" fill="#0f5e8c"/>
+  <rect x="180" y="292" width="152" height="10" fill="#0f5e8c"/>
+  <rect x="180" y="356" width="152" height="10" fill="#0f5e8c"/>
+  <!-- radiating waves, two arcs each side, centered on the antenna tip -->
+  <path d="M199.4 186.6 A80 80 0 0 1 199.4 73.4" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round"/>
+  <path d="M164.1 221.9 A130 130 0 0 1 164.1 38.1" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round"/>
+  <path d="M312.6 186.6 A80 80 0 0 0 312.6 73.4" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round"/>
+  <path d="M347.9 221.9 A130 130 0 0 0 347.9 38.1" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round"/>
+  <!-- antenna tip -->
+  <circle cx="256" cy="130" r="24" fill="#f2a032"/>
 </svg>

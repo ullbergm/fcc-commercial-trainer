@@ -586,7 +586,7 @@
         session.queue.splice(at, 0, q.id);
         session.undo.requeuedAt = at;
       }
-      fb.innerHTML = `<div class="explain wrongbg"><strong>Incorrect.</strong> ${esc(q.explanation)} ${cite}</div>
+      fb.innerHTML = `<div class="explain wrongbg"><strong>Incorrect.</strong> ${esc(q.explanation || '')} ${cite}</div>
         <button class="primary" id="next">Continue<kbd class="after">Enter</kbd></button>${undoButton}`;
       $('#next').addEventListener('click', () => { session.pos++; renderQuestion(); });
       focusEl($('#next'));
@@ -600,7 +600,7 @@
       const scheds = {};
       [2, 3, 4].forEach(r => { scheds[r] = FSRS.schedule({ ...c }, r, now, opts); });
       const preview = r => scheds[r].intervalDays >= 1 ? `${scheds[r].intervalDays}d` : '<1d';
-      fb.innerHTML = `<div class="explain okbg"><strong>Correct.</strong> ${esc(q.explanation)} ${cite}</div>
+      fb.innerHTML = `<div class="explain okbg"><strong>Correct.</strong> ${esc(q.explanation || '')} ${cite}</div>
         <div class="grades">
           <button data-r="2"><kbd>1</kbd>Hard <small>${preview(2)}</small></button>
           <button data-r="3" class="primary" title="Shortcut: 2 or Enter"><kbd>2</kbd>Good <small>${preview(3)}</small></button>
@@ -620,7 +620,7 @@
       focusEl(fb.querySelector('[data-r="3"]'));
       return; // save happens on grade click
     } else {
-      fb.innerHTML = `<div class="explain okbg"><strong>Correct.</strong> ${esc(q.explanation)} ${cite}</div>
+      fb.innerHTML = `<div class="explain okbg"><strong>Correct.</strong> ${esc(q.explanation || '')} ${cite}</div>
         <button class="primary" id="next">Continue<kbd class="after">Enter</kbd></button>${undoButton}`;
       $('#next').addEventListener('click', () => { session.pos++; renderQuestion(); });
       focusEl($('#next'));
@@ -735,7 +735,7 @@
               <div class="q">${esc(q.question)}</div>
               <div class="you">Your answer: ${esc(q.choices[a.picked])}</div>
               <div class="ans">Correct: ${esc(q.choices[q.answer])}</div>
-              <div class="ex">${esc(q.explanation)} ${manualCite(q)} ${reportLink(q)}</div>
+              <div class="ex">${esc(q.explanation || '')} ${manualCite(q)} ${reportLink(q)}</div>
             </div>`;
           }).join('')}</div>` : '<p>Perfect score.</p>'}
         <button class="primary" id="home">Home</button>
@@ -762,7 +762,7 @@
               const acc = c && (c.right + c.wrong) ? ` · ${c.right}/${c.right + c.wrong} right` : '';
               return `<details class="qrow"><summary>${esc(q.question)} <small>[${status}${acc}]</small></summary>
                 <div class="qdetail"><strong>${esc(q.choices[q.answer])}</strong><br>
-                ${esc(q.explanation)} ${manualCite(q)} ${reportLink(q)}</div>
+                ${esc(q.explanation || '')} ${manualCite(q)} ${reportLink(q)}</div>
               </details>`;
             }).join('')}
           </details>`;
@@ -976,8 +976,10 @@
     });
     view.querySelectorAll('input[data-test]').forEach(cb =>
       cb.addEventListener('change', () => {
-        const chosen = [...view.querySelectorAll('input[data-test]:checked')]
-          .flatMap(x => TESTS.find(tst => tst.key === x.dataset.test).sections)
+        // Tests can share sections (every FCC license needs Element 1), so
+        // dedupe before deciding whether the selection covers everything.
+        const chosen = [...new Set([...view.querySelectorAll('input[data-test]:checked')]
+          .flatMap(x => TESTS.find(tst => tst.key === x.dataset.test).sections))]
           .sort((a, b) => a - b);
         // empty or complete selection both mean "study everything"
         s.settings.sections =

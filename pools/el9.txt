@@ -1,0 +1,2723 @@
+                      FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-A: VHF-DSC Equipment & Operation: Key Topic-1: Frequency and Bandwidth:
+
+1A1 What are the correct VHF Channels and Frequencies for Calling/Distress, DSC and bridge-to-bridge
+operations?
+
+A. Ch-16, 156.800 MHz, Ch-70, 156.525 MHz and Ch-13, 156.650 MHz.
+B. Ch-06, 156.300 MHz, Ch-16, 156.800 MHz and Ch-13, 156.650 MHz.
+C. Ch-08, 156.400 MHz, Ch-70, 156.525 MHz and Ch-16, 156.800 MHz.
+D. Ch-06, 156.300 MHz, Ch-12, 156.600 MHz and Ch-13, 156.650 MHz.
+
+1A2 What is the frequency separation between Transmit and Receive frequencies on a duplex channel?
+
+A. 2.8 MHz
+B. 4.6 MHz
+C. 6.4 MHz
+D. 10.7 MHz
+
+1A3 What is the assigned channel spacing for VHF channels?
+
+A. 10 kHz
+B. 15 kHz
+C. 25 kHz
+D. 50 kHz
+
+1A4 What is the allowed frequency tolerance for the DSC carrier frequencies?
+
+A. 10 Hz
+B. 20 Hz
+C. 5 ppm
+D. 10 ppm
+
+1A5 Using a frequency counter with an accuracy of 2 ppm — which of the following are within legal tolerance for
+the frequencies of 156.800 MHz and 156.525 MHz?
+
+A. 156,798.758 kHz and 156.526.243 kHz.
+B. 156,798.735 kHz and 156,526.258 kHz.
+C. 156,801.567 kHz and 156,526.476 kHz.
+D. 156,798.635 kHz and 156,523.352 kHz
+
+1A6 Using a frequency counter with an accuracy of 5 ppm — which of the following are within legal tolerance for
+the frequencies of 156.875 MHz and 157.200?
+
+A. 156,873.562 kHz and 157,198.264 kHz.
+B. 156,875.774 kHz and 157.199.321 kHz.
+C. 156,876.562 kHz and 157,201.355 kHz.
+D. 156,873.336 kHz and 157,201.570 kHz.
+
+
+
+
+Answers:        1A1: A          1A2: B          1A3: C          1A4: D          1A5: A          1A6: B
+                                              -1-
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-A: VHF-DSC Equipment & Operation: Key Topic-2: Controls and Functions:
+
+2A1 What is the purpose of the USA-INT switch?
+
+A. To provide for simplex operations with European Public Correspondence stations.
+B. To provide for duplex operations with U.S. Public Correspondence stations.
+C. To change from duplex to simplex operation on designated channels in European waters.
+D. To change from duplex to simplex operation on designated channels in U.S. waters.
+
+2A2 What may happen if the USA-INT control is left on INT when in U.S. waters?
+
+A. Your signals will be heard but other station replies will not be heard on certain channels.
+B. You will be able to communicate with public correspondence stations on Channel 5.
+C. Other stations will not be able to hear your transmissions and you will not hear any signals.
+D. You will not be able to operate on channel 13.
+
+2A3 What is the purpose of the Dual Watch function?
+
+A. Allows simultaneous reception on two different channels.
+B. To rapidly switch the radio’s receiver between two channels.
+C. Allows reception and transmission at the same time.
+D. It allows you to monitor both sides of a public correspondence station’s communication.
+
+2A4 What is the proper adjustment of the squelch control for maximum sensitivity?
+
+A. Maximum clockwise rotation.
+B. Maximum counterclockwise rotation.
+C. Just below the point where the noise breaks through.
+D. The squelch has no effect on the sensitivity.
+
+2A5 Which of the following transmitter power levels are permitted by FCC rules?
+
+A. Low Power: 0.1 W, High Power: 5 W
+B. Low Power: 0.5 W, High Power: 25 W
+C. Low Power: 1 W, High Power: 25 W
+D. Low Power: 5 W, High Power: 50 W
+
+2A6 Which of the following controls is not found on a VHF-DSC transceiver?
+
+A. “Distress”
+B. “Cancel”
+C. “Squelch”
+D. “R.I.T.”
+
+
+
+
+Answers:        2A1: D           2A2: A           2A3: B          2A4: C           2A5: C          2A6: D
+                                                -2-
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-A: VHF-DSC Equipment & Operation: Key Topic-3: Receiver Technology:
+
+3A1 Which of the following best describes the “Capture effect?”
+
+A. The receiver will accept all signals near the operating frequency.
+B. The receiver will reject all but the weakest signal.
+C. The receiver will reject all but the strongest signal.
+D. The receiver will modulate an adjacent transmitter.
+
+3A2 Which of the following may be adjusted in a FM ratio detector for improved signal-to-noise?
+
+A. The diode detector
+B. Input signal to the two diodes
+C. Input voltage to the transistor
+D. Ratio Arm balance control bridge
+
+3A3 What is the function of a properly adjusted limiter circuit?
+
+A. Maintains a constant output amplitude with a varying input amplitude.
+B. Limits the level of RF output power in the final amplifier stage.
+C. Limits the modulation input amplitude while amplifying the modulation output.
+D. Controls the DC input voltage excursions of the final amplifier stage.
+
+3A4 Which of the following are true about SINAD measurements?
+
+A. SINAD is the product of the signal and noise divided by the sum of the noise and distortion.
+B. SINAD is the sum of the signal, noise and distortion divided by the sum of the noise and distortion.
+C. SINAD is the sum of the noise and distortion divided by the sum of the signal, noise and distortion.
+D. SINAD is the product of the noise and distortion divided by the sum of the signal and noise.
+
+3A5 What would be considered a normal sensitivity for 10 db of quieting in a VHF marine receiver?
+
+A. 0.1 microvolt
+B. 1 microvolt
+C. 5 microvolts
+D. 10 microvolts
+
+3A6 What is meant by “full quieting” in a FM VHF receiver?
+
+A. Adjusting the squelch control to eliminate background noise.
+B. The rapid decrease in SINAD and noise with increasing signal level.
+C. The received signal is strong enough to completely quiet the receiver background noise.
+D. The rapid improvement in SINAD and decrease in noise with decreasing signal level.
+
+
+
+
+Answers:           3A1: C        3A2: D           3A3: A           3A4: B          3A5: B          3A6: C
+                                                 -3-
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-A: VHF-DSC Equipment & Operation: Key Topic-4: Receiver Faults-1:
+
+4A1 What condition may prevent a VHF radio receiver from staying tuned to the desired channel?
+
+A. The local oscillator frequency is beating against the incoming signal to produce an Intermediate Frequency
+(IF).
+B. The output signal of the Phase Locked Loop (PLL) circuit in the frequency synthesizer has become unlocked.
+C. The discriminator circuit is alternately developing positive and negative voltages at the modulation frequency.
+D. The ratio detector circuit is producing a variable output that deviates across the receiver’s dynamic range.
+
+4A2 What fault may exist if a VHF radio receiver fails to produce audible output from the speaker and the
+squelch control has no effect?
+
+A. A component in the RF amplifier stage has failed or the signal from a preceding stage is grounded.
+B. The Local Oscillator stage is no longer supplying a signal to the mixer stage at the correct frequency.
+C. The AF amplifier may be defective or the transmitter Push-To-Talk circuit may be activated.
+D. The mixer stage is no longer producing an output signal on the correct Intermediate Frequency (IF).
+
+4A3 What is indicated if a VHF radio fails to receive nearby stations and a voltmeter connected between the
+positive side of a radio’s DC line and ground reads zero line voltage? The fuse in the VHF radio also reads zero
+when checked with an ohmmeter.
+
+A. The antenna may be defective or water intrusion has affected antenna system performance.
+B. The coaxial transmission line may be open, shorted, or a connector has become intermittent.
+C. A fault in the discriminator circuit is producing zero output voltage during peak modulation.
+D. A “crowbar” circuit has prevented an over current condition that might damage the radio.
+
+4A4 What fault may exist if a VHF radio receiver fails to produce audible output from the speaker and the
+squelch control has no effect?
+
+A. The AF amplifier may be defective or the transmitter Push-To-Talk circuit may be activated.
+B. A component in the RF amplifier stage has failed or the signal from a preceding stage is grounded.
+C. The Local Oscillator stage is no longer supplying a signal to the mixer stage at the correct frequency.
+D. The mixer stage is no longer producing an output signal on the correct Intermediate Frequency (IF).
+
+4A5 What condition may prevent a VHF radio receiver from receiving a weak signal?
+
+A. The local oscillator frequency is beating against the incoming signal to produce an Intermediate Frequency
+(IF).
+B. The output signal of the Phase Locked Loop (PLL) circuit in the frequency synthesizer has become unlocked.
+C. The output signal of an AF amplifier stage is greater than the input signal.
+D. The weak RF signal has been suppressed at the limiter stage of the received by capture effect.
+
+4A6 Which of the following is the best test procedure to isolate the source of distortion in the audio output of a
+receiver?
+
+A. Use an oscilloscope to visually display AC signals on the output of each AF amplifier stage.
+B. Use a spectrum analyzer to visually display the amplitude and frequency of each AF amplifier stage input.
+C. Use a signal generator to inject a 1 KHz signal into the first AF amplifier stage and evaluate audio output.
+D. Use a digital voltmeter to measure transistor bias voltages in each AF amplifier stage.
+
+
+
+
+Answers:        4A1: B           4A2: C           4A3: D           4A4: A           4A5: D           4A6: A
+                                                 -4-
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-A: VHF-DSC Equipment & Operation: Key Topic-5: Receiver Faults-2:
+
+5A1 What condition may cause a significant loss in VHF receiver sensitivity?
+
+A. A reading of 9.6 when a voltmeter is connected between the positive side of the radio’s DC line and ground.
+B. The presence of a -90dbm signal measured at the 2nd IF output with the receiver tuned to the desired input
+frequency.
+C. An internal signal that is very weak in comparison to the desired signal at the output of the second IF stage.
+D. Replacing (75 ohm) RG-59/U coaxial transmission line with a (50 ohm) RG-8/U or LMR-400 Ultraflex cable.
+
+5A2 Which of the following test procedures may be used to determine a VHF receiver’s minimum discernible
+signal?
+
+A. Connect an oscilliscope to the antenna input and observe the amplitude of minimum signal voltage plotted
+on the display’s vertical axis as a function of time on the horizontal axis.
+B. Set a signal generator to the frequency of the VHF receiver, adjust the output signal to near zero, and
+increase the signal level until an audio voltmeter connected to the AF output point indicates a 3-dB increase.
+C. Connect a spectrum analyzer to the antenna input and apply the maximum amount of attentuation to detect
+minimum signal level plotted on the display’s vertical axis as a function of frequency on the horizontal axis.
+D. Connect a 156.3 Mhz signal generator to the antenna input, set the VHF receiver to channel 06 and
+measure dynamic range using an oscilliscope.
+
+5A3 Which of the following procedures may be used in many U.S. ports as a quick field test to determine if a
+shipboard VHF receiver is operating properly?
+
+A. Tune the VHF receiver to 158.6 MHz and listen for local U.S. Coast Guard announcements or radio traffic
+from other vessels.
+B. Set the VHF radio to a simplex channel, key the transmitter, and monitor the quality of the transmitted signal
+with the internal receiver.
+C. Tune the VHF radio to 162.550 MHz, 162.400 MHz or 162.475 MHz and listen for broadcasts from the
+National Oceanic and Atmospheric Administration.
+D. Connect appropriate test equipment to the radio and measure signal levels at the output of the receiver’s RF
+amplifier stage.
+
+5A4 What ohmmeter reading may indicate a faulty component in a VHF receiver?
+
+A. Low resistance across a diode in one direction, high resistance when test leads are reversed.
+B. Zero ohms across an in-line fuse in a DC power circuit.
+C. Infinite ohms across a ceramic bypass capacitor in a transistor amplifier circuit.
+D. A transistor indicates low resistance between emitter and base when test leads are reversed across them.
+
+5A5 What condition may indicate a VHF receiver fault?
+
+A. The same voltage reading between each lead of a 100K-ohm resistor and ground in a bias circuit.
+B. A “click” is heard when an ohmmeter set to R X 1 is touched across loudspeaker terminals.
+C. A voltage drop across the leads of a 47K ohm resistor in an intermediate frequency amplifier stage.
+D. The presence of an AC signal on the output of an audio frequency amplifier stage.
+
+5A6 What condition may cause noisy operation of a VHF receiver?
+
+A. An output signal that is larger than the input signal in an audio frequency amplifier stage.
+B. A defective potentiometer in the audio frequency amplifier stage.
+C. Low bias voltage to an intermediate frequency amplifier stage.
+D. An open winding in a secondary of a coupling transformer in the audio frequency amplifier stage.
+
+
+
+
+Answers:        5A1: A           5A2: B          5A3: C           5A4: D          5A5: A           5A6: B
+                                                -5-
+                      FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-A: VHF-DSC Equipment & Operation: Key Topic-6: Transmitter Technology:
+
+6A1 What is the maximum allowable deviation of a marine VHF transmitter?
+
+A. 12 kHz
+B. 10 kHz
+C. 7.5 kHz
+D. 5 kHz
+
+6A2 What is the modulation index?
+
+A. The maximum carrier deviation divided by the maximum modulation frequency.
+B. The maximum modulation frequency divided by the maximum carrier frequency.
+C. The maximum carrier deviation multiplied by the maximum carrier frequency.
+D. The maximum carrier deviation divided by the amount of pre-emphasis.
+
+6A3 How is pre-emphasis used in an FM transceiver?
+
+A. The lower modulation frequencies are boosted before transmitting by 3 db per octave and reduced by the
+same amount at the receiver.
+B. The higher modulation frequencies are boosted before transmitting by 6 db per octave and reduced by the
+same amount at the receiver.
+C. The lower modulation frequencies are boosted before transmitting by 6 db per octave and reduced by the
+same amount at the receiver.
+D. The higher modulation frequencies are boosted before transmitting by 3 db per octave and reduced by the
+same amount at the receiver.
+
+6A4 A modulation index set to less than 1 to 1 may result in what?
+
+A. Excessive deviation
+B. Unstable signal excursions
+C. Unusually low level transmit audio
+D. Unusually high pitch audio response
+
+6A5 What is the most common type of emission for shipboard VHF-DSC transceivers?
+
+A. F1B
+B. J3B
+C. G3E
+D. H3E
+
+6A6 How many sidebands does a VHF FM transmitter have?
+
+A. One
+B. Two
+C. One to four
+D. Many
+
+
+
+
+Answers:         6A1: D         6A2: A          6A3: B           6A4: C        6A5: C          6A6: D
+                                               -6-
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-A: VHF-DSC Equipment & Operation: Key Topic-7: Transmitter Faults-1:
+
+7A1 What condition may be indicated if a VHF radio is unable to contact nearby stations and an inline wattmeter
+indicates power outputs of 1 watt (LOW power) mode and 8.5 watts (HIGH power) mode with +12.8 vdc applied
+to the radio’s DC line?
+
+A. The AF Power Amplifier (PA) may be malfunctioning when the transmitter operates in the high power mode.
+B. Negative feedback in the PA stage may be preventing high amplitude oscillations in the high power mode.
+C. The transmitter output is low in the high power mode but it is still functioning within FCC specifications.
+D. The transmitter output will increase in the high power mode with modulation between 75 and 100 percent.
+
+7A2 Antenna system matching can be analyzed by determining the Standing Wave Ratio (SWR). Which of the
+following is the best test procedure to measure the SWR of a marine VHF antenna system?
+
+A. Insert an in-line RF Power meter between the VHF radio and an artificial antenna, set the radio to any
+channel, key the microphone, and read the measured value.
+B. Insert a SWR meter between the VHF transmitter and the coaxial transmission line connected to the antenna,
+set the radio to channel 16, and conduct a “RADIO CHECK” with a nearby U.S. Coast Guard station or vessel.
+C. Insert an in-line RF Power meter between the VHF radio and the coaxial transmission line disconnected from
+the antenna, activate the Push-To-Talk (PTT) circuit, and read the forward and reflected values.
+D. Insert a SWR meter between the VHF radio and the coaxial transmission line connected to the antenna, set
+the radio to an unused channel, activate the Push-To-Talk (PTT) circuit, and read the measured value.
+
+7A3 A mismatched antenna system can degrade marine VHF radio performance. Antenna system matching can
+be analyzed by determining the Standing Wave Ratio (SWR). Which of the following is the best test procedure
+to determine the VHF antenna system SWR?
+
+A. Insert a directional wattmeter between the VHF transmitter and the coaxial transmission line connected to the
+antenna, activate the Push-To-Talk (PTT) circuit, observe the measured values of forward and reflected power.
+B. Insert a SWR meter between the VHF transmitter and the coaxial transmission line disconnected from the
+antenna, set the radio to an unused channel, activate the Push-To-Talk circuit, and read the measured value.
+C. Insert a directional wattmeter between the VHF radio and an artificial antenna, set the radio to any channel,
+key the microphone, and read the values of forward and reflected power.
+D. Insert an in-line RF Power meter between the VHF transmitter and the coaxial transmission line connected to
+a 50 ohm load, activate the Push-To-Talk (PTT) circuit, observe the measured value of reflected power.
+
+7A4 What may be indicated if a VHF radio operates normally but the transmitter produces nearly zero RF output
+in the high power mode on all marine channels?
+
+A. The antenna system is presenting a Standing Wave Ratio (SWR) of 1.5 to 1.0 on the desired frequency.
+B. The SWR protection circuit in the transmitter has engaged to prevent damage to the Power Amplifier.
+C. A “crowbar” circuit in the power supply has prevented an over current condition that might damage the radio.
+D. A 50-ohm impedance in the antenna system is preventing the transmitter from achieving full power output.
+
+7A5 What condition may indicate voltage controlled oscillator failure in the synthesizer of a VHF transmitter?
+
+A. Low transmitter power output in the high power mode.
+B. An out-of-lock condition in the Phased Locked-Loop circuit.
+C. Excessive deviation in the frequency modulated output signal.
+D. A constant transmitter power output at various modulation levels.
+
+7A6 What condition may exist if a VHF radio is operational in receive mode but unable to transmit?
+
+A. Excessive bias is being applied to switching transistors in the transmitter output stage.
+B. The solid-state antenna relay is no longer functioning properly.
+C. A component in the Push-To-Talk (PTT) circuit has failed.
+D. The SWR protection circuit has engaged to prevent transmission.
+
+Answers:        7A1: C           7A2: D           7A3: A           7A4: B          7A5: B          7A6: C
+                                                -7-
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-A: VHF-DSC Equipment & Operation: Key Topic-8: Transmitter Faults-2:
+
+8A1 What condition may be indicated if a VHF radio cannot contact nearby stations on any channel, an inline
+wattmeter indicates 25 watts output (HIGH power mode), and no modulation is heard when the transmitted
+signal is monitored with an external receiver?
+
+A. A fault in the transmitter’s Push-To-Talk circuit is causing the loss of audio.
+B. There is an open connection in the microphone cable or connector.
+C. The microphone’s Automatic Gain Control (AGC) has malfunctioned.
+D. Degenerative feedback applied to the AF amplifier exceeds specifications.
+
+8A2 What condition may be indicated if a VHF radio cannot contact nearby stations, an inline wattmeter
+indicates less than 1 watt output (HIGH power mode), and nominal voltage (e.g., 12.8 vdc) is applied to the VHF
+radio power input line?
+
+A. The RF power applied to the input of the Power Amplifier (PA) stage is excessive.
+B. There is an open connection between the radio’s PA stage and the antenna connector.
+C. The bias voltage applied to the Power Amplifier (PA) stage may be insufficient.
+D. A defective capacitor is blocking DC voltage from appearing at the antenna connector.
+
+8A3 A spectrum analyzer (SPECAN) can be a useful test instrument to troubleshoot a marine VHF radio. Which
+of the following is the best procedure to evaluate the input/output stages of a marine VHF transmitter?
+
+A. Connect the radio to the SPECAN through an in-line attenuator, apply maximum attentuation and set the
+radio to HIGH power. Use an inductive probe to evaluate signals at the input/output of AF transmitter stages.
+B. Connect the radio to the SPECAN through an in-line attenuator, apply maximum attentuation and switch the
+radio to HIGH power. Use an inductive probe to evaluate signals at the input/output of RF transmitter stages.
+C. Connect the radio to the SPECAN through an in-line attenuator, apply minimum attentuation and switch the
+radio to LOW power. Use an inductive probe to evaluate signals at the input/output of AF transmitter stages.
+D. Connect the radio to the SPECAN through an in-line attenuator, apply maximum attentuation and switch the
+radio to LOW power. Use an inductive probe to evaluate signals at the input/output of RF transmitter stages.
+
+8A4 Which in-line RF power reading indicates the proper operation of a VHF marine transmitter?
+
+A. 25 watts forward/1.5 watts reflected.
+B. 25 watts forward/25 watts reflected.
+C. 27.5 watts forward/1.5 watts reflected.
+D. 2.5 watts forward/1.5 watts reflected.
+
+8A5 What condition may cause distortion in the modulator stage of a marine VHF transmitter?
+
+A. The reactance modulator may be out of alignment.
+B. The excessive use of pre-emphasis on audio signals above 25 kHz.
+C. A defective varactor diode in the transmitter’s voltage controlled oscillator.
+D. Transmitter modulation in excess of 150%.
+
+8A6 What terms are used to describe a device used to test the RF power output of a marine VHF transmitter
+without emitting a signal on the air?
+
+A. Dummy load, artificial antenna.
+B. Phantom Antenna, dummy load.
+C. Isotropic suppressor, artificial antenna.
+D. Artificial attenuator, dummy load.
+
+
+
+
+Answers:         8A1: B           8A2: C           8A3: D            8A4: A          8A5: D      8A6: A
+                                                  -8-
+                         FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-A: VHF-DSC Equipment & Operation: Key Topic-9: Digital Selective Calling:
+
+9A1 What is the correct frequency shift and sub-carrier for VHF-DSC?
+
+A. 1300-2100 Hz, sub-carrier 1700 Hz.
+B. 1500-2300 Hz, sub-carrier 1900 Hz.
+C. 1200-2600 Hz, sub-carrier 1900 Hz.
+D. 1500-2300 Hz, sub-carrier 1700 Hz.
+
+9A2 What is the correct modulation rate and index of modulation for VHF-DSC?
+
+A. 800 baud, 3.0 +/- 10%
+B. 1200 baud, 2.0 +/- 10%
+C. 1500 baud, 2.0 +/- 5%
+D. 1800 baud, 3.0 +/- 5%
+
+9A3 How might a DSC radio check be accomplished with a coast station?
+
+A. Enter the station's MMSI, and press the button under the red plastic cover for 5 seconds.
+B. Select DSC menu item TEST, enter the Coast Station's FCC call letters, and send the test call.
+C. Select DSC menu item TEST, enter the Coast Station's MMSI number, and send the test.
+D. Select DSC menu ALL SHIPS, and send the test message.
+
+9A4 You attempt to program a new MMSI into a VHF radio with an existing MMSI. The radio will not accept the
+entry. What is the best course of action to correct this problem?
+
+A. You must RESET the DSC memory by holding down two buttons as described in the user manual.
+B. You can never change a number, once one is already programmed.
+C. Re-register the old MMSI with the new owner and make no programming changes to the radio.
+D. Contact the manufacturer for action to clear the MMSI memory and accept the new number.
+
+9A5 What is the time diversity reception interval for a VHF-DSC call?
+
+A. 33-1/3 milliseconds
+B. 40.5 milliseconds
+C. 66-2/3 milliseconds
+D. 91 milliseconds
+
+9A6 What might a voltmeter indicate when testing a DSC circuit for an outgoing message data stream?
+
+A. Steady reading of 12 volts DC.
+B. Fluctuating reading from 0 to 2 volts DC.
+C. There will be an absence of voltage.
+D. Voltage swing from -12 VDC to + 12 VDC.
+
+
+
+
+Answers:        9A1: A           9A2: B          9A3: C          9A4: D          9A5: A             9A6: B
+
+                                               -9-
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-A: VHF-DSC Equipment & Operation: Key Topic-10: Antenna Systems:
+
+10A1 It becomes necessary to construct a temporary VHF marine antenna. What should be the approximate
+length of the antenna?
+
+A. 10 inches
+B. 12 inches
+C. 15 inches
+D. 18 inches
+
+10A2 Which of the following best describes a VHF collinear array?
+
+A. An antenna with phased elements, omni directional radiation pattern, offering up to 9 db gain.
+B. The cascade filters in the VHF radio's IF section.
+C. A shoreside directional VHF yagi antenna.
+D. A depth sounder phased array transducer.
+
+10A3 A masthead antenna with a base loading coil appears shorted to an ohmmeter check. What might this
+indicate?
+
+A. Positive proof of shorted coaxial cable plugs.
+B. May be normal for a well working shunt fed antenna system.
+C. Immediately repair both upper and lower PL-259s.
+D. No VHF antenna should measure a short circuit.
+
+10A4 What is the most common type of coax connector used on VHF transceivers?
+
+A. “N”
+B. “BNC”
+C. “UHF”
+D. “TNC”
+
+10A5 What type of coaxial cable would be most appropriate for a long transmission line run?
+
+A. “RG-58/U”
+B. “RG-59/U”
+C. “RG-8/U”
+D. “RG-174/U”
+
+10A6 What is a disadvantage when using high gain VHF antennas?
+
+A. Poor horizontal radiation pattern.
+B. Very high radiation pattern.
+C. Very low radiation pattern.
+D. Signal dropout in severe weather on small craft.
+
+
+
+
+Answers:        10A1: D         10A2: A          10A3: B         10A4: C          10A5: C           10A6: D
+                                               - 10 -
+                      FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Ops: Key Topic-11: Frequencies and Bandwidth:
+
+11B1 What is the assigned bandwidth and channel spacing for J3E voice transmissions?
+
+A. 170 Hz and 300 Hz
+B. 300 Hz and 500 Hz
+C. 2.8 kHz and 3.0 kHz
+D. 3.1 kHz and 4.0 kHz
+
+11B2 What is the assigned bandwidth and channel spacing for J2B SITOR (NBDP) transmissions?
+
+A. 3.1 kHz and 4.0 kHz
+B. 2.8 kHz and 3.0 kHz
+C. 170 Hz and 300 Hz
+D. 300 Hz and 500 Hz
+
+11B3 What is the allowable frequency tolerance for GMDSS MF-HF transmitters?
+
+A. 10 Hz
+B. 15 Hz
+C. 20 Hz
+D. 30 Hz
+
+11B4 Using a frequency counter with an accuracy of 2 ppm which of the following are within legal tolerance for
+the frequencies of 2182.0 kHz and 4125.0 kHz? The counter has a display resolution of 1 Hz.
+
+A. 2181.991 kHz and 4125.004 kHz
+B. 2182.006 kHz and 4124.995 kHz
+C. 2182.010 kHz and 4124.992 kHz
+D. 2181.990 kHz and 4125.009 kHz
+
+11B5 Which of the following are assigned frequencies for Digital Selective Calling?
+
+A. 2182 kHz, 4177.5 kHz, 6312 kHz, 8376.5 kHz, 12577 kHz, 16420 kHz.
+B. 2187.5 kHz, 4207.5 kHz, 6312 kHz, 8414.5 kHz, 12577 kHz, 16804.5 kHz.
+C. 2187.5 kHz, 4207.5 kHz, 6268 kHz, 8414.5 kHz, 12520 kHz, 16420. kHz.
+D. 2174.5 kHz, 4125 kHz, 6312 kHz, 8291 kHz, 12577 kHz, 16804.5 kHz
+
+11B6 What are the assigned frequencies for VOICE and SITOR (NBDP) follow on communications?
+
+A. VOICE: 2182 kHz, 4125 kHz, 6312 kHz, SITOR (NBDP) 4177.5 kHz, 8376.5 kHz, 12520 kHz
+B. VOICE: 8291 kHz, 12577 kHz, 16420 kHz, SITOR (NBDP) 4125 kHz, 6268 kHz, 8376.5 kHz
+C. VOICE: 4125 kHz, 8291 kHz, 16420 kHz, SITOR (NBDP) 2174.5 kHz, 6268 kHz, 12520 kHz
+D. VOICE: 6215 kHz, 8414.5 kHz, 12290 kHz, SITOR (NBDP) 6268 kHz, 8291 kHz, 12520 kHz
+
+
+
+
+Answers:        11B1: C         11B2: D          11B3: A         11B4: B         11B5: B         11B6: C
+                                               - 11 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Ops: Key Topic-12: Controls, Functions and Displays:
+
+12B1 What is the purpose of the “R.I.T.“ control on a MF/HF transceiver?
+
+A. Make slight adjustments to the transmit frequency.
+B. Make slight adjustments in the receiver frequency.
+C. Select the proper transmitter emissions.
+D. Select the proper paired duplex channel.
+
+12B2 What is the function of the “TUNE” button on a MF/HF transceiver?
+
+A. To tune in a new ITU channel.
+B. To tune the frequency of the receiver.
+C. To tune the antenna to the transmit frequency.
+D. To tune the frequency of the AF amplifier.
+
+12B3 What is the purpose of the “ENTER” function.
+
+A. To store any incoming DSC message in memory.
+B. To recall any previously received message.
+C. To transmit a DSC distress alert.
+D. To accept the previous selection or data input.
+
+12B4 What mode is a MF/HF transceiver operating in when “TLX” displayed?
+
+A. SITOR (NBDP)
+B. SSB
+C. DSC
+D. AM
+
+12B5 Reducing the “RF Gain” control on an MF/HF transceiver has what effect?
+
+A. Reduces degenerative feedback to the RF amplifier stage.
+B. Reduces volume in response to a varying RF signal input.
+C. Reduces coupling between the receiver’s RF amplifier stages.
+D. Reduces sensitivity of the RF amplifier stage.
+
+12B6 What is the function of an “AGC” button?
+
+A. To maintain a relatively constant AF output when the input signal varies.
+B. To reduce AF output when the input signal becomes weak.
+C. To increase the gain of the RF amplifier when the input signal is strong.
+D. To increase RF output when the input signal becomes strong.
+
+
+
+
+Answers:        12B1: B          12B2: C          12B3: D         12B4: A      12B5: D   12B6: A
+                                                - 12 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Operations: Key Topic-13: Receiver Technology:
+
+13B1 What is the purpose of the BFO?
+
+A. Re-injects the carrier frequency in the receiver’s detector to demodulate the SSB signal.
+B. Replace the missing sideband and carrier frequency.
+C. Remove the carrier from H3E transmissions.
+D. Inverts the SSB signal to remove interference.
+
+13B2 If the BFO is turned off what kind of emissions can still be received?
+
+A. J3E and J2B
+B. A3E and H3E
+C. H3E and F1B
+D. A1A and J3E
+
+13B3 If you are listening to another vessel’s HF transmission and it sounds garbled what should you do?
+
+A. Change the receive frequency to either adjacent channel.
+B. Advise the other vessel that his transmission is faulty.
+C. Use the “R.I.T.” or “Clarifier” control to adjust the frequency of the receiver.
+D. Adjust the squelch control to clear up the sound quality.
+
+13B4 What characteristics are desirable in an AGC circuit for SSB voice reception?
+
+A. Slow attack and decay.
+B. Slow attack and fast decay.
+C. Fast attack and decay.
+D. Fast attack and slow decay.
+
+13B5 What is the primary purpose of both a high and a low I.F. system in a HF receiver?
+
+A. Using a high first I.F. amplifier results in eliminating image signals.
+B. Using a high first I.F. amplifier results in less intermodulation products.
+C. Using a low first I.F. amplifier results in fewer third harmonic signals.
+D. Using a low first I.F. amplifier results in greater signal amplification.
+
+13B6 How does a noise blanker circuit work in a HF receiver?
+
+A. A limiter circuit clips the peaks of the noise pulses.
+B. The noise pulses are used to develop a blanking pulse for the I.F. amplifier.
+C. The noise pulses operate on the ratio detector to blank the audio output.
+D. A Noise blanker briefly reduces the gain of the RF amplifier when the noise pulses occur.
+
+
+
+
+Answers:         13B1: A          13B2: B           13B3: C          13B4: D          13B5: A   13B6: B
+                                                  - 13 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Operations: Key Topic-14: Receiver Faults-1:
+
+14B1 The voice is garbled and unreadable on MF/HF SSB channels. What is the most likely cause?
+
+A. The R.I.T circuit has failed.
+B. The first RF stage has failed.
+C. The frequency synthesizer has failed.
+D. The beat frequency oscillator circuit has failed.
+
+14B2 All signals sound normal on an MF/HF receiver except one that has a very high pitched voice barely
+readable. What is the most likely cause?
+
+A. The transmitter of the abnormal signal is off frequency.
+B. The receiver frequency synthesizer circuit is defective.
+C. The voltage controlled oscillator has failed.
+D. The B.F.O. circuit is faulty.
+
+14B3 You are able to hear signals in the voice/SSB mode but not in the SITOR (NBDP) mode. What is the most
+likely cause?
+
+A. The phase locked loop circuit has failed.
+B. The 500 Hz I.F. filter has become defective.
+C. The R.F. amplifier has failed.
+D. The B.F.O. circuit has failed.
+
+14B4 The phase locked loop circuit in an MF/HF receiver appears to be faulty. What is the most likely cause?
+
+A. The AGC circuit has become defective.
+B. The Beat Frequency Oscillator is inoperative.
+C. The Voltage Controlled Oscillator is inoperative.
+D. The 500 Hz I.F. filter has become defective.
+
+14B5 You are able to hear signals in the SITOR (NBDP) mode but not in the voice/SSB mode. What is the most
+likely cause?
+
+A. The B.F.O. circuit has failed.
+B. The audio amplifier is defective.
+C. The 2.8 kHz filter has become defective.
+D. The R.F. amplifier has failed.
+
+14B6 The AGC function of an MF/HF receiver is inoperative. What is the most likely cause?
+
+A. The B.F.O. circuit has failed.
+B. The Voltage controlled Oscillator is inoperative.
+C. The audio amplifier is defective.
+D. Failure of a variable gain amplifier in the RF stage.
+
+
+
+
+Answers:         14B1: D          14B2: A           14B3: B     14B4: C         14B5: C         14B6: D
+                                                  - 14 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Operations: Key Topic-15: Receiver Faults-2:
+
+15B1 The MF/HF receiver fails to suppress the AF output in the absence of a sufficiently strong input signal.
+What is the most likely cause?
+
+A. The AGC circuit has failed.
+B. The BFO circuit has failed.
+C. The squelch circuit has failed.
+D. The AF amplifier circuit has failed.
+
+15B2 The MF/HF receiver fails to produce any AF output. An ohmmeter reading is near zero between speaker
+leads. What is the most likely cause?
+
+A. The 3 – 30 MHz amplifier stage has failed.
+B. The speaker is shorted out.
+C. Excess negative feedback is reducing AF gain.
+D. The audio amplifier stage has failed.
+
+15B3 The MF/HF transceiver produces strong AF output but no signals are heard on any frequency. What is the
+most likely cause?
+
+A. The transceiver is connected to a “Dummy Load.”
+B. A high Standing Wave Ratio (SWR) in the antenna system.
+C. A “crowbar” circuit in the power supply is activated.
+D. The squelch circuit has failed.
+
+15B4 The MF/HF transceiver produces strong AF output but no signals are heard on any frequency. What is the
+most likely cause?
+
+A. The squelch sensitivity control is set too high.
+B. There is an open circuit in the transmission line to the antenna.
+C. The final stage of the AF amplifier circuit has failed.
+D. The power amplifier stage in the receiver has failed.
+
+15B5 The MF/HF transceiver fails to produce AF output but the radio is powered on and “TX” is illuminated.
+What is the most likely cause?
+
+A. The speaker is shorted out.
+B. A shorted Push-To-Talk circuit in the microphone.
+C. A “crowbar” circuit in the power supply has engaged.
+D. The final stage of the AF amplifier circuit has failed.
+
+15B6 A received signal on a MF/HF transceiver breaks up rapidly and repeatedly. The signal alternates between
+mid scale and zero on the “Signal” meter. What is the most likely cause?
+
+A. Intermittent gain in the AF amplifier circuit.
+B. The squelch sensitivity control is set too high.
+C. An intermittent connection between the antenna and coupler.
+D. The AGC circuit has malfunctioned.
+
+
+
+
+Answers:         15B1: C          15B2: D          15B3: A         15B4: B        15B5: B         15B6: C
+                                                - 15 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Operations: Key Topic-16: Transmitter Tech:
+
+16B1 How is a J3E signal generated?
+
+A. By using high-level modulation to produce a single sideband.
+B. By using a double balanced mixer and a sideband filter.
+C. By using the audio signal to phase modulate the carrier.
+D. By using low level modulation and a sideband filter.
+
+16B2 What would be the most likely power level to use for initial MF-HF communications?
+
+A. 25 watts PEP
+B. 50 watts PEP
+C.150 watts PEP
+D. 600 watts PEP
+
+16B3 How is the lower sideband eliminated?
+
+A. By using a double balanced mixer to block the lower sideband.
+B. By using a filter to pass the lower sideband and block the upper sideband.
+C. By using a double balanced mixer to insert the carrier.
+D. By using a filter to pass the upper sideband and block the lower sideband.
+
+16B4 What is the most common method of generating a SITOR (NBDP) signal on shipboard GMDSS
+equipment?
+
+A. Two alternating sidebands of 1615 Hz and 1785 Hz are offset from the carrier frequency by 1700 Hz.
+B. The carrier frequency is alternately shifted from + 85 Hz to – 85 Hz while suppressing the sidebands.
+C. There is one 1500 Hz sideband which is shifted from +170 Hz to – 170 Hz with a suppressed carrier.
+D. Two alternating sidebands of 1500 Hz and 2300 Hz are offset from the carrier frequency by 1900 Hz.
+
+16B5 What are the major components of a phase locked loop frequency synthesizer?
+
+A. Ratio detector, master oscillator, limiting amplifier and voltage controlled oscillator.
+B. Phase comparator, loop filter, master oscillator and first mixer stage.
+C. High pass filter, master oscillator, double balanced mixer and voltage controlled oscillator.
+D. Master oscillator, frequency dividers, phase comparator, loop filter and voltage controlled oscillator.
+
+16B6 What is the purpose of a phase comparator in a frequency synthesizer?
+
+A. Compare the divided outputs of the master oscillator and the voltage controlled oscillator.
+B. Compare the direct outputs of the master oscillator and the voltage controlled oscillator.
+C. Compare the direct output of the master oscillator and the divided output of the voltage controlled oscillator.
+D. Compare the divided output of the master oscillator and the direct output of the voltage controlled oscillator.
+
+
+
+
+Answers:        16B1: B          16B2: C          16B3: D          16B4: A          16B5: D          16B6: A
+                                                - 16 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Operations: Key Topic-17: Transmitter Faults-1:
+
+17B1 An MF-HF transceiver works properly on voice but not SITOR (NBDP). What is the most likely source of
+the problem?
+
+A. The 500 Hz I.F. filter has failed.
+B. The audio amplifier has failed.
+C. The phase locked loop circuit has failed.
+D. The R.F. amplifier has failed.
+
+17B2 Which of the following conditions would indicate the malfunction of a 2182 kHz radiotelephone system?
+
+A. No discernable traffic has been heard on the 2182 kHz during the radiotelephone silent periods.
+B. Failure to contact another station 60 miles distant during daytime operation.
+C. Dramatic decrease in noise level observed during night and early morning hours.
+D. The visual indication of power to the antenna fluctuates while testing the radiotelephone alarm signal
+generator into an artificial antenna.
+
+17B3 Which would be an indication of proper operation of a SSB transmitter rated at 60 watt PEP output?
+
+A. In SSB (J3E) voice mode, with the transmitter keyed but without speaking into the microphone, power output
+is indicated.
+B. In SSB (J3E) mode, speaking into the microphone causes power meter to fluctuate slightly around the 60
+watt reading.
+C. In SITOR (NBDP) communications, the power meter can be seen fluctuating regularly from zero to the 60
+watt relative output reading.
+D. A steady indication of transmitted energy on an RF Power meter with no fluctuations when speaking into the
+microphone.
+
+17B4 An MF-HF transceiver is functioning correctly in voice mode/SSB but not in SITOR (NBDP). What is the
+most likely source of the problem?
+
+A. The second I.F. amplifier has become defective.
+B. The voltage controlled oscillator is defective.
+C. The 2.8 kHz filter has become defective.
+D. The 1615 kHz audio oscillator is not working.
+
+17B5 Which of the following conditions would be a symptom of malfunction in a 2182 kHz SSB radiotelephone?
+
+A. No indication of power output when speaking into the microphone.
+B. Much higher noise level observed during daytime operation.
+C. When testing a radiotelephone alarm on 2182 kHz into an artificial antenna, the Distress frequency watch
+receiver becomes un-muted, an improper testing procedure.
+D. Failure to contact a shore station 600 nautical miles distant during daytime operation.
+
+17B6 Which would indicate proper operation of a SSB transmitter rated at 60 Watt PEP output in J3E mode?
+
+A. In SITOR communications, the power meter can be seen fluctuating regularly from zero to the 60 watt relative
+output reading.
+B. In SSB (J3E) voice mode, with the transmitter keyed but without speaking into the microphone, no power
+output is indicated.
+C. In SSB (J3E) mode, speaking into the microphone causes the power meter to fluctuate well above the 60
+watt reading.
+D. A steady indication of transmitted energy on an RF power meter with no fluctuations when speaking into the
+microphone.
+
+
+
+Answers:        17B1: A          17B2: B         17B3: C          17B4: D         17B5: A          17B6: B
+                                               - 17 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Operations: Key Topic-18: Transmitter Faults-2:
+
+18B1 Which of the following conditions indicate the proper operation of a 150 Watt MF/HF transmitter in the F1B
+ARQ mode?
+
+A. The RF power meter indicates constant output at a level between 125 watts and 150 watts during
+transmission.
+B. The RF power meter indicates power output only when characters are typed on the NBDP keyboard.
+C. The RF “S” meter indicates a signal level between 125 watts and 150 watts during NBDP reception.
+D. The RF power meter indicates an output that fluctuates between 0 and 150 watts during transmission.
+
+18B2 Which of the following conditions indicate the proper operation of a 250 Watt MF/HF transmitter in the F1B
+FEC mode?
+
+A. The RF power meter indicates constant output at a level between 225 watts and 250 watts during
+transmission.
+B. The RF power meter indicates power output only when characters are typed on the NBDP keyboard.
+C. The RF “S” meter indicates a signal level between 225 watts and 250 watts during NBDP reception.
+D. The RF power meter indicates an output that fluctuates between 0 and 250 watts during transmission.
+
+18B3 Which of the following conditions could cause very low RF output in a MF/HF transmitter operating in the
+F1B FEC mode?
+
+A. Failure of a voltage controlled oscillator in the IF amplifier stage.
+B. A high Standing Wave Ratio (SWR) in the antenna system.
+C. The connection of a transceiver is connected to a “Dummy Load” antenna.
+D. Failure of a SSB bandpass filter in the stage preceding the RF amplifier.
+
+18B4 which of the following troubleshooting methods is not valid for finding the fault in a MF/HF transmitter
+operating in the F1B FEC mode?
+
+A. Visual inspection of the transmitter (control settings, signs of physical damage or overheating, etc.)
+B. Power supply testing with a DVM to ensure all prescribed operating voltages are within acceptable limits.
+C. Modulation testing with a RF spectrum analyzer to measure frequency deviation in the transmit mode.
+D. Input/Output checks with a 10:1 oscilloscope probe to identify any points of severe signal degradation.
+
+18B5 Which of the following conditions could cause zero RF output in a MF/HF transmitter operating in the F1B
+FEC mode?
+
+A. The connection of a transceiver is connected to a “Dummy Load” antenna.
+B. The failure of the voice bandpass filter in the stage preceding the RF amplifier.
+C. The activation of a “crowbar” circuit in the power supply to prevent an unregulated voltage increase.
+D. The generation of a positive VCO feedback signal to a Phase Locked Loop circuit in the transmitter.
+
+18B6 Which of the following conditions indicate improper operation of a 150 Watt MF/HF transmitter in the F1B
+FEC mode?
+
+A. The RF power meter indicates constant output at a level between 125 watts and 150 watts during
+transmission.
+B. The SWR meter indicates 125 watts forward RF power and 5 watts reflected RF power during transmission.
+C. The RF “S” meter fluctuates depending on the strength of the received signal during NBDP reception.
+D. The RF power meter indicates an output that fluctuates between 0 and 150 watts during transmission.
+
+
+
+
+Answers:        18B1: D          18B2: A          18B3: B         18B4: C          18B5: C          18B6: D
+                                               - 18 -
+                         FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Operations: Key Topic-19: DSC Operations:
+
+19B1 What precedes the phasing signal in a DSC distress alert call?
+
+A. An alternating dot pattern of 20 bits
+B. An alternating dot pattern of 100 bits
+C. An alternating dot pattern of 200 bits
+D. An alternating dot pattern of 400 bits
+
+19B2 What type of code is used for DSC transmissions?
+
+A. A 7 bit code with a constant ratio of 4/3 between the 1s and 0s.
+B. A 7 bit code followed by an error check character at the end.
+C. A 10 bit code followed by an error check character at the end.
+D. A 10 bit code with 7 bits used for information and 3 bits used for error correction.
+
+19B3 What is the correct frequency shift and sub-carrier for MF-HF-DSC?
+
+A. +/- 85 Hz and 1700 Hz
+B. +/- 170 Hz and 1700 Hz
+C. +/- 250 Hz and 1500 Hz
+D. +/- 400 Hz and 1900 Hz
+
+19B4 What is the time diversity reception interval for a MF-HF-DSC call?
+
+A. 33-1/3 milliseconds
+B. 400 milliseconds
+C. 450 milliseconds
+D. 250 milliseconds
+
+19B5 A MF/HF Distress priority DSC call may be formatted to include the following:
+
+A. MMSI, vessel position, nature of distress, follow-on communications by J3E only.
+B. MMSI, vessel position, nature of distress, follow-on communications by J3E or F1B.
+C. Call sign, vessel position, nature of distress, follow-on communications by J3E or F1B.
+D. Name of vessel, vessel position, nature of distress, follow-on communications by J3E or F1B.
+
+19B6 What statement is false concerning DSC calls addressed to MMSI 003669999?
+
+A. MMSI 003669999 is an established group call that includes all U.S. Coast Guard Stations.
+B. DSC calls to MMSI 003669999 will be received by all DSC-equipped USCG coast stations within radio range.
+C. DSC calls to MMSI 003669999 may not be used to test MF/HF DSC equipment aboard ships.
+D. DSC calls to MMSI 003669999 may result in an automated acknowledgement from USCG coast stations.
+
+
+
+
+Answers:         19B1: C          19B2: D          19B3: A          19B4: B          19B5: B      19B6: C
+                                                - 19 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Operations: Key Topic-20: SITOR (NBDP)-ARQ:
+
+20B1 Which of the following statements concerning SITOR (NBDP) communications is true?
+
+A. In ARQ, each character is transmitted twice, about 250 milliseconds apart.
+B. In ARQ, the "information sending station" will transmit a block of three characters that the receiving station
+will subsequently acknowledge or request it to be retransmitted.
+C. In ARQ, the "information sending station" transmits a block of three characters twice, about 250 milliseconds
+apart.
+D. SITOR communications can be used to contact a NAVTEX transmitting station when requesting a repeat
+transmission of a missed NAVTEX message.
+
+20B2 What statement is true regarding the exchange between two stations engaged in SITOR (NBDP)
+communications?
+
+A. In ARQ, each character is transmitted twice, with the second displaced in time from the first.
+B. In ARQ, the "sending" station transmits a block of three characters and the "receiving" station responds with a
+one character Repeat Request. Following this the "transmitting" station will send a new block.
+C. In ARQ, the ISS transmits a block of 3 characters and the IRS checks for parity. If the received block is
+correct a control signal is sent notifying the ISS to proceed. If the parity check fails the block must be resent.
+D. Broadcasts of Maritime Safety Information, traffic lists, etc. can be copied by the receiving station in ARQ
+mode.
+
+20B3 Which of the following is true of SITOR (NBDP) ARQ mode:
+
+A. The ship station sends a group of 3 characters twice and then waits for an "RQ" signal to indicate proper
+receipt before transmission of the next 3 characters.
+B. The Ship station sends each character twice, using a time diversity system to ensure proper parity.
+C. The ship station sends a group of 3 characters, the shore station checks for proper parity and then requests
+the same group be resent to enable error correction.
+D. The ship station sends a group of 3 characters, the shore station checks for proper parity. If parity is OK, the
+shore station indicates readiness for transmission of the next 3 characters.
+
+20B4 Which of the following keystrokes or characters follows most commands in ARQ communications when
+working an automated Coast Station?
+
+A. +
+B. GA+?
+C. ENTER
+D. END
+
+20B5 Which characters are sent by the ship station to indicate a desire to send a message via a direct
+connection to a shoreside TELEX subscriber?
+
+A. MSG+
+B. AMV+
+C. OPR+
+D. DIRTLX0xxyyyy+
+
+20B6 What are the characters that are transmitted to terminate a direct TELEX connection in SITOR (NBDP)
+operations?
+
+A. KKKK
+B. . . . . .
+C. END+
+D. EOM
+
+
+Answers:        20B1: B          20B2: C          20B3: D          20B4: A          20B5: D          20B6: A
+                                                - 20 -
+                      FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Operations: Key Topic-21: SITOR (NBDP)-FEC:
+
+21B1 If a vessel is within range of NAVTEX broadcasts and both the Inmarsat-C and the NAVTEX receiver are
+inoperative the GMDSS operator should:
+
+A. Select 518 kHz FEC TELEX on the MF/HF console to receive MSI.
+B. Select 518 kHz ARQ TELEX on the MF/HF console to receive MSI.
+C. Request repairs of the Sat-C system and wait until within range of NAVTEX.
+D. Select an HF MSI frequency and ARQ TELEX mode to receive MSI.
+
+21B2 The sequence ARQ, FEC, SFEC best corresponds to which of the following sequences?
+
+A. One-way communications to a single station, one-way communications to all stations, two-way
+communications.
+B. Two way communications, one-way communications to all stations, one-way communications to a single
+station.
+C. One-way communications to all stations, two-way communications, one-way communications to a single
+station.
+D. Two way communications, One way communications to a single station, One way communications to all
+stations.
+
+21B3 Selective FEC communications (SFEC) are employed when:
+
+A. Multiple stations without a group SELCALL must receive communications without using their transmitters.
+B. Multiple stations must receive communications by using their transmitters to achieve phasing.
+C. An individual station must receive communications without transmitting (Radio Silence).
+D. An individual station must receive communications by using their transmitter to achieve phasing and block
+other stations from breaking in.
+
+21B4 Which of the following is true of SITOR (NBDP) Mode B (FEC), in the presence of static crashes.
+
+A. Data flow rate depends on signal propagation.
+B. Idle characters are sent upon request.
+C. Transmitter and receiver cannot synchronize.
+D. FEC reduces the error rate by transmitting each character twice.
+
+21B5 If the vessel is beyond range of NAVTEX broadcasts and the Sat-C system fails, the GMDSS operator
+must:
+
+A. Select an HF MSI frequency and FEC TELEX mode to receive MSI.
+B. Select 518 kHz ARQ TELEX on the MF/HF console to receive MSI.
+C. Request repairs of the Sat-C system and wait until within range of NAVTEX.
+D. Select 518 kHz FEC TELEX on the MF/HF console to receive MSI.
+
+21B6 If the vessel is experiencing atmospheric interference with NAVTEX broadcasts, especially in the tropics,
+the GMDSS operator should:
+
+A. Select one of the 6 HF MSI frequencies and set-up the transceiver in ARQ TELEX mode.
+B. Select one of the 8 HF MSI frequencies and set-up the transceiver in FEC TELEX mode.
+C. Select one of the 6 MF MSI frequencies and set-up the transceiver in FEC TELEX mode.
+D. Select the MF MSI frequency dedicated to tropical MSI and set-up the transceiver in FEC TELEX mode.
+
+
+
+
+Answers:        21B1: A         21B2: B         21B3: C          21B4: D         21B5: A         21B6: B
+                                              - 21 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-B: MF-HF-DSC-SITOR (NBDP) Equip. & Operations: Key Topic-22: Antenna Systems:
+
+22B1 What is the purpose of the antenna tuner?
+
+A. Minimizes the carrier output.
+B. Maximizes the sidebands.
+C. Provides for maximum VSWR.
+D. Match the antenna to the operating frequency.
+
+22B2 What is the electrical effect of an inductance in series with the antenna?
+
+A. It electrically lengthens a physically fixed length antenna.
+B. It electrically shortens a physically fixed length antenna.
+C. It raises the resonant frequency of a physically fixed length antenna.
+D. It increases the bandwidth of a physically fixed length antenna.
+
+22B3 What is the electrical effect of a capacitance in series with the antenna?
+
+A. It electrically lengthens a physically fixed length antenna.
+B. It electrically shortens a physically fixed length antenna.
+C. It lowers the resonant frequency of a physically fixed length antenna.
+D. It increases the bandwidth of a physically fixed length antenna.
+
+22B4 Which of the following coaxial cables is suitable for use in GMDSS MF/HF antenna systems?
+
+A. RG-59, 72 ohm Coax
+B. RG-6, 72 ohm Coax
+C. RG-8, 50 ohm Coax
+D. RG-179, 75 ohm Coax
+
+22B5 A ship’s MF-HF whip antenna breaks off and is carried away in a storm. What would you do to regain
+operation on MF-HF GMDSS frequencies?
+
+A. Rig a wire antenna 10 ft long from the antenna tuner to the highest vertical support.
+B. Rig a horizontal, center-fed dipole antenna 10 ft long to the antenna tuner.
+C. Rig a wire antenna approximately 35-40 ft long per the equipment instruction manual.
+D. Connect the MF/HF transceiver to the VHF antenna.
+
+22B6 Which of the following connectors is often used in GMDSS MF/HF antenna systems?
+
+A. “F” Connector
+B. “SMA” Connector
+C. “EIA-232” Connector
+D. “PL-259” Connector
+
+
+
+
+Answers:        22B1: D          22B2: A          22B3: B          22B4: C        22B5: C     22B6: D
+                                                - 22 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-C: Satellite Systems: Key Topic-23: Technology:
+
+23C1 What are the frequencies for Inmarsat-C shipboard satellite operation?
+
+A. Reception: 1526.5 - 1560.5 MHz and Transmission: 1625.0 - 1659.0 MHz
+B. Reception: 1625.0 - 1659.0 MHz and Transmission: 1526.5 - 1560.5 MHz
+C. Reception: 1530.0 - 1545.0 MHZ and Transmission: 1626.5 - 1645.5 MHz
+D. Reception: 1625.0 - 1659.0 MHz and Transmission: 1526.5 - 1560.5 MHz
+
+23C2 What is an LNA?
+
+A. Line noise amplifier
+B. Low number algorithm
+C. Low noise antenna
+D. Low noise amplifier
+
+23C3 What function does the LNA perform?
+
+A. Receives and amplifies a very weak signal from the satellite.
+B. Calculates data received.
+C. Increases the receiver’s noise figure.
+D. Provides degenerative feedback to the LNB.
+
+23C4 What is the fade margin factor?
+
+A. A design allowance that provides for the sun to accommodate expected fading for the purpose of ensuring
+that the required quality of service is maintained.
+B. A design allowance to accommodate expected fading.
+C. The increase in fade over a receiver’s noise floor.
+D. The ratio between the largest and smallest values of a received signal.
+
+23C5 What is signal to noise ratio?
+
+A. A measure used that compares the distance of a desired signal to the level of background noise.
+B. A measure used that compares the level of a desired signal to the level of background noise.
+C. A measure used that compares the frequency of a desired signal to the frequency of background noise.
+D. A measure that measures signal in the forward direction and noise in the reverse direction.
+
+23C6 What is the abbreviation for signal to noise?
+
+A. STN
+B. SIG/NR
+C. SNR
+D. SIN
+
+
+
+
+Answers:        23C1: C          23C2: D         23C3: A           23C4: B     23C5: B         23C6: C
+                                               - 23 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-C: Satellite Systems: Key Topic-24: C-Terminals:
+
+24C1 Which of the following actions should be taken to minimize shock hazard of an Inmarsat terminal?
+
+A. Ensure the DC power supply is insulated from the ship’s hull.
+B. Ensure the chassis of the Inmarsat terminal is connected to an electrical ground.
+C. Install a common busbar for grounding to ensure common-mode coupling.
+D. Isolate the transceiver’s metal frame to avoid a return path for fault currents.
+
+24C2 How do you perform a LOOP BACK test?
+
+A. Initiate a Performance Verification Test through terminal software.
+B. Initiate a test to IP address: 127.0.0.1.
+C. Send yourself a test message.
+D. Request the LES to send you a test message.
+
+24C3 What do EGC messages contain?
+
+A. Maritime Mobile Service Identity information.
+B. SafeNetTM, FleetwideNetTM and System information.
+C. Electronic Grounding Codes and System information.
+D. SafetyNetTM, FleetNetTM and System information.
+
+24C4 Which of the following is not recommended for Inmarsat-C antenna installations?
+
+A. Ensure the antenna is electrically insulated from the mounting mast. Check resistance with ohmmeter.
+B. Ground the antenna chassis to the mounting mast. Apply silicone to weatherproof the connection.
+C. Fashion a drip loop in the transmission line near the antenna. Secure to the mounting mast with cable tie.
+D. Apply waterproof sealant or putty around transmission line connectors. Wrap with self-bonding/vinyl tape.
+
+24C5 How many NCS’s operate in each Inmarsat ocean region per Inmarsat system?
+
+A. Three
+B. Four
+C. Two
+D. One
+
+24C6 What type of services cannot be provided by the Inmarsat-C system?
+
+A. Telephone communications via VOIP.
+B. Message transmission to and from a mobile unit.
+C. Broadcast data to groups of mobile terminals.
+D. Position reporting from fleets of mobile units.
+
+
+
+
+Answers:        24C1: B          24C2: C         24C3: D          24C4: A         24C5: D         24C6: A
+                                               - 24 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-C: Satellite Systems: Key Topic-25: Long Range Identity Tracking:
+
+25C1 The U.S. National Data Center that monitors polling input for each US Flag ship:
+
+A. Must receive at least 4 position reports daily.
+B. Must receive LRIT position reports each hour.
+C. Must receive at least 1 position report daily including the number of crew aboard.
+D. Is a double check on AIS output.
+
+25C2 LRIT Long Range Information Tracking data:
+
+A. Need not be transmitted if AMVER daily messages are sent.
+B. Is a separate tracking system for each flag state’s security.
+C. Is shared for the Captain of the Port.
+D. Is broadcast on the Internet for company tracking purposes.
+
+25C3 LRIT Long Range Information Tracking:
+
+A. Can serve as duplicate back up information for AIS (Automatic Information System.)
+B. Works on the same frequencies as AIS, but on different channels.
+C. is detected on the Inmarsat-C satellite network.
+D. Puts out a polling signal on the Inmarsat B system.
+
+25C4 When a compulsory equipped IMO ship is not correctly broadcasting LRIT Info what action should be
+taken?
+
+A. Check the power fuse on the Sat D box located on the bridge.
+B. Can re-boot the AIS broadcasting unit.
+C. Verify the Ship Security Alerting System has not been accidentally activated.
+D. Double check the GMDSS Console's Inmarsat-C terminal for regular operation.
+
+25C5 What must a LRIT terminal do?
+
+A. Capable of being configured to automatically transmit an APR, transmit an APR every 6 hours, be able to
+automatically transmit a PR if requested.
+B. Capable of being configured to automatically transmit an APR, transmit an APR every 12 hours, be able to
+automatically transmit a PR if requested.
+C. Capable of being configured to automatically receive an APR, transmit an APR every 8 hours, be able to
+automatically transmit a PR if requested.
+D. Capable of being configured to automatically receive an APR, transmit an APR every 24 hours, be able to
+automatically transmit a PR if requested.
+
+25C6 What satellite system does not support LRIT?
+
+A. Inmarsat-C
+B. GPS
+C. IRIDIUM
+D. Inmarsat-D+
+
+
+
+
+Answers:         25C1: A         25C2: B         25C3: C           25C4: D        25C5: A       25C6: B
+                                               - 25 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-C: Satellite Systems: Key Topic-26: Fleet-33-55-77 Terminals:
+
+26C1 Which of the following Inmarsat units stores configuration data and contains all user interfaces and LED
+indicators?
+
+A. Main Control Unit – an element of the Pedestal Control Assembly.
+B. Master Communications Unit – an element of the antenna control unit.
+C. Master Communications Unit – an element of the RF transceiver.
+D. Fleet Broadband terminal – a component of below deck equipment.
+
+26C2 Which of the following is not a function of an Inmarsat Fleet Broadband IP handset?
+
+A. Polling and Data Reporting.
+B. Voice over IP telephone calls.
+C. Displaying terminal status.
+D. Changing terminal parameters.
+
+26C3 Which of the following best describes Inmarsat BGAN Streaming Data service?
+
+A. A service ideal for TCP/IP traffic such as e-mail, file transfers and Internet access.
+B. Exclusive, high-priority connection ideal for time critical applications.
+C. A service used by the Inmarsat terminal’s web interface for operation and configuration.
+D. A high speed data service used for high speed connections via ISDN.
+
+26C4 Which of the following is the best procedure to test the Inmarsat Distress Alarm?
+
+A. Lift the plastic cover and depress the “DISTRESS” button.
+B. Advise the US Coast Guard you are going to test the Distress Alarm.
+C. Use service number 33 to arrange a Distress Alarm test transmission with the LES in advance.
+D. Broadcast a SAFETY priority call to all stations immediately prior to initiating the Distress Alarm.
+
+26C5 Which of the following is the correct Fax/Data configuration of a Fleet Broadband terminal?
+
+A. RJ11 Port 1 and 2 set to standard voice.
+B. ISDN Port set to standard voice.
+C. RJ11 Port 1 and 2 set to 3.1 kHz audio.
+D. LAN Ports set to 3.1 kHz audio.
+
+26C6 Which of the following is not a characteristic of an Inmarsat Fleet Broadband IP handset?
+
+A. Ability to transmit telephone calls as circuit-switched calls.
+B. Displays menu options to configure the terminal.
+C. Uses TCP/IP to communicate with the terminal.
+D. Provides the terminal with Power over Ethernet.
+
+
+
+
+Answers:         26C1: D          26C2: A           26C3: B         26C4: C          26C5: C          26C6: D
+
+                                                  - 26 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-C: Satellite Systems: Key Topic-27: Fleet Broadband Terminals:
+
+27C1 What protocol can be used in connecting a PC to the LAN interface of an Inmarsat terminal?
+
+A. ISDN
+B. SMTP
+C. TCP/IP
+D. FTP
+
+27C2 When is a PIN Unlock Key (PUK) used with an Inmarsat terminal?
+
+A. To place a credit card telephone call via the Inmarsat terminal.
+B. To input the Personal Identification Number (PIN) applied to a telephone extension.
+C. To override a long distance block on an Inmarsat terminal.
+D. To unlock the SIM card in a Fleet broadband terminal.
+
+27C3 Which of the following is NOT a function of the LAN port on a Fleet Broadband terminal?
+
+A. To provide connectivity to an ISDN telephone handset.
+B. To provide IP connectivity for terminal configuration and troubleshooting.
+C. To provide connectivity for Internet browsing with a computer.
+D. To provide connectivity for a Voice Over IP (VOIP) telephone Handset.
+
+27C4 What is the configuration for Thrane & Thrane F250 & F500 facsimile operation?
+
+A. Fax - Group 3 fax via standard voice channel for analog fax applications.
+B. Fax - Group 3 fax via 3.1 kHz audio channel for analog fax applications.
+C. Fax - Group 5 fax via 5.1 kHz audio channel for efax applications.
+D. Fax - Group 3 fax via ISDN channel for analog fax applications.
+
+27C5 What is the configuration Thrane & Thrane F500 for standard voice telephone operation?
+
+A. RJ11 Port 1 and 2 set to 3.1 kHz.
+B. RJ11 Port 1 and 2 set to standard voice.
+C. ISDN Port set to 3.1 kHz.
+D. ISDN Port 1 and 2 set to standard voice.
+
+27C6 Which of the following best describes a Subscriber Identity Module (SIM)?
+
+A. A removable device to implement Inmarsat digital rights management (DRM).
+B. A non-volatile device to implement high-speed data and other advanced terminal features.
+C. An integrated circuit device that securely stores the Inmarsat identity and an authentication key.
+D. A Read/Write data device that uses x.25 protocol to limit terminal access to authorized users.
+
+
+
+
+Answers:        27C1: C          27C2: D          27C3: A          27C4: B         27C5: B          27C6: C
+
+                                                - 27 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-C: Satellite Systems: Key Topic-28: GPS:
+
+28C1 What is the usual arrangement of GPS satellites?
+
+A. 18 satellites in 3 orbital planes, 6 satellites in each plane, 23,400 km altitude and 55 degrees inclination.
+B. 24 satellites in 6 orbital planes, 4 satellites in each plane, 20,200 km altitude and 55 degrees inclination.
+C. 30 satellites in 5 orbital planes, 6 satellites in each plane, 20,200 km altitude and 60 degrees inclination.
+D. 36 satellites in 6 orbital planes, 6 satellites in each plane, 23,600 km altitude and 60 degrees inclination.
+
+28C2 What is the purpose of the Differential GPS system and how does it work?
+
+A. To measure the difference between L-1 and L-2 signals and transmit the information via the GPS signal.
+B. To correct for time errors in the satellites and transmit this information via the GPS signal.
+C. To correct for various errors using a fixed receiving station which transmits corrections via radio signals.
+D. To correct for phase errors between L-1 and L-2 signals and transmit the information via radio beacons.
+
+28C3 How is the GPS usually interconnected with other bridge equipment?
+
+A. Through a 8-bit parallel line network.
+B. Through a USB port.
+C. Through an Ethernet LAN.
+D. Through a NMEA-0183 or NMEA-2000 LAN.
+
+28C4 Which of the following statements is true?
+
+A. The L2 carrier of 1227.60 MHz is used to measure the ionospheric delay.
+B. The L1 carrier of 1650.5 MHz is used to measure the ionospheric delay.
+C. The L1 carrier of 1545.22 MHz is used to provide the navigation message.
+D. The L2 carrier of 1575.42 MHz is used to provide the navigation message.
+
+28C5 Which of the following best describes the GPS satellite signals transmitted?
+
+A. The L2 carrier at 1650.5 MHz carries the navigation message and the L1 carrier at 1575.42 MHz is used to
+measure the ionospheric delay.
+B. The two carriers are combined in a mixer circuit to develop an intermediate signal which is transmitted.
+C. The main carrier of 1650.5 MHz and a sub-carrier of 1575.24 MHz containing the SPS code signals.
+D. The L1 carrier of 1575.42 MHz carries the navigation message and the SPS code signals and the L2 carrier
+1227.60 MHz which is used to measure the ionospheric delay.
+
+28C6 What is the minimum number of satellites that must be received to provide the highest accuracy?
+
+A. Four
+B. Two
+C. Eight
+D. Six
+
+
+
+
+Answers:         28C1: B          28C2: C          28C3: D          28C4: A          28C5: D          28C6: A
+
+                                                 - 28 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-C: Satellite Systems: Key Topic-29: Antenna Systems:
+
+29C1 Which of the following best describes the polarization of a satellite signal?
+
+A. The orientation of the RF signal’s electric field component.
+B. The orientation of the RF signal relative to a dipole antenna.
+C. The orientation of the RF signal relative to a parabolic antenna.
+D. The orientation of the RF signal’s magnetic field component.
+
+29C2 Which of the following is characteristic of the parabolic dish antenna?
+
+A. Feedhorn located behind the parabolic reflector.
+B. Feedhorn adjusted to the focal point of the antenna.
+C. Most often used on high frequencies (3-30 MHz).
+D. Low gain, highly directional radiation pattern.
+
+29C3 Which of the following best describes a phased array antenna system?
+
+A. RF from the feedline array is dissipated by a single antenna element.
+B. RF from a multiple feedline array is dissipated by a single antenna element.
+C. RF from multiple antennas is varied to produce a desired radiation pattern.
+D. RF from multiple antennas is combined to produce unity gain.
+
+29C4 Which of the following is characteristic of an Inmarsat-C antenna?
+
+A. The antenna is RHC polarized with a cardioid radiation pattern.
+B. The antenna is vertically polarized and highly directional.
+C. The antenna is horizontally polarized and omni-directional.
+D. The antenna is RHC polarized with an omni-directional radiation pattern.
+
+29C5 What is a best practice for installing Inmarsat satellite antennas aboard ship?
+
+A. Install antennas as high as practical, free from shadowing of structures.
+B. Install antennas next to other Inmarsat antennas, away from structures.
+C. Connect the antenna to transmission line with the highest characteristic impedance.
+D. Install an inline filter with the transmission line to attenuate frequencies above 1 GHz.
+
+29C6 What components does an Inmarsat Fleet Broadband RADOME typically include?
+
+A. Phased array antenna, gyro-stabilized platform, rotary joint, AC power supply.
+B. Stabilized antenna, RF unit, Antenna Control Unit, GPS antenna.
+C. Parabolic dish antenna, Main Control Unit, rotary joint, HV power supply.
+D. Parabolic dish antenna, rotary joint, AC power supply TDMA Control Unit.
+
+
+
+
+Answers:         29C1: A          29C2: B          29C3: C          29C4: D          29C5: A   29C6: B
+                                                - 29 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-C: Satellite Systems: Key Topic-30: Equipment Faults and troubleshooting-1:
+
+30C1 Which of the following conditions would prevent communications between an Inmarsat-C data port and
+external data terminal equipment (DTE)?
+
+A. Use of a stop bit in the DCE/DTE communication parameters.
+B. Grounding pin 5 of the standard EIA-232 connector.
+C. Use of a “0” parity bit in the DCE/DTE communication parameters.
+D. Use of a “null” MODEM cable to connect the DTE device.
+
+30C2 How can a LES/RCC (Rescue Coordination Centre) determine if an Inmarsat-C Distress Alert is a TEST
+transmission?
+
+A. A flag in the message is set to identify the transmission as a test alert.
+B. The validity of each Distress alert must be manually verified by LES/RCC personnel.
+C. A Distress acknowledgement is sent from the LES/RCC to the originating station.
+D. LES/RCC personnel cannot distinguish between valid and TEST transmissions.
+
+30C3 What is the meaning of the “ACB” Inmarsat-C Non-Delivery Notification (NDN) failure code?
+
+A. The terminal received an invalid answer-back from the destination.
+B. Access to the Inmarsat system has been barred.
+C. The Automatic Communications Bit error rate was exceeded.
+D. An Inmarsat message channel failure occurred.
+
+30C4 What condition can indicate a communication failure between the second receiver (RX2) and the Antenna
+Control Unit (ACU) in an Inmarsat Fleet 77 terminal?
+
+A. The terminal will indicate RX2 is locked onto a signal on the Inmarsat NCSC channel.
+B. The terminal will indicate receipt of a valid frame on the Inmarsat NCSC channel.
+C. The message "RX2 Comm error" or “ACU Comm error” will be displayed.
+D. The DCE/DTE communication protocol is improperly configured.
+
+30C5 Which of the following devices can cause interference to Fleet 77/55 systems?
+
+A. 406 MHz Emergency Position Indicating Radio Beacons (EPIRBs) in the transmit mode.
+B. 9.3 GHz Search And Rescue RADAR Transponders (SARTs) in the transmit mode.
+C. Transmitters operating in the 3-30 MHz range and shipboard RADARS in close proximity.
+D. Survival Craft Equipment in the VHF range in the high power transmit mode.
+
+30C6 What error message may be displayed if a connection to the Inmarsat Mobile Packet Data Service
+(MPDS) network fails?
+
+A. “ECM 0071” is displayed indicating the called station ID was not properly decoded.
+B. “ECM 00F0” is displayed indicating the terminal’s failure to transmit over the Inmarsat network.
+C. “77F0h” or “77F1h” is displayed indicating the terminal is not registered to the MPDS network.
+D. “00F0h” or “00F1h” is displayed indicating the terminal is not registered to the MPDS network.
+
+
+
+
+Answers:        30C1: D          30C2: A         30C3: B          30C4: C         30C5: C             30C6: D
+
+                                               - 30 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-C: Satellite Systems: Key Topic-31: Equipment Faults and troubleshooting-2:
+
+31C1 An Inmarsat-C terminal shows a “No Receive Signal” alarm. There is no voltage on the antenna center
+pin. What is the most likely cause?
+
+A. Defective AZ or EL motor in the above deck equipment.
+B. Blown line fuse in the terminal’s DC power supply.
+C. Blown antenna power fuse in the above deck equipment.
+D. Defective Low Noise Amplifier in the above deck equipment.
+
+31C2 An Inmarsat-C terminal will not “LOG IN”. A test antenna cable with a new ADE attached in view of the
+satellite allows the terminal to “LOG IN”. What steps would you take?
+
+A. Replace the AZ or EL motor in the above deck equipment.
+B. Try logging into a different satellite with the original ADE.
+C. Use a DVM to check the feedline between the terminal and ADE.
+D. Install a replacement ADE.
+
+31C3 An Inmarsat-C terminal will not “LOG IN” and shows an “Antenna not connected” alarm. What action
+would you take?
+
+A. Short one end of coax cable. If the resistance is above one ohm replace the cable.
+B. Change to a different satellite and try a new “LOG IN”.
+C. Replace the antenna unit.
+D. Replace the AZ-EL board.
+
+31C4 The antenna goes past the AZ EL of the satellite but does not initialize but you can manually point the
+antenna at the satellite and acquire signal. What is the most likely problem?
+
+A. Defective coax cable.
+B. Faulty antenna control module.
+C. Bad I.F. amplifier.
+D. Bad Gyro repeater motor.
+
+31C5 The antenna creeps up and down after initialization. What action would you take?
+
+A. Check AZ step motor with power off. If it is stiff replace the motor.
+B. Check EL step motor with power off. If it is stiff replace the motor.
+C. Replace the platform sensor.
+D. Replace the gyro repeater motor.
+
+31C6 The antenna tries to initialize then points straight up and stops. What is the most likely problem?
+
+A. A defective EL motor.
+B. A defective AZ motor.
+C. A defective level platform sensor.
+D. A defective I.F. amplifier.
+
+
+
+
+Answers:         31C1: C          31C2: D          31C3: A          31C4: B        31C5: B         31C6: C
+                                                 - 31 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-C: Satellite Systems: Key Topic-32: Equipment Faults and troubleshooting-3:
+
+32C1 What action should be taken if an Inmarsat Fleet Broadband antenna continuously changes azimuth after
+initialization?
+
+A. Replace the gyro repeater motor in the Antenna Tracking Unit.
+B. Use the Web interface to check the event log.
+C. Check the EL step motor with power off.
+D. Check the integrity of the antenna interface cable.
+
+32C2 What condition would cause failure of an Inmarsat-C terminal to power up when AC voltage is present at
+the input terminals of the power supply?
+
+A. A defective coaxial cable connecting the terminal to the antenna.
+B. The failure of an I.F. amplifier stage in the terminal’s receiver.
+C. A component failure within the power supply itself.
+D. A defective video monitor connected to the Inmarsat-C terminal.
+
+32C3 What condition would cause an IP connection failure between a technician’s laptop and an Inmarsat Fleet
+Broadband terminal?
+
+A. The laptop settings are not compatible with the terminal’s LAN port.
+B. The technician has disabled the Power over Ethernet (POE) function.
+C. The EIA-232 configuration is not compatible with the Inmarsat terminal.
+D. The technician has connected the Ethernet cable to the terminal’s ISDN port.
+
+32C4 What condition would cause a connection failure between a technician’s laptop and an Inmarsat Fleet
+Broadband terminal?
+
+A. The wrong IP address was entered as the URL in the web browser.
+B. The ASD function is enabled but the HSD function is disabled.
+C. The terminal’s DTE port is set to the Asynchronous Data Service.
+D. The password for the High Speed Data service has been improperly entered.
+
+32C5 Interference induced from nearby HF transmitters may cause Inmarsat system failures. What is the most
+appropriate action to resolve this problem?
+
+A. Install a longer ground lead to the INMARSAT terminal.
+B. Install a low-pass filter between the coax cable and antenna.
+C Reduce bias to the INMARSAT antenna’s Low Noise Amplifier.
+D. Install ferrite clamps on the coax cable to suppress induced RF.
+
+32C6 What condition will lower the observed bit rate on a Fleet Broadband terminal?
+
+A. A standard IP satellite channel that is “busy” with many active users.
+B. Selection of an upstream IP data service for downstream high-speed data transmission.
+C. Use of the FTP, POP, SMTP or HTTP protocol instead of TCP/IP.
+D. Use of highly contended connections instead of store-and-forward IP circuits.
+
+
+
+
+Answers:        32C1: B          32C2: C          32C3: D          32C4: A        32C5: D     32C6: A
+
+                                               - 32 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-D: Other GMDSS Equipment: Key Topic-33: EPIRB:
+
+33D1 Which is not a function of a satellite under COSPAS-SARSAT using satellite EPIRBs?
+
+A. After the EPIRB’s position is calculated using the Doppler shift COSPAS-SARSAT satellites provide follow-on
+SAR communications.
+B. Relayed satellite message includes the EPIRB ID number which provides a reference for retrieval of vessel
+information from the shore database.
+C. Doppler shift of EPIRB signal is measured and the EPIRB’s position is calculated.
+D. Information received from EPIRBs is time-tagged and transmitted to any Local User Terminal in the satellite's
+view.
+
+33D2 What is the purpose of the magnet in the EPIRB mounting bracket?
+
+A. To secure the EPIRB in the mounting bracket.
+B. Prevent accidental operation of the EPIRB while secured in the mounting bracket.
+C. To activate the automatic release mechanism.
+D. When the EPIRB is released it causes a signal to be sent to the bridge.
+
+33D3 How often must the EPIRB battery be replaced?
+
+A. Every 2 years.
+B. Every 3 years or after use.
+C. Every 5 years or after use.
+D. Every 8 years.
+
+33D4 What feature is not a component of a 406 MHz satellite EPIRB?
+
+A. 121.5 MHz emergency homing transmitter.
+B. Emergency transmission on 406.025 MHz.
+C. Float-free release bracket.
+D. Aural locator signal.
+
+33D5 How often must the automatic release mechanism be replaced.
+
+A. Every 2 years
+B. Every 3 years
+C. Every 5 years
+D. Every 8 years
+
+33D6 Which of the following is normally part of 406 MHz satellite EPIRBs?
+
+A. A strobe light, automatic float-free bracket, 1-watt 406-MHz alert beacon.
+B. A 5-watt 406-MHz alert beacon, Automatic Hydrostatic Release (ARM), strobe light.
+C. Automatic float-free bracket, 5-watt 121.5 MHz homing beacon, strobe light.
+D. Automatic Hydrostatic Release (ARM), 1-watt 121.5 MHz alerting beacon, strobe light.
+
+
+
+
+Answers:        33D1: A          33D2: B        33D3: C          33D4: D         33D5: A         33D6: B
+                                              - 33 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-D: Other GMDSS Equipment: Key Topic-34: SART:
+
+34D1 How should the signal from a Search And Rescue RADAR Transponder appear on a RADAR display?
+
+A. A series of dashes.
+B. A series of spirals all originating from the range and bearing of the SART.
+C. A series of twenty dashes.
+D. A series of 12 equally spaced dots.
+
+34D2 In what frequency band does a search and rescue transponder operate?
+
+A. 9 GHz
+B. 3 GHz
+C. S-band
+D. 406 MHz
+
+34D3 What causes the SART to begin a transmission?
+
+A. When activated manually, it begins radiating immediately.
+B. After being activated the SART responds to RADAR interrogation.
+C. It is either manually or water activated before radiating.
+D. It begins radiating only when keyed by the operator.
+
+34D4 At what interval must the SART’s battery be replaced?
+
+A. Every 2 years.
+B. Every 3 years or after being used.
+C. Every 5 years or after being used.
+D. Every 8 years.
+
+34D5 What are the characteristics of the SART transmitted signal?
+
+A. It starts with a sweep of 10.2 usec.followed by a sweep of 0.6 usec for a total of 10 sweeps.
+B. It starts with a sweep of 0.8 usec followed by a sweep of 12.6 usec for a total of 12 sweeps.
+C. It starts with a sweep of 0.4usec across the entire 3 cm radar band followed by a returning sweep of 7.5 usec
+back to the beginning for a total of 12 sweeps.
+D. It starts with a sweep of 8.5 usec followed by a sweep of 0.4 usec for 10 sweeps.
+
+34D6 What is the approximate distance between dots on a radar display at a distance of 5 miles?
+
+A. 0.36 nm
+B. 0.48 nm
+C. 0.56 nm
+D. 0.64 nm
+
+
+
+
+Answers:        34D1: D          34D2: A          34D3: B         34D4: C        34D5: C          34D6: D
+                                               - 34 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-D: Other GMDSS Equipment: Key Topic-35: Survival Craft Transceiver:
+
+35D1 How often must the Survival Craft Transceiver battery be changed?
+
+A. 2 years or after use for distress communications.
+B. 3 years or after use for distress communications.
+C. 5 years or after use for distress communications.
+D. 8 years or after use for distress communications.
+
+35D2 What is the minimum receiver sensitivity required for a Survival Craft Transceiver?
+
+A. 0.1 microvolts
+B. 0.5 microvolts
+C. 1.0 microvolts
+D. 2.0 microvolts
+
+35D3 What is the minimum required effective radiated power?
+
+A. 0.25 watt
+B. 0.5 watt
+C. 1 watt
+D. 2 watts
+
+35D4 Equipment for radiotelephony use in survival craft stations under GMDSS must have what capability?
+
+A. Operation on 457.525 MHz.
+B. Operation on Ch-16.
+C. Operation on 121.5 MHz.
+D. Operation on Ch-70.
+
+35D5 Which statement is NOT true regarding the requirements of survival craft portable two-way VHF
+radiotelephone equipment?
+
+A. Watertight to a depth of 1 meter for 5 minutes.
+B. Operates simplex on Ch-70 and at least one other channel.
+C. Effective radiated power should be a minimum of 0.25 Watts.
+D. The antenna is fixed and non-removable.
+
+35D6 Equipment for radiotelephony use in survival craft stations under GMDSS must have what characteristics?
+
+A. Permanently-affixed antenna, watertight, power 1W or 25W.
+B. Watertight, power a minimum of 1W, operation on CH-16, Ch-13 & Ch-70.
+C. Operation on Ch-16, watertight, permanently-affixed antenna.
+D. Operation on Ch-16, Ch-13 & Ch-70, power 1W, permanently-affixed antenna.
+
+
+
+
+Answers:        35D1: C         35D2: D          35D3: A         35D4: B         35D5: B      35D6: C
+                                               - 35 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-D: Other GMDSS Equipment: Key Topic-36: Navtex:
+
+36D1Which of the following is the primary frequency that is used exclusively for NAVTEX broadcasts
+internationally?
+
+A. 490 kHz
+B. 518 kHz
+C. 2187.5 kHz
+D. 4209.5 kHz
+
+36D2 The NAVTEX is powering on and appears to be functioning normally except there have been no new
+messages for an extended period. The station settings are correct. What is the most likely source of the
+problem?
+
+A. The audio amplifier is defective.
+B. The wrong frequency has been selected.
+C. The RF amplifier at the antenna base is defective.
+D. The DC supply voltage is too low.
+
+36D3 How is a NAVTEX receiver programmed to reject certain messages?
+
+A. The transmitting station's two-digit identification can be entered to de-select reception of its broadcasts.
+B. By entering the SELCALL of the transmitting station.
+C. By pressing "00" in the transmitter's ID block.
+D. By choosing a message category's single letter (A-Z) identifier and then deselecting or deactivating.
+
+34D4 How can reception of certain NAVTEX broadcasts be prevented?
+
+A. The receiver can be programmed to reject certain stations and message categories.
+B. Stations are limited to daytime operation only.
+C. Coordinating reception with published broadcast schedules.
+D. Automatic receiver desensitization during night hours.
+
+36D5 How is accuracy insured in NAVTEX broadcasts?
+
+A. A parity check character is sent at the end of each line.
+B. Each message is retransmitted.
+C. Selective FEC is used to prevent errors.
+D. Each character is sent twice with a time interval.
+
+36D6 NAVTEX broadcasts are sent:
+
+A. In categories of messages indicated by a single letter or identifier.
+B. Immediately following traffic lists.
+C. On request of maritime mobile stations.
+D. Regularly, after the radiotelephone silent periods.
+
+
+
+
+Answers:         36D1: B          36D2: C          36D3: D          36D4: A          36D5: D          36D6: A
+                                                 - 36 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-E: Power Sources: Key Topic-37: Batteries:
+
+37E1 What is the normal voltage of a single NICAD battery cell?
+
+A. 1.2 volts
+B. 1.5 volts
+C. 2.1 volts
+D. 2.5 volts
+
+37E2 What is the effect of temperature on the specific gravity of lead acid batteries?
+
+A. Higher temperature results in a higher specific gravity reading.
+B. Higher temperature results in a lower specific gravity reading.
+C. Temperature has no effect on the specific gravity reading.
+D. Lower temperature results in a lower specific gravity reading.
+
+37E3 What will cause an individual battery cell to reverse polarity?
+
+A. The charging circuits are connected in the correct polarity but all of the cells are equally charged.
+B. High discharge rates without allowing for a cool down period.
+C. When discharging the battery — if a cell becomes weaker then the remaining cells the discharge current will
+effectively charge the weaker cell in reverse polarity.
+D. Insufficient charging which does not bring all of the cells up to full charge.
+
+37E4 What is the normal specific gravity of a fully charged lead acid battery cell? What device is used to
+measuring the electrolyte of a lead acid battery?
+
+A. 1.375 Voltmeter
+B. 1.180 Voltmeter
+C. 1.210 Hydrometer
+D. 1.280 Hydrometer
+
+37E5 What is a gel cell battery and how is it maintained & cared for?
+
+A. Gel cell batteries are typically sealed — special charging rates and voltages may be required.
+B. Gel cell batteries are lead acid with a solid electrolyte — each cell is checked with a voltmeter.
+C. Gel cell batteries are NICAD with a solid electrolyte — each cell is checked with a voltmeter.
+D. Gel cell batteries are have special liquid electrolytes — they are charged with the NICAD charging rates and
+voltages.
+
+37E6 What is the normal voltage of a single lead acid battery cell?
+
+A. 1.5 volts
+B. 2.1 volts
+C. 2.5 volts
+D. 2.8 volts
+
+
+
+
+Answers:        37E1: A          37E2: B          37E3: C             37E4: D      37E5: A         37E6: B
+
+                                                - 37 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-E: Power Sources: Key Topic-38: Battery Chargers and Power Sources:
+
+38E1 How often should high charging be use with a standard lead acid battery and a fully automatic GMDSS
+compliant Battery charger?
+
+A. Once every 24 hours for 1 hour.
+B. Once every month till the battery reaches 2.5V/cell.
+C. Never use High charging rate on a fully charged battery.
+D. Once a week till the battery reaches the gassing range.
+
+38E2 What are the different modes of charging for a GMDSS compliant battery charger/supply?
+
+A. Charging, Change-over, Parallel
+B. Charging, float, trickle
+C. Charging, Full, Trickle
+D. Boots, Full, Float
+
+38E3 What would be an indication of a malfunction on a GMDSS station with a 24 VDC battery system?
+
+A. All of these symptoms would indicate a potential battery charger malfunction.
+B. A constant 30 volt reading on the GMDSS console voltmeter.
+C. After testing the station on battery power, a voltmeter reading of 30 volts for a brief period followed by a
+steady 26 volt reading.
+D. After testing the station on battery power, the ammeter reading indicates a high rate of charge that then
+declines.
+
+38E4 What is the meaning of “Reserve Source of Energy”?
+
+A. High caloric value items for lifeboat, per SOLAS regulations.
+B. Diesel fuel stored for the purpose of operating the powered survival craft for a period equal to or exceeding
+the U.S.C.G. and SOLAS requirements.
+C. Power to operate the radio installation and conduct Distress and Safety communications in the event of
+failure of the ship's main and emergency sources of electrical power.
+D. The diesel fueled emergency generator that supplies AC to the vessel’s Emergency power bus.
+
+38E5 With a fully automatic GMDSS compliant battery charger / power supply, when must the high charging
+process be interrupted?
+
+A. To keep the battery from overheating.
+B. To keep the battery electrolyte from reaching 212 degrees F.
+C. To inhibit the generation of electrolytic gas.
+D. To keep the battery as cool as possible.
+
+38E6 A fully automatic GMDSS compliant Battery charger/ Power supply’s high (Full) charging mode must be
+disabled during setup for what type batteries?
+
+A. When the batteries are Ni Cadmium type.
+B. When the Batteries are standard lead acid type.
+C. When the batteries are lithium ion type.
+D. When the batteries are Maintenance free lead acid gel type.
+
+
+
+
+Answers:         38E1: D          38E2: A          38E3: B          38E4: C          38E5: C          38E6: D
+                                                - 38 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-E: Power Sources: Key Topic-39: Power Supplies-1:
+
+39E1 Which of the following best describes a standard full wave rectifier power supply?
+
+A. It uses a capacitor input filter to provide good voltage regulation.
+B. It must only use a single diode rectifier.
+C. The ripple frequency is twice the input frequency.
+D. It must always use a center tapped transformer secondary.
+
+39E2 Which of the following statements concerning power supply filters is true?
+
+A. A capacitor input has high output voltage, good voltage regulation, low rectifier peak currents and low
+transformer utilization factor.
+B. A capacitor input has low output voltage, poor voltage regulation, high rectifier peak currents and low
+transformer utilization factor.
+C. An Inductive input has poor voltage regulation, low transformer utilization factor, high rectifier peak currents
+and relative low output voltage.
+D. An Inductive input has good voltage regulation, high transformer utilization factor, low rectifier peak currents
+and relatively low output voltage.
+
+39E3 What are the main advantages of using switcher type power supply?
+
+A. Line voltage is directly rectified and filtered to produce a high dc voltage, components are much smaller and
+lighter weight, can provide much better efficiency.
+B. The transformed voltage is directly rectified and filtered to produce a high dc voltage, components are much
+smaller and lighter weight and can provide much better efficiency.
+C. They use laminated steel transformers which are more efficient.
+D. Using a center tapped transformer secondary allows fewer rectifiers to be used.
+
+39E4 What are the disadvantages of using a switcher type power supply?
+
+A. Increased complexity (more likelihood of a component failure), increased cost (many more parts) and
+tendency to create radiated AF.
+B. Increased complexity (more likelihood of a component failure), increased cost (many more parts) and
+tendency to create radiated RF.
+C. Decreased complexity (less likelihood of a component failure) and decreased cost (fewer parts and tendency
+to create radiated RF.
+D. Decreased complexity (less likelihood of a component failure) and decreased cost (fewer parts and tendency
+to create radiated AF.
+
+39E5 Power supplies with inductive input filters have the following characteristics:
+
+A. Poor voltage regulation with high peak rectifier currents.
+B. Good voltage regulation with high transformer utilization factor.
+C. Low transformer utilization factor with low rectifier peak currents.
+D. High transformer utilization factor with high rectifier peak currents.
+
+39E6 Power supplies with capacitive input filters have the following characteristics:
+
+A. Relatively high output voltage with low rectifier peak currents.
+B. High transformer utilization factor with good voltage regulation.
+C. Poor voltage regulation and high rectifier peak currents.
+D. Good voltage regulation with high transformer utilization factor.
+
+
+
+
+Answers:         39E1: C          39E2: D          39E3: A           39E4: B           39E5: B       39E6: C
+                                                 - 39 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-E: Power Sources: Key Topic-40: Power Supplies-2:
+
+40E1 What is the function of a crowbar circuit?
+
+A. It provides a voltage reference for the voltage regulator.
+B. It prevents an overvoltage condition from damaging circuitry by shorting the power supply output.
+C. It provides a voltage reference for the chopper circuit.
+D. It provides a feedback signal for the chopper circuit.
+
+40E2 Which of the following is not one of the main advantages of a switching power supply?
+
+A. Works with a wide range of input voltages.
+B. Can work with direct current input.
+C. No RFI problems.
+D. Lighter weight than linear power supplies.
+
+40E3 What is the configuration for a mains operated switching power supply with output regulation?
+
+A. Input rectifier and filter, Inverter (chopper), output transformer, feedback loop to a chopper controller and
+inverter and output rectifier and filter to DC output.
+B. Line, Inverter (chopper), input rectifier and filter, output transformer, output rectifier and filter to DC output.
+C. Input rectifier and filter, output transformer, output rectifier and filter to DC output with feedback loop to the
+input followed by the chopper controller.
+D. Input rectifier and filter, Inverter (chopper), output transformer, output rectifier and filter to DC output with
+feedback loop to a chopper controller and the inverter.
+
+40E4 Which of the following statements about switching power supplies is the most accurate?
+
+A. Transformers use a ferrite core to reduce losses at high frequencies.
+B. Transformers use a laminated steel core to reduce losses at high frequencies.
+C. Lower switching frequencies provide better voltage regulation.
+D. Higher switching frequencies are more difficult to filter.
+
+40E5 What are the input/output voltages of a “BUCK” switching power supply with a 50% duty cycle?
+
+A. 120 volts in, 240 volts out.
+B. 24 volts in, 36 volts out.
+C. 12 volts in, 12 volts out.
+D. 10 volts in, 5 volts out.
+
+40E6 Which of the following statements about a switching mode power supply input current is correct?
+
+A. It has high harmonic content and a low power factor.
+B. It has low harmonic content and a low power factor.
+C. It has high harmonic content and a high power factor.
+D. It has low harmonic content and a high power factor.
+
+
+
+
+Answers:         40E1: B           40E2: C          40E3: D           40E4: A           40E5: D          40E6: A
+                                                  - 40 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-F: Other Equipment and Networks: Key Topic-41: Computers:
+
+41F1 The printer will not print a document. Which of the following is NOT a likely reason?
+
+A. The graphics card is defective.
+B. The printer queue is frozen.
+C. The printer may be out of toner or ink.
+D. There may be a paper jam in the printer.
+
+41F2 There is no display on the monitor. What are the most likely causes?
+
+A. Bad video card, defective RAM or bad CD-ROM.
+B. Bad video card, bad 15 pin video connector or no power to monitor.
+C. Defective CD-ROM Drive.
+D. Fragmented Hard Drive.
+
+41F3 What are the four main functions of the “BIOS” in most computers?
+
+A. BIOS Drivers, Bootstrap Loader, Printer Driver and BIOS Setup.
+B. CPU Setup, Disc Partition, USB driver and BIOS Setup.
+C. P.O.S.T., Bootstrap Loader, BIOS Drivers and BIOS Setup.
+D. BIOS Setup, P.O.S.T., CPU Setup and RAM Setup.
+
+41F4 Power is on but the computer will not boot into the operating system. What steps should you take?
+
+A. Make sure the CPU fan is operating normally.
+B. Remove the network driver card, clean contacts and reinsert.
+C. Remove all external cables and try again.
+D. Use the BIOS setup mode to check for proper BIOS settings.
+
+41F5 How do you determine the type of disc drives in an XP system?
+
+A. Click on Start programs, accessories and system information.
+B. Click on System information then Disc Drives.
+C. Click on Control panel then Sounds and Audio Devices.
+D. Click on Control panel followed by Taskbar and Start Menu.
+
+41F6 What are important considerations when replacing a CD-ROM drive?
+
+A. The speed must be identical to the drive it is replacing.
+B. The replacement drive should use the same interface system as the old drive.
+C. The amount of RAM in the replacement unit must match the old drive.
+D. The rate of data transfer must match the old drive.
+
+
+
+
+Answers:        41F1: A         41F2: B          41F3: C          41F4: D         41F5: A      41F6: B
+                                               - 41 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-F: Other Equipment and Networks: Key Topic-42: Computer Networks – Ethernet:
+
+42F1 Nodes in an Ethernet network are interconnected using a cable making a “Home Run“back to the central:
+
+A. Router
+B. Backbone
+C. Computer
+D. Hub
+
+42F2 What is the maximum length of a USB 2.0 cable between two hubs or between a hub and peripheral?
+
+A. 5 meters
+B. 10 meters
+C. 15 meters
+D. 20 meters
+
+42F3 10Base-T and 100Base-TX systems generally uses the following type of cable:
+
+A. CAT-5 with 2 twisted pairs
+B. CAT-5 with 4 twisted pairs
+C. Coax
+D. Fiber optic
+
+42F4 What initial steps should be taken when installing a router?
+
+A. Connect the router to your computer and boot up the router with the setup software.
+B. Open web browser, access the internet, enter username and password and download instructions.
+C. Open web browser, enter router’s address for network admin and enter username and password.
+D. Connect the router to your computer and enter the addresses for all stations in the system.
+
+42F5 What are the most commonly used IP addresses for routers?
+
+A. 198.162.1.1, 196.168.1.1 and 196.166.1.1
+B. 194.166.1.0, 194.166.1.1 and 194.168.1.2
+C. 192.168.1.1, 192.168.0.1 and 192.168.2.0
+D. 192.166.1.0, 192.166.1.1 and 192.164.2.0
+
+42F6 In an Ethernet network, the available bandwidth is shared between all nodes within the same:
+
+A. Vessel Compartment
+B. Address Range
+C. Star Topology
+D. Collision Domain
+
+
+
+
+Answers:        42F1: D         42F2: A          42F3: B            42F4: C    42F5: C         42F6: D
+
+                                               - 42 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-F: Other Equipment and Networks: Key Topic-43: Local Area Networks- NMEA-0183:
+
+43F1 A typical PC program that is used widely for logging and troubleshooting NMEA 0183 data is:
+
+A. Excel
+B. Windows Explorer
+C. HyperTerminal
+D. Microsoft Word
+
+43F2 what is the maximum signal voltage range that an NMEA-0183 unit must be capable of handling without
+damage?
+
+A. +/- 5 volts
+B. +/- 10 volts
+C. +/- 12 volts
+D. +/- 15 volts
+
+43F3 The current and most recent version of NMEA 0183 uses what standard for data communications?
+
+A. RS422
+B. RS485
+C. RS232
+D. ISO 11783
+
+43F4 What type of data communication is used for NMEA 0183.
+
+A. Parallel
+B. Serial
+C. Can Bus
+D. Ethernet
+
+43F5 Which of the following statements about an NMEA -0183 system is correct?
+
+A. The cable shield must be grounded at both ends including the opto-isolators.
+B. Opto-isolators must be used and the shield should be grounded to the talker chassis only.
+C. Opto-isolators must be used and the shield should be grounded to the listener chassis only.
+D. Version 2 devices use higher voltages than version 1 devices.
+
+43F6 An important difference between NMEA 0183 and NMEA 2000 is:
+
+A. Relay switched vs diode switch
+B. Low voltage vs high voltage
+C. Single talker vs multi-talkers
+D. Data transfer vs video transfer
+
+
+
+
+Answers:          43F1: C       43F2: D         43F3: A          43F4: B         43F5: B         43F6: C
+                                              - 43 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-F: Other Equipment and Networks: Key Topic-44: Local Area Networks- NMEA-2000:
+
+44F1 The Voltage of the NMEA 2000 backbone power supply pair must be maintained to within the following
+range.
+
+A. 0 to 5 volts
+B. 9 to 16 volts
+C. 10.5 to 13.6 volts
+D. 12 to 24 volts
+
+44F2 NMEA 2000 Certified Device identify their current requirements in terms of LENs (load Equivalent
+Number). 1 LEN is equal to:
+
+A. 1 Amp
+B. 500 mA
+C. 50 mA
+D. 25 mA
+
+44F3 Which of the following are NOT components of a NMEA 2000 network?
+
+A. Tees, Drop Cables and terminating Resistors.
+B. Tees, Backbone Cables, Power Cables.
+C. Termination Resistors, Power Cables, Backbone Cables.
+D. Multiplexers, Combiners, Routers.
+
+44F4 The NMEA 2000 backbone operating speed is:
+
+A. 250 bps
+B. 500 bps
+C. 1500 bps
+D. 2000 bps
+
+44F5 When viewing NMEA 2000 data you must use the following.
+
+A Voltmeter
+B. Converter
+C. HyperTerminal
+D. Gateway
+
+44F6 What is the maximum length for a drop cable to a single NMEA 2000 device?
+
+A. 6 meters
+B. 12 meters
+C. 18 meters
+D. 24 meters
+
+
+
+
+Answers:         44F1: B        44F2: C        44F3: D         44F4: A         44F5: D         44F6: A
+
+                                             - 44 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-F: Other Equipment and Networks: Key Topic-45: Depth Finders, Gyro Compass, SSAS, AIS:
+
+45F1 What is a common range of frequencies used for depth finding equipment?
+
+A. 200-400 kHz
+B. 1000-2600 kHz
+C. 200-800 Hz
+D. 4,000-6,000 kHz
+
+45F2 What is a common range of pulse widths used for depth finding equipment?
+
+A. 10 to 30 microseconds
+B. 25 to 600 microseconds
+C. 2 to 20 milliseconds
+D. 50 to 200 milliseconds
+
+45F3 What is the purpose of the “carbon pile” on an older gyro compass?
+
+A. Ballast regulation
+B. Precession control
+C. Voltage regulation
+D. Prevent pendulum effect errors
+
+45F4 What are the principles of operation of a fiber-optic gyro compass?
+
+A. A fiber-optic coil and three accelerometers determine the speed of rotation of the earth.
+B. Two fiber-optic coils with one accelerometer and a level sensor determine the direction of true north.
+C. Three fiber-optic coils with a dual accelerometer and a yaw detector determines the direction of true north.
+D. Three fiber-optic coils and a dual-axis electronic level sensor determine the direction of true north.
+
+45F5 How does the Ship Security Alert System operate?
+
+A. It sends an alert to specific addresses via the Inmarsat-C terminal.
+B. It sends an all ships alert via the VHF-DSC unit.
+C. It sends an alert to the RCC via the Inmarsat-C terminal.
+D. It sends an all ships alert via MF-HF.
+
+45F6 AIS units use the following:
+
+A. VHF channels 65B ( 160.875 MHz) and 66B ( 160.925 MHz) and 9.6 kbs GMSK modulation.
+B. VHF channels 87B (161.975 MHz) and 88B (162.025 MHz) and 9.6 kbs GMSK modulation.
+C. VHF channels 16 ( 158.800 MHz) and 70 ( 156.525 MHz) and 4.8 kbs GMSK modulation.
+D. VHF channels 18B ( 161.500 MHz) and 19B ( 161.550 MHz) and 4.8 kbs GMSK modulation.
+
+
+
+
+Answers:        45F1: A          45F2: B          45F3: C          45F4: D         45F5: A         45F6: B
+                                                - 45 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-F: Other Equipment and Networks: Key Topic-46: ECDIS – Auto Pilots – Data Recorders:
+
+46F1 What procedure must be followed before using C-Map charts for an Electronic Chart System?
+
+A. License information must be entered in the master computer terminal.
+B. The C-Map charts must be downloaded from the internet.
+C. A dongle or password device must be inserted in the master computer terminal.
+D. License information must be entered for each computer being used.
+
+46F2 Which of the following lists of data inputs for an Electronic Chart System is incorrect?
+
+A. Radar, SSAS and Position.
+B. Speed, Depth and Position.
+C. Radar, Depth and Position.
+D. Speed, Radar and Depth.
+
+46F3 Which of the following is a necessary component of an auto pilot?
+
+A. GPS
+B. Rudder feedback unit
+C. Engine RPM data
+D. SSAS
+
+46F4 What inputs are normally required for an Auto Pilot?
+
+A. Course information and GPS.
+B. Rudder feedback and Radar data.
+C. Course information and rudder feedback.
+D. Rudder feedback and yaw sensors.
+
+46F5 Which of the following is not an accurate list of functions/data recorded by the Vessel Data Recorder?
+
+A. Position, Date, Time and Speed.
+B. Heading, VHF radio communications, Position and Depth of water.
+C. Heading, Depth of water, EGC data and Radar.
+D. Depth of water, Audio from the bridge, Speed and Position.
+
+46F6 Which of the following statements about Vessel Data Recorders is NOT true?
+
+A. The “Crash Survivable Module” (CSM) retains data for up to 12 hours.
+B. The “Data Acquisition Unit” (DAU) may have data storage for as long as 30 days.
+C. Data input may include Rudder feedback, Depth of water and Radar.
+D. Data input may include Position, Date, MSI information and Audio from the bridge.
+
+
+
+
+Answers:        46F1: D          46F2: A          46F3: B         46F4: C          46F5: C       46F6: D
+                                                - 46 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-G: Inspections, Installations and Instruments: Key Topic-47: Equipment Installation:
+
+47G1 What is the best method for grounding an Inmarsat-C terminal?
+
+A. Number 10 copper wire between terminal and the ship/s steel hull.
+B. A good ground at the antenna is sufficient.
+C. Copper strap brazed to the steel terminal and ship’s steel hull.
+D. An aluminum strap bolted to both the steel terminal and ship’s steel hull.
+
+47G2 What is the most important consideration for installing a Full-Duplex VHF radiotelephone.
+
+A. Maximum separation between the transmitter and receiver.
+B. Minimum separation between transmitting antennas.
+C. Maximum separation between transmitting antennas.
+D. Maximum separation between transmitting antenna and the duplex receiver antenna.
+
+47G3 What is the most important factor when locating depth finder transducers?
+
+A. In an area not subject to cavitation.
+B. They must be equidistant from the bow and the stern.
+C. They must be on the centerline of the ship.
+D. They should be as close to the bow as possible.
+
+47G4 Bridge equipment separation recommendations generally refer to what instrument?
+
+A. GPS
+B. Magnetic compass
+C. ECDIS
+D. Auto Pilot
+
+47G5 When installing an Inmarsat-C antenna what should be the minimum distance to other Inmarsat
+antennas?
+
+A. 4 meters
+B. 8 meters
+C. 10 meters
+D. 12 meters
+
+47G6 What action must be taken after an Inmarsat-C system is fully installed?
+
+A. Advise the nearest RCC that your terminal is active.
+B. Send a distress alert and then cancel it.
+C. Your Inmarsat Mobile Number must be entered in the terminal.
+D. Send a brief test message to your own terminal.
+
+
+
+
+Answers:        47G1: C          47G2: D          47G3: A         47G4: B        47G5: B         47G6: C
+                                                - 47 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-G: Inspections, Installations and Instruments: Key Topic-48: Annual Inspections:
+
+48G1 What are the operator’s license requirements for conducting a GMDSS ship station annual inspection?
+
+A. GMDSS Radio Operator’s License.
+B. GMDSS Maintainer’s License.
+C. First Class Radiotelegraph Operator’s License.
+D. General Radiotelephone Operator’s License.
+
+48G2 What log entries are required after passing the annual inspection?
+
+A. One of the ship’s GMDSS Radio Operators must certify that inspecting technician as properly conducted all
+the required equipment tests.
+B. The inspecting technician must enter the results of all the equipment tests and specifically note which tests
+passed and which tests failed.
+C. Certification by both the inspecting technician and the vessel’s Master/owner that the inspection was
+successful.
+D. The vessel’s Master/Owner must certify that the inspection was successful.
+
+48G3 What battery tests are made during the annual inspection?
+
+A. Record the specific gravity of all cells while the batteries are charging.
+B. The terminal voltage is measured and recorded at the end of a 6 hour full load discharge.
+C. Record the specific gravity of all cells while the batteries are discharging.
+D. With battery off charge and maximum required load measure and record maximum discharge current and
+voltage.
+
+48G4 What is the easiest way to test the Inmarsat-C terminal for proper operation?
+
+A. Send a brief test message to your own terminal.
+B. Contact the nearest RCC for a signal report.
+C. Contact the nearest ship for a signal report.
+D. Use the internal POST function.
+
+48G5 After the station has successfully passed the survey what document is issued to the vessel?
+
+A. FCC 817
+B. SOLAS Annual Certificate
+C. Radio Station License
+D. Cargo Ship Safety Certificate
+
+48G6 Which of the following is NOT a required VHF test during an annual inspection?
+
+A. Carrier deviation measurement.
+B. Power output and VSWR on Channels 6, 13 and 16.
+C. Equipment is within frequency tolerance.
+D. Equipment operates from all required power sources.
+
+
+
+
+Answers:        48G1: B            48G2: C       48G3: D          48G4: A          48G5: D         48G6: A
+                                               - 48 -
+                        FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-G: Inspections, Installations and Instruments: Key Topic-49: Test Equipment-1:
+
+49G1 A 4 digit multi-meter with an accuracy of 0.15% and 2 counts is set on the 6 volt scale. What range of
+readings may be expected when measuring a 5 volt DC source?
+
+A. 4.99 to 5.01 volts DC
+B. 4.98 to 5.02 volts DC
+C. 4.97 to 5.02 volts DC
+D. 4.95 to 5.05 volts DC
+
+49G2 A 4 digit multi-meter with an accuracy of 0.15% and 2 counts is set on the 60 volt scale. What range of
+readings may be expected when measuring a 24 volt DC source?
+
+A. 23.74 to 24.52 volts DC
+B. 23.62 to 24.38 volts DC
+C. 23.56 to 24.28 volts DC
+D. 23.42 to 24.52 volts DC
+
+49G3 What is the most important specification for an R. F. Signal Generator used at VHF frequencies?
+
+A. Frequency accuracy
+B. Modulation percentage
+C. Low signal leakage
+D. Frequency modulation
+
+49G4 A good lab type signal generator for VHF measurements should be able to reduce its output to:
+
+A. 5.0 microvolt
+B. 1.0 microvolt
+C. 0.5 microvolt
+D. 0.1 microvolt
+
+49G5 The characteristics of a 10:1 attenuation probe for an oscilloscope is as follows:
+
+A. A load of about 10 megohms shunted by 12 pF.
+B. A load of about 20 megohms shunted by a 12 mH coil.
+C. A load of about 5 megohms shunted by 6 pF.
+D. A load of about 5 megohms shunted by a 6 mH coil.
+
+49G6 In dual-trace oscilloscopes the purpose of the “Mode” control is to:
+
+A. Select a choice between DC or AC input on either channel.
+B. Select either channel alone or a combination of both channels.
+C. Select the proper time base of either channel.
+D. Select the proper frequency compensation for both channels.
+
+
+
+
+Answers:           49G1: A       49G2: B         49G3: C          49G4: D         49G5: A        49G6: B
+                                               - 49 -
+                       FCC – Element-9 GMDSS Maintainer License: September 2012
+
+Section-G: Inspections, Installations and Instruments: Key Topic-50: Test Equipment-2:
+
+50G1 What type of signals are usually provided by a simple Function Generator?
+
+A. Sine Waves with pulse modulation.
+B. Sine Waves and Square Waves.
+C. Square Waves and Triangular Waves.
+D. Sine Waves, Square Waves and Triangular Waves.
+
+50G2 a SINAD meter consists of a multi-range audio frequency voltmeter:
+
+A. Calibrated in decibels with a sharp internal 1000 Hz bandstop filter.
+B. Calibrated in millivolts with a medium 1000 Hz bandpass filter.
+C. Calibrated in decibels with an internal 1000 Hz highpass filter.
+D. Calibrated in decibels with an internal 1000 Hz lowpass filter.
+
+50G3 Which of the following statements about a logic probe is false?
+
+A. A “Red” LED indicates a “High” state.
+B. Both “Red” and “Green” LEDs on indicate a short.
+C. A “Green” LED indicates a “Low” state.
+D. An “Amber” LED indicates a “pulse”.
+
+50G4 An analog RF wattmeter provides the most accurate reading:
+
+A. At the middle one third of the dial.
+B. At the lower one third of the dial.
+C. At the upper one third of the dial.
+D. The accuracy is uniform the whole scale.
+
+50G5 What is the purpose of a deviation meter?
+
+A. Measure the number of sidebands.
+B. Measure the modulation index.
+C. Measure the carrier deviation in an FM transmitter.
+D. Measure the carrier frequency.
+
+50G6 What would be the most likely reason to observe the transmitter output with a spectrum analyzer?
+
+A. Measure frequency modulation deviation.
+B. Measure percentage of amplitude modulation.
+C. Measure the carrier frequency.
+D. Measure spurious signals.
+
+
+
+
+Answers:        50G1: D          50G2: A          50G3: B          50G4: C       50G5: C       50G6: D
+                                                - 50 -
+

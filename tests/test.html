@@ -55,6 +55,14 @@ try {
   const PASS_PCT = Math.round(Readiness.PASS_MARK * 100);
   const GUESS_PCT = Math.round(Readiness.GUESS * 100);
   const SECTION_COUNT = new Set(QUESTION_BANK.map(x => x.section)).size;
+  // The FCC pools repeat a stem with different choices, so identify the
+  // on-screen question by its stem and the choice text behind each button
+  // (each <kbd> badge is a single leading character to strip).
+  const bankOnScreen = () => {
+    const qt = q('.qtext').textContent;
+    return QUESTION_BANK.find(x => x.question === qt
+      && qa('.choice').every(b => x.choices[Number(b.dataset.i)] === b.textContent.slice(1)));
+  };
 
   // --- boot resumed the session planted before app.js loaded ---
   t('reload resumes mid-study session', !!q('.qtext'));
@@ -76,7 +84,7 @@ try {
   nav('study');
   t('study renders question', !!q('.qtext'));
   const qid1 = q('.qtext').textContent;
-  const bank1 = QUESTION_BANK.find(x => x.question === qid1);
+  const bank1 = bankOnScreen();
   const correctBtn = qa('.choice').find(b => Number(b.dataset.i) === bank1.answer);
   correctBtn.click();
   t('correct answer highlighted', correctBtn.classList.contains('correct'));
@@ -91,7 +99,7 @@ try {
 
   // --- answer wrongly: requeue + explanation ---
   const qtext2 = q('.qtext').textContent;
-  const bank2 = QUESTION_BANK.find(x => x.question === qtext2);
+  const bank2 = bankOnScreen();
   const progressBefore = parseFloat(q('.progress div').style.width);
   const wrongBtn = qa('.choice').find(b => Number(b.dataset.i) !== bank2.answer);
   wrongBtn.click();
@@ -121,7 +129,7 @@ try {
 
   // --- undo takes back an answer from the feedback screen ---
   const qtext3 = q('.qtext').textContent;
-  const bank3 = QUESTION_BANK.find(x => x.question === qtext3);
+  const bank3 = bankOnScreen();
   const cardBefore = JSON.stringify(Store.load().cards[bank3.id] || null);
   const dailyBefore = JSON.stringify(Store.load().daily);
   const logBefore = Store.load().log.length;
@@ -139,7 +147,7 @@ try {
 
   // --- leaving mid-grade rolls the ungraded answer back ---
   const qtext4 = q('.qtext').textContent;
-  const bank4 = QUESTION_BANK.find(x => x.question === qtext4);
+  const bank4 = bankOnScreen();
   const daily4 = JSON.stringify(Store.load().daily);
   qa('.choice').find(b => Number(b.dataset.i) === bank4.answer).click();
   nav('home'); // grades were showing; navigating away abandons the answer
@@ -216,7 +224,7 @@ try {
   t('system theme clears the override', !('theme' in document.documentElement.dataset));
 
   // --- test/endorsement picker: keep only the tests in the first group ---
-  // (for the CDL config that is the first-attempt scenario: GK + Air + Combination)
+  // (for the FCC config that is the GROL scenario: Elements 1 and 3)
   t('test picker renders every configured test', qa('input[data-test]').length === TESTS.length);
   const keepTests = TESTS.filter(tst => tst.group === EXAM_CONFIG.testGroups[0][0]);
   const keep = new Set(keepTests.map(tst => tst.key));
@@ -233,7 +241,7 @@ try {
   nav('settings');
   t('picker state survives re-render', qa('input[data-test]:checked').length === keepTests.length);
   nav('study');
-  const sq = QUESTION_BANK.find(x => x.question === q('.qtext').textContent);
+  const sq = bankOnScreen();
   t('study draws from selected sections only', keepSecs.includes(sq.section));
   nav('exam');
   const availExams = EXAM_CONFIG.exams
@@ -264,7 +272,7 @@ try {
 
   finalBtn.click();
   t('final review renders question', !!q('.qtext'));
-  const fq = QUESTION_BANK.find(x => x.question === q('.qtext').textContent);
+  const fq = bankOnScreen();
   qa('.choice').find(b => Number(b.dataset.i) === fq.answer).click();
   t('final review grades appear', qa('.grades button').length === 3);
   q('.grades button[data-r="4"]').click(); // Easy
@@ -375,7 +383,7 @@ try {
   t('home counts only the outstanding miss', toFix() === 1);
   const drill = () => {
     nav('misses');
-    const bank = QUESTION_BANK.find(x => x.question === q('.qtext').textContent);
+    const bank = bankOnScreen();
     qa('.choice').find(b => Number(b.dataset.i) === bank.answer).click();
     q('#next').click();
   };

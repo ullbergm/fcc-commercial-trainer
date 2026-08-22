@@ -6,7 +6,7 @@ body:
     id: question-id
     attributes:
       label: Question ID
-      description: The id in data/questions.js, like s5-012. If you don't know it, paste the question text instead.
+      description: The FCC pool number, which is also the id in data/questions.js, like 3-21C4. If you don't know it, paste the question text instead.
     validations:
       required: true
   - type: textarea
@@ -19,12 +19,12 @@ body:
   - type: input
     id: manual-page
     attributes:
-      label: Manual page
-      description: The page in the NC Commercial Driver Manual that supports the correction, like 5-3.
+      label: Pool page
+      description: The page of the FCC question pool PDF that shows the question, like 14.
     validations:
       required: true
   - type: textarea
     id: fix
     attributes:
       label: Suggested fix
-      description: Corrected answer, choices, or explanation, if you have one.
+      description: What the pool PDF actually says, if it differs from the app.

@@ -6,3 +6,6 @@ node_modules/
 
 # throwaway copy of index.html left behind if generate.sh is interrupted
 .screenshot-page.html
+
+# The FCC question pool PDFs in pools/ are US government works and are committed
+!pools/*.pdf

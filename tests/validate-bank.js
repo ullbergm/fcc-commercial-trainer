@@ -26,16 +26,27 @@ const norm = s => String(s).toLowerCase().replace(/\s+/g, ' ').trim();
 
 for (const q of QUESTION_BANK) {
   const label = q.id || '(missing id)';
-  for (const field of ['id', 'section', 'sectionName', 'question', 'choices', 'answer', 'explanation']) {
+  // Explanations are optional for an exam whose questions come verbatim from
+  // a published pool with nothing further to say; the config opts out.
+  const required = ['id', 'section', 'sectionName', 'question', 'choices', 'answer'];
+  if (EXAM_CONFIG.requireExplanations !== false) required.push('explanation');
+  for (const field of required) {
     if (q[field] === undefined || q[field] === '') errors.push(`${label}: missing ${field}`);
   }
   if (ids.has(q.id)) errors.push(`${label}: duplicate id`);
   ids.add(q.id);
-  const qn = norm(q.question);
-  if (questionTexts.has(qn)) errors.push(`${label}: duplicate question text (also ${questionTexts.get(qn)})`);
+  // The FCC pools repeat a stem with different choices (within a pool and
+  // across elements), and Element 7R repeats Element 7 questions verbatim,
+  // so only a full match within one section is an error.
+  const qn = norm(q.section + ' :: ' + q.question + ' :: ' + (Array.isArray(q.choices) ? q.choices.join(' | ') : ''));
+  if (questionTexts.has(qn)) errors.push(`${label}: duplicate question (also ${questionTexts.get(qn)})`);
   questionTexts.set(qn, q.id);
   if (!Array.isArray(q.choices) || q.choices.length !== 4) errors.push(`${label}: needs exactly 4 choices`);
-  else if (new Set(q.choices.map(norm)).size !== 4) errors.push(`${label}: duplicate choices`);
+  // Two pool questions repeat a choice in the published PDFs themselves
+  // (6A251 prints A twice, 9-23C1 prints B twice); the bank reproduces the
+  // pools verbatim, so those two are not authoring accidents.
+  else if (new Set(q.choices.map(norm)).size !== 4
+      && !['6A251', '9-23C1'].includes(q.id)) errors.push(`${label}: duplicate choices`);
   if (!Number.isInteger(q.answer) || q.answer < 0 || q.answer > 3) errors.push(`${label}: answer out of range`);
   if (!Number.isInteger(q.section) || q.section < 1) errors.push(`${label}: bad section`);
   // Citations are optional (an exam may have nothing citable) unless the

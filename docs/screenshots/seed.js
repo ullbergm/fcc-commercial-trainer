@@ -4,10 +4,9 @@
  * js/app.js, so the app boots into a realistic mid-study state instead of an
  * empty one. It is never part of the app or the deploy.
  *
- * The scenario is a first Class A attempt twelve days out: General Knowledge,
- * Air Brakes and Combination Vehicles selected, general knowledge well drilled,
- * air brakes lagging behind. Everything is seeded, so a re-run reproduces the
- * same images.
+ * The scenario is a GROL attempt twelve days out: Elements 1 and 3 selected,
+ * Element 1 well drilled, the big Element 3 pool still being worked through.
+ * Everything is seeded, so a re-run reproduces the same images.
  */
 (() => {
   // generate.sh injects this after the data scripts, so the config is loaded.
@@ -35,10 +34,7 @@
   // section -> how much of it has been seen, and the stability range in days
   const PROFILE = {
     1: { seen: 0.95, stab: [18, 50] },
-    2: { seen: 0.9, stab: [12, 42] },
-    3: { seen: 0.8, stab: [8, 30] },
-    5: { seen: 0.55, stab: [2, 8] },
-    6: { seen: 0.75, stab: [5, 18] },
+    3: { seen: 0.45, stab: [3, 16] },
   };
 
   const cards = {};
@@ -82,15 +78,15 @@
     cards,
     settings: {
       newPerDay: 15,
-      sections: [1, 2, 3, 5, 6],
+      sections: [1, 3],
       examDate: dayKey(exam.getTime()),
       theme: new URLSearchParams(location.search).get('theme') === 'dark' ? 'dark' : 'light',
     },
     daily,
     exams: [
-      { date: now - 9 * DAY, type: 'General Knowledge', total: 50, correct: 38, passed: false },
-      { date: now - 5 * DAY, type: 'Air Brakes', total: 25, correct: 21, passed: true },
-      { date: now - 2 * DAY, type: 'General Knowledge', total: 50, correct: 44, passed: true },
+      { date: now - 9 * DAY, type: 'Element 3 (General Radiotelephone)', total: 100, correct: 68, passed: false },
+      { date: now - 5 * DAY, type: 'Element 1 (Marine Radio Operator)', total: 24, correct: 21, passed: true },
+      { date: now - 2 * DAY, type: 'Element 3 (General Radiotelephone)', total: 100, correct: 81, passed: true },
     ],
     log: [],
   }));

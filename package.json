@@ -1,13 +1,13 @@
 {
-  "name": "nc-cdl-test-training",
+  "name": "fcc-commercial-test-training",
   "private": true,
-  "description": "Practice questions with spaced repetition for the North Carolina CDL knowledge tests",
+  "description": "Practice questions with spaced repetition for the FCC commercial radio operator exams (GROL, MROP, Ship Radar)",
   "license": "MIT",
   "scripts": {
     "lint": "eslint",
     "test": "node tests/validate-bank.js && node tests/fsrs-test.js && node tests/readiness-test.js",
     "test:browser": "tests/run-browser.sh",
-    "serve": "python3 -m http.server 8080"
+    "serve": "python3 -m http.server 8081"
   },
   "devDependencies": {
     "@eslint/js": "^10",
