@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.0](https://github.com/ullbergm/fcc-commercial-test-training/compare/v1.0.0...v2.0.0) (2026-08-22)
+
+
+### Features
+
+* adopt the shared trainer engine and a violet RF-spectrum theme ([5ac365d](https://github.com/ullbergm/fcc-commercial-test-training/commit/5ac365d551dd95109c47bdb1a74456736120b3e6))
+
+
+### Miscellaneous Chores
+
+* align every trainer on version 2.0.0 ([4660634](https://github.com/ullbergm/fcc-commercial-test-training/commit/4660634b8505183079a93fecd9f5c85e274b2018))
+
 ## 1.0.0 (2026-08-22)
 
 
