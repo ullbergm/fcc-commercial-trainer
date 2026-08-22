@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.1](https://github.com/ullbergm/fcc-commercial-test-training/compare/v2.0.0...v2.0.1) (2026-08-22)
+
+
+### Bug Fixes
+
+* **engine:** give the engine its own dependency install ([6225389](https://github.com/ullbergm/fcc-commercial-test-training/commit/6225389411844a620e63054510b8b0f27cf513f3))
+* **engine:** move workflows off the deprecated node 20 action runtimes ([6225389](https://github.com/ullbergm/fcc-commercial-test-training/commit/6225389411844a620e63054510b8b0f27cf513f3))
+* sync trainer-engine v2.0.1 ([6225389](https://github.com/ullbergm/fcc-commercial-test-training/commit/6225389411844a620e63054510b8b0f27cf513f3))
+
 ## [2.0.0](https://github.com/ullbergm/fcc-commercial-test-training/compare/v1.0.0...v2.0.0) (2026-08-22)
 
 
