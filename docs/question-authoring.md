@@ -5,7 +5,7 @@ authored: the FCC publishes the actual examination question pools with answer
 keys, and `data/questions.js` is those pools converted verbatim. The recipe
 here is therefore about conversion, not writing. (The original authoring
 recipe, for an exam that only has a study manual, lives in the upstream
-[NC CDL trainer](https://github.com/ullbergm/nc-cdl-test-training/blob/main/docs/question-authoring.md).)
+[NC CDL trainer](https://github.com/ullbergm/nc-cdl-trainer/blob/main/docs/question-authoring.md).)
 
 ## The pipeline
 

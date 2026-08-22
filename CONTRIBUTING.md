@@ -10,10 +10,10 @@ By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
 - **Fix a question.** The bank is converted from the FCC's published question
   pools, so most errors would be conversion errors. If a question does not
   match the cited pool page, open a
-  [question correction](https://github.com/ullbergm/fcc-commercial-test-training/issues/new?template=question-correction.yml)
+  [question correction](https://github.com/ullbergm/fcc-commercial-trainer/issues/new?template=question-correction.yml)
   or send the edit directly as a pull request.
 - **Report a bug.** Use the
-  [bug report template](https://github.com/ullbergm/fcc-commercial-test-training/issues/new?template=bug-report.yml).
+  [bug report template](https://github.com/ullbergm/fcc-commercial-trainer/issues/new?template=bug-report.yml).
   Browser and device help a lot, since most of the tricky bugs are touch or
   layout related.
 - **Report a vulnerability.** Do not open a public issue. Follow
@@ -25,8 +25,8 @@ By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
 ## Getting set up
 
 ```
-git clone https://github.com/ullbergm/fcc-commercial-test-training.git
-cd fcc-commercial-test-training
+git clone https://github.com/ullbergm/fcc-commercial-trainer.git
+cd fcc-commercial-trainer
 npm install          # dev tooling only; the app itself has no dependencies
 npm run serve        # http://localhost:8081
 ```

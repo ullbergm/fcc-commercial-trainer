@@ -1,8 +1,8 @@
 # FCC Commercial Radio Trainer
 
-[![CI](https://github.com/ullbergm/fcc-commercial-test-training/actions/workflows/ci.yml/badge.svg)](https://github.com/ullbergm/fcc-commercial-test-training/actions/workflows/ci.yml)
-[![Latest release](https://img.shields.io/github/v/release/ullbergm/fcc-commercial-test-training)](https://github.com/ullbergm/fcc-commercial-test-training/releases)
-[![License: MIT](https://img.shields.io/github/license/ullbergm/fcc-commercial-test-training)](LICENSE)
+[![CI](https://github.com/ullbergm/fcc-commercial-trainer/actions/workflows/ci.yml/badge.svg)](https://github.com/ullbergm/fcc-commercial-trainer/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/ullbergm/fcc-commercial-trainer)](https://github.com/ullbergm/fcc-commercial-trainer/releases)
+[![License: MIT](https://img.shields.io/github/license/ullbergm/fcc-commercial-trainer)](LICENSE)
 [![Live site](https://img.shields.io/website?url=https%3A%2F%2Ffcc-commercial.ullberg.io&label=fcc-commercial.ullberg.io)](https://fcc-commercial.ullberg.io)
 
 [![Questions](https://img.shields.io/badge/questions-2817-blue)](data/questions.js)
@@ -176,7 +176,7 @@ new repository from this one and touch:
 
 - `data/questions.js`: the new question bank, tagged by section and cited page;
   this repository generates it from published question pools with
-  `tools/convert-fcc-pools.js`, while [the upstream CDL trainer](https://github.com/ullbergm/nc-cdl-test-training)
+  `tools/convert-fcc-pools.js`, while [the upstream CDL trainer](https://github.com/ullbergm/nc-cdl-trainer)
   authored its bank from a manual with the recipe in
   [docs/question-authoring.md](docs/question-authoring.md)
 - `data/exam-config.js`: the tests and exams, pass mark, manual links, storage
