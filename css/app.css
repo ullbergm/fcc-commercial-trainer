@@ -1,0 +1,80 @@
+/* "RF spectrum" theme: signal violet, dial amber, cool violet-gray
+   neutrals. All the exam flavor lives in the token blocks below, including
+   the --track-texture morse-code pattern on the progress bar; retheme a fork
+   by editing the tokens, nothing structural.
+   Light/dark follows prefers-color-scheme unless the Settings theme override
+   sets data-theme="light"/"dark" on <html>. The dark token block therefore
+   appears twice: once for system-dark (unless overridden to light), once for
+   the explicit dark override. Keep the two copies identical. */
+:root {
+  --bg: #f1eff6;
+  --card: #ffffff;
+  --text: #1e1b2b;
+  --muted: #635e78;
+  --accent: #5b3a9e;
+  --accent-hi: #472e7e;
+  --accent-text: #ffffff;
+  --nav-bg: #5b3a9e;
+  --nav-text: #efeaf9;
+  --accent2: #f2a032;
+  --accent2-text: #231604;
+  --border: #d9d4e4;
+  --ok: #178a5c;
+  --ok-bg: #e3f1ea;
+  --bad: #b23a2a;
+  --bad-bg: #f7e9e4;
+  --warn: #b45309;
+  --surface-dark: #322c40;
+  --shadow: 0 1px 2px rgba(26, 20, 40, 0.07), 0 4px 16px rgba(26, 20, 40, 0.05);
+  /* Morse code drawn across the progress track (dit-dah, "A"). References
+     --accent2, so it follows the dark palette on its own; set to `none` for
+     a plain track. Defined once here since both dark blocks would keep it. */
+  --track-texture: repeating-linear-gradient(90deg,
+    transparent 0 8px, var(--accent2) 8px 14px, transparent 14px 22px,
+    var(--accent2) 22px 40px, transparent 40px 48px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131018;
+    --card: #1b1725;
+    --text: #e9e5f1;
+    --muted: #a49bbd;
+    --accent: #a689e3;
+    --accent-hi: #b79ded;
+    --accent-text: #170e2b;
+    --nav-bg: #33205e;
+    --nav-text: #e6ddf6;
+    --accent2: #f0ac45;
+    --accent2-text: #201604;
+    --border: #2f2840;
+    --ok: #45c08c;
+    --ok-bg: #142e23;
+    --bad: #f0836c;
+    --bad-bg: #38211b;
+    --warn: #e5a44e;
+    --surface-dark: #0e0b13;
+    --shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131018;
+  --card: #1b1725;
+  --text: #e9e5f1;
+  --muted: #a49bbd;
+  --accent: #a689e3;
+  --accent-hi: #b79ded;
+  --accent-text: #170e2b;
+  --nav-bg: #33205e;
+  --nav-text: #e6ddf6;
+  --accent2: #f0ac45;
+  --accent2-text: #201604;
+  --border: #2f2840;
+  --ok: #45c08c;
+  --ok-bg: #142e23;
+  --bad: #f0836c;
+  --bad-bg: #38211b;
+  --warn: #e5a44e;
+  --surface-dark: #0e0b13;
+  --shadow: none;
+}
+

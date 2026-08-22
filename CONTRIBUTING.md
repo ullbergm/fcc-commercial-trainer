@@ -50,6 +50,23 @@ and read the results at the bottom of the page, but that page clears
 localStorage for its origin, so do not use the browser profile where you keep
 real study progress.
 
+## Engine files and app files
+
+This app shares its engine with the other ullbergm exam trainers. Every file
+listed in [`MANIFEST`](MANIFEST) — the `js/` engine, `css/engine.css`,
+`sw.js`, the shared tests, `tools/gen-icons.sh`, and the manifest itself — is
+synced verbatim from
+[trainer-engine](https://github.com/ullbergm/trainer-engine) and will be
+overwritten by the next sync PR. Each of those files says so in its header,
+and CI fails a pull request here that edits one. Make engine changes in the
+trainer-engine repo instead, where its CI and the sync PRs run them against
+every app.
+
+Everything else is this app's own and welcome in a pull request here:
+`data/` (the question bank, the exam config, the page maps, `app-assets.js`),
+`css/app.css` (the colors), `index.html`, the icons and manifest,
+`tests/test.html`, `eslint.config.mjs`, and the docs.
+
 ## House rules for code
 
 - No dependencies and no build step. The app ships the files in the repository

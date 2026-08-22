@@ -1,4 +1,6 @@
-/* Service worker: precached core assets are served cache-only (each release
+/* Synced from the trainer-engine repo; do not edit in an app repo.
+ *
+ * Service worker: precached core assets are served cache-only (each release
  * replaces them wholesale via a new worker); anything else same-origin gets
  * stale-while-revalidate.
  *
@@ -11,16 +13,19 @@
 const VERSION = '__VERSION__'; // replaced with the release tag at deploy
 // Cache storage is scoped to the origin, so the name needs no site prefix.
 const CACHE = 'trainer-' + VERSION;
+// The app's own files beyond the engine core: page maps, extra data, module
+// scripts. Every app ships the file, even if the list is empty.
+importScripts('data/app-assets.js');
 const CORE = [
   './',
   'index.html',
-  'css/style.css',
+  'css/engine.css',
+  'css/app.css',
   'js/fsrs.js',
   'js/readiness.js',
   'js/storage.js',
   'js/app.js',
   'data/questions.js',
-  'data/manual-pages.js',
   'data/exam-config.js',
   'manifest.webmanifest',
   'icons/icon-192.png',
@@ -30,6 +35,7 @@ const CORE = [
   // the About changelog and the footer version are blank offline.
   'CHANGELOG.md',
   'version.txt',
+  ...APP_ASSETS,
 ];
 
 self.addEventListener('install', e => {

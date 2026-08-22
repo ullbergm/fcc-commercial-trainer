@@ -4,8 +4,8 @@
   "description": "Practice questions with spaced repetition for the FCC commercial radio operator exams (GROL, MROP, Ship Radar).",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#10151a",
-  "theme_color": "#0f5e8c",
+  "background_color": "#131018",
+  "theme_color": "#5b3a9e",
   "icons": [
     {
       "src": "icons/icon-192.png",
