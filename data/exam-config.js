@@ -10,7 +10,7 @@ const EXAM_CONFIG = {
   storageKey: 'fcc-commercial-trainer-v1',      // localStorage; changing it orphans saved progress
   sessionKey: 'fcc-commercial-trainer-session', // sessionStorage mirror of the active session
   exportPrefix: 'fcc-commercial-progress',      // backup filename: <prefix>-YYYY-MM-DD.json
-  repo: 'https://github.com/ullbergm/fcc-commercial-test-training',
+  repo: 'https://github.com/ullbergm/fcc-commercial-trainer',
   passMark: 0.75, // every FCC written element passes at 75% (18/24, 75/100, 38/50)
 
   // Section numbers are the written elements (globally unique across pools),

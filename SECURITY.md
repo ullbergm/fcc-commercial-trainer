@@ -4,7 +4,7 @@
 
 Please report security issues privately rather than opening a public issue:
 
-- Preferred: [GitHub private vulnerability reporting](https://github.com/ullbergm/fcc-commercial-test-training/security/advisories/new)
+- Preferred: [GitHub private vulnerability reporting](https://github.com/ullbergm/fcc-commercial-trainer/security/advisories/new)
 - Or email: magnus@ullberg.us
 
 Include what you found, where (file and line if you have it), and steps to
@@ -21,17 +21,17 @@ maintained older branches.
 
 ## Verifying a release
 
-Each release carries `fcc-commercial-test-training-VERSION.tar.gz`, a copy of exactly the
+Each release carries `fcc-commercial-trainer-VERSION.tar.gz`, a copy of exactly the
 files deployed to the live site, along with a Sigstore bundle
 (`.tar.gz.intoto.jsonl`) signed by the release workflow. To check that a
 download came from this repository's pipeline and not from somewhere else:
 
 ```
-gh attestation verify fcc-commercial-test-training-VERSION.tar.gz \
-  --repo ullbergm/fcc-commercial-test-training
+gh attestation verify fcc-commercial-trainer-VERSION.tar.gz \
+  --repo ullbergm/fcc-commercial-trainer
 ```
 
-Add `--bundle fcc-commercial-test-training-VERSION.tar.gz.intoto.jsonl` to verify offline
+Add `--bundle fcc-commercial-trainer-VERSION.tar.gz.intoto.jsonl` to verify offline
 against the downloaded bundle instead of GitHub's attestation store.
 
 ## Scope
@@ -60,7 +60,7 @@ Out of scope:
 - Anything requiring physical access to the victim's unlocked device or
   browser profile. localStorage is readable by the device's user by design.
 - Content accuracy of the study questions (use the
-  [question correction template](https://github.com/ullbergm/fcc-commercial-test-training/issues/new?template=question-correction.yml)).
+  [question correction template](https://github.com/ullbergm/fcc-commercial-trainer/issues/new?template=question-correction.yml)).
 - Denial of service against GitHub Pages, and vulnerabilities in GitHub
   itself (report those to GitHub).
 - The `eslint` dev dependency, unless it affects the published site.
