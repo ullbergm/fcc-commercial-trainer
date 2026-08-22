@@ -8,13 +8,14 @@ export default [
     // Browser scripts loaded via <script> tags. These files define one shared
     // global each (QUESTION_BANK, FSRS, Store), consumed by js/app.js;
     // storage.js reads its localStorage key out of EXAM_CONFIG.
-    files: ['js/fsrs.js', 'js/storage.js', 'data/questions.js', 'data/manual-pages.js'],
+    files: ['js/fsrs.js', 'js/storage.js', 'data/questions.js', 'data/manual-pages.js',
+      'data/app-assets.js'],
     languageOptions: {
       sourceType: 'script',
       globals: { ...globals.browser, EXAM_CONFIG: 'readonly' },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^(FSRS|Store|QUESTION_BANK|MANUAL_PAGES)$' }],
+      'no-unused-vars': ['error', { varsIgnorePattern: '^(FSRS|Store|QUESTION_BANK|MANUAL_PAGES|APP_ASSETS)$' }],
     },
   },
   {
@@ -64,10 +65,11 @@ export default [
     },
   },
   {
+    // APP_ASSETS comes from data/app-assets.js via importScripts.
     files: ['sw.js'],
     languageOptions: {
       sourceType: 'script',
-      globals: { ...globals.serviceworker },
+      globals: { ...globals.serviceworker, APP_ASSETS: 'readonly' },
     },
   },
   {
@@ -84,6 +86,34 @@ export default [
         QUESTION_BANK: 'readonly', MANUAL_PAGES: 'readonly',
         EXAM_CONFIG: 'readonly', FSRS: 'readonly', Readiness: 'readonly',
       },
+    },
+  },
+  {
+    // The pre-boot session plant runs inside tests/test.html before app.js
+    // and defines AOTA for the suite.
+    files: ['tests/plant-session.js'],
+    languageOptions: {
+      sourceType: 'script',
+      globals: { ...globals.browser, QUESTION_BANK: 'readonly', EXAM_CONFIG: 'readonly' },
+    },
+    rules: {
+      'no-unused-vars': ['error', { varsIgnorePattern: '^AOTA$' }],
+    },
+  },
+  {
+    // The engine browser suite runs inside tests/test.html against the real app.
+    files: ['tests/engine-suite.js'],
+    languageOptions: {
+      sourceType: 'script',
+      globals: {
+        ...globals.browser,
+        QUESTION_BANK: 'readonly', EXAM_CONFIG: 'readonly',
+        FSRS: 'readonly', Readiness: 'readonly', Store: 'readonly',
+        AOTA: 'readonly',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['error', { varsIgnorePattern: '^TestSuite$' }],
     },
   },
 ];

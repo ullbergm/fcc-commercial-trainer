@@ -2,12 +2,12 @@
   <!-- Keep the artwork inside the center 80% so the maskable variant crops safely.
        icon-maskable-512.png is this file rendered with rx="0": the mask shape comes
        from the launcher, so the background must bleed to the edges. -->
-  <rect width="512" height="512" rx="96" fill="#0f5e8c"/>
+  <rect width="512" height="512" rx="96" fill="#5b3a9e"/>
   <!-- lattice mast: a tall triangle sliced into sections by background bars -->
   <path d="M256 152 L206 412 h100 Z" fill="#ffffff"/>
-  <rect x="180" y="228" width="152" height="10" fill="#0f5e8c"/>
-  <rect x="180" y="292" width="152" height="10" fill="#0f5e8c"/>
-  <rect x="180" y="356" width="152" height="10" fill="#0f5e8c"/>
+  <rect x="180" y="228" width="152" height="10" fill="#5b3a9e"/>
+  <rect x="180" y="292" width="152" height="10" fill="#5b3a9e"/>
+  <rect x="180" y="356" width="152" height="10" fill="#5b3a9e"/>
   <!-- radiating waves, two arcs each side, centered on the antenna tip -->
   <path d="M199.4 186.6 A80 80 0 0 1 199.4 73.4" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round"/>
   <path d="M164.1 221.9 A130 130 0 0 1 164.1 38.1" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round"/>

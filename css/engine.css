@@ -1,83 +1,9 @@
-/* "Maritime radio" theme: deep sea-lane blue, signal orange, cool gray
-   neutrals. All the exam flavor lives in the token blocks below, including
-   the --track-texture morse-code pattern on the progress bar; retheme a fork
-   by editing the tokens, nothing structural.
-   Light/dark follows prefers-color-scheme unless the Settings theme override
-   sets data-theme="light"/"dark" on <html>. The dark token block therefore
-   appears twice: once for system-dark (unless overridden to light), once for
-   the explicit dark override. Keep the two copies identical. */
-:root {
-  --bg: #eef1f5;
-  --card: #ffffff;
-  --text: #17212b;
-  --muted: #5a6a78;
-  --accent: #0f5e8c;
-  --accent-hi: #0b4a70;
-  --accent-text: #ffffff;
-  --nav-bg: #0f5e8c;
-  --nav-text: #e7f1f8;
-  --accent2: #f2a032;
-  --accent2-text: #231604;
-  --border: #d4dbe2;
-  --ok: #178a5c;
-  --ok-bg: #e3f1ea;
-  --bad: #b23a2a;
-  --bad-bg: #f7e9e4;
-  --warn: #b45309;
-  --surface-dark: #2c333a;
-  --shadow: 0 1px 2px rgba(18, 28, 38, 0.07), 0 4px 16px rgba(18, 28, 38, 0.05);
-  /* Morse code drawn across the progress track (dit-dah, "A"). References
-     --accent2, so it follows the dark palette on its own; set to `none` for
-     a plain track. Defined once here since both dark blocks would keep it. */
-  --track-texture: repeating-linear-gradient(90deg,
-    transparent 0 8px, var(--accent2) 8px 14px, transparent 14px 22px,
-    var(--accent2) 22px 40px, transparent 40px 48px);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #10151a;
-    --card: #171e26;
-    --text: #e6ebf0;
-    --muted: #92a3b1;
-    --accent: #41a3dc;
-    --accent-hi: #5cb5e9;
-    --accent-text: #071019;
-    --nav-bg: #0d3a57;
-    --nav-text: #d9ebf8;
-    --accent2: #f0ac45;
-    --accent2-text: #201604;
-    --border: #2a333c;
-    --ok: #45c08c;
-    --ok-bg: #142e23;
-    --bad: #f0836c;
-    --bad-bg: #38211b;
-    --warn: #e5a44e;
-    --surface-dark: #0b0e12;
-    --shadow: none;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #10151a;
-  --card: #171e26;
-  --text: #e6ebf0;
-  --muted: #92a3b1;
-  --accent: #41a3dc;
-  --accent-hi: #5cb5e9;
-  --accent-text: #071019;
-  --nav-bg: #0d3a57;
-  --nav-text: #d9ebf8;
-  --accent2: #f0ac45;
-  --accent2-text: #201604;
-  --border: #2a333c;
-  --ok: #45c08c;
-  --ok-bg: #142e23;
-  --bad: #f0836c;
-  --bad-bg: #38211b;
-  --warn: #e5a44e;
-  --surface-dark: #0b0e12;
-  --shadow: none;
-}
-
+/* Trainer engine styles: everything structural, themed entirely through the
+   CSS custom properties that css/app.css defines. An app carries no
+   structural CSS of its own — it sets the tokens (colors, shadow, the
+   --track-texture drawn on the progress bar) and any styles for markup its
+   own modules render. Synced from the trainer-engine repo; do not edit in an
+   app repo. */
 * { box-sizing: border-box; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 nav :focus-visible { outline-color: var(--accent2); }
@@ -90,7 +16,7 @@ body {
 }
 main { max-width: 720px; margin: 0 auto; padding: 20px 16px 64px; }
 
-/* nav: wheelhouse console strip */
+/* nav: themed strip under the accent tokens */
 nav {
   display: flex;
   gap: 2px;
@@ -146,7 +72,11 @@ h2 { margin: 12px 0 8px; font-weight: 800; letter-spacing: -0.01em; }
 .sub { color: var(--muted); margin-top: 4px; }
 
 /* buttons: base first, variants after, so variants actually win */
-.actions button, .grades button, .done button, .examresult button, #feedback > button {
+/* button.btn is the hook for app-module markup (an extra view's buttons pick
+   up the shared styling by carrying the class rather than by this list
+   growing a selector per app) */
+.actions button, .grades button, .done button, .examresult button, #feedback > button,
+button.btn {
   font: inherit;
   font-weight: 600;
   padding: 10px 18px;
@@ -165,9 +95,9 @@ button.primary {
 }
 button.primary:hover { background: var(--accent-hi); border-color: var(--accent-hi); }
 button.danger { border-color: var(--bad); color: var(--bad); background: transparent; box-shadow: none; }
-.actions button:disabled { opacity: 0.45; cursor: default; box-shadow: none; }
+.actions button:disabled, button.btn:disabled { opacity: 0.45; cursor: default; box-shadow: none; }
 
-/* exam banner: signal-orange strip */
+/* exam banner: accent2 strip */
 .exambanner {
   margin: 12px 0 0;
   padding: 8px 14px;
@@ -191,7 +121,7 @@ button.danger { border-color: var(--bad); color: var(--bad); background: transpa
   border-top: 1px solid var(--border);
 }
 
-/* stat tiles: instrument panels */
+/* stat tiles: mile-marker panels */
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 16px 0; }
 .tile {
   background: var(--card);
@@ -232,7 +162,7 @@ button.danger { border-color: var(--bad); color: var(--bad); background: transpa
 .badge.review { background: var(--ok-bg); color: var(--ok); }
 .badge.relearn { background: var(--bad-bg); color: var(--bad); }
 
-/* progress: the track texture (morse code, in this theme) over the dark track */
+/* progress: the app's optional --track-texture over the dark track */
 .progress {
   height: 10px;
   border-radius: 6px;
@@ -494,3 +424,44 @@ body > footer a:hover { color: var(--accent); }
 .seclist h4:first-child { margin-top: 4px; }
 .seccheck { display: flex; align-items: baseline; gap: 8px; }
 .seccheck small { color: var(--muted); }
+
+/* The mistake behind the choice actually picked (a question's optional
+   whyWrong entry), ahead of the explanation that teaches the rule. Coloured
+   like the wrong answer it names, so the eye lands on the diagnosis first. */
+.slip { color: var(--bad); font-style: normal; font-weight: 600; }
+.missitem .slip { font-weight: 500; }
+
+/* Browse/Stats grouping: an exam's sections, with the totals on the summary
+   line so they read without expanding. The group is the frame; the sections
+   nest flat inside it so the two levels do not stack borders and shadows. */
+.group > summary { font-size: 1.02rem; }
+.group > summary small { color: var(--muted); font-weight: 400; margin-left: 6px; }
+.browse .group { padding: 10px 14px; }
+.browse .group > .chapter { background: transparent; border: none; border-top: 1px solid var(--border);
+  border-radius: 0; box-shadow: none; margin: 0; padding: 8px 0 8px 10px; }
+.browse .group > .chapter:first-of-type { margin-top: 6px; }
+.stats .group { background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 8px 12px; margin: 6px 0; box-shadow: var(--shadow); }
+.stats .group > summary { cursor: pointer; font-weight: 600; }
+.stats .group table { box-shadow: none; margin-bottom: 4px; }
+
+/* Wide tables scroll inside their own box rather than pushing the page
+   sideways on a phone. */
+.table-scroll { overflow-x: auto; }
+
+/* About extras: sources, per-exam coverage, and the config-driven license
+   reference table. All render only when the exam config asks for them. */
+.about h4 { margin: 18px 0 4px; font-size: 0.95rem; }
+.licenses { min-width: 40em; margin-top: 4px; }
+.licenses td { font-variant-numeric: normal; font-size: 0.9rem; vertical-align: top; }
+.licenses td:first-child { min-width: 12em; }
+.coverage td { font-variant-numeric: tabular-nums; }
+.coverage tr.empty td { color: var(--muted); }
+.sources { max-width: 48em; }
+.sources li { margin-bottom: 4px; }
+.categories { columns: 2; column-gap: 24px; max-width: 48em; }
+@media (max-width: 560px) { .categories { columns: 1; } }
+
+/* An exam with nothing written for it is listed but visibly not on offer. */
+.seccheck.empty { opacity: 0.55; }
+.examopt.empty { opacity: 0.6; }

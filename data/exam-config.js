@@ -13,6 +13,20 @@ const EXAM_CONFIG = {
   repo: 'https://github.com/ullbergm/fcc-commercial-test-training',
   passMark: 0.75, // every FCC written element passes at 75% (18/24, 75/100, 38/50)
 
+  // Section numbers are the written elements (globally unique across pools),
+  // not per-pool chapters; `manual` says only which pool PDF a question
+  // cites. Sections read as "§ N" in the UI.
+  flatSections: true,
+  sectionWord: '§',
+
+  // The bank reproduces the FCC's published pools verbatim, so the validator
+  // relaxes its duplicate rules: pools repeat a stem with different choices
+  // (and Element 7R repeats Element 7 questions), and these two ids repeat a
+  // choice in the published PDFs themselves (6A251 prints A twice, 9-23C1
+  // prints B twice).
+  verbatimPool: true,
+  allowDuplicateChoices: ['6A251', '9-23C1'],
+
   // The questions come verbatim from the FCC's published pools, which have
   // nothing further to say about an answer, so no per-question explanations.
   requireExplanations: false,
