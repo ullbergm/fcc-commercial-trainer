@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.1.0...v2.1.1) (2026-08-23)
+
+
+### Bug Fixes
+
+* draw the progress marker as an inline SVG instead of an emoji ([d1d1572](https://github.com/ullbergm/fcc-commercial-trainer/commit/d1d15723768961a26754809ad8e7d7a7a2b2eed3))
+
 ## [2.1.0](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.0.1...v2.1.0) (2026-08-23)
 
 
