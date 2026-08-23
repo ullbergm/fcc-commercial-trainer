@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.1.0](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.0.1...v2.1.0) (2026-08-23)
+
+
+### Features
+
+* **engine:** add track-marker tokens for themed progress bars ([0ba8960](https://github.com/ullbergm/fcc-commercial-trainer/commit/0ba8960a5834631e51c3971980b63dde0ad77e8f))
+* put a dish antenna marker on the progress bar ([4b6ee01](https://github.com/ullbergm/fcc-commercial-trainer/commit/4b6ee01a6ec3a8cb84ffb4fc6233f1fbfa7094b0))
+
+
+### Bug Fixes
+
+* sync trainer-engine v2.1.0 ([0ba8960](https://github.com/ullbergm/fcc-commercial-trainer/commit/0ba8960a5834631e51c3971980b63dde0ad77e8f))
+
 ## [2.0.1](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.0.0...v2.0.1) (2026-08-22)
 
 
