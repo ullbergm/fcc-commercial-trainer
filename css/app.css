@@ -1,7 +1,8 @@
 /* "RF spectrum" theme: signal violet, dial amber, cool violet-gray
    neutrals. All the exam flavor lives in the token blocks below, including
-   the --track-texture morse-code pattern on the progress bar; retheme a fork
-   by editing the tokens, nothing structural.
+   the --track-texture morse-code pattern and the --track-marker antenna on
+   the progress bar; retheme a fork by editing the tokens, nothing
+   structural.
    Light/dark follows prefers-color-scheme unless the Settings theme override
    sets data-theme="light"/"dark" on <html>. The dark token block therefore
    appears twice: once for system-dark (unless overridden to light), once for
@@ -32,6 +33,12 @@
   --track-texture: repeating-linear-gradient(90deg,
     transparent 0 8px, var(--accent2) 8px 14px, transparent 14px 22px,
     var(--accent2) 22px 40px, transparent 40px 48px);
+  /* Dish antenna transmitting the morse at the leading edge of the progress
+     fill. An emoji needs no palette-specific copies, so it is defined once
+     here. The clearance keeps the 15px marker and its 3px gap inside the
+     layout at 100%. */
+  --track-marker: "📡";
+  --track-marker-clearance: 18px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
