@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.2](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.1.1...v2.1.2) (2026-08-23)
+
+
+### Bug Fixes
+
+* **engine:** name the platform emoji fonts for emoji track markers ([274626b](https://github.com/ullbergm/fcc-commercial-trainer/commit/274626b13148e846cef66ea1231e53aa628573be))
+* sync trainer-engine v2.1.1 ([274626b](https://github.com/ullbergm/fcc-commercial-trainer/commit/274626b13148e846cef66ea1231e53aa628573be))
+
 ## [2.1.1](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.1.0...v2.1.1) (2026-08-23)
 
 
