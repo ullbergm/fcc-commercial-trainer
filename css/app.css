@@ -1,4 +1,4 @@
-/* "RF spectrum" theme: signal violet, dial amber, cool violet-gray
+/* "RF spectrum" theme: electric orchid, dial amber, cool violet-gray
    neutrals. All the exam flavor lives in the token blocks below, including
    the --track-texture morse-code pattern and the --track-marker antenna on
    the progress bar; retheme a fork by editing the tokens, nothing
@@ -12,11 +12,11 @@
   --card: #ffffff;
   --text: #1e1b2b;
   --muted: #635e78;
-  --accent: #5b3a9e;
-  --accent-hi: #472e7e;
+  --accent: #8a2b9e;
+  --accent-hi: #6f2280;
   --accent-text: #ffffff;
-  --nav-bg: #5b3a9e;
-  --nav-text: #efeaf9;
+  --nav-bg: #8a2b9e;
+  --nav-text: #f7e9fb;
   --accent2: #f2a032;
   --accent2-text: #231604;
   --border: #d9d4e4;
@@ -36,12 +36,12 @@
   /* Broadcast mast transmitting the morse at the leading edge of the
      progress fill. Inline SVG rather than an emoji: emoji glyphs come from
      whatever emoji font the visitor has (or hasn't) installed, and on Linux
-     the marker rendered tiny or not at all. Pale violet, deliberately NOT
+     the marker rendered tiny or not at all. Pale orchid, deliberately NOT
      the dial amber of the morse texture, so the marker reads against the
      dashes instead of blending into them; the color is baked into the data
      URI, so the dark blocks carry their own copy. The clearance keeps the
      18px marker and its 3px gap inside the layout at 100%. */
-  --track-marker: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><g fill="%23e9e3f7"><circle cx="9" cy="3" r="1.5"/><path d="M9 4.8 L5.9 16 h6.2 Z"/></g><g fill="none" stroke="%23e9e3f7" stroke-width="1.3" stroke-linecap="round"><path d="M10.9 1.7 A2.7 2.7 0 0 1 12.7 3.6"/><path d="M12 0.4 A4.7 4.7 0 0 1 15.1 3.7"/><path d="M7.1 1.7 A2.7 2.7 0 0 0 5.3 3.6"/><path d="M6 0.4 A4.7 4.7 0 0 0 2.9 3.7"/></g></svg>');
+  --track-marker: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><g fill="%23f2e2f7"><circle cx="9" cy="3" r="1.5"/><path d="M9 4.8 L5.9 16 h6.2 Z"/></g><g fill="none" stroke="%23f2e2f7" stroke-width="1.3" stroke-linecap="round"><path d="M10.9 1.7 A2.7 2.7 0 0 1 12.7 3.6"/><path d="M12 0.4 A4.7 4.7 0 0 1 15.1 3.7"/><path d="M7.1 1.7 A2.7 2.7 0 0 0 5.3 3.6"/><path d="M6 0.4 A4.7 4.7 0 0 0 2.9 3.7"/></g></svg>');
   --track-marker-clearance: 21px;
 }
 @media (prefers-color-scheme: dark) {
@@ -50,11 +50,11 @@
     --card: #1b1725;
     --text: #e9e5f1;
     --muted: #a49bbd;
-    --accent: #a689e3;
-    --accent-hi: #b79ded;
-    --accent-text: #170e2b;
-    --nav-bg: #33205e;
-    --nav-text: #e6ddf6;
+    --accent: #d18ae0;
+    --accent-hi: #db9fe8;
+    --accent-text: #2d0b31;
+    --nav-bg: #55175f;
+    --nav-text: #f0dcf4;
     --accent2: #f0ac45;
     --accent2-text: #201604;
     --border: #2f2840;
@@ -65,7 +65,7 @@
     --warn: #e5a44e;
     --surface-dark: #0e0b13;
     --shadow: none;
-    --track-marker: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><g fill="%23ddd2f3"><circle cx="9" cy="3" r="1.5"/><path d="M9 4.8 L5.9 16 h6.2 Z"/></g><g fill="none" stroke="%23ddd2f3" stroke-width="1.3" stroke-linecap="round"><path d="M10.9 1.7 A2.7 2.7 0 0 1 12.7 3.6"/><path d="M12 0.4 A4.7 4.7 0 0 1 15.1 3.7"/><path d="M7.1 1.7 A2.7 2.7 0 0 0 5.3 3.6"/><path d="M6 0.4 A4.7 4.7 0 0 0 2.9 3.7"/></g></svg>');
+    --track-marker: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><g fill="%23ead2f0"><circle cx="9" cy="3" r="1.5"/><path d="M9 4.8 L5.9 16 h6.2 Z"/></g><g fill="none" stroke="%23ead2f0" stroke-width="1.3" stroke-linecap="round"><path d="M10.9 1.7 A2.7 2.7 0 0 1 12.7 3.6"/><path d="M12 0.4 A4.7 4.7 0 0 1 15.1 3.7"/><path d="M7.1 1.7 A2.7 2.7 0 0 0 5.3 3.6"/><path d="M6 0.4 A4.7 4.7 0 0 0 2.9 3.7"/></g></svg>');
   }
 }
 :root[data-theme="dark"] {
@@ -73,11 +73,11 @@
   --card: #1b1725;
   --text: #e9e5f1;
   --muted: #a49bbd;
-  --accent: #a689e3;
-  --accent-hi: #b79ded;
-  --accent-text: #170e2b;
-  --nav-bg: #33205e;
-  --nav-text: #e6ddf6;
+  --accent: #d18ae0;
+  --accent-hi: #db9fe8;
+  --accent-text: #2d0b31;
+  --nav-bg: #55175f;
+  --nav-text: #f0dcf4;
   --accent2: #f0ac45;
   --accent2-text: #201604;
   --border: #2f2840;
@@ -88,6 +88,6 @@
   --warn: #e5a44e;
   --surface-dark: #0e0b13;
   --shadow: none;
-  --track-marker: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><g fill="%23ddd2f3"><circle cx="9" cy="3" r="1.5"/><path d="M9 4.8 L5.9 16 h6.2 Z"/></g><g fill="none" stroke="%23ddd2f3" stroke-width="1.3" stroke-linecap="round"><path d="M10.9 1.7 A2.7 2.7 0 0 1 12.7 3.6"/><path d="M12 0.4 A4.7 4.7 0 0 1 15.1 3.7"/><path d="M7.1 1.7 A2.7 2.7 0 0 0 5.3 3.6"/><path d="M6 0.4 A4.7 4.7 0 0 0 2.9 3.7"/></g></svg>');
+  --track-marker: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><g fill="%23ead2f0"><circle cx="9" cy="3" r="1.5"/><path d="M9 4.8 L5.9 16 h6.2 Z"/></g><g fill="none" stroke="%23ead2f0" stroke-width="1.3" stroke-linecap="round"><path d="M10.9 1.7 A2.7 2.7 0 0 1 12.7 3.6"/><path d="M12 0.4 A4.7 4.7 0 0 1 15.1 3.7"/><path d="M7.1 1.7 A2.7 2.7 0 0 0 5.3 3.6"/><path d="M6 0.4 A4.7 4.7 0 0 0 2.9 3.7"/></g></svg>');
 }
 
