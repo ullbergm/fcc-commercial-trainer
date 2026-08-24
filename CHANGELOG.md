@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.2.0](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.1.2...v2.2.0) (2026-08-24)
+
+
+### Features
+
+* **engine:** catch near-duplicate question stems in bank validation ([5171ddf](https://github.com/ullbergm/fcc-commercial-trainer/commit/5171ddf9e572c797ea12194478161ebf6a3f8187))
+* **engine:** double the progress track height to 20px ([5171ddf](https://github.com/ullbergm/fcc-commercial-trainer/commit/5171ddf9e572c797ea12194478161ebf6a3f8187))
+* **engine:** show an optional illustration with a question ([5171ddf](https://github.com/ullbergm/fcc-commercial-trainer/commit/5171ddf9e572c797ea12194478161ebf6a3f8187))
+* **engine:** support true/false questions ([5171ddf](https://github.com/ullbergm/fcc-commercial-trainer/commit/5171ddf9e572c797ea12194478161ebf6a3f8187))
+* mark progress with a pale violet broadcast mast ([43126fc](https://github.com/ullbergm/fcc-commercial-trainer/commit/43126fc77cf7d0e1a1385939bb10c0d0dd42bc19))
+
+
+### Bug Fixes
+
+* **engine:** tolerate leaving About before the changelog fetch settles ([5171ddf](https://github.com/ullbergm/fcc-commercial-trainer/commit/5171ddf9e572c797ea12194478161ebf6a3f8187))
+* sync trainer-engine v2.2.0 ([5171ddf](https://github.com/ullbergm/fcc-commercial-trainer/commit/5171ddf9e572c797ea12194478161ebf6a3f8187))
+
 ## [2.1.2](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.1.1...v2.1.2) (2026-08-23)
 
 
