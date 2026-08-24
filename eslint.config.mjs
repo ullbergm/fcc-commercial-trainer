@@ -78,6 +78,15 @@ export default [
     languageOptions: { sourceType: 'commonjs', globals: { ...globals.node } },
   },
   {
+    // The Playwright harness: node-side runner files that also carry snippets
+    // executed in the page via page.evaluate, so both global sets apply.
+    files: ['tests/*.mjs'],
+    languageOptions: {
+      sourceType: 'module',
+      globals: { ...globals.node, ...globals.browser },
+    },
+  },
+  {
     files: ['tests/**/*.js'],
     languageOptions: {
       sourceType: 'commonjs',

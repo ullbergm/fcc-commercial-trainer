@@ -1,0 +1,49 @@
+# Enables auto-merge on a release-please PR when everything it releases is
+# automated: engine sync commits and dependabot chores, each of which already
+# passed this repo's CI on its own PR. A release containing any human-authored
+# change keeps needing a human to merge it. Uses SYNC_TOKEN for the same
+# reason the sync PRs do: a merge performed by the default GITHUB_TOKEN would
+# not trigger the Release workflow, so the deploy would never run.
+name: auto-release
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  enable:
+    if: github.head_ref == 'release-please--branches--main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # The full history: the check walks main back to the previous
+          # release tag.
+          fetch-depth: 0
+
+      - name: Enable auto-merge when the release is all-automated
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "no SYNC_TOKEN (fork?); leaving the release PR for a human"
+            exit 0
+          fi
+          last=$(git describe --tags --abbrev=0 origin/main 2>/dev/null || true)
+          if [ -z "$last" ]; then
+            echo "no previous release tag; leaving the first release for a human"
+            exit 0
+          fi
+          subjects=$(git log --no-merges --format=%s "$last..origin/main")
+          manual=$(grep -vE '^(fix: sync trainer-engine|chore(\([^)]*\))?:)' <<<"$subjects" || true)
+          if [ -n "$manual" ]; then
+            echo "release contains human-authored changes; leaving it for a human:"
+            sed 's/^/  /' <<<"$manual"
+            exit 0
+          fi
+          echo "all commits since $last are automated; enabling auto-merge"
+          gh pr merge --merge --auto "$PR" --repo "$GITHUB_REPOSITORY"

@@ -42,7 +42,7 @@ Run everything CI runs:
 ```
 npm run lint
 npm test             # question bank validation + FSRS scheduler tests
-npm run test:browser # end-to-end suite in headless Chrome or Chromium
+npm run test:browser # end-to-end suite via Playwright (chromium+firefox locally; CI adds webkit)
 ```
 
 Every line should say `PASS`. You can also open `tests/test.html` in a browser
