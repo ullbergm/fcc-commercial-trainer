@@ -9,3 +9,9 @@ node_modules/
 
 # The FCC question pool PDFs in pools/ are US government works and are committed
 !pools/*.pdf
+
+# build/test artifacts
+dist/
+test-results/
+.lighthouseci/
+coverage/

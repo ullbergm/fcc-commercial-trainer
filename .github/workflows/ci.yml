@@ -7,7 +7,8 @@ on:
   workflow_dispatch:
   schedule:
     # Weekly canary run. Deploys only happen at releases, so this catches
-    # runner or Chrome drift before it can block a release.
+    # runner or Chrome drift before it can block a release; the links job
+    # below also rides this schedule.
     - cron: '17 6 * * 1'
 
 permissions:
@@ -28,8 +29,52 @@ jobs:
           npm ci
           npm run lint
 
-      - name: Node test suite (question bank + FSRS)
-        run: npm test
+      - name: Node test suite (question bank + FSRS), with coverage
+        run: npm run test:coverage
 
       - name: Browser test suite
         run: tests/run-browser.sh
+
+  # Audits the exact bytes a release would ship (tools/stage-site.sh, the
+  # same staging the deploy runs) against the budgets in .lighthouserc.json.
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Lighthouse audit against budgets
+        run: |
+          # stage-site.sh arrives via engine sync; skipping (rather than
+          # failing) until it lands keeps this job green on the app-side PR
+          # that introduces it, whichever order the two merge in.
+          if [ ! -f tools/stage-site.sh ]; then
+            echo "::notice::tools/stage-site.sh not yet synced from the engine; skipping"
+            exit 0
+          fi
+          npm ci
+          tools/stage-site.sh
+          npx --yes @lhci/cli@0.15.1 autorun
+
+  # External links rot on their own schedule, not ours, so this runs on the
+  # weekly canary rather than on every pull request. It sweeps the prose docs
+  # and data/*.js, where the manual URLs that questions deep-link into live.
+  links:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Check external links
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        env:
+          # Authenticated github.com requests dodge anonymous rate limits.
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          # 403/429: government and publisher sites often refuse bots while
+          # serving readers fine; only a dead link should fail the run.
+          args: >-
+            --no-progress
+            --accept '200..204,403,429'
+            --exclude-path node_modules
+            './*.md' 'docs/**/*.md' 'data/*.js'
+          fail: true

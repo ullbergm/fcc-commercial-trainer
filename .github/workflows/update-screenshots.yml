@@ -1,0 +1,44 @@
+# Regenerates the chromium visual baselines in tests/screenshots/ on a CI
+# runner and opens a PR with the result. Baselines are always rendered here
+# rather than on a contributor's machine so a single font stack draws every
+# baseline; a local run of the browser suite compares against these and a
+# local --update-snapshots run should never be committed.
+# Run it after a deliberate visual change (theme, layout, engine.css sync)
+# and review the PR's image diffs like any other change.
+name: update-screenshots
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Render the baselines
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          npx playwright test --config tests/playwright.config.mjs \
+            --project=chromium --grep @visual --update-snapshots
+
+      - name: Open a PR with the new baselines
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          # SYNC_TOKEN so the PR's checks run (the default token cannot
+          # trigger workflows), and signed commits for the protect-main
+          # ruleset, as in the engine's sync workflow.
+          token: ${{ secrets.SYNC_TOKEN }}
+          sign-commits: true
+          add-paths: tests/screenshots/**
+          branch: update-screenshots
+          commit-message: 'test: refresh visual baselines'
+          title: 'Refresh visual baselines'
+          body: >-
+            CI-rendered chromium baselines for the browser suite's @visual
+            tests. Review the image diffs; merging makes these the baselines
+            every future run compares against.

@@ -155,7 +155,7 @@ tests/validate-bank.js   question bank schema checks (node)
 tests/fsrs-test.js       FSRS scheduler property tests (node)
 tests/readiness-test.js  readiness projection tests, incl. a Monte Carlo check (node)
 tests/test.html          end-to-end tests driven through the real UI
-tests/run-browser.sh     headless-Chrome runner for test.html (local + CI)
+tests/run-browser.sh     Playwright runner for the browser suite (local + CI)
 docs/question-authoring.md  how the bank is generated and how to update it
 docs/screenshots/        README images and the script that regenerates them
 ```
@@ -226,7 +226,7 @@ To run the checks locally:
 npm install          # one time, dev tooling only (the app itself has no dependencies)
 npm run lint
 npm test             # question bank validation, FSRS scheduler, readiness projection
-npm run test:browser # end-to-end suite in headless Chrome or Chromium
+npm run test:browser # end-to-end suite via Playwright (chromium+firefox locally; CI adds webkit)
 ```
 
 Every line should say `PASS`. Opening `tests/test.html` in a normal browser also
