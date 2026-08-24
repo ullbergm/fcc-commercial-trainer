@@ -61,24 +61,14 @@ jobs:
       - name: Browser test suite
         run: tests/run-browser.sh
 
-      # Deploy a curated set of app files. Never ship the repo wholesale:
-      # tests/test.html clears localStorage on load and would wipe the study
-      # progress of anyone who opened it on the live origin.
+      # tools/stage-site.sh (synced with the engine) curates what ships and
+      # is the same staging the CI lighthouse job audits. Never ship the repo
+      # wholesale: tests/test.html clears localStorage on load and would wipe
+      # the study progress of anyone who opened it on the live origin.
       - name: Stage site files
         env:
           TAG: ${{ needs.release-please.outputs.tag_name }}
-        run: |
-          mkdir dist
-          cp -r index.html css js data icons manifest.webmanifest sw.js CHANGELOG.md dist/
-          # A fork without a custom domain has no CNAME; stage it only when present.
-          if [ -f CNAME ]; then cp CNAME dist/; fi
-          # version.txt feeds the footer version in the app
-          echo "${TAG#v}" > dist/version.txt
-          # stamp the release into the service worker cache name, so each
-          # release installs as a new worker and the app can offer a reload
-          sed -i "s/__VERSION__/${TAG#v}/" dist/sw.js
-          grep -q "trainer-' + VERSION" dist/sw.js
-          ! grep -q "__VERSION__" dist/sw.js
+        run: tools/stage-site.sh "$TAG"
 
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
@@ -86,6 +76,31 @@ jobs:
           path: dist
       - id: deployment
         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+
+      # A deploy that half-fails (stale CDN copy, missing file) is otherwise
+      # only found by a user. version.txt is unique per release, so it doubles
+      # as the propagation probe; sw.js is checked for the stamped cache name
+      # because a stale worker quietly freezes the app at the old version.
+      - name: Verify the live site
+        env:
+          TAG: ${{ needs.release-please.outputs.tag_name }}
+          URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          want="${TAG#v}"
+          base="${URL%/}"
+          got=''
+          for i in $(seq 1 30); do
+            got=$(curl -fsS "$base/version.txt?probe=$GITHUB_RUN_ID-$i" || true)
+            [ "$got" = "$want" ] && break
+            sleep 10
+          done
+          if [ "$got" != "$want" ]; then
+            echo "::error::live version.txt is '$got', wanted '$want'"
+            exit 1
+          fi
+          curl -fsS "$base/?probe=$GITHUB_RUN_ID" | grep -q manifest.webmanifest
+          curl -fsS "$base/sw.js?probe=$GITHUB_RUN_ID" | grep -q "$want"
+          echo "live site serves $want"
 
       # Ship a signed copy of exactly what went live. These steps run after the
       # deploy on purpose: a signing failure should not cost the site a release.
