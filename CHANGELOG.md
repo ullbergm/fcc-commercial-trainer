@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.4.0](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.3.0...v2.4.0) (2026-08-28)
+
+
+### Features
+
+* **engine:** let a config name the tests a fresh install starts on ([0e02fd0](https://github.com/ullbergm/fcc-commercial-trainer/commit/0e02fd0efdd3c5c5faf45a1b7612999baf894e2e))
+
+
+### Bug Fixes
+
+* sync trainer-engine v2.3.0 ([0e02fd0](https://github.com/ullbergm/fcc-commercial-trainer/commit/0e02fd0efdd3c5c5faf45a1b7612999baf894e2e))
+
 ## [2.3.0](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.2.0...v2.3.0) (2026-08-24)
 
 
