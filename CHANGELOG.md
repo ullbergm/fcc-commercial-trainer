@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.1](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.4.0...v2.4.1) (2026-09-27)
+
+
+### Bug Fixes
+
+* **engine:** let Dependabot bumps merge on their own once CI passes ([0ebbf42](https://github.com/ullbergm/fcc-commercial-trainer/commit/0ebbf42555c3eca809a08309d9d825aea1c7c720))
+* sync trainer-engine v2.3.1 ([0ebbf42](https://github.com/ullbergm/fcc-commercial-trainer/commit/0ebbf42555c3eca809a08309d9d825aea1c7c720))
+
 ## [2.4.0](https://github.com/ullbergm/fcc-commercial-trainer/compare/v2.3.0...v2.4.0) (2026-08-28)
 
 
