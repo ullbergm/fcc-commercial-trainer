@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10",
-    "@playwright/test": "^1.63",
+    "@playwright/test": "^1.64",
     "c8": "^12",
     "eslint": "^10",
     "globals": "^17"
